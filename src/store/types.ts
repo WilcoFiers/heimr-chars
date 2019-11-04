@@ -1,14 +1,13 @@
 export interface RootState {
-  loading: boolean
-  user: User
-  characters: Character[]
+  loading: boolean;
+  user: User;
+  characters: Character[];
 }
 
 export interface User {
-  signedIn: boolean
+  signedIn: boolean;
 }
 
 export interface Character {
-  name: string
+  name: string;
 }
-
