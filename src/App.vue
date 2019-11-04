@@ -1,12 +1,19 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+    <SiteNav />
     <router-view />
   </div>
 </template>
+
+<script lang="ts">
+import Vue from "vue";
+import SiteNav from "./components/layout/SiteNav.vue";
+
+export default Vue.extend({
+  name: "HeimrCharacters",
+  components: { SiteNav }
+});
+</script>
 
 <style>
 #app {
