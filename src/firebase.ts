@@ -1,4 +1,4 @@
-import { initializeApp } from 'firebase'
+import { initializeApp } from "firebase";
 
 // Get a Firestore instance
 export const firebaseApp = initializeApp({
@@ -10,9 +10,9 @@ export const firebaseApp = initializeApp({
   messagingSenderId: "409786001633",
   appId: "1:409786001633:web:3c496047b36c83d5306fa0",
   measurementId: "G-YZ5QQN5LXP"
-})
+});
 
-export const auth = firebaseApp.auth()
+export const auth = firebaseApp.auth();
 
-export const db = firebaseApp.database()
-export const charactersRef = db.ref('characters')
+export const db = firebaseApp.database();
+export const charactersRef = db.ref("characters");

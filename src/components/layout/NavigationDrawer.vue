@@ -10,7 +10,12 @@
             <v-btn small text>edit</v-btn>
           </v-flex>
         </v-layout>
-        <v-divider v-else-if="item.divider" :key="i" dark class="my-3"></v-divider>
+        <v-divider
+          v-else-if="item.divider"
+          :key="i"
+          dark
+          class="my-3"
+        ></v-divider>
         <v-list-item v-else :key="i" @click="noop">
           <v-list-item-action>
             <v-icon>mdi-{{ item.icon }}</v-icon>

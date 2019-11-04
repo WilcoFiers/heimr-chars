@@ -90,8 +90,8 @@
     "preset": "@vue/cli-plugin-unit-jest/presets/typescript-and-babel"
   },
   "lint-staged": {
-    "*.{ts,tsx}": [
-      "eslint --fix",
+    "*.{ts,vue}": [
+      "vue-cli-service lint",
       "prettier --write",
       "git add"
     ],
