@@ -10,8 +10,8 @@
 
 <script lang="ts">
 import Vue from "vue";
-import CreateCharacter from "../components/CreateCharacter.vue";
-import { db, charactersRef } from "../firebase";
+import CreateCharacter from "@/components/CreateCharacter.vue";
+import { db, charactersRef } from "@/firebase";
 
 export default Vue.extend({
   name: "CharacterList",
