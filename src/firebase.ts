@@ -14,5 +14,5 @@ export const firebaseApp = initializeApp({
 
 export const auth = firebaseApp.auth();
 
-export const db = firebaseApp.database();
-export const charactersRef = db.ref("characters");
+export const db = firebaseApp.firestore();
+export const charactersCol = db.collection("characters");

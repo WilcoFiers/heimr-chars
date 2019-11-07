@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import { charactersRef, db } from "@/firebase";
-import { vuexfireMutations, firebaseAction } from "vuexfire";
+import { charactersCol } from "@/firebase";
+import { vuexfireMutations, firestoreAction } from "vuexfire";
 import { user } from "./user";
 
 Vue.use(Vuex);
@@ -16,17 +16,17 @@ export default new Vuex.Store({
     ...vuexfireMutations
   },
   actions: {
-    bindCharacters: firebaseAction(({ bindFirebaseRef }) => {
+    bindCharacters: firestoreAction(({ bindFirestoreRef }) => {
       // return the promise returned by `bindFirestoreRef`
-      return bindFirebaseRef("characters", db.ref("characters"));
+      return bindFirestoreRef("characters", charactersCol);
     }) as () => Promise<any>,
 
-    unbindCharacters: firebaseAction(({ unbindFirebaseRef }) => {
-      unbindFirebaseRef("characters");
+    unbindCharacters: firestoreAction(({ unbindFirestoreRef }) => {
+      unbindFirestoreRef("characters");
     }) as () => void,
 
     async createCharacter({ commit }, { name }) {
-      return await charactersRef.push({ name });
+      return await charactersCol.add({ name });
     }
   }
 });

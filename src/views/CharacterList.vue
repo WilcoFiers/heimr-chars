@@ -1,17 +1,35 @@
 <template>
-  <main>
+  <v-container>
     <h1>My Characters</h1>
-    <ul v-if="characters">
-      <li v-for="(char, index) in characters" :key="index">{{ char.name }}</li>
-    </ul>
-    <CreateCharacter />
-  </main>
+    <v-layout wrap justify-start>
+      <v-flex
+        xs-6
+        md-4
+        lg-3
+        xl-2
+        v-for="(char, index) in characters"
+        :key="index"
+      >
+        <v-card min-width="250" to="/" class="mx-4 my-4">
+          <v-card-title>{{ char.name }}</v-card-title>
+          <v-card-text>Some text on my card</v-card-text>
+        </v-card>
+      </v-flex>
+
+      <v-flex xs-6 md-4 lg-3 xl-2>
+        <v-card min-width="250" to="/characters/new" class="mx-4 my-4">
+          <v-card-title>
+            <v-icon left>mdi-plus-box</v-icon>New character
+          </v-card-title>
+          <v-card-text>Build a character from scratch</v-card-text>
+        </v-card>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import CreateCharacter from "@/components/CreateCharacter.vue";
-import { db, charactersRef } from "@/firebase";
 
 export default Vue.extend({
   name: "CharacterList",
@@ -19,7 +37,6 @@ export default Vue.extend({
     characters() {
       return this.$store.state.characters;
     }
-  },
-  components: { CreateCharacter }
+  }
 });
 </script>
