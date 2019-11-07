@@ -1,23 +1,15 @@
 <template>
-  <v-app>
-    <AppBar />
-    <NavigationDrawer />
-    <v-content>
-      <router-view></router-view>
-    </v-content>
-  </v-app>
+  <HeimrLayout>
+    <router-view></router-view>
+  </HeimrLayout>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import AppBar from "@/components/layout/AppBar.vue";
-import NavigationDrawer from "@/components/layout/NavigationDrawer.vue";
+import HeimrLayout from "@/components/HeimrLayout.vue";
 
 export default Vue.extend({
   name: "HeimrChar",
-  components: {
-    AppBar,
-    NavigationDrawer
-  }
+  components: { HeimrLayout }
 });
 </script>
