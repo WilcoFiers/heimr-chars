@@ -6,6 +6,7 @@ export interface RootState {
 
 export interface User {
   signedIn: boolean;
+  displayName: string | null;
 }
 
 export interface Character {

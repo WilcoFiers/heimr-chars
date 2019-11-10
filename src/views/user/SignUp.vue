@@ -1,56 +1,107 @@
 <template>
-  <div class="login">
-    <h3>Sign Up</h3>
-    <label>
-      E-mail
-      <input type="text" v-model="email" autocomplete="off" />
-    </label>
-    <label>
-      Password
-      <input type="password" v-model="password" autocomplete="off" />
-    </label>
-    <button @click="signUp">Sign Up</button>
-
-    <p>
-      Already have an account, just
-      <router-link to="/sign-in">Sign in</router-link>
-    </p>
-  </div>
+  <v-container>
+    <v-row class="justify-center">
+      <v-col :md="6">
+        <h1>Sign Up</h1>
+        <v-form @submit.prevent="signUp" autocomplete="off">
+          <v-row v-if="message">
+            <p class="red--text text--darken-3">
+              <v-icon class="red--text text--darken-3" small
+                >mdi-alert-circle</v-icon
+              >
+              {{ message }}
+            </p>
+          </v-row>
+          <v-row>
+            <v-text-field
+              label="Display name"
+              v-model="displayName"
+              prepend-icon="mdi-monitor-screenshot"
+              :rules="[required]"
+            />
+          </v-row>
+          <v-row>
+            <v-text-field
+              label="E-mail"
+              v-model="email"
+              prepend-icon="mdi-at"
+              :rules="[required, validEmail]"
+            />
+          </v-row>
+          <v-row>
+            <v-text-field
+              label="Password"
+              v-model="password"
+              type="password"
+              prepend-icon="mdi-lock-outline"
+              :rules="[required]"
+            />
+          </v-row>
+          <v-row>
+            <v-text-field
+              label="Repeat your password"
+              v-model="passwordRepeat"
+              type="password"
+              prepend-icon="mdi-lock-outline"
+              :rules="[required]"
+            />
+          </v-row>
+          <v-row>
+            <v-btn type="submit">Sign Up</v-btn>
+          </v-row>
+          <v-row>
+            <p class="py-5">
+              Already have an account, just
+              <router-link to="/sign-in">Sign in</router-link>
+            </p>
+          </v-row>
+        </v-form>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
 import firebase from "firebase";
 
+const emailRegex = /\S+@\S+\.\S+/;
+
 export default Vue.extend({
   name: "SignUp",
   data() {
     return {
+      displayName: "",
+      realName: "",
       email: "",
-      password: ""
+      password: "",
+      passwordRepeat: "",
+      message: "",
+      required: (val: string) => val !== "" || "Field must be filled out",
+      validEmail: (val: string) =>
+        emailRegex.test(val) || "E-mail address must be valid"
     };
   },
   methods: {
     async signUp() {
-      /*eslint no-console: "off" */
-      const { email, password } = this;
+      const { email, password, passwordRepeat, displayName, realName } = this;
+      if (password !== passwordRepeat) {
+        this.message = "Password and repeat password must be the same.";
+        return;
+      }
+
       try {
-        const auth = firebase.auth();
-        const user = await auth.createUserWithEmailAndPassword(email, password);
-        console.log("user created", user);
+        await this.$store.dispatch("signUp", {
+          email,
+          password,
+          displayName,
+          realName
+        });
+        this.$router.push("/");
       } catch (e) {
-        console.error(e);
+        this.message = e.meaage;
       }
     }
   }
 });
 </script>
-
-<style scoped>
-.login {
-  margin: 1em;
-}
-label {
-  display: block;
-}
-</style>

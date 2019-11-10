@@ -13,7 +13,8 @@ export default new Vuex.Store({
   },
   modules: { user },
   mutations: {
-    ...vuexfireMutations
+    ...vuexfireMutations,
+    setLoading: (state, val = true) => (state.loading = val)
   },
   actions: {
     bindCharacters: firestoreAction(({ bindFirestoreRef }) => {
