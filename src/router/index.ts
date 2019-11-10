@@ -3,6 +3,8 @@ import VueRouter from "vue-router";
 import Home from "@/views/Home.vue";
 import { SignIn, SignUp } from "@/views/user";
 import CharacterList from "@/views/CharacterList.vue";
+import CharacterNew from "@/views/CharacterNew.vue";
+import PageNotFound from "@/views/PageNotFound.vue";
 import AuthGuard from "./AuthGuard";
 
 Vue.use(VueRouter);
@@ -30,6 +32,12 @@ const routes = [
     beforeEnter: AuthGuard
   },
   {
+    path: "/characters/new",
+    name: "character-new",
+    component: CharacterNew,
+    beforeEnter: AuthGuard
+  },
+  {
     path: "/about",
     name: "about",
     // route level code-splitting
@@ -38,7 +46,8 @@ const routes = [
     component: () =>
       import("../views/About.vue") /* webpackChunkName: "about" */,
     beforeEnter: AuthGuard
-  }
+  },
+  { path: "*", component: PageNotFound }
 ];
 
 const router = new VueRouter({
