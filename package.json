@@ -8,7 +8,8 @@
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint",
-    "prettier": "prettier src/**/*.{ts,vue,json} --write"
+    "prettier": "prettier src/**/*.{ts,vue,json} --write",
+    "scrape-heimr": "cd scripts && ts-node getHeimrDocs.ts"
   },
   "dependencies": {
     "core-js": "^3.3.2",
@@ -24,7 +25,9 @@
   "devDependencies": {
     "@commitlint/cli": "^8.2.0",
     "@commitlint/config-conventional": "^8.2.0",
+    "@types/cheerio": "^0.22.13",
     "@types/jest": "^24.0.11",
+    "@types/request": "^2.48.3",
     "@vue/cli-plugin-babel": "^4.0.0",
     "@vue/cli-plugin-e2e-cypress": "^4.0.0",
     "@vue/cli-plugin-eslint": "^4.0.0",
@@ -36,14 +39,17 @@
     "@vue/eslint-config-prettier": "^5.0.0",
     "@vue/eslint-config-typescript": "^4.0.0",
     "@vue/test-utils": "1.0.0-beta.29",
+    "cheerio": "^1.0.0-rc.3",
     "eslint": "^5.16.0",
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-vue": "^5.0.0",
     "husky": "^3.0.9",
     "lint-staged": "^9.4.2",
     "prettier": "^1.18.2",
+    "request": "^2.88.0",
     "sass": "^1.19.0",
     "sass-loader": "^8.0.0",
+    "ts-node": "^8.4.1",
     "typescript": "~3.5.3",
     "vue-cli-plugin-vuetify": "^2.0.1",
     "vue-template-compiler": "^2.6.10",
