@@ -96,23 +96,28 @@ export default Vue.extend({
       type: String
     }
   },
+
   data(): { raceIndex: number; item: number; selected: number; races: Race[] } {
     return { raceIndex: 0, item: 0, selected: -1, races };
   },
+
   computed: {
     currentRace(): Race {
       return this.races[this.raceIndex] || {};
     }
   },
+
   methods: {
     updateCard(index: number) {
       this.raceIndex = index;
     },
+
     selectRace() {
       this.selected = this.raceIndex;
       const { name } = this.races[this.raceIndex];
       this.$emit("input", name);
     },
+
     loreName({ name }: Race) {
       return name.split(" ")[0].toLowerCase();
     }

@@ -10,7 +10,7 @@
         v-for="(char, index) in characters"
         :key="index"
       >
-        <v-card min-width="250" to="/" class="mx-4 my-4">
+        <v-card min-width="250" :to="charUri(char)" class="mx-4 my-4">
           <v-card-title>{{ char.name }}</v-card-title>
           <v-card-text>Some text on my card</v-card-text>
         </v-card>
@@ -36,6 +36,11 @@ export default Vue.extend({
   computed: {
     characters() {
       return this.$store.state.characters;
+    }
+  },
+  methods: {
+    charUri({ id }: { id: string }) {
+      return `/characters/${id.substr(0, 8)}`;
     }
   }
 });

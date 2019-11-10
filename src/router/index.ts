@@ -4,6 +4,7 @@ import Home from "@/views/Home.vue";
 import { SignIn, SignUp } from "@/views/user";
 import CharacterList from "@/views/CharacterList.vue";
 import CharacterNew from "@/views/CharacterNew.vue";
+import CharacterUpdate from "@/views/CharacterUpdate.vue";
 import PageNotFound from "@/views/PageNotFound.vue";
 import AuthGuard from "./AuthGuard";
 
@@ -35,6 +36,12 @@ const routes = [
     path: "/characters/new",
     name: "character-new",
     component: CharacterNew,
+    beforeEnter: AuthGuard
+  },
+  {
+    path: "/characters/:charId",
+    name: "character-update",
+    component: CharacterUpdate,
     beforeEnter: AuthGuard
   },
   {
