@@ -3,14 +3,9 @@
     <v-row class="justify-center">
       <v-col :md="6">
         <h1>Sign Up</h1>
-        <v-form @submit.prevent="signUp" autocomplete="off">
+        <v-form @submit.prevent="signUp" autocomplete="off" ref="form">
           <v-row v-if="message">
-            <p class="red--text text--darken-3">
-              <v-icon class="red--text text--darken-3" small
-                >mdi-alert-circle</v-icon
-              >
-              {{ message }}
-            </p>
+            <ErrorMessage :message="message" />
           </v-row>
           <v-row>
             <v-text-field
@@ -63,12 +58,13 @@
 
 <script lang="ts">
 import Vue from "vue";
-import firebase from "firebase";
+import ErrorMessage from "@/components/ErrorMessage.vue";
 
 const emailRegex = /\S+@\S+\.\S+/;
 
 export default Vue.extend({
   name: "SignUp",
+  components: { ErrorMessage },
   data() {
     return {
       displayName: "",
@@ -84,6 +80,9 @@ export default Vue.extend({
   },
   methods: {
     async signUp() {
+      if (!this.form.validate()) {
+        return;
+      }
       const { email, password, passwordRepeat, displayName, realName } = this;
       if (password !== passwordRepeat) {
         this.message = "Password and repeat password must be the same.";
@@ -101,6 +100,12 @@ export default Vue.extend({
       } catch (e) {
         this.message = e.meaage;
       }
+    }
+  },
+  computed: {
+    form(): Vue & { validate: () => boolean } {
+      // Work around for $refs.form not having a validate method
+      return this.$refs.form as Vue & { validate: () => boolean };
     }
   }
 });
