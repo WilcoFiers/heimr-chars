@@ -38,17 +38,34 @@ export default new Vuex.Store({
       unbindFirestoreRef("characters");
     }) as () => void,
 
-    async createCharacter(_, { name, race }) {
+    createCharacter(_, { name, race }) {
       const playerID = (auth.currentUser as firebase.User).uid;
-      return await charactersCol.add({ name, race, playerID });
+      return charactersCol.add({ name, race, playerID });
     },
 
-    async updateCharacter(_, { name, race, uid }) {
-      return await charactersCol.doc(uid).update({ name, race });
+    updateCharacter(_, { name, race, uid }) {
+      return charactersCol.doc(uid).update({ name, race });
     },
 
-    async archiveCharacter(_, { name, race, uid }) {
-      return await charactersCol.doc(uid).update({ archive: true });
+    archiveCharacter(_, { uid }) {
+      return charactersCol.doc(uid).update({ archive: true });
+    },
+
+    async addCharacterRule(_, { rule, charId }) {
+      const char = this.state.characters.find(
+        ({ id }: { id: string }) => id.substr(0, 6) === charId
+      );
+      // TODO, store char in state somehow, probably with bind/unbind
+      const charDoc = await charactersCol.doc(char.id);
+      try {
+        const out = await charDoc.collection("rules").add({
+          type: rule.type,
+          name: rule.name
+        });
+      } catch (e) {
+        console.log("failed to add rule", rule);
+        console.error(e);
+      }
     }
   }
 });

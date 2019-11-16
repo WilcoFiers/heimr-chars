@@ -1,8 +1,17 @@
 <template>
   <v-form @submit.prevent="saveCharacter" ref="form">
     <v-container>
-      <v-row class="justify-center">
-        <v-col :md="6">
+      <v-row>
+        <v-col :cols="3">
+          <v-img
+            :src="require('../../assets/auto-repair.png')"
+            contain
+            width="120"
+            class="black ml-3"
+          ></v-img>
+        </v-col>
+
+        <v-col :cols="7">
           <h1 v-if="isNew">New Characters</h1>
           <h1 v-else>Update Characters</h1>
           <v-text-field
@@ -11,20 +20,8 @@
             :rules="[required]"
           />
         </v-col>
-      </v-row>
-      <HeimrRaces v-model="race" />
-      <v-row class="justify-center">
-        <v-col :md="3">
-          <!-- empty -->
-        </v-col>
-        <v-col :md="5">
-          <ErrorMessage :message="message" />
-          <v-btn type="submit">
-            Next: Skills &amp; Conditions
-            <v-icon>mdi-arrow-right</v-icon>
-          </v-btn>
-        </v-col>
-        <v-col :md="4" class="text-right">
+
+        <v-col :cols="2">
           <v-dialog v-if="!isNew" v-model="dialog" max-width="290">
             <template v-slot:activator="{ on }">
               <v-btn v-on="on"> <v-icon left>mdi-delete</v-icon>Delete </v-btn>
@@ -46,6 +43,25 @@
             </v-card>
           </v-dialog>
         </v-col>
+      </v-row>
+
+      <HeimrRaces v-model="race" />
+      <div class="text-center">
+        <!-- Should probably inside of HeimrRaces -->
+        <ErrorMessage :message="message" />
+      </div>
+
+      <v-row class="px-5">
+        <v-btn @click="back">
+          <v-icon>mdi-arrow-left</v-icon>My Characters
+        </v-btn>
+
+        <v-spacer />
+
+        <v-btn type="submit" class="primary">
+          Next: Skills &amp; Conditions
+          <v-icon>mdi-arrow-right</v-icon>
+        </v-btn>
       </v-row>
     </v-container>
   </v-form>
@@ -79,7 +95,7 @@ export default Vue.extend({
   created() {
     const { characters } = this.$store.state;
     const char = characters.find(
-      ({ id }: { id: string }) => id.substr(0, 8) === this.charId
+      ({ id }: { id: string }) => id.substr(0, 6) === this.charId
     );
 
     if (char) {
@@ -103,11 +119,16 @@ export default Vue.extend({
       } else {
         await this.$store.dispatch("createCharacter", { name, race });
       }
-      this.$router.push("/characters");
+      // TODO: Don't await, in offline mode the promise won't resolve!!
+      this.$router.push(`/characters/${uid.substr(0, 6)}/domains`);
     },
 
     async archiveChar() {
       await this.$store.dispatch("archiveCharacter", { uid: this.uid });
+      this.$router.push("/characters");
+    },
+
+    back() {
       this.$router.push("/characters");
     }
   },

@@ -7,6 +7,7 @@
           <v-row v-if="message">
             <ErrorMessage :message="message" />
           </v-row>
+
           <v-row>
             <v-text-field
               label="Display name"
@@ -15,6 +16,7 @@
               :rules="[required]"
             />
           </v-row>
+
           <v-row>
             <v-text-field
               label="E-mail"
@@ -23,6 +25,7 @@
               :rules="[required, validEmail]"
             />
           </v-row>
+
           <v-row>
             <v-text-field
               label="Password"
@@ -32,6 +35,7 @@
               :rules="[required]"
             />
           </v-row>
+
           <v-row>
             <v-text-field
               label="Repeat your password"
@@ -41,9 +45,11 @@
               :rules="[required]"
             />
           </v-row>
+
           <v-row>
             <v-btn type="submit">Sign Up</v-btn>
           </v-row>
+
           <v-row>
             <p class="py-5">
               Already have an account, just

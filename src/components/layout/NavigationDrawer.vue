@@ -3,10 +3,12 @@
     <v-list>
       <template v-for="(item, i) in navItems">
         <v-divider v-if="item.divider" :key="i" dark></v-divider>
+
         <v-list-item v-else :key="i" @click="goto(item.to)">
           <v-list-item-action>
             <v-icon>mdi-{{ item.icon }}</v-icon>
           </v-list-item-action>
+
           <v-list-item-content>
             <v-list-item-title>{{ item.text }}</v-list-item-title>
           </v-list-item-content>

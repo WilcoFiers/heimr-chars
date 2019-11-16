@@ -30,48 +30,10 @@
       <v-col :cols="9">
         <v-card>
           <v-card-title>
-            <h2>{{ currentRace.name }}</h2>
-            <v-spacer />
-            <a
-              target="blank"
-              :href="
-                'http://heimr.nl/in_character/lore/' + loreName(currentRace)
-              "
-              :title="'Heimr lore for ' + loreName(currentRace)"
-              >lore</a
-            >
+            <RuleCardTitle :card="currentRace" />
           </v-card-title>
           <v-card-text>
-            <p>
-              <strong>Hitpoints:</strong>
-              {{ currentRace.hitpoints }} /
-              <strong>Willpower:</strong>
-              {{ currentRace.willpower }}
-            </p>
-            <div v-if="currentRace.uniqueRules">
-              <h3>Unique rules</h3>
-              <ul>
-                <li v-for="(rule, i) in currentRace.uniqueRules" :key="i">
-                  {{ rule }}
-                </li>
-              </ul>
-            </div>
-            <div v-if="currentRace.sharedRules" class="mt-2">
-              <h3>Shared rules</h3>
-              <ul>
-                <li v-for="(rule, i) in currentRace.sharedRules" :key="i">
-                  {{ rule }}
-                </li>
-              </ul>
-            </div>
-            <div v-if="currentRace.downtimeRules" class="mt-2">
-              <h3>Downtime rules</h3>
-              <ul>
-                <li v-for="(rule, i) in currentRace.downtimeRules" :key="i">
-                  {{ rule }}
-                </li>
-              </ul>
-            </div>
+            <RuleCardContent :card="currentRace" />
           </v-card-text>
           <v-card-actions>
             <v-btn primary @click="selectRace">Select race</v-btn>
@@ -86,11 +48,14 @@
 import Vue from "vue";
 import heimrData from "@/assets/heimr-data.json";
 import { Race } from "@/types";
+import RuleCardContent from "@/components/domain/RuleCardContent.vue";
+import RuleCardTitle from "@/components/domain/RuleCardTitle.vue";
 
 const races = heimrData.races as Race[];
 
 export default Vue.extend({
   name: "HeimrRaces",
+  components: { RuleCardTitle, RuleCardContent },
   props: {
     value: {
       type: String
@@ -116,10 +81,6 @@ export default Vue.extend({
       this.selected = this.raceIndex;
       const { name } = this.races[this.raceIndex];
       this.$emit("input", name);
-    },
-
-    loreName({ name }: Race) {
-      return name.split(" ")[0].toLowerCase();
     }
   }
 });

@@ -12,9 +12,11 @@
               {{ message }}
             </p>
           </v-row>
+
           <v-row>
             <v-text-field label="E-mail" v-model="email" required />
           </v-row>
+
           <v-row>
             <v-text-field
               label="Password"
@@ -23,9 +25,11 @@
               required
             />
           </v-row>
+
           <v-row>
             <v-btn type="submit">Sign in</v-btn>
           </v-row>
+
           <v-row>
             <p class="py-5">
               Don't have an account, just

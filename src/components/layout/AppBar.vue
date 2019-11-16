@@ -4,6 +4,7 @@
       @click.stop="toggleDrawer"
       aria-label="Toggle navbar"
     ></v-app-bar-nav-icon>
+
     <span class="title ml-3 mr-5">
       <v-icon left large>mdi-account-group</v-icon>Heimr LARP&nbsp;
       <span class="font-weight-light">Unofficial App</span>
@@ -16,6 +17,7 @@
         <v-icon left>mdi-account</v-icon>
         {{ displayName }}
       </v-btn>
+
       <v-btn @click="signOut">
         <v-icon left>mdi-exit-to-app</v-icon>Sign Out
       </v-btn>
