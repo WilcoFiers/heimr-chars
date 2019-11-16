@@ -1,0 +1,20 @@
+rules_version = '2';
+service cloud.firestore {
+  function isSignedIn() {
+    return request.auth != null
+  }
+  match /databases/{database}/documents {
+    match /characters/{charId} {
+      function isPlayer() {
+          return request.auth.uid == resource.data.playerID
+      }
+
+      allow create: if isSignedIn()
+      allow read, update: if isPlayer()
+      
+      match /rules/{ruleId} {
+				allow read, write: if isPlayer()
+      }
+    }
+  }
+}

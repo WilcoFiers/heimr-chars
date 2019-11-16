@@ -9,7 +9,8 @@
     "test:e2e": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint",
     "prettier": "prettier src/**/*.{ts,vue,json} --write",
-    "scrape-heimr": "cd scripts && ts-node getHeimrDocs.ts"
+    "scrape-heimr": "cd scripts && ts-node getHeimrDocs.ts",
+    "deploy": "firebase deploy"
   },
   "dependencies": {
     "core-js": "^3.3.2",
@@ -43,6 +44,7 @@
     "eslint": "^5.16.0",
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-vue": "^5.0.0",
+    "firebase-tools": "^7.7.0",
     "husky": "^3.0.9",
     "lint-staged": "^9.4.2",
     "prettier": "^1.18.2",
