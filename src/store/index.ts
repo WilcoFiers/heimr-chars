@@ -40,7 +40,7 @@ export default new Vuex.Store({
 
     createCharacter(_, { name, race }) {
       const playerID = (auth.currentUser as firebase.User).uid;
-      return charactersCol.add({ name, race, playerID });
+      return charactersCol.add({ name, race, playerID, archive: false });
     },
 
     updateCharacter(_, { name, race, uid }) {

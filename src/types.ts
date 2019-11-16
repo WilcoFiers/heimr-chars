@@ -1,3 +1,4 @@
+// Heimr stuff
 export type BaseRule = {
   type: string;
   name: string;
@@ -45,3 +46,23 @@ export type Races = {
 };
 
 export type CardType = keyof Races | keyof Domain;
+
+// App stuff
+export type Character = {
+  name: string;
+  race: string;
+  playerID: string;
+  archive: boolean;
+};
+
+export interface CharacterDoc extends firebase.firestore.DocumentReference {
+  set(
+    data: Partial<Character>,
+    options?: firebase.firestore.SetOptions
+  ): Promise<void>;
+}
+
+export interface CharacterCol extends firebase.firestore.CollectionReference {
+  add(data: Character): Promise<firebase.firestore.DocumentReference>;
+  doc(documentPath?: string): CharacterDoc;
+}
