@@ -95,7 +95,7 @@ export default Vue.extend({
   created() {
     const { characters } = this.$store.state;
     const char = characters.find(
-      ({ id }: { id: string }) => id.substr(0, 6) === this.charId
+      ({ id }: { id: string }) => id === this.charId
     );
 
     if (char) {
@@ -120,7 +120,7 @@ export default Vue.extend({
         await this.$store.dispatch("createCharacter", { name, race });
       }
       // TODO: Don't await, in offline mode the promise won't resolve!!
-      this.$router.push(`/characters/${uid.substr(0, 6)}/domains`);
+      this.$router.push(`/characters/${uid}/domains`);
     },
 
     async archiveChar() {

@@ -5,69 +5,88 @@
       <v-spacer />
       <v-btn :to="domains()">Domains</v-btn>
     </v-row>
+
     <v-row>
-      <v-col :cols="6">
-        <v-card>
-          <v-card-title>
-            <h2>Skills</h2>
-            <v-spacer />
-            <span>X / 20 Resources</span>
-          </v-card-title>
-          <v-card-text>
-            <v-expansion-panels multiple>
-              <v-expansion-panel v-for="(item, i) in 5" :key="i">
-                <v-expansion-panel-header
-                  >Skill {{ item }}</v-expansion-panel-header
-                >
-                <v-expansion-panel-content
-                  >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo
-                  consequat.</v-expansion-panel-content
-                >
-              </v-expansion-panel>
-            </v-expansion-panels>
-          </v-card-text>
-        </v-card>
+      <v-col v-if="skills.length > 0" cols="6">
+        <h2>Skills</h2>
+        <v-expansion-panels multiple>
+          <RuleExpansionPanel
+            v-for="skill in skills"
+            :key="skill.name"
+            :card="findSkill(skill.name)"
+          />
+        </v-expansion-panels>
       </v-col>
-      <v-col :cols="6">
-        <v-card>
-          <v-card-title>
-            <h2>Conditions</h2>
-          </v-card-title>
-          <v-card-text>
-            <v-expansion-panels multiple>
-              <v-expansion-panel v-for="(item, i) in 5" :key="i">
-                <v-expansion-panel-header
-                  >Condition {{ item }}</v-expansion-panel-header
-                >
-                <v-expansion-panel-content
-                  >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo
-                  consequat.</v-expansion-panel-content
-                >
-              </v-expansion-panel>
-            </v-expansion-panels>
-          </v-card-text>
-        </v-card>
+      <v-col v-if="conditions.length > 0" cols="6">
+        <h2>Conditions</h2>
+        <v-expansion-panels multiple>
+          <RuleExpansionPanel
+            v-for="condition in conditions"
+            :key="condition.name"
+            :card="findCondition(condition.name)"
+          />
+        </v-expansion-panels>
       </v-col>
+      <v-col v-if="items.length > 0" cols="6">
+        <h2>Items</h2>
+        <v-expansion-panels multiple>
+          <RuleExpansionPanel
+            v-for="item in items"
+            :key="item.name"
+            :card="findItem(item.name)"
+          />
+        </v-expansion-panels>
+      </v-col>
+    </v-row>
+
+    <v-row>
+      <v-col :cols="6"></v-col>
     </v-row>
   </v-container>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
+import RuleExpansionPanel from "@/components/domain/RuleExpansionPanel.vue";
+import { Rule, Skill, Condition, Item } from "@/types";
+import { db } from "@/firebase";
+import { domains } from "@/assets/heimr-data.json";
 
+function searchDomainForRule(
+  ruleName: string,
+  type: "skills" | "conditions" | "items"
+): Rule | undefined {
+  let out;
+  domains.find(domain => {
+    // @ts-ignore
+    out = domain[type].find(({ name }) => name === ruleName);
+    return !!out;
+  });
+  return out;
+}
+
+// @ts-ignore
 export default Vue.extend({
   name: "CharacterResources",
+  components: { RuleExpansionPanel },
   data() {
     return {
-      name: "Henk"
+      name: "Henk",
+      rules: []
     };
   },
+  computed: {
+    skills(): Partial<Skill>[] {
+      return this.rules.filter(({ type }: Rule) => type === "skill");
+    },
+    conditions(): Partial<Condition>[] {
+      return this.rules.filter(({ type }: Rule) => type === "condition");
+    },
+    items(): Partial<Item>[] {
+      return this.rules.filter(({ type }: Rule) => type === "item");
+    }
+  },
+
   methods: {
     back() {
       const { charId } = this.$route.params;
@@ -77,7 +96,17 @@ export default Vue.extend({
     domains() {
       const { charId } = this.$route.params;
       return `/characters/${charId}/domains`;
-    }
+    },
+    findSkill: (name: string): Skill =>
+      searchDomainForRule(name, "skills") as Skill,
+    findCondition: (name: string): Condition =>
+      searchDomainForRule(name, "conditions") as Condition,
+    findItem: (name: string): Item => searchDomainForRule(name, "items") as Item
+  },
+  firestore() {
+    const { charId } = this.$route.params;
+    const rules = db.collection(`characters/${charId}/rules`);
+    return { rules };
   }
 });
 </script>

@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import { charactersCol } from "@/firebase";
+import { charactersCol, db } from "@/firebase";
 import { vuexfireMutations, firestoreAction } from "vuexfire";
 import { user } from "./user";
 import { auth } from "@/firebase";
@@ -22,6 +22,14 @@ export default new Vuex.Store({
   },
 
   actions: {
+    bindRef: firestoreAction(function(context, payload) {
+      context.bindFirestoreRef(payload.name, payload.ref, payload.options);
+    }),
+
+    unbindRef: firestoreAction(function(context, payload) {
+      context.bindFirestoreRef(payload.name, payload.ref, payload.options);
+    }),
+
     bindCharacters: firestoreAction(({ bindFirestoreRef }) => {
       if (!auth.currentUser) {
         throw new Error("Trying to load characters without sign-in");
@@ -52,16 +60,14 @@ export default new Vuex.Store({
     },
 
     async addCharacterRule(_, { rule, charId }) {
-      const char = this.state.characters.find(
-        ({ id }: { id: string }) => id.substr(0, 6) === charId
-      );
       // TODO, store char in state somehow, probably with bind/unbind
-      const charDoc = await charactersCol.doc(char.id);
+      const rulesRef = db.collection(`characters/${charId}/rules`);
       try {
-        const out = await charDoc.collection("rules").add({
+        const out = await rulesRef.add({
           type: rule.type,
           name: rule.name
         });
+        console.log(out);
       } catch (e) {
         console.log("failed to add rule", rule);
         console.error(e);

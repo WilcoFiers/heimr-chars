@@ -40,7 +40,7 @@ export default Vue.extend({
   },
   methods: {
     charUri({ id }: { id: string }) {
-      return `/characters/${id.substr(0, 6)}`;
+      return `/characters/${id}`;
     }
   }
 });

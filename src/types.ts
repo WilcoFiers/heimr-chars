@@ -46,6 +46,7 @@ export type Races = {
 };
 
 export type CardType = keyof Races | keyof Domain;
+export type Rule = Skill | Condition | Item;
 
 // App stuff
 export type Character = {
