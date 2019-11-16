@@ -1,4 +1,5 @@
 import { initializeApp } from "firebase";
+import { CharacterCol } from "./types";
 
 // Get a Firestore instance
 export const firebaseApp = initializeApp({
@@ -15,4 +16,4 @@ export const firebaseApp = initializeApp({
 export const auth = firebaseApp.auth();
 
 export const db = firebaseApp.firestore();
-export const charactersCol = db.collection("characters");
+export const charactersCol: CharacterCol = db.collection("characters");

@@ -1,20 +1,44 @@
 rules_version = '2';
 service cloud.firestore {
-  function isSignedIn() {
-    return request.auth != null
-  }
+
   match /databases/{database}/documents {
     match /characters/{charId} {
-      function isPlayer() {
-          return request.auth.uid == resource.data.playerID
+      function isUpdatingField(fieldName) {
+        return fieldname in incomingData() == false
       }
 
-      allow create: if isSignedIn()
-      allow read, update: if isPlayer()
-      
+      allow create: if isSignedIn() && uid() == incomingData().playerID;
+      allow read: if existingData().playerID == uid()
+      allow update: if isPlayer() // Can't change playerID
+      allow delete: if isAdmin()
+
       match /rules/{ruleId} {
-				allow read, write: if isPlayer()
+				allow read, write: if isPlayer();
       }
+
+      function isPlayer() {
+        return get(/databases/$(database)/documents/characters/$(charId)).data.playerID == uid()
+      }
+    }
+
+    function uid() {
+      return request.auth.uid
+    }
+
+    function existingData() {
+      return resource.data
+    }
+
+    function incomingData() {
+      return request.resource.data
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return false; // Not yet implemented
     }
   }
 }
