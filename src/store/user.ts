@@ -1,7 +1,14 @@
-import { Module } from "vuex";
 import { auth } from "@/firebase";
+import { RootModule } from "./types";
 
-export const user: Module<any, any> = {
+export interface UserState {
+  signedIn: boolean;
+  displayName: string | null;
+}
+
+export type UserModules = RootModule<UserState>;
+
+export const user: UserModules = {
   state: {
     signedIn: false,
     displayName: null

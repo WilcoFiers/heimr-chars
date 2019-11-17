@@ -1,12 +1,14 @@
+import { MutationTree, ActionTree, GetterTree } from "vuex";
+
 export interface RootState {
   loading: boolean;
-  user: User;
-  characters: Character[];
 }
 
-export interface User {
-  signedIn: boolean;
-  displayName: string | null;
+export interface RootModule<S> {
+  state: S;
+  mutations?: MutationTree<S>;
+  actions?: ActionTree<S, RootState>;
+  getters?: GetterTree<S, RootState>;
 }
 
 export interface Character {

@@ -9,6 +9,7 @@
 <script lang="ts">
 import Vue from "vue";
 import { Character } from "@/types";
+import { State } from "@/store";
 import {
   default as CharacterOverview,
   CharacterMeta
@@ -21,10 +22,9 @@ export default Vue.extend({
   computed: {
     character(): Character | undefined {
       const { charId } = this.$route.params;
-      const { characters } = this.$store.state;
-      const character = characters.find(
-        (char: { id: string }) => char.id == charId
-      );
+      const characters = (this.$store.state as State).character.list;
+
+      const character = characters.find(char => char.id == charId);
       if (!character) {
         return undefined;
       }

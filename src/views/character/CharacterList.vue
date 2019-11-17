@@ -30,12 +30,13 @@
 
 <script lang="ts">
 import Vue from "vue";
+import { State } from "@/store";
 
 export default Vue.extend({
   name: "CharacterList",
   computed: {
     characters() {
-      return this.$store.state.characters;
+      return (this.$store.state as State).character.list;
     }
   },
   methods: {

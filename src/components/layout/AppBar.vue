@@ -11,7 +11,7 @@
     </span>
     <v-spacer></v-spacer>
 
-    <v-btn v-if="!signedIn" @slick="signIn">Sign In</v-btn>
+    <v-btn v-if="!signedIn" to="/sign-in">Sign In</v-btn>
     <span v-else>
       <v-btn to="/profile" class="mr-3">
         <v-icon left>mdi-account</v-icon>
@@ -28,24 +28,23 @@
 <script lang="ts">
 import Vue from "vue";
 import { mapState } from "vuex";
-import { RootState } from "@/store/types";
+import { State } from "@/store";
 
 export default Vue.extend({
   name: "AppBar",
+
   computed: mapState({
-    signedIn: state => (state as RootState).user.signedIn,
-    displayName: state => (state as RootState).user.displayName
+    signedIn: (state: State) => state.user.signedIn,
+    displayName: (state: State) => state.user.displayName
   }),
+
   methods: {
     toggleDrawer() {
       this.$root.$emit("toggleDrawer");
     },
-    signIn() {
-      this.$router.push("/sign-in");
-    },
     signOut() {
       this.$store.dispatch("signOut");
-      this.$router.replace("sign-in");
+      this.$router.push("sign-in");
     }
   }
 });
