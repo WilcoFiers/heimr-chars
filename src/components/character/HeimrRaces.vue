@@ -5,7 +5,7 @@
         <v-card>
           <h2 class="pl-3 pt-2">Races</h2>
           <v-list height="250" class="overflow-auto">
-            <v-list-item-group v-model="item">
+            <v-list-item-group v-model="activeItem">
               <v-list-item
                 v-for="(race, index) in races"
                 :key="index"
@@ -62,24 +62,36 @@ export default Vue.extend({
     }
   },
 
-  data(): { raceIndex: number; item: number; selected: number; races: Race[] } {
-    return { raceIndex: 0, item: 0, selected: -1, races };
+  data(): {
+    listgroupModel: number;
+    activeItem: number;
+    selected: number;
+    races: Race[];
+  } {
+    const selected = races.findIndex(race => race.name == this.value);
+    const activeItem = selected !== -1 ? selected : 0;
+    return {
+      activeItem,
+      listgroupModel: activeItem,
+      selected,
+      races
+    };
   },
 
   computed: {
     currentRace(): Race {
-      return this.races[this.raceIndex] || {};
+      return this.races[this.activeItem] || {};
     }
   },
 
   methods: {
     updateCard(index: number) {
-      this.raceIndex = index;
+      this.activeItem = index;
     },
 
     selectRace() {
-      this.selected = this.raceIndex;
-      const { name } = this.races[this.raceIndex];
+      this.selected = this.activeItem;
+      const { name } = this.races[this.selected];
       this.$emit("input", name);
     }
   }
