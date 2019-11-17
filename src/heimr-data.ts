@@ -39,3 +39,33 @@ export function domainImg({ domainName }: Domain): string {
   }
   return require("./assets/auto-repair.png");
 }
+
+export const raceImages = [
+  "elf",
+  "fae",
+  "feyfolk-destroyer",
+  "feyfolk-explorer",
+  "gnome",
+  "halfling",
+  "human",
+  "lizardman",
+  "merfolk",
+  "nymph",
+  "ogre",
+  "orc",
+  "shanata",
+  "slemmering",
+  "tellurian",
+  "troll"
+];
+
+export function raceImg(name?: string): string {
+  if (typeof name !== "string") {
+    return require("./assets/auto-repair.png");
+  }
+  const imgName: string = name.toLowerCase().replace(/\s/g, "-");
+  if (raceImages.includes(imgName)) {
+    return require(`./assets/races/${imgName}.png`);
+  }
+  return require("./assets/auto-repair.png");
+}

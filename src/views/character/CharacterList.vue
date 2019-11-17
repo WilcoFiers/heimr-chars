@@ -1,36 +1,49 @@
 <template>
   <v-container>
-    <h1>My Characters</h1>
-    <v-layout wrap justify-start>
-      <v-flex
-        xs-6
-        md-4
-        lg-3
-        xl-2
-        v-for="(char, index) in characters"
-        :key="index"
-      >
-        <v-card min-width="250" :to="charUri(char)" class="mx-4 my-4">
-          <v-card-title>{{ char.name }}</v-card-title>
-          <v-card-text>Some text on my card</v-card-text>
+    <v-row>
+      <v-col><h1>My Characters</h1></v-col></v-row
+    >
+    <v-row>
+      <v-col :cols="4" v-for="char in characters" :key="char.id">
+        <v-card :to="charUri(char)">
+          <v-list-item three-line>
+            <v-list-item-content>
+              <v-list-item-title class="headline mb-1">{{
+                char.name
+              }}</v-list-item-title>
+              <v-list-item-subtitle>{{ summary(char) }}</v-list-item-subtitle>
+            </v-list-item-content>
+            <v-list-item-avatar tile size="50" color="grey">
+              <v-img :src="raceImg(char.race)" contain class="black" />
+            </v-list-item-avatar>
+          </v-list-item>
         </v-card>
-      </v-flex>
-
-      <v-flex xs-6 md-4 lg-3 xl-2>
-        <v-card min-width="250" to="/characters/new" class="mx-4 my-4">
+      </v-col>
+      <v-col>
+        <v-card min-width="250" to="/characters/new">
           <v-card-title>
             <v-icon left>mdi-plus-box</v-icon>New character
           </v-card-title>
           <v-card-text>Build a character from scratch</v-card-text>
         </v-card>
-      </v-flex>
-    </v-layout>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
 import { State } from "@/store";
+import { raceImg } from "@/heimr-data";
+
+const adjectives = ["badass", "honourable", "woke", "wise", "humble"];
+const quests = [
+  "saving the innocent",
+  "sailing the seas",
+  "delving for gold",
+  "sturggling to survive",
+  "vanquishing their enemies"
+];
 
 export default Vue.extend({
   name: "CharacterList",
@@ -40,8 +53,15 @@ export default Vue.extend({
     }
   },
   methods: {
+    raceImg,
     charUri({ id }: { id: string }) {
       return `/characters/${id}`;
+    },
+    summary({ race }: { race: string }) {
+      const adjective =
+        adjectives[Math.floor(Math.random() * adjectives.length)];
+      const quest = quests[Math.floor(Math.random() * adjectives.length)];
+      return `A ${adjective} ${race}, ${quest}.`;
     }
   }
 });

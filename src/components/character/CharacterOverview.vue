@@ -4,7 +4,7 @@
       <v-row>
         <v-col :cols="3">
           <v-img
-            :src="require('../../assets/auto-repair.png')"
+            :src="raceImg(character.race)"
             contain
             width="120"
             class="black ml-3"
@@ -72,6 +72,7 @@
 <script lang="ts">
 import Vue from "vue";
 import { RootState } from "@/store/types";
+import { raceImg } from "@/heimr-data";
 import HeimrRaces from "./HeimrRaces.vue";
 import ErrorMessage from "../ErrorMessage.vue";
 
@@ -102,6 +103,8 @@ export default Vue.extend({
   },
 
   methods: {
+    raceImg,
+
     async saveCharacter() {
       const { name, race } = this.character;
       this.message = race ? "" : "Please select a race";
