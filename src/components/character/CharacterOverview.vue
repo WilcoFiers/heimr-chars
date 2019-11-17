@@ -16,7 +16,7 @@
           <h1 v-else>Update Characters</h1>
           <v-text-field
             label="Character name"
-            v-model="name"
+            v-model="character.name"
             :rules="[required]"
           />
         </v-col>
@@ -27,7 +27,9 @@
               <v-btn v-on="on"> <v-icon left>mdi-delete</v-icon>Delete </v-btn>
             </template>
             <v-card>
-              <v-card-title class="headline">Delete {{ name }}</v-card-title>
+              <v-card-title class="headline"
+                >Delete {{ character.name }}</v-card-title
+              >
               <v-card-text
                 >Are you sure you want to delete this character?</v-card-text
               >
@@ -45,7 +47,7 @@
         </v-col>
       </v-row>
 
-      <HeimrRaces v-model="race" />
+      <HeimrRaces v-model="character.race" />
       <div class="text-center">
         <!-- Should probably inside of HeimrRaces -->
         <ErrorMessage :message="message" />
@@ -73,59 +75,44 @@ import { RootState } from "@/store/types";
 import HeimrRaces from "./HeimrRaces.vue";
 import ErrorMessage from "../ErrorMessage.vue";
 
+export type CharacterMeta = {
+  name: string;
+  race?: string;
+};
+
 export default Vue.extend({
   name: "CharacterOverview",
+  components: { HeimrRaces, ErrorMessage },
+
   props: {
-    charId: {
-      type: String
+    updateCharacter: {
+      type: Object
     }
   },
-  components: { HeimrRaces, ErrorMessage },
+
   data() {
+    const newCharacter: CharacterMeta = { name: "" };
     return {
-      name: "",
-      race: "",
       message: "",
       uid: "",
       dialog: false,
+      newCharacter,
       required: (val: string) => val !== "" || "Field must be filled out"
     };
   },
 
-  created() {
-    const { characters } = this.$store.state;
-    const char = characters.find(
-      ({ id }: { id: string }) => id === this.charId
-    );
-
-    if (char) {
-      this.name = char.name;
-      this.race = char.race;
-      this.uid = char.id;
-    }
-  },
-
   methods: {
-    // TODO: have data processing handled by the the view, not the component
-    // TODO: Pass in the character props, don't rely on looking them up
     async saveCharacter() {
-      const { name, race, uid } = this;
+      const { name, race } = this.character;
       this.message = race ? "" : "Please select a race";
       if (!this.form.validate() || !race) {
         return;
       }
-      if (uid) {
-        await this.$store.dispatch("updateCharacter", { name, race, uid });
-      } else {
-        await this.$store.dispatch("createCharacter", { name, race });
-      }
-      // TODO: Don't await, in offline mode the promise won't resolve!!
-      this.$router.push(`/characters/${uid}/domains`);
+      this.$emit("save", { name, race });
     },
 
-    async archiveChar() {
-      await this.$store.dispatch("archiveCharacter", { uid: this.uid });
-      this.$router.push("/characters");
+    archiveChar() {
+      this.$emit("archive");
     },
 
     back() {
@@ -134,8 +121,12 @@ export default Vue.extend({
   },
 
   computed: {
+    character(): CharacterMeta {
+      return this.updateCharacter || this.newCharacter;
+    },
+
     isNew(): boolean {
-      return !this.charId;
+      return !this.updateCharacter;
     },
 
     form(): Vue & { validate: () => boolean } {

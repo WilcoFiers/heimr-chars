@@ -1,18 +1,50 @@
 <template>
-  <CharacterOverview :charId="charId" />
+  <CharacterOverview
+    :updateCharacter="character"
+    @save="updateChar"
+    @archive="archiveChar"
+  />
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import CharacterOverview from "@/components/character/CharacterOverview.vue";
+import { Character } from "@/types";
+import {
+  default as CharacterOverview,
+  CharacterMeta
+} from "@/components/character/CharacterOverview.vue";
 
 export default Vue.extend({
   name: "CharacterUpdate",
+  components: { CharacterOverview },
+
   computed: {
-    charId() {
-      return this.$route.params.charId;
+    character(): Character | undefined {
+      const { charId } = this.$route.params;
+      const { characters } = this.$store.state;
+      const character = characters.find(
+        (char: { id: string }) => char.id == charId
+      );
+      if (!character) {
+        return undefined;
+      }
+      // Create a copy, so we can update without changing the store
+      return Object.assign({}, character);
     }
   },
-  components: { CharacterOverview }
+
+  methods: {
+    updateChar({ name, race }: CharacterMeta) {
+      const { charId } = this.$route.params;
+      this.$store.dispatch("updateCharacter", { name, race, charId });
+      this.$router.push(`/characters/${charId}/domains`);
+    },
+
+    archiveChar(): void {
+      const { charId } = this.$route.params;
+      this.$store.dispatch("archiveCharacter", charId);
+      this.$router.push(`/characters/`);
+    }
+  }
 });
 </script>

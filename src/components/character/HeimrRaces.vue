@@ -51,12 +51,28 @@ import { Race } from "@/types";
 import RuleCardContent from "@/components/domain/RuleCardContent.vue";
 import RuleCardTitle from "@/components/domain/RuleCardTitle.vue";
 
+function findSelected(name: string): number {
+  return races.findIndex(race => race.name == name);
+}
+
 export default Vue.extend({
   name: "HeimrRaces",
   components: { RuleCardTitle, RuleCardContent },
   props: {
     value: {
       type: String
+    }
+  },
+  watch: {
+    value(newVal, oldVal) {
+      if (typeof oldVal === "undefined") {
+        const selected = findSelected(newVal);
+        if (selected !== -1) {
+          this.selected = selected;
+          this.activeItem = selected;
+          this.listgroupModel = selected;
+        }
+      }
     }
   },
 
@@ -66,14 +82,9 @@ export default Vue.extend({
     selected: number;
     races: Race[];
   } {
-    const selected = races.findIndex(race => race.name == this.value);
+    const selected = findSelected(this.value);
     const activeItem = selected !== -1 ? selected : 0;
-    return {
-      activeItem,
-      listgroupModel: activeItem,
-      selected,
-      races
-    };
+    return { activeItem, selected, races, listgroupModel: activeItem };
   },
 
   computed: {

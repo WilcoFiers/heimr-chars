@@ -9,6 +9,16 @@ import { CharacterRuleCol } from "@/types";
 
 Vue.use(Vuex);
 
+function createID(length = 20): string {
+  const chars =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  let newId: string = "";
+  for (let i = 0; i < length; i++) {
+    newId += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return newId;
+}
+
 export default new Vuex.Store({
   state: {
     loading: false,
@@ -49,15 +59,24 @@ export default new Vuex.Store({
 
     createCharacter(_, { name, race }) {
       const playerID = (auth.currentUser as firebase.User).uid;
-      return charactersCol.add({ name, race, playerID, archive: false });
+      const charId = createID();
+
+      // Use .doc().set() instead of .add() so we can return charId when offline
+      charactersCol.doc(charId).set({
+        name,
+        race,
+        playerID,
+        archive: false
+      });
+      return charId;
     },
 
-    updateCharacter(_, { name, race, uid }) {
-      return charactersCol.doc(uid).update({ name, race });
+    updateCharacter(_, { name, race, charId }) {
+      return charactersCol.doc(charId).update({ name, race });
     },
 
-    archiveCharacter(_, { uid }) {
-      return charactersCol.doc(uid).update({ archive: true });
+    archiveCharacter(_, charId) {
+      return charactersCol.doc(charId).update({ archive: true });
     },
 
     async addCharacterRule(_, { charId, type, name, domainName }) {
