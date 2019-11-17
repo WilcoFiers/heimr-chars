@@ -45,7 +45,8 @@ export type Races = {
   races: Race[];
 };
 
-export type CardType = keyof Races | keyof Domain;
+export type RuleType = "item" | "skill" | "condition";
+export type CardType = "race" | RuleType;
 export type Rule = Skill | Condition | Item;
 
 // App stuff
@@ -66,4 +67,23 @@ export interface CharacterDoc extends firebase.firestore.DocumentReference {
 export interface CharacterCol extends firebase.firestore.CollectionReference {
   add(data: Character): Promise<firebase.firestore.DocumentReference>;
   doc(documentPath?: string): CharacterDoc;
+}
+
+export type CharacterRule = {
+  name: string;
+  domainName: string;
+  type: RuleType;
+};
+
+export interface CharacterRuleDoc extends firebase.firestore.DocumentReference {
+  set(
+    data: Partial<CharacterRule>,
+    options?: firebase.firestore.SetOptions
+  ): Promise<void>;
+}
+
+export interface CharacterRuleCol
+  extends firebase.firestore.CollectionReference {
+  add(data: CharacterRule): Promise<firebase.firestore.DocumentReference>;
+  doc(documentPath?: string): CharacterRuleDoc;
 }

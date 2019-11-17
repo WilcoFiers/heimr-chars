@@ -13,7 +13,7 @@
           <RuleExpansionPanel
             v-for="skill in skills"
             :key="skill.name"
-            :card="findSkill(skill.name)"
+            :card="findRule(skill)"
           />
         </v-expansion-panels>
       </v-col>
@@ -23,7 +23,7 @@
           <RuleExpansionPanel
             v-for="condition in conditions"
             :key="condition.name"
-            :card="findCondition(condition.name)"
+            :card="findRule(condition)"
           />
         </v-expansion-panels>
       </v-col>
@@ -33,7 +33,7 @@
           <RuleExpansionPanel
             v-for="item in items"
             :key="item.name"
-            :card="findItem(item.name)"
+            :card="findRule(item)"
           />
         </v-expansion-panels>
       </v-col>
@@ -48,41 +48,29 @@
 <script lang="ts">
 import Vue from "vue";
 import RuleExpansionPanel from "@/components/domain/RuleExpansionPanel.vue";
-import { Rule, Skill, Condition, Item } from "@/types";
+import { Rule, Skill, Condition, Item, CharacterRule, Domain } from "@/types";
 import { db } from "@/firebase";
-import { domains } from "@/assets/heimr-data.json";
+import { domains, findRule } from "@/heimr-data";
 
-function searchDomainForRule(
-  ruleName: string,
-  type: "skills" | "conditions" | "items"
-): Rule | undefined {
-  let out;
-  domains.find(domain => {
-    // @ts-ignore
-    out = domain[type].find(({ name }) => name === ruleName);
-    return !!out;
-  });
-  return out;
-}
-
-// @ts-ignore
 export default Vue.extend({
   name: "CharacterResources",
   components: { RuleExpansionPanel },
+
   data() {
     return {
       name: "Henk",
       rules: []
     };
   },
+
   computed: {
-    skills(): Partial<Skill>[] {
+    skills(): CharacterRule[] {
       return this.rules.filter(({ type }: Rule) => type === "skill");
     },
-    conditions(): Partial<Condition>[] {
+    conditions(): CharacterRule[] {
       return this.rules.filter(({ type }: Rule) => type === "condition");
     },
-    items(): Partial<Item>[] {
+    items(): CharacterRule[] {
       return this.rules.filter(({ type }: Rule) => type === "item");
     }
   },
@@ -97,12 +85,12 @@ export default Vue.extend({
       const { charId } = this.$route.params;
       return `/characters/${charId}/domains`;
     },
-    findSkill: (name: string): Skill =>
-      searchDomainForRule(name, "skills") as Skill,
-    findCondition: (name: string): Condition =>
-      searchDomainForRule(name, "conditions") as Condition,
-    findItem: (name: string): Item => searchDomainForRule(name, "items") as Item
+
+    findRule(charRule: CharacterRule): Rule | null {
+      return findRule(charRule);
+    }
   },
+
   firestore() {
     const { charId } = this.$route.params;
     const rules = db.collection(`characters/${charId}/rules`);

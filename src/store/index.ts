@@ -5,6 +5,7 @@ import { vuexfireMutations, firestoreAction } from "vuexfire";
 import { user } from "./user";
 import { auth } from "@/firebase";
 import { RootState } from "./types";
+import { CharacterRuleCol } from "@/types";
 
 Vue.use(Vuex);
 
@@ -59,19 +60,11 @@ export default new Vuex.Store({
       return charactersCol.doc(uid).update({ archive: true });
     },
 
-    async addCharacterRule(_, { rule, charId }) {
-      // TODO, store char in state somehow, probably with bind/unbind
-      const rulesRef = db.collection(`characters/${charId}/rules`);
-      try {
-        const out = await rulesRef.add({
-          type: rule.type,
-          name: rule.name
-        });
-        console.log(out);
-      } catch (e) {
-        console.log("failed to add rule", rule);
-        console.error(e);
-      }
+    async addCharacterRule(_, { charId, type, name, domainName }) {
+      const rulesRef: CharacterRuleCol = db.collection(
+        `characters/${charId}/rules`
+      );
+      await rulesRef.add({ type, name, domainName });
     }
   }
 });

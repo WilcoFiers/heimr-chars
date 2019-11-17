@@ -50,7 +50,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { domains } from "@/assets/heimr-data.json";
+import { domains } from "@/heimr-data";
 import RuleExpansionPanel from "@/components/domain/RuleExpansionPanel.vue";
 import { Domain, Skill, Condition, Item, Rule } from "@/types";
 
@@ -74,7 +74,14 @@ export default Vue.extend({
     },
     addRule(rule: Rule) {
       const { charId } = this.$route.params;
-      this.$store.dispatch("addCharacterRule", { charId, rule });
+      const domainName = this.domainName;
+      const { type, name } = rule;
+      this.$store.dispatch("addCharacterRule", {
+        charId,
+        type,
+        name,
+        domainName
+      });
     }
   }
 });

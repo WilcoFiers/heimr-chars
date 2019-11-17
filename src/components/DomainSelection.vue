@@ -37,19 +37,8 @@
 
 <script lang="ts">
 import Vue from "vue";
-import heimrData from "@/assets/heimr-data.json";
+import { domains, domainImg } from "@/heimr-data";
 import { Domain } from "@/types";
-
-const domains = heimrData.domains as Domain[];
-const domainImages = [
-  "alchemy",
-  "defence",
-  "armed-combat",
-  "battlefield-surgery",
-  "divine-magic",
-  "primordial-magic",
-  "the-marketplace"
-];
 
 export default Vue.extend({
   name: "DomainSelection",
@@ -62,12 +51,9 @@ export default Vue.extend({
       const { charId } = this.$route.params;
       return `/characters/${charId}/domains/${domainUrl}`;
     },
-    domainImg({ domainName }: Domain): string {
-      const imgName: string = domainName.toLowerCase().replace(/\s/g, "-");
-      if (domainImages.includes(imgName)) {
-        return require(`../assets/domains/${imgName}.png`);
-      }
-      return require("../assets/auto-repair.png");
+
+    domainImg(domain: Domain): string {
+      return domainImg(domain);
     }
   }
 });

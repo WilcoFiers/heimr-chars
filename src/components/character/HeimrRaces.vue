@@ -46,12 +46,10 @@
 
 <script lang="ts">
 import Vue from "vue";
-import heimrData from "@/assets/heimr-data.json";
+import { races } from "@/heimr-data";
 import { Race } from "@/types";
 import RuleCardContent from "@/components/domain/RuleCardContent.vue";
 import RuleCardTitle from "@/components/domain/RuleCardTitle.vue";
-
-const races = heimrData.races as Race[];
 
 export default Vue.extend({
   name: "HeimrRaces",
