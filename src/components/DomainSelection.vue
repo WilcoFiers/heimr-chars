@@ -4,10 +4,13 @@
       <v-col>
         <h2>Domains</h2>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus
-          tempore alias nisi laudantium suscipit repellendus necessitatibus ea
-          quisquam modi soluta cupiditate dolores voluptatem et molestias, omnis
-          similique corrupti cumque. Natus!
+          A domain is a collection of skills, items, conditions and down time
+          options. Every domain has its own theme and challenges players in a
+          different way. You can choose skills from as many domains as you like.
+          We recommend
+          <strong>using 1 to 3 domains per character</strong>. To get an idea of
+          what the domains are about, read their introduction. Some domains may
+          suite you better then others.
         </p>
       </v-col>
     </v-row>
