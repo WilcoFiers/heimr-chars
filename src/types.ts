@@ -55,6 +55,8 @@ export type Character = {
   race: string;
   playerID: string;
   archive: boolean;
+  createdAt?: any;
+  lastUpdated?: any;
 };
 
 export interface CharacterDoc extends firebase.firestore.DocumentReference {

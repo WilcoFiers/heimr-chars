@@ -1,4 +1,4 @@
-import { charactersCol, db } from "@/firebase";
+import { charactersCol, db, serverTimestamp } from "@/firebase";
 import { firestoreAction } from "vuexfire";
 import { auth } from "@/firebase";
 import { CharacterRuleCol } from "@/types";
@@ -34,7 +34,8 @@ export const character: CharacterModule = {
       const { uid } = auth.currentUser;
       const query = charactersCol
         .where("playerID", "==", uid)
-        .where("archive", "==", false);
+        .where("archive", "==", false)
+        .orderBy("createdAt", "desc");
 
       return bindFirestoreRef("list", query);
     }) as () => Promise<any>,
@@ -52,13 +53,16 @@ export const character: CharacterModule = {
         name,
         race,
         playerID,
+        createdAt: serverTimestamp(),
+        lastUpdated: serverTimestamp(),
         archive: false
       });
       return charId;
     },
 
     updateCharacter(_, { name, race, charId }) {
-      return charactersCol.doc(charId).update({ name, race });
+      const lastUpdated = serverTimestamp();
+      return charactersCol.doc(charId).update({ name, race, lastUpdated });
     },
 
     archiveCharacter(_, charId) {
