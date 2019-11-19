@@ -69,3 +69,25 @@ export function raceImg(name?: string): string {
   }
   return require("./assets/auto-repair.png");
 }
+
+type RuleValue = {
+  unit: string;
+  value: number;
+};
+
+const units = ["¢", "ℜ"];
+const unitTest = `[${units.join("")}]`;
+const numberTest = "[1-9][0-9]*";
+const parserReg = new RegExp(`(${numberTest})(${unitTest})`);
+
+export function parseRuleValue(str?: string): RuleValue | null {
+  if (!str) {
+    return null;
+  }
+
+  const match = str.match(parserReg);
+  if (match === null) {
+    return null;
+  }
+  return { value: +match[1], unit: match[2] };
+}

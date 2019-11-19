@@ -1,9 +1,14 @@
 <template>
   <v-container>
     <v-row>
-      <h1>{{ name }}'s Domains</h1>
+      <h1>{{ character.name }}'s Domains</h1>
       <v-spacer />
-      <v-btn :to="resources()">Current Resources</v-btn>
+      <ResourceMini
+        :rules="rules"
+        :money="500"
+        :resources="20"
+        :to="resources()"
+      />
     </v-row>
     <v-row>
       <DomainSelection />
@@ -25,14 +30,28 @@
 <script lang="ts">
 import Vue from "vue";
 import DomainSelection from "@/components/DomainSelection.vue";
+import ResourceMini from "@/components/character/ResourceMini.vue";
+import { getCharacterRulesCol } from "@/firebase";
+import { Character, State } from "@/types";
 
 export default Vue.extend({
   name: "CharacterDomains",
-  components: { DomainSelection },
+  components: { DomainSelection, ResourceMini },
   data() {
-    return {
-      name: "Henk"
-    };
+    return { rules: [] };
+  },
+  computed: {
+    character(): Character | undefined {
+      const { charId } = this.$route.params;
+      const characters = (this.$store.state as State).character.list;
+
+      const character = characters.find(char => char.id == charId);
+      if (!character) {
+        return undefined;
+      }
+      // Create a copy, so we can update without changing the store
+      return Object.assign({}, character);
+    }
   },
   methods: {
     resources() {
@@ -43,6 +62,11 @@ export default Vue.extend({
       const { charId } = this.$route.params;
       return `/characters/${charId}`;
     }
+  },
+
+  firestore() {
+    const rules = getCharacterRulesCol(this.$route.params.charId);
+    return { rules };
   }
 });
 </script>

@@ -49,7 +49,7 @@
 import Vue from "vue";
 import RuleExpansionPanel from "@/components/domain/RuleExpansionPanel.vue";
 import { Rule, Skill, Condition, Item, CharacterRule, Domain } from "@/types";
-import { db } from "@/firebase";
+import { getCharacterRulesCol } from "@/firebase";
 import { domains, findRule } from "@/heimr-data";
 
 export default Vue.extend({
@@ -92,8 +92,7 @@ export default Vue.extend({
   },
 
   firestore() {
-    const { charId } = this.$route.params;
-    const rules = db.collection(`characters/${charId}/rules`);
+    const rules = getCharacterRulesCol(this.$route.params.charId);
     return { rules };
   }
 });

@@ -1,3 +1,5 @@
+export { State } from "@/store";
+
 // Heimr stuff
 export type BaseRule = {
   type: string;

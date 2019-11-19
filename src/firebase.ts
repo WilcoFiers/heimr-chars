@@ -1,5 +1,5 @@
 import { initializeApp, firestore } from "firebase";
-import { CharacterCol } from "./types";
+import { CharacterCol, CharacterRuleCol } from "./types";
 
 // Get a Firestore instance
 export const firebaseApp = initializeApp({
@@ -19,3 +19,7 @@ export const db = firebaseApp.firestore();
 export const charactersCol: CharacterCol = db.collection("characters");
 
 export const serverTimestamp = firestore.FieldValue.serverTimestamp;
+
+export function getCharacterRulesCol(charId: string): CharacterRuleCol {
+  return db.collection(`characters/${charId}/rules`) as CharacterRuleCol;
+}
