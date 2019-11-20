@@ -23,3 +23,13 @@ export const serverTimestamp = firestore.FieldValue.serverTimestamp;
 export function getCharacterRulesCol(charId: string): CharacterRuleCol {
   return db.collection(`characters/${charId}/rules`) as CharacterRuleCol;
 }
+
+export function createID(length = 20): string {
+  const chars =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  let newId: string = "";
+  for (let i = 0; i < length; i++) {
+    newId += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return newId;
+}
