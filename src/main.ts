@@ -4,10 +4,8 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import Vuetify from "vuetify/lib";
-import { firestorePlugin } from "vuefire";
 
 Vue.use(Vuetify);
-Vue.use(firestorePlugin, { wait: true });
 
 auth.onAuthStateChanged(user => {
   if (user) {

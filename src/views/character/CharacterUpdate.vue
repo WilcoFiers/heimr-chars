@@ -8,10 +8,9 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { Character } from "@/types";
+import { Character, CharacterRule } from "@/types";
 import { State } from "@/store";
-import {
-  default as CharacterOverview,
+import CharacterOverview, {
   CharacterMeta
 } from "@/components/character/CharacterOverview.vue";
 
@@ -21,15 +20,7 @@ export default Vue.extend({
 
   computed: {
     character(): Character | undefined {
-      const { charId } = this.$route.params;
-      const characters = (this.$store.state as State).character.list;
-
-      const character = characters.find(char => char.id == charId);
-      if (!character) {
-        return undefined;
-      }
-      // Create a copy, so we can update without changing the store
-      return Object.assign({}, character);
+      return (this.$store.state as State).character.charProps;
     }
   },
 

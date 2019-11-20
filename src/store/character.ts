@@ -1,33 +1,45 @@
 import { charactersCol, db, serverTimestamp } from "@/firebase";
 import { firestoreAction } from "vuexfire";
-import { auth } from "@/firebase";
-import { CharacterRuleCol } from "@/types";
+import { auth, createID } from "@/firebase";
+import { CharacterRuleCol, DbCharacter, CharacterRule } from "@/types";
 import { RootModule } from "./types";
-import { Character } from "../types";
 
 export interface CharacterState {
-  list: (Character & { id: string })[];
+  list: DbCharacter[];
+  charId?: string;
+  charProps?: DbCharacter;
+  rules?: CharacterRule[];
 }
 
 export type CharacterModule = RootModule<CharacterState>;
 
-function createID(length = 20): string {
-  const chars =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  let newId: string = "";
-  for (let i = 0; i < length; i++) {
-    newId += chars.charAt(Math.floor(Math.random() * chars.length));
-  }
-  return newId;
-}
-
 export const character: CharacterModule = {
   state: {
-    list: []
+    list: [],
+    charId: undefined,
+    charProps: undefined,
+    rules: undefined
+  },
+
+  mutations: {
+    setCharId(state, charId) {
+      state.charId = charId;
+    }
   },
 
   actions: {
-    bindCharacters: firestoreAction(({ bindFirestoreRef }) => {
+    routeChange({ state, dispatch }, { from }) {
+      const charId: string | undefined = from.params.charId;
+      if (charId && charId !== state.charId) {
+        dispatch("loadCharacter", charId);
+      }
+    },
+
+    bindRef: firestoreAction((context, { propName, ref, options }) => {
+      context.bindFirestoreRef(propName, ref, options);
+    }),
+
+    bindCharacterList: firestoreAction(({ bindFirestoreRef }) => {
       if (!auth.currentUser) {
         throw new Error("Trying to load characters without sign-in");
       }
@@ -38,11 +50,23 @@ export const character: CharacterModule = {
         .orderBy("createdAt", "desc");
 
       return bindFirestoreRef("list", query);
-    }) as () => Promise<any>,
+    }),
 
-    unbindCharacters: firestoreAction(({ unbindFirestoreRef }) => {
+    unbindCharacterList: firestoreAction(({ unbindFirestoreRef }) => {
       unbindFirestoreRef("list");
-    }) as () => void,
+    }),
+
+    async loadCharacter({ commit, dispatch }, charId) {
+      commit("setCharId", charId);
+      dispatch("bindRef", {
+        propName: "charProps",
+        ref: db.doc(`characters/${charId}`)
+      });
+      dispatch("bindRef", {
+        propName: "rules",
+        ref: db.collection(`characters/${charId}/rules`)
+      });
+    },
 
     createCharacter(_, { name, race }) {
       const playerID = (auth.currentUser as firebase.User).uid;

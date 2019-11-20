@@ -51,27 +51,34 @@ import RuleExpansionPanel from "@/components/domain/RuleExpansionPanel.vue";
 import { Rule, Skill, Condition, Item, CharacterRule, Domain } from "@/types";
 import { getCharacterRulesCol } from "@/firebase";
 import { domains, findRule } from "@/heimr-data";
+import { State } from "@/store";
 
 export default Vue.extend({
   name: "CharacterResources",
   components: { RuleExpansionPanel },
 
   data() {
+    const { charProps } = (this.$store.state as State).character;
     return {
-      name: "Henk",
-      rules: []
+      name: charProps ? charProps.name : ""
     };
   },
 
   computed: {
+    rules(): CharacterRule[] {
+      const { rules } = (this.$store.state as State).character;
+      return rules || [];
+    },
     skills(): CharacterRule[] {
-      return this.rules.filter(({ type }: Rule) => type === "skill");
+      return this.rules.filter(({ type }: CharacterRule) => type === "skill");
     },
     conditions(): CharacterRule[] {
-      return this.rules.filter(({ type }: Rule) => type === "condition");
+      return this.rules.filter(
+        ({ type }: CharacterRule) => type === "condition"
+      );
     },
     items(): CharacterRule[] {
-      return this.rules.filter(({ type }: Rule) => type === "item");
+      return this.rules.filter(({ type }: CharacterRule) => type === "item");
     }
   },
 
@@ -89,11 +96,6 @@ export default Vue.extend({
     findRule(charRule: CharacterRule): Rule | null {
       return findRule(charRule);
     }
-  },
-
-  firestore() {
-    const rules = getCharacterRulesCol(this.$route.params.charId);
-    return { rules };
   }
 });
 </script>

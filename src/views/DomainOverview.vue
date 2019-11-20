@@ -68,7 +68,8 @@ import {
   Item,
   Rule,
   Character,
-  State
+  State,
+  CharacterRule
 } from "@/types";
 
 export default Vue.extend({
@@ -80,11 +81,16 @@ export default Vue.extend({
       return match === this.$route.params.domain;
     }) as Domain;
 
-    return {
-      rules: [],
-      domain
-    };
+    return { domain };
   },
+
+  computed: {
+    rules(): CharacterRule[] {
+      const { rules } = (this.$store.state as State).character;
+      return rules || [];
+    }
+  },
+
   methods: {
     resources() {
       const { charId } = this.$route.params;
@@ -105,11 +111,6 @@ export default Vue.extend({
         domainName
       });
     }
-  },
-
-  firestore() {
-    const rules = getCharacterRulesCol(this.$route.params.charId);
-    return { rules };
   }
 });
 </script>

@@ -33,7 +33,7 @@ export const user: UserModules = {
       await auth.signInWithEmailAndPassword(email, password);
       await dispatch("autoSignIn");
 
-      dispatch("bindCharacters");
+      dispatch("bindCharacterList");
       commit("signedIn", true);
     },
 
@@ -42,7 +42,7 @@ export const user: UserModules = {
       if (user) {
         commit("setDisplayName", user.displayName);
       }
-      await dispatch("bindCharacters");
+      await dispatch("bindCharacterList");
       commit("signedIn", true);
     },
 

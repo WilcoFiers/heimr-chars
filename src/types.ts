@@ -61,6 +61,8 @@ export type Character = {
   lastUpdated?: any;
 };
 
+export type DbCharacter = Character & { id: string };
+
 export interface CharacterDoc extends firebase.firestore.DocumentReference {
   set(
     data: Partial<Character>,
