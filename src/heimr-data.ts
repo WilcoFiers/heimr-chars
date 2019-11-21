@@ -1,5 +1,5 @@
 import heimrData from "@/assets/heimr-data.json";
-import { Domain, Race, Rule, CharacterRule } from "@/types";
+import { Domain, Race, RuleCard, CharacterRule } from "@/types";
 
 export const date = heimrData.date as string;
 export const races = heimrData.races as Race[];
@@ -18,18 +18,20 @@ export const domainImages = [
 /**
  * Find a rule based on a CharacterRule object (domain, name, type)
  */
-export function findRule({
+export function findRuleCard({
   domainName,
   name,
   type
-}: CharacterRule): Rule | null {
+}: CharacterRule): RuleCard | null {
   const key = (type + "s") as "items" | "skills" | "conditions";
   const ruleDomain = domains.find(domain => domain.domainName === domainName);
   if (!ruleDomain || !Array.isArray(ruleDomain[key])) {
     return null;
   }
-  const rules: Rule[] = ruleDomain[key] || [];
-  return rules.find((rule: Rule): boolean => rule.name === name) || null;
+  const ruleCards: RuleCard[] = ruleDomain[key] || [];
+  return (
+    ruleCards.find((rule: RuleCard): boolean => rule.name === name) || null
+  );
 }
 
 export function domainImg({ domainName }: Domain): string {

@@ -1,5 +1,5 @@
 import { setup, tearDown } from "./firebase-utils";
-import { Character, CharacterCol } from "@/types";
+import { NewCharacter, CharacterCol } from "@/types";
 
 describe("db rules", () => {
   let db: firebase.firestore.Firestore,
@@ -13,7 +13,7 @@ describe("db rules", () => {
     await tearDown();
   });
 
-  function defaultChar(data = {}): Character {
+  function defaultChar(data = {}): NewCharacter {
     return {
       playerID: "some-unknown",
       name: "henk",

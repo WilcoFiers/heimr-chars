@@ -49,10 +49,14 @@ export type Races = {
 
 export type RuleType = "item" | "skill" | "condition";
 export type CardType = "race" | RuleType;
-export type Rule = Skill | Condition | Item;
+export type RuleCard = Skill | Condition | Item;
 
 // App stuff
-export type Character = {
+export type DbEntry = {
+  id: string;
+};
+
+export type NewCharacter = {
   name: string;
   race: string;
   playerID: string;
@@ -61,7 +65,7 @@ export type Character = {
   lastUpdated?: any;
 };
 
-export type DbCharacter = Character & { id: string };
+export type Character = NewCharacter & DbEntry;
 
 export interface CharacterDoc extends firebase.firestore.DocumentReference {
   set(
@@ -71,15 +75,17 @@ export interface CharacterDoc extends firebase.firestore.DocumentReference {
 }
 
 export interface CharacterCol extends firebase.firestore.CollectionReference {
-  add(data: Character): Promise<firebase.firestore.DocumentReference>;
+  add(data: NewCharacter): Promise<firebase.firestore.DocumentReference>;
   doc(documentPath?: string): CharacterDoc;
 }
 
-export type CharacterRule = {
+export type NewCharacterRule = {
   name: string;
   domainName: string;
   type: RuleType;
 };
+
+export type CharacterRule = NewCharacterRule & DbEntry;
 
 export interface CharacterRuleDoc extends firebase.firestore.DocumentReference {
   set(
@@ -90,6 +96,6 @@ export interface CharacterRuleDoc extends firebase.firestore.DocumentReference {
 
 export interface CharacterRuleCol
   extends firebase.firestore.CollectionReference {
-  add(data: CharacterRule): Promise<firebase.firestore.DocumentReference>;
+  add(data: NewCharacterRule): Promise<firebase.firestore.DocumentReference>;
   doc(documentPath?: string): CharacterRuleDoc;
 }

@@ -1,13 +1,18 @@
 import { charactersCol, db, serverTimestamp } from "@/firebase";
 import { firestoreAction } from "vuexfire";
 import { auth, createID } from "@/firebase";
-import { CharacterRuleCol, DbCharacter, CharacterRule } from "@/types";
+import {
+  CharacterRuleCol,
+  Character,
+  CharacterRule,
+  NewCharacterRule
+} from "@/types";
 import { RootModule } from "./types";
 
 export interface CharacterState {
-  list: DbCharacter[];
+  list: Character[];
   charId?: string;
-  charProps?: DbCharacter;
+  charProps?: Character;
   rules?: CharacterRule[];
 }
 
@@ -84,20 +89,27 @@ export const character: CharacterModule = {
       return charId;
     },
 
-    updateCharacter(_, { name, race, charId }) {
+    updateCharacter({ state }, { name, race }) {
       const lastUpdated = serverTimestamp();
-      return charactersCol.doc(charId).update({ name, race, lastUpdated });
+      return charactersCol
+        .doc(state.charId)
+        .update({ name, race, lastUpdated });
     },
 
-    archiveCharacter(_, charId) {
-      return charactersCol.doc(charId).update({ archive: true });
+    archiveCharacter({ state }) {
+      return charactersCol.doc(state.charId).update({ archive: true });
     },
 
-    async addCharacterRule(_, { charId, type, name, domainName }) {
+    addCharacterRule({ state }, { type, name, domainName }: NewCharacterRule) {
       const rulesRef: CharacterRuleCol = db.collection(
-        `characters/${charId}/rules`
+        `characters/${state.charId}/rules`
       );
-      await rulesRef.add({ type, name, domainName });
+      return rulesRef.add({ type, name, domainName });
+    },
+
+    removeCharacterRule({ state }, id: string) {
+      const characterRulePath = `characters/${state.charId}/rules/${id}`;
+      return db.doc(characterRulePath).delete();
     }
   }
 };

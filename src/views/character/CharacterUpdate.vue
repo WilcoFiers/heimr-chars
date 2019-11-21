@@ -27,13 +27,12 @@ export default Vue.extend({
   methods: {
     updateChar({ name, race }: CharacterMeta) {
       const { charId } = this.$route.params;
-      this.$store.dispatch("updateCharacter", { name, race, charId });
+      this.$store.dispatch("updateCharacter", { name, race });
       this.$router.push(`/characters/${charId}/domains`);
     },
 
     archiveChar(): void {
-      const { charId } = this.$route.params;
-      this.$store.dispatch("archiveCharacter", charId);
+      this.$store.dispatch("archiveCharacter");
       this.$router.push(`/characters/`);
     }
   }

@@ -11,29 +11,37 @@
         <h2>Skills</h2>
         <v-expansion-panels multiple>
           <RuleExpansionPanel
-            v-for="skill in skills"
-            :key="skill.name"
-            :card="findRule(skill)"
+            v-for="(skill, index) in skills"
+            removable
+            :key="index"
+            :ruleCard="findRuleCard(skill)"
+            @remove="removeRule(skill)"
           />
         </v-expansion-panels>
       </v-col>
+
       <v-col v-if="conditions.length > 0" cols="6">
         <h2>Conditions</h2>
         <v-expansion-panels multiple>
           <RuleExpansionPanel
-            v-for="condition in conditions"
-            :key="condition.name"
-            :card="findRule(condition)"
+            v-for="(condition, index) in conditions"
+            removable
+            :key="index"
+            :ruleCard="findRuleCard(condition)"
+            @remove="removeRule(condition)"
           />
         </v-expansion-panels>
       </v-col>
+
       <v-col v-if="items.length > 0" cols="6">
         <h2>Items</h2>
         <v-expansion-panels multiple>
           <RuleExpansionPanel
-            v-for="item in items"
-            :key="item.name"
-            :card="findRule(item)"
+            v-for="(item, index) in items"
+            removable
+            :key="index"
+            :ruleCard="findRuleCard(item)"
+            @remove="removeRule(item)"
           />
         </v-expansion-panels>
       </v-col>
@@ -48,9 +56,16 @@
 <script lang="ts">
 import Vue from "vue";
 import RuleExpansionPanel from "@/components/domain/RuleExpansionPanel.vue";
-import { Rule, Skill, Condition, Item, CharacterRule, Domain } from "@/types";
+import {
+  RuleCard,
+  Skill,
+  Condition,
+  Item,
+  CharacterRule,
+  Domain
+} from "@/types";
 import { getCharacterRulesCol } from "@/firebase";
-import { domains, findRule } from "@/heimr-data";
+import { domains, findRuleCard } from "@/heimr-data";
 import { State } from "@/store";
 
 export default Vue.extend({
@@ -83,6 +98,7 @@ export default Vue.extend({
   },
 
   methods: {
+    findRuleCard,
     back() {
       const { charId } = this.$route.params;
       this.$router.push(`/characters/${charId}`);
@@ -93,8 +109,8 @@ export default Vue.extend({
       return `/characters/${charId}/domains`;
     },
 
-    findRule(charRule: CharacterRule): Rule | null {
-      return findRule(charRule);
+    removeRule(charRule: CharacterRule) {
+      this.$store.dispatch("removeCharacterRule", charRule.id);
     }
   }
 });

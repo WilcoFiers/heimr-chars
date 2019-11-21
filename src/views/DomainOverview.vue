@@ -16,10 +16,12 @@
         <h2>Skills</h2>
         <v-expansion-panels multiple>
           <RuleExpansionPanel
-            v-for="skill in domain.skills"
-            :key="skill.name"
-            :card="skill"
-            @add="addRule(skill)"
+            v-for="(skillCard, index) in domain.skills"
+            :key="index"
+            :ruleCard="skillCard"
+            :quantity="quantity(skillCard)"
+            @add="addRule(skillCard)"
+            @remove="removeRule(skillCard)"
           />
         </v-expansion-panels>
       </v-col>
@@ -28,10 +30,12 @@
         <h2>Conditions</h2>
         <v-expansion-panels multiple>
           <RuleExpansionPanel
-            v-for="condition in domain.conditions"
-            :key="condition.name"
-            :card="condition"
-            @add="addRule(condition)"
+            v-for="(conditionCard, index) in domain.conditions"
+            :key="index"
+            :ruleCard="conditionCard"
+            :quantity="quantity(conditionCard)"
+            @add="addRule(conditionCard)"
+            @remove="removeRule(conditionCard)"
           />
         </v-expansion-panels>
       </v-col>
@@ -40,10 +44,13 @@
         <h2>Items</h2>
         <v-expansion-panels multiple>
           <RuleExpansionPanel
-            v-for="item in domain.items"
-            :key="item.name"
-            :card="item"
-            @add="addRule(item)"
+            v-for="(itemCard, index) in domain.items"
+            :key="index"
+            :ruleCard="itemCard"
+            :quantity="quantity(itemCard)"
+            @add="addRule(itemCard)"
+            @remove="removeRule(itemCard)"
+            :multiple="true"
           />
         </v-expansion-panels>
       </v-col>
@@ -66,7 +73,7 @@ import {
   Skill,
   Condition,
   Item,
-  Rule,
+  RuleCard,
   Character,
   State,
   CharacterRule
@@ -75,7 +82,7 @@ import {
 export default Vue.extend({
   name: "DomainOverview",
   components: { RuleExpansionPanel, ResourceMini },
-  data() {
+  data(): { domain: Domain } {
     const domain = domains.find(({ domainName }) => {
       const match = domainName.toLowerCase().replace(/\s+/g, "_");
       return match === this.$route.params.domain;
@@ -96,20 +103,37 @@ export default Vue.extend({
       const { charId } = this.$route.params;
       return `/characters/${charId}/resources`;
     },
+
     back() {
       const { charId } = this.$route.params;
       return `/characters/${charId}/domains`;
     },
-    addRule(rule: Rule) {
-      const { charId } = this.$route.params;
+
+    findCharacterRules(ruleCard: RuleCard): CharacterRule[] {
+      return this.rules.filter(
+        characterRule =>
+          characterRule.type === ruleCard.type &&
+          characterRule.domainName === this.domain.domainName &&
+          characterRule.name === ruleCard.name
+      );
+    },
+
+    quantity(ruleCard: RuleCard): number {
+      return this.findCharacterRules(ruleCard).length;
+    },
+
+    addRule(rule: RuleCard) {
       const domainName = this.domain.domainName;
       const { type, name } = rule;
-      this.$store.dispatch("addCharacterRule", {
-        charId,
-        type,
-        name,
-        domainName
-      });
+      const characterCard = { type, name, domainName };
+      this.$store.dispatch("addCharacterRule", characterCard);
+    },
+
+    removeRule(ruleCard: RuleCard) {
+      const charRules = this.findCharacterRules(ruleCard);
+      if (charRules.length) {
+        this.$store.dispatch("removeCharacterRule", charRules[0].id);
+      }
     }
   }
 });

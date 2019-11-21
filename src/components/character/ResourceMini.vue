@@ -8,8 +8,8 @@
 
 <script lang="ts">
 import Vue, { PropType } from "vue";
-import { CharacterRule, Rule, Skill, Condition, Item } from "@/types";
-import { findRule, parseRuleValue } from "@/heimr-data";
+import { CharacterRule, RuleCard, Skill, Condition, Item } from "@/types";
+import { findRuleCard, parseRuleValue } from "@/heimr-data";
 
 export default Vue.extend({
   name: "ResourceMini",
@@ -20,12 +20,13 @@ export default Vue.extend({
     resources: Number
   },
   computed: {
-    ruleDefinitions(): Rule[] {
-      return this.rules.map(findRule).filter((rule): rule is Rule => {
+    ruleDefinitions(): RuleCard[] {
+      return this.rules.map(findRuleCard).filter((rule): rule is RuleCard => {
         return !!rule;
       });
     },
     unspentMoney(): number {
+      // TODO: move to a utility
       const items = this.ruleDefinitions.filter((rule): rule is Item => {
         return rule.type === "item";
       });
@@ -42,9 +43,10 @@ export default Vue.extend({
     },
 
     unspentResources(): number {
+      // TODO: move to a utility
       const pointRules = (this.rules as CharacterRule[])
-        .map(findRule)
-        .filter((rule: Rule | null): rule is Skill | Condition => {
+        .map(findRuleCard)
+        .filter((rule: RuleCard | null): rule is Skill | Condition => {
           return !!rule && rule.type !== "item";
         });
 

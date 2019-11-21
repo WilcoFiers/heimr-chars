@@ -1,11 +1,16 @@
 <template>
   <v-expansion-panel>
     <v-expansion-panel-header>
-      <RuleCardTitle :card="card" />
+      <RuleCardTitle v-bind="$props" />
     </v-expansion-panel-header>
     <v-expansion-panel-content>
-      <RuleCardContent :card="card" />
-      <RuleCardActions :card="card" class="mt-5" @add="reFire('add', $event)" />
+      <RuleCardContent v-bind="$props" />
+      <RuleCardActions
+        v-bind="$props"
+        class="mt-5"
+        @add="reFire('add', $event)"
+        @remove="reFire('remove', $event)"
+      />
     </v-expansion-panel-content>
   </v-expansion-panel>
 </template>
@@ -24,7 +29,10 @@ export default Vue.extend({
     RuleCardActions
   },
   props: {
-    card: Object
+    ruleCard: Object,
+    quantity: Number,
+    multiple: Boolean,
+    removable: Boolean
   },
   methods: {
     reFire(name: string, event: any) {
