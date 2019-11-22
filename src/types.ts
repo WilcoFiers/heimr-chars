@@ -62,7 +62,7 @@ export type RaceCards = {
   races: RaceCard[];
 };
 
-export type RuleType = "item" | "skill" | "condition";
+export type RuleType = "item" | "skill" | "condition" | "consumable";
 export type CardType = "race" | RuleType;
 export type RuleCard = SkillCard | ConditionCard | ItemCard;
 

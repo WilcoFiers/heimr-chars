@@ -54,6 +54,21 @@
           />
         </v-expansion-panels>
       </v-col>
+
+      <v-col v-if="domain.consumables.length > 0" cols="6">
+        <h2>Consumables</h2>
+        <v-expansion-panels multiple>
+          <RuleExpansionPanel
+            v-for="(consumableCard, index) in domain.consumables"
+            :key="index"
+            :ruleCard="consumableCard"
+            :quantity="quantity(consumableCard)"
+            @add="addRule(consumableCard)"
+            @remove="removeRule(consumableCard)"
+            :multiple="true"
+          />
+        </v-expansion-panels>
+      </v-col>
     </v-row>
 
     <v-row class="px-5">
@@ -78,6 +93,8 @@ export default Vue.extend({
       const match = domainName.toLowerCase().replace(/\s+/g, "_");
       return match === this.$route.params.domain;
     }) as Domain;
+
+    console.log(domain);
 
     return { domain };
   },

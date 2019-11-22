@@ -45,10 +45,19 @@
           />
         </v-expansion-panels>
       </v-col>
-    </v-row>
 
-    <v-row>
-      <v-col :cols="6"></v-col>
+      <v-col v-if="consumables.length > 0" cols="6">
+        <h2>Consumable</h2>
+        <v-expansion-panels multiple>
+          <RuleExpansionPanel
+            v-for="(consumable, index) in consumables"
+            removable
+            :key="index"
+            :ruleCard="findRuleCard(consumable)"
+            @remove="removeRule(consumable)"
+          />
+        </v-expansion-panels>
+      </v-col>
     </v-row>
   </v-container>
 </template>
@@ -87,6 +96,11 @@ export default Vue.extend({
     },
     items(): CharacterRule[] {
       return this.rules.filter(({ type }: CharacterRule) => type === "item");
+    },
+    consumables(): CharacterRule[] {
+      return this.rules.filter(
+        ({ type }: CharacterRule) => type === "consumable"
+      );
     }
   },
 

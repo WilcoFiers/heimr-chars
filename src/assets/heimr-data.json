@@ -1,5 +1,5 @@
 {
-  "date": "2019-11-22T22:04:19.741Z",
+  "date": "2019-11-22T22:16:10.138Z",
   "races": [
     {
       "type": "race",
@@ -212,7 +212,166 @@
   "domains": [
     {
       "domainName": "Defence",
-      "skills": [],
+      "skills": [
+        {
+          "type": "skill",
+          "name": "Shield Bash 1",
+          "details": "The shield can be used offensively in the hands of a proficient soldier.",
+          "uniqueRules": [
+            "Lightly tap the enemy with your shield and spend 1 WP then call Stumble."
+          ],
+          "sharedRules": ["You cannot use this skill with a buckler."],
+          "points": 4,
+          "category": "Shield Bash",
+          "level": 1,
+          "upgrade": "Upgrade to Level 2 by training 6 points"
+        },
+        {
+          "type": "skill",
+          "name": "Shield Bash 2",
+          "details": "With sufficient force the enemy is swept off his feet.",
+          "uniqueRules": [
+            "Lightly tap the enemy with your shield and spend 1 WP then call Fall or Stumble."
+          ],
+          "sharedRules": ["You cannot use this skill with a buckler."],
+          "points": 10,
+          "category": "Shield Bash",
+          "level": 2
+        },
+        {
+          "type": "skill",
+          "name": "Combat Mobility 1",
+          "details": "It won't stall death forever, but moving along with the blows of your enemy might give you enough time to finish him of.",
+          "uniqueRules": [
+            "You have +1 HP.",
+            "This skill doesn't work when you are wearing heavy armour or better."
+          ],
+          "points": 8,
+          "category": "Combat Mobility",
+          "level": 1,
+          "upgrade": "Upgrade to Level 2 by training 8 points"
+        },
+        {
+          "type": "skill",
+          "name": "Combat Mobility 2",
+          "details": "You have reached the pinnacle of moving out of harms way.",
+          "uniqueRules": [
+            "You have +2 HP.",
+            "This skill doesn't work when you are wearing heavy armour or better."
+          ],
+          "points": 16,
+          "category": "Combat Mobility",
+          "level": 2
+        },
+        {
+          "type": "skill",
+          "name": "Sturdy Stance 1",
+          "details": "Digging your heels in the sand, you keep standing where you are.",
+          "uniqueRules": [
+            "If you spend 1 WP you can call Resist against a Stumble effect."
+          ],
+          "points": 3,
+          "category": "Sturdy Stance",
+          "level": 1,
+          "upgrade": "Upgrade to Level 2 by training 4 points"
+        },
+        {
+          "type": "skill",
+          "name": "Sturdy stance 2",
+          "details": "You don't fall down so easily. They will have to work for that.",
+          "uniqueRules": [
+            "If you spend 1 WP you can call Resist against a Stumble or fall effect."
+          ],
+          "points": 7,
+          "category": "Sturdy stance",
+          "level": 2,
+          "upgrade": "Upgrade to Level 3 by training 5 points"
+        },
+        {
+          "type": "skill",
+          "name": "Sturdy stance 3",
+          "details": "Your legs tend to be strong enough to resist most magical barriers.",
+          "uniqueRules": [
+            "If you spend 1 WP you can call Resist against a Stumble, fall or bind effect.",
+            "You can perform this skill once without spending WP after every short rest."
+          ],
+          "points": 12,
+          "category": "Sturdy stance",
+          "level": 3
+        },
+        {
+          "type": "skill",
+          "name": "Sturdy hands 1",
+          "details": "Bashing a weapon from your hands is harder than they think.",
+          "uniqueRules": [
+            "If you spend 2 WP you can call Resist against a drop weapon effect."
+          ],
+          "points": 4,
+          "category": "Sturdy hands",
+          "level": 1,
+          "upgrade": "Upgrade to Level 2 by training 4 points"
+        },
+        {
+          "type": "skill",
+          "name": "Sturdy hands 2",
+          "details": "A light grasp not a clingy one. It is all in the wrist.",
+          "uniqueRules": [
+            "If you spend 1 WP you can call Resist against a drop weapon effect."
+          ],
+          "points": 8,
+          "category": "Sturdy hands",
+          "level": 2,
+          "upgrade": "Upgrade to Level 3 by training 5 points"
+        },
+        {
+          "type": "skill",
+          "name": "Sturdy hands 3",
+          "details": "Your weapon is your life. Rarely do you drop it.",
+          "uniqueRules": [
+            "If you spend 1 WP you can call Resist against a drop weapon effect.",
+            "You can perform this skill once without spending WP after every short rest."
+          ],
+          "points": 11,
+          "category": "Sturdy hands",
+          "level": 3
+        },
+        {
+          "type": "skill",
+          "name": "Clear head 1",
+          "details": "You are not distracted by fear that easily.",
+          "uniqueRules": [
+            "If you spend 1 WP you can call Resist against a fear effect."
+          ],
+          "points": 4,
+          "category": "Clear head",
+          "level": 1,
+          "upgrade": "Upgrade to Level 2 by training 4 points"
+        },
+        {
+          "type": "skill",
+          "name": "Clear head 2",
+          "details": "It is really hard to stun you. Even spellcasters might be surprised.",
+          "uniqueRules": [
+            "If you spend 1 WP you can call Resist against a fear or daze effect."
+          ],
+          "points": 8,
+          "category": "Clear head",
+          "level": 2,
+          "upgrade": "Upgrade to Level 3 by training 5 points"
+        },
+        {
+          "type": "skill",
+          "name": "Clear head 3",
+          "details": "You have seen it all. Nothing distracts you from the battle at hand.",
+          "uniqueRules": [
+            "If you spend 1 WP you can call Resist against a fear, daze or charm effect.",
+            "You can perform this skill once without spending WP after every short rest."
+          ],
+          "points": 11,
+          "category": "Clear head",
+          "level": 3
+        }
+      ],
       "conditions": [],
       "items": [
         {
@@ -306,7 +465,225 @@
     },
     {
       "domainName": "Armed Combat",
-      "skills": [],
+      "skills": [
+        {
+          "type": "skill",
+          "name": "Focused Strike 1",
+          "details": "This skill heightens the chance that your blow will injure the enemy.",
+          "uniqueRules": [
+            "If you hit an opponent and spend 2 WP you can call Hit 2"
+          ],
+          "sharedRules": ["Use a large melee weapon for this skill"],
+          "points": 4,
+          "category": "Focused Strike",
+          "level": 1,
+          "upgrade": "Upgrade to Level 2 by training 4 points"
+        },
+        {
+          "type": "skill",
+          "name": "Focused Strike 2",
+          "details": "You might even be able to disable an armoured enemy with a single blow.",
+          "uniqueRules": [
+            "If you hit an opponent and spend 2 WP you can call Hit 3"
+          ],
+          "sharedRules": ["Use a large melee weapon for this skill"],
+          "points": 8,
+          "category": "Focused Strike",
+          "level": 2,
+          "upgrade": "Upgrade to Level 3 by training 4 points"
+        },
+        {
+          "type": "skill",
+          "name": "Focused Strike 3",
+          "details": "Precision and superior force enable you to drop most armoured combatants with ease.",
+          "uniqueRules": [
+            "If you hit an opponent and spend 2 WP you can call Hit 4"
+          ],
+          "sharedRules": ["Use a large melee weapon for this skill"],
+          "points": 12,
+          "category": "Focused Strike",
+          "level": 3
+        },
+        {
+          "type": "skill",
+          "name": "Breaking Strike 1",
+          "details": "Breaking shields or bending enemy weapons is a handy skill. It reduces the value of your loot, but at least you survive the combat. It is extremely potent against most shields or bad quality weapons.",
+          "uniqueRules": [
+            "If you intentionally strike an opponent's weapon or shield and spend 2 WP you can call Break 1 but your weapon also receives this effect."
+          ],
+          "sharedRules": ["Use a large melee weapon for this skill"],
+          "points": 4,
+          "category": "Breaking Strike",
+          "level": 1,
+          "upgrade": "Upgrade to Level 2 by training 6 points"
+        },
+        {
+          "type": "skill",
+          "name": "Breaking Strike 2",
+          "details": "You will be able to break the toughest of shields and most weapons.",
+          "uniqueRules": [
+            "If you intentionally strike an opponent's weapon or shield and spend 2 WP you can call Break 1 or Break 2 but your weapon also receives this effect."
+          ],
+          "sharedRules": ["Use a large melee weapon for this skill"],
+          "points": 10,
+          "category": "Breaking Strike",
+          "level": 2,
+          "upgrade": "Upgrade to Level 3 by training 6 points"
+        },
+        {
+          "type": "skill",
+          "name": "Breaking Strike 3",
+          "details": "Breaking stuff doesn't tire you as much as it used to do.",
+          "uniqueRules": [
+            "If you intentionally strike an opponent's weapon or shield and spend 1 WP you can call Break 1 or Break 2 but your weapon also receives this effect."
+          ],
+          "sharedRules": ["Use a large melee weapon for this skill"],
+          "points": 16,
+          "category": "Breaking Strike",
+          "level": 3
+        },
+        {
+          "type": "skill",
+          "name": "Shoving Strike",
+          "details": "Especially useful against multiple enemies or enemies with shorter weapons than you.",
+          "uniqueRules": [
+            "If you grab the tip of your weapon with your off-hand, move the weapon towards your opponent and spend 1WP you can call Stumble."
+          ],
+          "sharedRules": ["Use a large melee weapon for this skill."],
+          "points": 4
+        },
+        {
+          "type": "skill",
+          "name": "Tackling strike 1",
+          "details": "Hitting knees or sweeping feet away might cause your enemy to drop to the ground.",
+          "uniqueRules": [
+            "If you hit an opponent on a leg and spend 2WP you can call Hit 1 and Fall."
+          ],
+          "sharedRules": ["Use a large melee weapon for this skill"],
+          "points": 6,
+          "category": "Tackling strike",
+          "level": 1,
+          "upgrade": "Upgrade to Level 2 by training 4 points"
+        },
+        {
+          "type": "skill",
+          "name": "Tackling strike 2",
+          "details": "You have gotten much more proficient hitting low.",
+          "uniqueRules": [
+            "If you hit an opponent on a leg and spend 1WP you can call Hit 1 and Fall."
+          ],
+          "sharedRules": ["Use a large melee weapon for this skill"],
+          "points": 10,
+          "category": "Tackling strike",
+          "level": 2
+        },
+        {
+          "type": "skill",
+          "name": "Disarming strike 1",
+          "details": "After hammering your opponent's weapon arm, a clumsy and tired fighter will surely drop it.",
+          "uniqueRules": [
+            "If you hit an opponent on the arm where they hold a weapon twice and spend 2WP you can call Hit 1 and Drop Weapon."
+          ],
+          "sharedRules": ["Use a large melee weapon for this skill"],
+          "points": 6,
+          "category": "Disarming strike",
+          "level": 1,
+          "upgrade": "Upgrade to Level 2 by training 4 points"
+        },
+        {
+          "type": "skill",
+          "name": "Disarming strike 2",
+          "details": "You have gotten much more proficient at disarming somebody.",
+          "uniqueRules": [
+            "If you hit an opponent on the arm where they hold a weapon and spend 2WP you can call Hit 1 and Drop Weapon."
+          ],
+          "sharedRules": ["Use a large melee weapon for this skill"],
+          "points": 10,
+          "category": "Disarming strike",
+          "level": 2,
+          "upgrade": "Upgrade to Level 2 by training 5 points"
+        },
+        {
+          "type": "skill",
+          "name": "Disarming strike 3",
+          "details": "Disarming somebody doesn't tire you as much as it used to do.",
+          "uniqueRules": [
+            "If you hit an opponent on the arm where they hold a weapon and spend 1WP you can call Hit 1 and Drop Weapon."
+          ],
+          "sharedRules": ["Use a large melee weapon for this skill"],
+          "points": 15,
+          "category": "Disarming strike",
+          "level": 3
+        },
+        {
+          "type": "skill",
+          "name": "Damaging Throw",
+          "details": "To actually hurt somebody with throwing knifes or other thrown weapons requires practice.",
+          "uniqueRules": [
+            "If you hit an opponent and spend 1 WP you can call Hit 1"
+          ],
+          "sharedRules": ["Use a throwing weapon for this skill"],
+          "points": 4
+        },
+        {
+          "type": "skill",
+          "name": "Focused Shot 1",
+          "details": "This skill heightens the chance that your arrow will injure the enemy.",
+          "uniqueRules": [
+            "If you hit an opponent and spend 2 WP you can call Hit 2"
+          ],
+          "sharedRules": ["Use a bow or crossbow for this skill"],
+          "points": 4,
+          "category": "Focused Shot",
+          "level": 1,
+          "upgrade": "Upgrade to Level 2 by training 4 points"
+        },
+        {
+          "type": "skill",
+          "name": "Focused Shot 2",
+          "details": "You might even be able to disable an armoured enemy with a single shot.",
+          "uniqueRules": [
+            "If you hit an opponent and spend 2 WP you can call Hit 3"
+          ],
+          "sharedRules": ["Use a bow or crossbow for this skill"],
+          "points": 8,
+          "category": "Focused Shot",
+          "level": 2,
+          "upgrade": "Upgrade to Level 3 by training 4 points"
+        },
+        {
+          "type": "skill",
+          "name": "Focused Shot 3",
+          "details": "Superior aim enables you to drop most armoured combatants with ease.",
+          "uniqueRules": [
+            "If you hit an opponent and spend 2 WP you can call Hit 4"
+          ],
+          "sharedRules": ["Use a bow or crossbow for this skill"],
+          "points": 12,
+          "category": "Focused Shot",
+          "level": 3
+        },
+        {
+          "type": "skill",
+          "name": "Pinning Shot",
+          "details": "Penetrating the leg of your enemy will stop him or her from running towards you, at least for a while.",
+          "uniqueRules": [
+            "If you hit an opponent on a leg and spend 1 WP you can call Hit 1 and Fall"
+          ],
+          "sharedRules": ["Use a bow or crossbow for this skill"],
+          "points": 3
+        },
+        {
+          "type": "skill",
+          "name": "Disarming Shot",
+          "details": "Arrows usually cause enough pain and fright to temporarily disable limbs, even if the wound isn't all that lethal.",
+          "uniqueRules": [
+            "If you hit an opponent on an arm holding an item and spend 1 WP you can call Hit 1 and Drop item"
+          ],
+          "sharedRules": ["Use a bow or crossbow for this skill"],
+          "points": 3
+        }
+      ],
       "conditions": [],
       "items": [
         {
@@ -515,7 +892,290 @@
     },
     {
       "domainName": "Battlefield Surgery",
-      "skills": [],
+      "skills": [
+        {
+          "type": "skill",
+          "name": "Stitching And Bandaging",
+          "details": "You know how to clean, stitch up and bind a wound. It is painful and messy and there is a large chance of infection.",
+          "uniqueRules": [
+            "Clean, stitch and bandage somebody with 0 HP for 4 minutes. The patient is now at 1 HP (and thus will regain HP normally during his next short rest). The patient also loses 1 WP."
+          ],
+          "sharedRules": [
+            "Use bandages to bind the injury. Metal armour pieces must be removed before using this."
+          ],
+          "points": 2
+        },
+        {
+          "type": "skill",
+          "name": "Hygienic stitching",
+          "details": "You know how to keep your tools and the wound clean. Infection is always a risk in the field, but by concentrating you know how to lower the chance considerably.",
+          "uniqueRules": [
+            "You are not allowed to ask whether or not your patient has a minor infection condition.",
+            "If you spend 1 WP while using the stitching and bandaging skill you can remove any minor infection that the patient has gained from the wound you are treating."
+          ],
+          "points": 2,
+          "requires": "Stitching And Bandaging"
+        },
+        {
+          "type": "skill",
+          "name": "Wound washing",
+          "details": "By washing the wound carefully and analysing the filth, you know whether or not you need to be extra careful with your equipment.",
+          "uniqueRules": [
+            "You carefully wash any filth from the wounds for 5 minutes before stitching and bandaging the wound. You are allowed to ask whether or not your patient has a minor infection condition."
+          ],
+          "points": 2,
+          "requires": "Hygienic stitching"
+        },
+        {
+          "type": "skill",
+          "name": "Nursing",
+          "details": "Good bedside manners and a genuine smile go a long way towards healing.",
+          "uniqueRules": [
+            "Attend to the healthcare and mobility needs of a person with an Illness or Wounded condition for 1 hour and spend 1 WP. After you have done this they regain 1 WP.",
+            "You can use this skill 4 times a day without spending willpower.",
+            "You can use this skill simultaneously on up to 4 patients. You can stop and resume this skill at any time without losing the time already spend."
+          ],
+          "points": 4
+        },
+        {
+          "type": "skill",
+          "name": "Battlefield surgery 1",
+          "details": "You know how to stop people from bleeding to death if it isn't all that bad yet but as soon as people slip into unconsciousness you don't know what to do.",
+          "uniqueRules": [
+            "You can try and stabilize dying patients. Draw a card at random for your complication deck and do what it says."
+          ],
+          "sharedRules": [
+            "When you start to work on a patient they do not lose consciousness or die unless a complication card says differently."
+          ],
+          "downtimeRules": [
+            "Higher levels of this skill have a better complication deck."
+          ],
+          "points": 3,
+          "category": "Battlefield surgery",
+          "level": 1,
+          "requires": "Stitching And Bandaging",
+          "upgrade": "Upgrade to Level 2 by training 3 points"
+        },
+        {
+          "type": "skill",
+          "name": "Battlefield surgery 2",
+          "details": "You know how to fix all sorts of battlefield related injuries. Even when people have slipped into unconsciousness you know what to do although it does take considerable strain not to panic.",
+          "uniqueRules": [
+            "You can try and stabilize dying patients. Draw a card at random for your complication deck and do what it says."
+          ],
+          "sharedRules": [
+            "When you start to work on a patient they do not lose consciousness or die unless a complication card says differently."
+          ],
+          "downtimeRules": [
+            "Higher levels of this skill have a better complication deck."
+          ],
+          "points": 6,
+          "category": "Battlefield surgery",
+          "level": 2,
+          "requires": "Stitching And Bandaging",
+          "upgrade": "Upgrade to Level 3 by training 4 points"
+        },
+        {
+          "type": "skill",
+          "name": "Battlefield surgery 3",
+          "details": "Your expertise knowledge and theoretic keeps your head cool while working on a patient. You only panic slightly when they are already unconscious when you arrive.",
+          "uniqueRules": [
+            "You can try and stabilize dying patients. Draw a card at random for your complication deck and do what it says."
+          ],
+          "sharedRules": [
+            "When you start to work on a patient they do not lose consciousness or die unless a complication card says differently."
+          ],
+          "downtimeRules": [
+            "Higher levels of this skill have a better complication deck."
+          ],
+          "points": 10,
+          "category": "Battlefield surgery",
+          "level": 3,
+          "requires": "Stitching And Bandaging"
+        },
+        {
+          "type": "skill",
+          "name": "Experienced surgery 1",
+          "details": "You have seen some blood and guts in your time. You know how to handle this.",
+          "uniqueRules": [
+            "You are better at performing battlefield surgery: The patient loses 1 less WP from your complication cards (but always loses at least 1)."
+          ],
+          "points": 3,
+          "category": "Experienced surgery",
+          "level": 1,
+          "upgrade": "Upgrade to Level 2 by training 3 points"
+        },
+        {
+          "type": "skill",
+          "name": "Experienced surgery 2",
+          "details": "You have seen grown man cry for their mothers and pray to their gods, but you keep pulling them trough.",
+          "uniqueRules": [
+            "You are better at performing battlefield surgery: The patient loses 2 less WP from your complication cards (but always loses at least 1)."
+          ],
+          "points": 6,
+          "category": "Experienced surgery",
+          "level": 2,
+          "upgrade": "Upgrade to Level 3 by training 3 points"
+        },
+        {
+          "type": "skill",
+          "name": "Experienced surgery 3",
+          "details": "You have lost count of the amount of lives you have saved. Your experience will save some more.",
+          "uniqueRules": [
+            "You are better at performing battlefield surgery: The patient loses 3 less WP from your complication cards (but always loses at least 1)."
+          ],
+          "points": 9,
+          "category": "Experienced surgery",
+          "level": 3
+        },
+        {
+          "type": "skill",
+          "name": "Surgeon assistant 1",
+          "details": "You know what to hand when the healer asks for it and know where to apply pressure without anyone telling you.",
+          "uniqueRules": [
+            "You can help perform battlefield surgery (you have to be present from beginning to end, only two people can help at maximum) this has the following effect: The patient loses 1 less WP from complication cards (but always loses at least 1)."
+          ],
+          "points": 1,
+          "category": "Surgeon assistant",
+          "level": 1,
+          "requires": "Stitching And Bandaging (any level)",
+          "upgrade": "Upgrade to Level 2 by training 3 points"
+        },
+        {
+          "type": "skill",
+          "name": "Surgeon assistant 2",
+          "details": "You can give the needed equipment even before the surgeon asks for it and work on some other wounds he missed on the side.",
+          "uniqueRules": [
+            "You can help perform battlefield surgery (you have to be present from beginning to end, only two people can help at maximum) this has the following effect: The patient loses 2 less WP from complication cards (but always loses at least 1)."
+          ],
+          "points": 4,
+          "category": "Surgeon assistant",
+          "level": 2,
+          "requires": "Stitching And Bandaging (any level)"
+        },
+        {
+          "type": "skill",
+          "name": "Helping hands 1",
+          "details": "You can ask any unskilled lowlife on how to hand you certain equipment and how to keep pressure on certain wounds.",
+          "uniqueRules": [
+            "You can instruct a single person to help you perform battlefield surgery (the person needs to be present from beginning to end) this has the following effect: The patient loses 1 less WP from complication cards (but always loses at least 1)."
+          ],
+          "points": 2,
+          "category": "Helping hands",
+          "level": 1,
+          "requires": "Battlefield surgery (Any level)",
+          "upgrade": "Upgrade to Level 2 by training 3 points"
+        },
+        {
+          "type": "skill",
+          "name": "Helping hands 2",
+          "details": "You can keep order and discipline around the surgery table and make sure nobody panics.",
+          "uniqueRules": [
+            "You can instruct up to two people to help you perform battlefield surgery (the helpers need to be present from beginning to end) this has the following effect: The patient loses 1 less WP from complication cards per person helping you (but always loses at least 1)."
+          ],
+          "points": 5,
+          "category": "Helping hands",
+          "level": 2,
+          "requires": "Battlefield surgery (Any level)"
+        },
+        {
+          "type": "skill",
+          "name": "Focused surgery 1",
+          "details": "At the expense of your own emotional well being you go beyond the call of duty to help this particular patient.",
+          "uniqueRules": [
+            "Spend 2 WP during the use of battlefield surgery or helping hand: One WP the patient loses is negated. You can use this 1 time during every use of battlefield surgery."
+          ],
+          "points": 3,
+          "category": "Focused surgery",
+          "level": 1,
+          "upgrade": "Upgrade to Level 2 by training 3 points"
+        },
+        {
+          "type": "skill",
+          "name": "Focused surgery 2",
+          "details": "At the expense of possibly your own sanity, you pour everything you have into this important patient.",
+          "uniqueRules": [
+            "Spend 2 WP during the use of battlefield surgery or helping hand: One WP the patient loses is negated. You can use this 2 times during every use of battlefield surgery."
+          ],
+          "points": 6,
+          "category": "Focused surgery",
+          "level": 2,
+          "upgrade": "Upgrade to Level 3 by training 3 points"
+        },
+        {
+          "type": "skill",
+          "name": "Focused surgery 3",
+          "details": "THIS... ONE... SHALL... NOT... DIE!.",
+          "uniqueRules": [
+            "Spend 1 WP during the use of battlefield surgery or helping hand: One WP the patient loses is negated. You can use this 2 times during every use of battlefield surgery. The second time you use this skill it costs 2 WP."
+          ],
+          "points": 9,
+          "category": "Focused surgery",
+          "level": 3,
+          "upgrade": "Upgrade to Level 4 by training 3 points"
+        },
+        {
+          "type": "skill",
+          "name": "Focused surgery 4",
+          "details": "You have a saintlike regard for your patients and might have given your own life for them if you could.",
+          "uniqueRules": [
+            "Spend 1 WP during the use of battlefield surgery or helping hand: One WP the patient loses is negated. You can use this 3 times during every use of battlefield surgery. The second and third time you use this skill it costs 2 WP."
+          ],
+          "points": 12,
+          "category": "Focused surgery",
+          "level": 4
+        },
+        {
+          "type": "skill",
+          "name": "Amputate 1",
+          "details": "You crudely hack off the wounded limb, scorch the stump and pray.",
+          "uniqueRules": [
+            "When a patient would die from a complication card, ignore the card and amputate a wounded limb instead (this only works if the patient isn't injured on the torso). Spend 4 minutes on this.",
+            "Pick another card at random from the complication deck.",
+            "The next 3 WP the patient loses during this surgery are negated."
+          ],
+          "sharedRules": [
+            "Give the patient the amputated limb condition when he survives."
+          ],
+          "points": 2,
+          "category": "Amputate",
+          "level": 1,
+          "upgrade": "Upgrade to Level 2 by training 2 points"
+        },
+        {
+          "type": "skill",
+          "name": "Amputate 2",
+          "details": "You know exactly where to cut to maximize the chance of survival and have some experience in burning wounds closed.",
+          "uniqueRules": [
+            "When a patient would die from a complication card, ignore the card and amputate a wounded limb instead (this only works if the patient isn't injured on the torso). Spend 4 minutes on this.",
+            "Pick another card at random from the complication deck.",
+            "The next 4 WP the patient loses during this surgery are negated."
+          ],
+          "sharedRules": [
+            "Give the patient the amputated limb condition when he survives."
+          ],
+          "points": 4,
+          "category": "Amputate",
+          "level": 2,
+          "upgrade": "Upgrade to Level 3 by training 2 points"
+        },
+        {
+          "type": "skill",
+          "name": "Amputate 3",
+          "details": "You have sterilized equipment specifically designed to remove wounded limbs and perform this operation routinely.",
+          "uniqueRules": [
+            "When a patient would die from a complication card, ignore the card and amputate a wounded limb instead (this only works if the patient isn't injured on the torso). Spend 4 minutes on this.",
+            "Pick another card at random from the complication deck.",
+            "The next 5 WP the patient loses during this surgery are negated."
+          ],
+          "sharedRules": [
+            "Give the patient the amputated limb condition when he survives."
+          ],
+          "points": 6,
+          "category": "Amputate",
+          "level": 3
+        }
+      ],
       "conditions": [
         {
           "type": "condition",
@@ -610,7 +1270,244 @@
     },
     {
       "domainName": "The Marketplace",
-      "skills": [],
+      "skills": [
+        {
+          "type": "skill",
+          "name": "Crafter 1",
+          "details": "You are a journeyman level craftsman.",
+          "uniqueRules": [
+            "Spend 1ℜ to craft items worth up to 40¢.",
+            "You can sell items you craft for 61% of the market price during downtime."
+          ],
+          "sharedRules": [
+            "When crafting items spend half the items' worth in material cost.",
+            "You require a pattern for any item you craft."
+          ],
+          "points": 5,
+          "category": "Crafter",
+          "level": 1,
+          "upgrade": "Upgrade to Level 2 by training 5 points."
+        },
+        {
+          "type": "skill",
+          "name": "Crafter 2",
+          "details": "You are an Expert level craftsman.",
+          "uniqueRules": [
+            "Spend 1ℜ to craft items worth up to 50¢.",
+            "You can sell items you craft for 62% of the market price during downtime.",
+            "You now spend 500¢ per month on your standard of living."
+          ],
+          "sharedRules": [
+            "When crafting items spend half the items' worth in material cost.",
+            "You require a pattern for any item you craft."
+          ],
+          "points": 10,
+          "category": "Crafter",
+          "level": 2,
+          "upgrade": "Upgrade to Level 3 by training 6 points."
+        },
+        {
+          "type": "skill",
+          "name": "Crafter 3",
+          "details": "You are a Master level craftsman.",
+          "uniqueRules": [
+            "Spend 1ℜ to craft items worth up to 60¢.",
+            "You can sell items you craft for 63% of the market price during downtime.",
+            "You now spend 600¢ per month on your standard of living."
+          ],
+          "sharedRules": [
+            "When crafting items spend half the items' worth in material cost.",
+            "You require a pattern for any item you craft."
+          ],
+          "points": 16,
+          "category": "Crafter",
+          "level": 3
+        },
+        {
+          "type": "skill",
+          "name": "Artesian Crafter",
+          "details": "The items that you craft are especially innovative or aesthetically pleasing. This makes them highly valued by certain buyers.",
+          "uniqueRules": [
+            "The price that you can sell items that you craft for is heightened by 1%."
+          ],
+          "points": 5
+        },
+        {
+          "type": "skill",
+          "name": "Repairman",
+          "details": "You can attempt to repair broken items.",
+          "uniqueRules": [
+            "To repair an item, spend half the restore price and 1ℜ per 20¢ of the amount you spend. There is a 80% chance the item is restored. If not, you can try again."
+          ],
+          "sharedRules": [
+            "You can buy this skill up to 5 times. Every time you buy it again the chance of success is increased by 5%.",
+            "You require the pattern of the item you are repairing."
+          ],
+          "points": 1
+        },
+        {
+          "type": "skill",
+          "name": "Jury rigging",
+          "details": "You can take most broken items and make them work for at least one more fight.",
+          "uniqueRules": [
+            "Spend 5 minutes and 5% of the market price of the item worth of jury rigging material.",
+            "After this a weapon or shield can be used again until its owners next short rest. The first time its toughness is lowered by 1 until it is repaired.",
+            "After this an armour can be used again until its owners next short rest. Every time it provides 1 less HP until it is repaired."
+          ],
+          "sharedRules": [
+            "You require the pattern of the item you are jury rigging"
+          ],
+          "points": 4
+        },
+        {
+          "type": "skill",
+          "name": "Salvaging",
+          "details": "Repairing them and selling them might net you more money, but you need the materials now.",
+          "uniqueRules": [
+            "Spend 5 minutes on a single broken item. The broken item is removed from the game and you gain 25% of it's market price worth of jury rigging material."
+          ],
+          "sharedRules": [
+            "You require the pattern of the item you are salvaging"
+          ],
+          "points": 1
+        },
+        {
+          "type": "skill",
+          "name": "Custom Crafter",
+          "details": "You are gifted at making items designed for a specific person. Based on his or her measurements, wishes and tastes.",
+          "uniqueRules": [
+            "Spend 1 WP and at least 20 minutes designing the custom item with the client.",
+            "In the next downtime you can craft an item with the custom modifier(s) if you pay the extra material cost specified. This modifier only has effect if the item is used by the specific client."
+          ],
+          "sharedRules": ["You require a pattern for any item you customize."],
+          "points": 2
+        },
+        {
+          "type": "skill",
+          "name": "Street Performer",
+          "details": "Performance may include juggling, storytelling, playing an instrument, singing, theatre etc.",
+          "uniqueRules": [
+            "Spend at least 15 minutes performing: For every 5 minutes of your performance, one member of your audience (you choose) regains 1 WP or the use of their \"indulgence\".",
+            "Spend 1 WP for every 5 minutes of your performance, except for the first 15 minutes each day."
+          ],
+          "points": 3
+        },
+        {
+          "type": "skill",
+          "name": "Prostitute",
+          "details": "The oldest profession. Normal sex doesn't give back willpower, but you are specially trained in the art of pleasing your clients.",
+          "uniqueRules": [
+            "Spend 15 minutes in private with another person, providing sexual favours and spend 1 WP. They regain 1WP or the use of their \"indulgence\".",
+            "You can use this skill 3 times a day without spending willpower."
+          ],
+          "points": 3
+        },
+        {
+          "type": "skill",
+          "name": "Health Specialist",
+          "details": "Healthcare may include massages, skin care, barbering, piss-propheting, make-up, etc.",
+          "uniqueRules": [
+            "Spend 15 minutes attending to a person's healthcare and spend 1 WP. They regain 1WP or the use of their \"indulgence\"",
+            "You can use this skill 5 times a day without spending willpower."
+          ],
+          "points": 6
+        },
+        {
+          "type": "skill",
+          "name": "Weeper",
+          "details": "Professional weepers are skilled at making the dead person look more important than he or she was and are good at consoling random strangers about death.",
+          "uniqueRules": [
+            "Spend at least 10 minutes mourning. For every 5 minutes, one member of the funeral attendees (you choose) regains 1 WP or the use of their \"indulgence\".",
+            "Spend 1 WP for every 5 minutes of mourning at somebodies funeral, except for the first 25 minutes each day."
+          ],
+          "points": 4
+        },
+        {
+          "type": "skill",
+          "name": "Temporary Reinforcement",
+          "details": "You are gifted at making small in the field adjustments to items that temporarily improve their functionality.",
+          "uniqueRules": [
+            "Spend at least 10 minutes modifying the item. After this time the item is temporarily improved. Explain the effect to the owner of the item.",
+            "You require the appropriate reinforcement materials for this skill to work.",
+            "If you have the pattern of the item you are improving it only costs 5 minutes to modify the item."
+          ],
+          "sharedRules": ["An item can only carry one improvement at a time."],
+          "points": 2
+        },
+        {
+          "type": "skill",
+          "name": "Merchant",
+          "details": "You know your way around the markets, have a lot of trading contacts and know how to barter well.",
+          "uniqueRules": [
+            "Every month you can buy or sell up to 1000¢ worth of items with this skill.",
+            "Buying items with this skill is at 85% of their market price.",
+            "Selling items with this skill is at 65% of their market price.",
+            "You now spend 500¢ per month on your standard of living."
+          ],
+          "downtimeRules": [
+            "You can buy this skill multiple times. Each time you do so either your buying or selling price shifts 1% (alternately, you choose which first), you can buy or sell 1000¢ worth of items extra and your standard of living is increased by 100¢ per month."
+          ],
+          "points": 5
+        },
+        {
+          "type": "skill",
+          "name": "Barter",
+          "details": "You often forgo with money altogether, getting exactly what you need.",
+          "uniqueRules": [
+            "Every month you can exchange 100¢ worth of items for 90% worth of other items."
+          ],
+          "downtimeRules": ["You can buy this skill multiple times."],
+          "points": 1
+        },
+        {
+          "type": "skill",
+          "name": "Professional Guardian 1",
+          "details": "You know how to organize your patrol patterns and look the part so enemies will try a softer target.",
+          "uniqueRules": [
+            "You count as three persons when determining how many persons protect something in downtime."
+          ],
+          "points": 2,
+          "category": "Professional Guardian",
+          "level": 1,
+          "requires": "You need a heavy armour (or better) and a weapon for this skill to work.",
+          "upgrade": "Upgrade to Level 2 by training 2 points"
+        },
+        {
+          "type": "skill",
+          "name": "Professional Guardian 2",
+          "details": "The local scum knows not to mess with whatever you are protecting.",
+          "uniqueRules": [
+            "You count as five persons when determining how many persons protect something in downtime."
+          ],
+          "points": 4,
+          "category": "Professional Guardian",
+          "level": 2,
+          "requires": "You need a massive armour and a weapon for this skill to work."
+        },
+        {
+          "type": "skill",
+          "name": "Caravan Safety 1",
+          "details": "You know how to travel safer across the land. Maybe you have some contacts with the locals or you might know a safer route.",
+          "uniqueRules": [
+            "The chance a caravan you travel with is lost is 20% instead of 30%."
+          ],
+          "points": 5,
+          "category": "Caravan Safety",
+          "level": 1,
+          "upgrade": "Upgrade to Level 2 by training 5 points."
+        },
+        {
+          "type": "skill",
+          "name": "Caravan Safety 2",
+          "details": "You know how to travel safer across even the most dangerous areas. You might even have a positive relationships with the local bandits.",
+          "uniqueRules": [
+            "The chance a caravan you travel with is lost is 10% instead of 30%."
+          ],
+          "points": 10,
+          "category": "Caravan Safety",
+          "level": 2
+        }
+      ],
       "conditions": [
         {
           "type": "condition",
@@ -1036,7 +1933,102 @@
     },
     {
       "domainName": "Divine Magic",
-      "skills": [],
+      "skills": [
+        {
+          "type": "skill",
+          "name": "Ceremony Master",
+          "details": "You are not necessarily a full fledged priest but you often perform ceremonies for your local church to lighten the load on the priests. Instead of devotion you probably power these ceremonies with sacrifices.",
+          "uniqueRules": [
+            "You can perform priest ceremonies by spending the necessary components and 1WP. The components are lost during the ceremony unless they are free.",
+            "This skill teaches you no blessings (so you cannot perform blessing ceremonies with this skill).",
+            "Ceremony components cost 30¢ less if you buy them for personal use."
+          ],
+          "points": 2
+        },
+        {
+          "type": "skill",
+          "name": "Priest 1",
+          "details": "You are a priest with a lousy backwater education. You are thought only a limited amount of blessings.",
+          "uniqueRules": [
+            "You can perform priest ceremonies by spending the necessary components and 1 WP. The components are lost during the ceremony unless they are free.",
+            "You know your deity's signature blessings and 4 additional blessings (choose them when you gain this skill)."
+          ],
+          "downtimeRules": ["Upgrade to Level 2 by training 1 point"],
+          "points": 1,
+          "category": "Priest",
+          "level": 1
+        },
+        {
+          "type": "skill",
+          "name": "Priest 2",
+          "details": "The priest is a cornerstone of any community, empowering every loyal worshipper with the power of the deity.",
+          "uniqueRules": [
+            "You can perform priest ceremonies by spending the necessary components and 1 WP. The components are lost during the ceremony unless they are free.",
+            "You know all blessings."
+          ],
+          "points": 2,
+          "category": "Priest",
+          "level": 2
+        },
+        {
+          "type": "skill",
+          "name": "Preacher",
+          "details": "In troubled and stressful times people flock to the priest for advice and support. But listening to worries, troubles and past sins all day wears down the mind.",
+          "uniqueRules": [
+            "Help someone for 5 minutes with advice on matters of faith, give them a fitting task to fulfil their religious need and spend 1 WP.",
+            "When the recipient completes the task they regain 1 WP or the use of their \"indulgence\".",
+            "You can use this skill 4 times a day without spending willpower."
+          ],
+          "sharedRules": ["This is a Sacred way of gaining WP."],
+          "points": 5,
+          "requires": "Priest"
+        },
+        {
+          "type": "skill",
+          "name": "Pilgrim",
+          "details": "During your travels to important places you stop and stay a while in the villages you pass to give people a chance to pray to your emblems.",
+          "uniqueRules": [
+            "For every ℜ you spend during downtime one of your emblem items starts your next event with one more DC."
+          ],
+          "points": 3
+        },
+        {
+          "type": "skill",
+          "name": "Missionary",
+          "details": "You are frequently sends out into the world to convert and initiate as many people into the faith as you can. This works better if you have true stories to tell about your deeds and godly miracles.",
+          "uniqueRules": [
+            "If you spend 5ℜ during downtime you will gain 1 counter on this skill.",
+            "You can use counters on this skill to increase the level of your devoted condition. Only half of the counters is allowed to come from this skill."
+          ],
+          "points": 4,
+          "requires": "Priest"
+        },
+        {
+          "type": "skill",
+          "name": "Crusader 1",
+          "details": "Two or more blessings interlink, cause reality to distort and the recipient to expire unless they are trained to carefully weave these blessings in a special pattern.",
+          "uniqueRules": [
+            "While you have this skill you can have 2 blessings instead of 1.",
+            "You can perform crusader ceremonies by spending the necessary components to do so."
+          ],
+          "points": 2,
+          "category": "Crusader",
+          "level": 1,
+          "upgrade": "Upgrade to Level 2 by training 3 points"
+        },
+        {
+          "type": "skill",
+          "name": "Crusader 2",
+          "details": "Weaving three blessings so they don't interfere with each other is exceptionally harder than two. No mortal has succeeded in weaving four.",
+          "uniqueRules": [
+            "While you have this skill you can have 3 blessings instead of 1.",
+            "You can perform crusader ceremonies by spending the necessary components to do so."
+          ],
+          "points": 5,
+          "category": "Crusader",
+          "level": 2
+        }
+      ],
       "conditions": [
         {
           "type": "condition",
@@ -1640,7 +2632,110 @@
     },
     {
       "domainName": "Alchemy",
-      "skills": [],
+      "skills": [
+        {
+          "type": "skill",
+          "name": "Plant anatomy",
+          "details": "You know what parts of the plant are what.",
+          "uniqueRules": [
+            "You can change a plant ingredient into a roots, stem and flower ingredient.",
+            "You can change a stem ingredient into a leaves and internodes ingredient.",
+            "You can change a flower ingredient into a petals, ovary and stamen ingredient.",
+            "Each change takes 1 minute."
+          ],
+          "sharedRules": ["Note the new ingredients in your stock booklet."],
+          "points": 4,
+          "requires": "You need a Plant knife set for this skill to work."
+        },
+        {
+          "type": "skill",
+          "name": "Alchemic cooking",
+          "details": "You know how to keep temperate even and how to boil gasses away from certain ingredient.",
+          "uniqueRules": [
+            "With a cauldron you can change some ingredients into cooked versions.",
+            "Each change takes 5 minutes."
+          ],
+          "sharedRules": [
+            "Note a \"cooked\" version of the old ingredient into your stock booklet."
+          ],
+          "points": 4,
+          "requires": "You need a cauldron for this skill to work."
+        },
+        {
+          "type": "skill",
+          "name": "Distilling",
+          "details": "When you boil gasses away from certain ingredient you know how to catch them and turn them back into fluids by cooling.",
+          "uniqueRules": [
+            "With a distillery you can change some ingredients into two different ingredients.",
+            "Each change takes 5 minutes."
+          ],
+          "sharedRules": [
+            "Note both a \"still residue\" and a \"distilled\" version of the old ingredient into your stock booklet."
+          ],
+          "points": 4,
+          "requires": "Alchemic cooking skill. You also need a distillery for this skill to work."
+        },
+        {
+          "type": "skill",
+          "name": "Herbology",
+          "details": "You know a lot about different plants or you have access to places where you can find out things about plants.",
+          "uniqueRules": [
+            "If you study a plant for 10 minutes you can say what family it is.",
+            "You start the event with some random knowledge about plants that could(!) be in this area."
+          ],
+          "downtimeRules": [
+            "You can spend ℜ in downtime to research the plants in an area from books. Each ℜ gives you a chance to learn some random fact about a plant from that area."
+          ],
+          "points": 4,
+          "requires": "Plant anatomy"
+        },
+        {
+          "type": "skill",
+          "name": "Bushcraft",
+          "details": "You know how to carefully dose the ingestion to try and gets hints of the possible effects the plant part might have on you.",
+          "uniqueRules": [
+            "You can ingest a plant part in small portions in a relative safe way, after half an hour contact a GM and tell them what plant part you ingested with this skill.",
+            "You can wear 4 plant parts on various parts on your skin in a relative safe way, after half an hour contact a GM and tell them what plant part you are wearing."
+          ],
+          "points": 2
+        },
+        {
+          "type": "skill",
+          "name": "Improvised alchemy",
+          "details": "You use some rare undocumented ingredients or hard to reproduce methods during the alchemic techniques. With enough concentration, it seems to work.",
+          "uniqueRules": [
+            "During any alchemic change you can spend 1 WP. If you do this, you can choose to remove 1 effect from the resulting ingredient."
+          ],
+          "sharedRules": [
+            "If you do this note the resulting ingredient in your stock booklet separately and also note which effect is missing."
+          ],
+          "points": 4
+        },
+        {
+          "type": "skill",
+          "name": "Systematic testing 1",
+          "details": "You probably have been travelling and testing the local plants for some time. You have devices a system of fluid efficiency.",
+          "uniqueRules": [
+            "You can use up to 15 testing substances parallel, but it will take 15 minutes instead of 10."
+          ],
+          "points": 3,
+          "category": "Systematic testing",
+          "level": 1,
+          "upgrade": "Upgrade to Level 2 by training 3 points"
+        },
+        {
+          "type": "skill",
+          "name": "Systematic testing 2",
+          "details": "Your skill in testing substances in highly professional. You probably tested substances for a living at an alchemy lab at some point in your live.",
+          "uniqueRules": [
+            "You can use up to 15 testing substances parallel, but it will take 15 minutes instead of 10.",
+            "You can use up to 40 testing substances parallel, but it will take 20 minutes instead of 10."
+          ],
+          "points": 6,
+          "category": "Systematic testing",
+          "level": 2
+        }
+      ],
       "conditions": [
         {
           "type": "condition",
@@ -2648,7 +3743,60 @@
     },
     {
       "domainName": "Primordial Magic",
-      "skills": [],
+      "skills": [
+        {
+          "type": "skill",
+          "name": "Automata Crafting",
+          "details": "After learning how to power automata, the second thing an apprentice mage learns is how to craft his own automata.",
+          "uniqueRules": [
+            "You have the ability to craft new automata. You will gain in character documents detailing this process.",
+            "Your somatic component provides 200 power.",
+            "Your verbal component provides 200 power.",
+            "You can use material and focus components to power automata."
+          ],
+          "downtimeRules": [
+            "You receive a free Materal Compendium item when you acquire this skill."
+          ],
+          "points": 4,
+          "requires": "The Spark condition"
+        },
+        {
+          "type": "skill",
+          "name": "Element Focus",
+          "details": "There are mages that focus on mastering a single element instead of all at once. They become masters of that element but may not have much control over the other elements.",
+          "uniqueRules": [
+            "Choose a Particle Type other than Divine. Glyphs that are Dominant of that type cost 20 power less, to a minimum of 10 power.",
+            "For every 5 Dominant glyphs of this skill's type in an automata the power reduction is increased by 2."
+          ],
+          "sharedRules": [
+            "You can gain this skill multiple times. Each time you must select a different Particle Type and this skill costs 1 point more."
+          ],
+          "points": 5,
+          "requires": "Automata Crafting skill"
+        },
+        {
+          "type": "skill",
+          "name": "Component Crafting",
+          "details": "With a bit of time and concentration you can turn any ordinary thing into something you can use to power your automata.",
+          "uniqueRules": [
+            "You can find basic material components using a bit of matter and some energy. Spend 10 minutes crafting a component to get one basic material component."
+          ],
+          "points": 1,
+          "requires": "Automata Crafting skill"
+        },
+        {
+          "type": "skill",
+          "name": "Imbue",
+          "details": "Using specialised glyphs and automata, you can modify items so they become receptive to primordial magic.",
+          "uniqueRules": [
+            "You can assist someone using the Crafter skill to craft items. Spend 1ℜ and 12¢ for each 1ℜ the crafter spends. The item becomes an Imbued <Item> once finished.",
+            "You now spend 600¢ per month on your standard of living.",
+            "You can reset the automata on an imbued item by spending 1ℜ cleaning and polishing the item."
+          ],
+          "points": 8,
+          "requires": "Automata Crafting skill"
+        }
+      ],
       "conditions": [
         {
           "type": "condition",

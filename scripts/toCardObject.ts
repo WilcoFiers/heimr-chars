@@ -173,15 +173,17 @@ export function toSkill(ruleObj: RuleObject): SkillCard | null {
   }
   logUnknowns(ruleObj, skillProps);
 
-  const { points, point } = ruleObj;
-  if (!points || !point) {
+  const points = parseInt(ruleObj.points && ruleObj.points[0]);
+  const point = parseInt(ruleObj.point && ruleObj.point[0]);
+  if (isNaN(points) && isNaN(point)) {
+    console.log(`skill '${ruleObj.name}' has no points`);
     return null;
   }
 
   const skill: SkillCard = {
     ...base,
     type: "skill",
-    points: +points[0] || +point[0],
+    points: points || point,
     ...toLevel(base.name)
   };
   const { requires, level } = ruleObj;
