@@ -2,7 +2,13 @@
 import request from "request";
 import cheerio from "cheerio";
 import fs from "fs";
-import { Domain, Race, Skill, Condition, Item } from "../src/types";
+import {
+  Domain,
+  RaceCard,
+  SkillCard,
+  ConditionCard,
+  ItemCard
+} from "../src/types";
 import {
   RuleObject,
   toSkill,
@@ -26,7 +32,7 @@ request(url, (error, response, html) => {
   }
 
   const $ = cheerio.load(html);
-  const races: Race[] = [];
+  const races: RaceCard[] = [];
   const domains: Domain[] = [];
 
   $(".section-3").each((_, elm) => {
@@ -44,10 +50,12 @@ request(url, (error, response, html) => {
         .first()
         .text()
         .toLowerCase();
+
       const name = $table
         .find("td")
         .first()
         .text();
+
       if (!["skill", "condition", "item", "race"].includes(type)) {
         return;
       }
@@ -57,12 +65,12 @@ request(url, (error, response, html) => {
       ruleObjects.push(ruleObj);
     });
 
-    const skills: Skill[] = ruleObjects.map(toSkill).filter(notNull);
-    const conditions: Condition[] = ruleObjects
+    const skills: SkillCard[] = ruleObjects.map(toSkill).filter(notNull);
+    const conditions: ConditionCard[] = ruleObjects
       .map(toCondition)
       .filter(notNull);
-    const items: Item[] = ruleObjects.map(toItem).filter(notNull);
-    const newRaces: Race[] = ruleObjects.map(toRace).filter(notNull);
+    const items: ItemCard[] = ruleObjects.map(toItem).filter(notNull);
+    const newRaces: RaceCard[] = ruleObjects.map(toRace).filter(notNull);
 
     if (newRaces.length) {
       races.push(...newRaces);

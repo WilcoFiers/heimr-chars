@@ -10,25 +10,34 @@ export type BaseRuleCard = {
   downtimeRules?: string[];
 };
 
+export type Level = {
+  category?: string;
+  level?: number;
+};
+
 export type ItemCard = BaseRuleCard & {
   type: "item";
   marketPrice?: string;
   restorePrice?: string;
   toughness?: number;
   physrep?: string;
+  large: boolean;
 };
 
-export type ConditionCard = BaseRuleCard & {
-  type: "condition";
-  points?: number;
-};
+export type ConditionCard = BaseRuleCard &
+  Level & {
+    type: "condition";
+    points?: number;
+    requires?: string;
+  };
 
-export type SkillCard = BaseRuleCard & {
-  type: "skill";
-  points: number;
-  requires?: string;
-  upgrade?: string;
-};
+export type SkillCard = BaseRuleCard &
+  Level & {
+    type: "skill";
+    points: number;
+    requires?: string;
+    upgrade?: string;
+  };
 
 export type RaceCard = BaseRuleCard & {
   type: "race";
