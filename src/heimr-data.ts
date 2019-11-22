@@ -1,8 +1,8 @@
 import heimrData from "@/assets/heimr-data.json";
-import { Domain, Race, RuleCard, CharacterRule } from "@/types";
+import { Domain, RaceCard, RuleCard, CharacterRule } from "@/types";
 
 export const date = heimrData.date as string;
-export const races = heimrData.races as Race[];
+export const races = heimrData.races as RaceCard[];
 export const domains = heimrData.domains as Domain[];
 
 export const domainImages = [

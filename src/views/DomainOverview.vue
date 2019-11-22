@@ -68,16 +68,7 @@ import { domains } from "@/heimr-data";
 import RuleExpansionPanel from "@/components/domain/RuleExpansionPanel.vue";
 import ResourceMini from "@/components/character/ResourceMini.vue";
 import { getCharacterRulesCol } from "@/firebase";
-import {
-  Domain,
-  Skill,
-  Condition,
-  Item,
-  RuleCard,
-  Character,
-  State,
-  CharacterRule
-} from "@/types";
+import { Domain, RuleCard, State, CharacterRule } from "@/types";
 
 export default Vue.extend({
   name: "DomainOverview",

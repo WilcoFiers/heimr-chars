@@ -8,7 +8,13 @@
 
 <script lang="ts">
 import Vue, { PropType } from "vue";
-import { CharacterRule, RuleCard, Skill, Condition, Item } from "@/types";
+import {
+  CharacterRule,
+  RuleCard,
+  SkillCard,
+  ConditionCard,
+  ItemCard
+} from "@/types";
 import { findRuleCard, parseRuleValue } from "@/heimr-data";
 
 export default Vue.extend({
@@ -27,7 +33,7 @@ export default Vue.extend({
     },
     unspentMoney(): number {
       // TODO: move to a utility
-      const items = this.ruleDefinitions.filter((rule): rule is Item => {
+      const items = this.ruleDefinitions.filter((rule): rule is ItemCard => {
         return rule.type === "item";
       });
 
@@ -46,7 +52,7 @@ export default Vue.extend({
       // TODO: move to a utility
       const pointRules = (this.rules as CharacterRule[])
         .map(findRuleCard)
-        .filter((rule: RuleCard | null): rule is Skill | Condition => {
+        .filter((rule: RuleCard | null): rule is SkillCard | ConditionCard => {
           return !!rule && rule.type !== "item";
         });
 

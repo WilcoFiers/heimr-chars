@@ -1,7 +1,7 @@
 export { State } from "@/store";
 
 // Heimr stuff
-export type BaseRule = {
+export type BaseRuleCard = {
   type: string;
   name: string;
   details?: string;
@@ -10,7 +10,7 @@ export type BaseRule = {
   downtimeRules?: string[];
 };
 
-export type Item = BaseRule & {
+export type ItemCard = BaseRuleCard & {
   type: "item";
   marketPrice?: string;
   restorePrice?: string;
@@ -18,19 +18,19 @@ export type Item = BaseRule & {
   physrep?: string;
 };
 
-export type Condition = BaseRule & {
+export type ConditionCard = BaseRuleCard & {
   type: "condition";
   points?: number;
 };
 
-export type Skill = BaseRule & {
+export type SkillCard = BaseRuleCard & {
   type: "skill";
   points: number;
   requires?: string;
   upgrade?: string;
 };
 
-export type Race = BaseRule & {
+export type RaceCard = BaseRuleCard & {
   type: "race";
   hitpoints: number;
   willpower: number;
@@ -38,18 +38,18 @@ export type Race = BaseRule & {
 
 export type Domain = {
   domainName: string;
-  items?: Item[];
-  skills?: Skill[];
-  conditions?: Condition[];
+  items?: ItemCard[];
+  skills?: SkillCard[];
+  conditions?: ConditionCard[];
 };
 
-export type Races = {
-  races: Race[];
+export type RaceCards = {
+  races: RaceCard[];
 };
 
 export type RuleType = "item" | "skill" | "condition";
 export type CardType = "race" | RuleType;
-export type RuleCard = Skill | Condition | Item;
+export type RuleCard = SkillCard | ConditionCard | ItemCard;
 
 // App stuff
 export type DbEntry = {

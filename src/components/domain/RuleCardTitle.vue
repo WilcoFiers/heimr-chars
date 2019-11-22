@@ -23,7 +23,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { Race } from "@/types";
+import { RaceCard } from "@/types";
 
 export default Vue.extend({
   name: "RuleCardTitle",
@@ -33,7 +33,7 @@ export default Vue.extend({
     multiple: Boolean
   },
   methods: {
-    loreName({ name }: Race) {
+    loreName({ name }: RaceCard) {
       return name.split(" ")[0].toLowerCase();
     }
   }

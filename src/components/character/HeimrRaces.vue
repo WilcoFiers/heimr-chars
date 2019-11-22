@@ -30,10 +30,10 @@
       <v-col :cols="9">
         <v-card>
           <v-card-title>
-            <RuleCardTitle :card="currentRace" />
+            <RuleCardTitle :ruleCard="currentRace" />
           </v-card-title>
           <v-card-text>
-            <RuleCardContent :card="currentRace" />
+            <RuleCardContent :ruleCard="currentRace" />
           </v-card-text>
           <v-card-actions>
             <v-btn primary @click="selectRace">Select race</v-btn>
@@ -47,7 +47,7 @@
 <script lang="ts">
 import Vue from "vue";
 import { races } from "@/heimr-data";
-import { Race } from "@/types";
+import { RaceCard } from "@/types";
 import RuleCardContent from "@/components/domain/RuleCardContent.vue";
 import RuleCardTitle from "@/components/domain/RuleCardTitle.vue";
 
@@ -80,7 +80,7 @@ export default Vue.extend({
     listgroupModel: number;
     activeItem: number;
     selected: number;
-    races: Race[];
+    races: RaceCard[];
   } {
     const selected = findSelected(this.value);
     const activeItem = selected !== -1 ? selected : 0;
@@ -88,7 +88,7 @@ export default Vue.extend({
   },
 
   computed: {
-    currentRace(): Race {
+    currentRace(): RaceCard {
       return this.races[this.activeItem] || {};
     }
   },

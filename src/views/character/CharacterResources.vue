@@ -56,14 +56,7 @@
 <script lang="ts">
 import Vue from "vue";
 import RuleExpansionPanel from "@/components/domain/RuleExpansionPanel.vue";
-import {
-  RuleCard,
-  Skill,
-  Condition,
-  Item,
-  CharacterRule,
-  Domain
-} from "@/types";
+import { CharacterRule } from "@/types";
 import { getCharacterRulesCol } from "@/firebase";
 import { domains, findRuleCard } from "@/heimr-data";
 import { State } from "@/store";
