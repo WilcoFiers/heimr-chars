@@ -2,7 +2,7 @@
   <v-form @submit.prevent="saveCharacter" ref="form">
     <v-container>
       <v-row>
-        <v-col :cols="3">
+        <v-col cols="3">
           <v-img
             :src="raceImg(character.race)"
             contain
@@ -11,7 +11,7 @@
           ></v-img>
         </v-col>
 
-        <v-col :cols="7">
+        <v-col cols="6">
           <h1 v-if="isNew">New Characters</h1>
           <h1 v-else>Update Characters</h1>
           <v-text-field
@@ -21,29 +21,18 @@
           />
         </v-col>
 
-        <v-col :cols="2">
-          <v-dialog v-if="!isNew" v-model="dialog" max-width="290">
-            <template v-slot:activator="{ on }">
-              <v-btn v-on="on"> <v-icon left>mdi-delete</v-icon>Delete </v-btn>
-            </template>
-            <v-card>
-              <v-card-title class="headline"
-                >Delete {{ character.name }}</v-card-title
-              >
-              <v-card-text
-                >Are you sure you want to delete this character?</v-card-text
-              >
-              <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-btn color="green darken-1" text @click="dialog = false"
-                  >Cancel</v-btn
-                >
-                <v-btn color="red darken-1" text @click="archiveChar"
-                  >Delete</v-btn
-                >
-              </v-card-actions>
-            </v-card>
-          </v-dialog>
+        <v-col cols="3" class="text-right" v-if="!isNew">
+          <ResourceMini
+            :rules="rules"
+            :money="500"
+            :resources="20"
+            :to="`/characters/${character.id}/resources`"
+          />
+          <ArchiveCharacterBtn
+            btnClass="mt-5"
+            :name="character.name"
+            @archive="archiveChar()"
+          />
         </v-col>
       </v-row>
 
@@ -74,6 +63,8 @@ import Vue from "vue";
 import { RootState } from "@/store/types";
 import { raceImg } from "@/heimr-data";
 import HeimrRaces from "./HeimrRaces.vue";
+import ResourceMini from "./ResourceMini.vue";
+import ArchiveCharacterBtn from "./ArchiveCharacterBtn.vue";
 import ErrorMessage from "../ErrorMessage.vue";
 
 export type CharacterMeta = {
@@ -83,11 +74,14 @@ export type CharacterMeta = {
 
 export default Vue.extend({
   name: "CharacterOverview",
-  components: { HeimrRaces, ErrorMessage },
+  components: { HeimrRaces, ResourceMini, ArchiveCharacterBtn, ErrorMessage },
 
   props: {
     updateCharacter: {
       type: Object
+    },
+    rules: {
+      type: Array
     }
   },
 

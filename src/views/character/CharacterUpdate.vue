@@ -1,6 +1,7 @@
 <template>
   <CharacterOverview
     :updateCharacter="character"
+    :rules="rules"
     @save="updateChar"
     @archive="archiveChar"
   />
@@ -21,6 +22,9 @@ export default Vue.extend({
   computed: {
     character(): Character | undefined {
       return (this.$store.state as State).character.charProps;
+    },
+    rules(): CharacterRule[] | undefined {
+      return (this.$store.state as State).character.rules;
     }
   },
 
