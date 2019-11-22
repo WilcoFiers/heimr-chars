@@ -24,6 +24,11 @@ export type ItemCard = BaseRuleCard & {
   large: boolean;
 };
 
+export type ConsumableCard = BaseRuleCard & {
+  type: "consumable";
+  marketPrice?: string;
+};
+
 export type ConditionCard = BaseRuleCard &
   Level & {
     type: "condition";
@@ -48,6 +53,7 @@ export type RaceCard = BaseRuleCard & {
 export type Domain = {
   domainName: string;
   items?: ItemCard[];
+  consumables?: ConsumableCard[];
   skills?: SkillCard[];
   conditions?: ConditionCard[];
 };

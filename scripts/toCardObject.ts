@@ -1,6 +1,7 @@
 import {
   RaceCard,
   ItemCard,
+  ConsumableCard,
   SkillCard,
   ConditionCard,
   Level,
@@ -142,6 +143,25 @@ export function toItem(ruleObj: RuleObject): ItemCard | null {
     item.physrep = ruleObj["physrep"][0];
   }
   return item;
+}
+
+const consumableProps = ["consumable", "market price"];
+
+export function toConsumable(ruleObj: RuleObject): ConsumableCard | null {
+  const base = toBaseRule(ruleObj);
+  if (!base || base.type !== "consumable") {
+    return null;
+  }
+  logUnknowns(ruleObj, consumableProps);
+
+  const consumable: ConsumableCard = {
+    ...base,
+    type: "consumable"
+  };
+  if (ruleObj["market price"]) {
+    consumable.marketPrice = ruleObj["market price"][0];
+  }
+  return consumable;
 }
 
 const skillProps = ["skill", "points", "point", "requires", "level", "wp"];

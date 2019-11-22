@@ -7,14 +7,16 @@ import {
   RaceCard,
   SkillCard,
   ConditionCard,
-  ItemCard
+  ItemCard,
+  ConsumableCard
 } from "../src/types";
 import {
   RuleObject,
   toSkill,
   toCondition,
   toItem,
-  toRace
+  toRace,
+  toConsumable
 } from "./toCardObject";
 
 const url = "http://heimr.nl/book/export/html/1838";
@@ -56,7 +58,9 @@ request(url, (error, response, html) => {
         .first()
         .text();
 
-      if (!["skill", "condition", "item", "race"].includes(type)) {
+      if (
+        !["skill", "condition", "item", "race", "consumable"].includes(type)
+      ) {
         return;
       }
       const ruleObj = tableToRuleObject($, $table);
@@ -70,6 +74,9 @@ request(url, (error, response, html) => {
       .map(toCondition)
       .filter(notNull);
     const items: ItemCard[] = ruleObjects.map(toItem).filter(notNull);
+    const consumables: ConsumableCard[] = ruleObjects
+      .map(toConsumable)
+      .filter(notNull);
     const newRaces: RaceCard[] = ruleObjects.map(toRace).filter(notNull);
 
     if (newRaces.length) {
@@ -81,7 +88,8 @@ request(url, (error, response, html) => {
         domainName,
         skills,
         conditions,
-        items
+        items,
+        consumables
       });
     }
   });

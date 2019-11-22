@@ -1,5 +1,5 @@
 {
-  "date": "2019-11-22T21:56:54.537Z",
+  "date": "2019-11-22T22:04:19.741Z",
   "races": [
     {
       "type": "race",
@@ -301,7 +301,8 @@
           "restorePrice": "1680¢",
           "toughness": 2
         }
-      ]
+      ],
+      "consumables": []
     },
     {
       "domainName": "Armed Combat",
@@ -509,7 +510,8 @@
           "marketPrice": "240¢",
           "restorePrice": "120¢"
         }
-      ]
+      ],
+      "consumables": []
     },
     {
       "domainName": "Battlefield Surgery",
@@ -603,7 +605,8 @@
           "marketPrice": "40¢",
           "toughness": 1
         }
-      ]
+      ],
+      "consumables": []
     },
     {
       "domainName": "The Marketplace",
@@ -895,6 +898,139 @@
           "sharedRules": ["This item does not require a physrep."],
           "large": false,
           "marketPrice": "100¢"
+        }
+      ],
+      "consumables": [
+        {
+          "type": "consumable",
+          "name": "A Mug of Ale",
+          "uniqueRules": [
+            "After consuming three of these items during your indulgence, you regain 2WP instead of 1WP."
+          ],
+          "marketPrice": "2¢"
+        },
+        {
+          "type": "consumable",
+          "name": "A Glass of Liquor",
+          "uniqueRules": [
+            "After consuming this item during your indulgence, you regain 2WP instead of 1WP."
+          ],
+          "marketPrice": "6¢"
+        },
+        {
+          "type": "consumable",
+          "name": "A Portion of Tobacco",
+          "uniqueRules": [
+            "After consuming this item during your indulgence, you regain 2WP instead of 1WP."
+          ],
+          "marketPrice": "6¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Sweets",
+          "uniqueRules": [
+            "After consuming this item during your indulgence, you regain 2WP instead of 1WP."
+          ],
+          "marketPrice": "6¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Drinkable chocolate",
+          "uniqueRules": [
+            "After consuming this item during your indulgence, you regain 2WP instead of 1WP.",
+            "If you slowly warm the chocolate for 20 minutes before consuming it during an indulgence you regain 3WP instead of 1WP."
+          ],
+          "marketPrice": "18¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Cigar",
+          "uniqueRules": [
+            "After consuming this item during your indulgence, you regain 3WP instead of 1WP."
+          ],
+          "marketPrice": "20¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Hallucinogen",
+          "uniqueRules": [
+            "After consuming this item during your indulgence, you regain 3 WP instead of 1WP.",
+            "After consuming this item you are dazed and hallucinate for an hour."
+          ],
+          "marketPrice": "15¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Opiate",
+          "uniqueRules": [
+            "Drink this, then wait 2 minutes. For the next hour after this, you are Dazed but you do not lose WP from the stitching and bandaging skill being used on you."
+          ],
+          "marketPrice": "10¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Primordial touched Yarrow",
+          "uniqueRules": [
+            "If you consume this after 5 seconds you are no longer dazed or weakened by effects that you had at the moment of consuming this for a full hour.",
+            "After the hour has past you are dazed and weakened for a full hour."
+          ],
+          "marketPrice": "100¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Reinforcement Materials (Sharpened Weapon)",
+          "uniqueRules": [
+            "The next time you call \"hit\" with this weapon you can add 1 to the effect."
+          ],
+          "sharedRules": [
+            "You can improve items with the temporary reinforcement skill and these materials."
+          ],
+          "marketPrice": "50¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Reinforcement Materials (Added Durability)",
+          "uniqueRules": [
+            "The next time a break call would destroy this item; you can call a \"resist\" instead."
+          ],
+          "sharedRules": [
+            "You can improve items with the temporary reinforcement skill and these materials."
+          ],
+          "marketPrice": "100¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Reinforcement Materials (Hooked Weapon)",
+          "uniqueRules": [
+            "The next time you call \"break\" with this weapon you can add 1 to the effect and your own weapon won't break."
+          ],
+          "sharedRules": [
+            "You can improve items with the temporary reinforcement skill and these materials."
+          ],
+          "marketPrice": "200¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Reinforcement Materials (Armour Durability)",
+          "uniqueRules": [
+            "The next time you have 0 HP this armour doesn't lose a counter."
+          ],
+          "sharedRules": [
+            "You can improve items with the temporary reinforcement skill and these materials."
+          ],
+          "marketPrice": "200¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Caravan Guard",
+          "details": "It is relatively easy to find people that travel in the same direction and are willing to earn a few extra coppers.",
+          "uniqueRules": [
+            "You hire a guard to protect one cart.",
+            "The guard is equipped with a medium armour and a medium weapon.",
+            "This item can be used once."
+          ],
+          "sharedRules": ["This item does not require a physrep."],
+          "marketPrice": "15¢"
         }
       ]
     },
@@ -1217,6 +1353,289 @@
           "large": true,
           "marketPrice": "Var"
         }
+      ],
+      "consumables": [
+        {
+          "type": "consumable",
+          "name": "(Ceremony Components) Signal to the divine realms",
+          "details": "This ceremony is used in preparation for greater ceremonies. Like summoning ceremonies.",
+          "uniqueRules": [
+            "After the ceremony go to a GM and tell them you performed this ceremony. You will receive an answer from a GM as soon as possible."
+          ],
+          "sharedRules": [
+            "1DC should be used during this ceremony. (see devotion condition for details)",
+            "This ceremony takes at least 5 minutes to perform."
+          ],
+          "marketPrice": "20¢"
+        },
+        {
+          "type": "consumable",
+          "name": "(Ceremony Components) Divine being summoning",
+          "details": "This ceremony is often performed to call down divine beings as advisers or to help in battle.",
+          "uniqueRules": [
+            "A divine being appears. The divine being is not bound to your service but is probably obedient."
+          ],
+          "sharedRules": [
+            "10DC should be used during this ceremony. (see devotion condition for details)",
+            "This ceremony takes at least 10 minutes to perform and needs to be performed roughly 2 hours after the \"signal to the divine realms\" ceremony."
+          ],
+          "marketPrice": "200¢"
+        },
+        {
+          "type": "consumable",
+          "name": "(Ceremony Components) Divination",
+          "details": "Divine beings are not all knowing nor read minds. Still they are seen as wise and knowledgeable. They also know what their deity mandates.",
+          "uniqueRules": [
+            "You receive an answer from a divine source. The source is confident it is the right answer. More DC might help."
+          ],
+          "sharedRules": [
+            "At least 1DC should be used during this ceremony. (see devotion condition for details)",
+            "This ceremony takes at least 5 minutes to perform and needs to be performed roughly 1 hour after the \"signal to the divine realms\" ceremony."
+          ],
+          "marketPrice": "20¢"
+        },
+        {
+          "type": "consumable",
+          "name": "(Ceremony Components) Sanctify",
+          "details": "Death is a beautiful guarantee of future purity.",
+          "uniqueRules": [
+            "The body of the dead recipient (wherever it may be) is turned into a relic if he had the purity condition. The strength of the relic depends on the level of devotion: 1 at level 4, 3 at level 5 and 7 at level 6."
+          ],
+          "sharedRules": [
+            "2DC should be used during this ceremony. (see devotion condition for details)",
+            "This ceremony takes at least 10 minutes to perform and needs to be performed roughly 10 minutes after the \"signal to the divine realms\" ceremony."
+          ],
+          "marketPrice": "20¢"
+        },
+        {
+          "type": "consumable",
+          "name": "(Ceremony Components) Hallow",
+          "details": "In this holy place, it is easier to let go of worries and pray. Hostile spiritual entities have trouble entering this space.",
+          "uniqueRules": [
+            "A single room or circle of 5m. radius is determined to be a hallow.",
+            "Up to 10 people can gain the welcome condition during the ceremony."
+          ],
+          "sharedRules": [
+            "5DC should be used during this ceremony. (see devotion condition for details)",
+            "This ceremony takes at least 10 minutes to perform."
+          ],
+          "marketPrice": "100¢"
+        },
+        {
+          "type": "consumable",
+          "name": "(Ceremony Components) Welcome",
+          "details": "A person late to the ceremony can be welcome non the less. This ceremony can also extend the duration of the hallow.",
+          "uniqueRules": [
+            "Explain de definition of the hallow to the recipient(s) and give them a (new) welcome condition."
+          ],
+          "sharedRules": [
+            "This ceremony takes at least 1 minute to perform and can only be performed if somebody with a welcome condition is present. You need separate (Ceremony Components) for every recipient."
+          ],
+          "marketPrice": "5¢"
+        },
+        {
+          "type": "consumable",
+          "name": "(Ceremony Components) Marriage",
+          "details": "Religiously recognized marriage bonds are strong and produce more offspring because the soul of a child is placed there by a deity.",
+          "uniqueRules": ["Give both recipients the married to: condition."],
+          "sharedRules": [
+            "5DC should be used during this ceremony. (see devotion condition for details)",
+            "This ceremony takes at least 30 minutes to perform and should be performed on two recipients."
+          ],
+          "marketPrice": "50¢"
+        },
+        {
+          "type": "consumable",
+          "name": "(Ceremony Components) Initiation",
+          "details": "Your soul is explicitly linked to a divine realm during this ceremony and at least a part will go there after death if all goes well.",
+          "uniqueRules": [
+            "Give the recipient(s) the promised to: condition for your deity; they are allowed to reject this condition in secret."
+          ],
+          "sharedRules": [
+            "This ceremony takes at least 15 minutes to perform. You need separate (Ceremony Components) for every recipient."
+          ],
+          "marketPrice": "5¢"
+        },
+        {
+          "type": "consumable",
+          "name": "(Ceremony Components) Lay to rest",
+          "details": "The soul will end up where it needs to go eventually, but it might take years. This ceremony shortens the time considerably.",
+          "uniqueRules": [
+            "The priest may give 1 blessing condition the recipient might have had to anyone present during the ceremony."
+          ],
+          "sharedRules": [
+            "This ceremony takes at least 10 minutes to perform and before a day has past since the recipient has died. The body of the recipient needs to be present. Only 1 lay to rest ceremony can be performed per recipient and cannot be performed if the soul was sacrificed."
+          ],
+          "marketPrice": "5¢"
+        },
+        {
+          "type": "consumable",
+          "name": "(Ceremony Components) Consecration",
+          "details": "This ceremony is usually used to steal altars of rival deities. It transfers the link to the divine realms of your deity. A craftsman should be present to promise to adjust the item its appearance.",
+          "uniqueRules": [
+            "One divine item you are touching is becomes linked to your deity."
+          ],
+          "sharedRules": [
+            "2DC should be used during this ceremony per 200¢ market price of the item (rounded up). (see devotion condition for details)",
+            "This ceremony takes at least 5 minutes to perform and one of the worshippers should be a crafter."
+          ],
+          "marketPrice": "200¢"
+        },
+        {
+          "type": "consumable",
+          "name": "(Ceremony Components) Absolve",
+          "details": "Removing some of these might make your or other deities very angry. Ask permission if you have any doubt.",
+          "uniqueRules": [
+            "Strip the recipient of 1 welcome, married to ..., promised to ..., vow or blessing condition. Mention this to a GM."
+          ],
+          "sharedRules": [
+            "1DC should be used during this ceremony. (see devotion condition for details)",
+            "This ceremony takes at least 5 minutes to perform."
+          ],
+          "marketPrice": "30¢"
+        },
+        {
+          "type": "consumable",
+          "name": "(Ceremony Components) Exorcism",
+          "details": "Priests know how to cut of a possession, wasting all the energy the divine being poured into the possession.",
+          "uniqueRules": [
+            "Strip the recipient of 1 posssed condition. The entity possessing the recipient can combat this. The amount of DC determines whether or not you succeed."
+          ],
+          "sharedRules": [
+            "At least 1 DC should be used during this ceremony. (see devotion condition for details)",
+            "This ceremony takes at least 1 minute to perform per DC."
+          ],
+          "marketPrice": "25¢"
+        },
+        {
+          "type": "consumable",
+          "name": "(Ceremony Components) Restoration",
+          "details": "This ceremony uses the same magic originally used to create the mortal races to replace missing tissue.",
+          "uniqueRules": [
+            "For every DC used during the ceremony 5ℜ are subtracted from the cost to heal the wounds in downtime. If 6 DC is used the condition is removed instantly.",
+            "Only works if Wounded was received in the last 4 hours."
+          ],
+          "sharedRules": [
+            "At least 1 DC should be used during this ceremony. (see devotion condition for details)",
+            "This ceremony takes at least 5 minutes to perform."
+          ],
+          "marketPrice": "20¢"
+        },
+        {
+          "type": "consumable",
+          "name": "(Ceremony Components) Cleansing",
+          "details": "This ceremony replaces bad humours and helps chase away evil spirits that rot the still living wound.",
+          "uniqueRules": [
+            "For every DC used during the ceremony 4ℜ are subtracted from the cost to heal the infections in downtime. If 3 DC is used the condition is removed instantly.",
+            "Only works if Infection was received in the last 4 hours."
+          ],
+          "sharedRules": [
+            "At least 1 DC should be used during this ceremony. (see devotion condition for details)",
+            "This ceremony takes at least 5 minutes to perform."
+          ],
+          "marketPrice": "20¢"
+        },
+        {
+          "type": "consumable",
+          "name": "(Ceremony Components) Divine intervention",
+          "details": "It is a slow process that takes many worshippers but could accomplish anything.",
+          "uniqueRules": [
+            "All worshippers can write a single request on an OC sheet of paper.",
+            "GMs will discuss any requests at the end of the day and will determine whether it's is in the deities best interest. Amount of DC and requests for the same thing will influence this."
+          ],
+          "sharedRules": [
+            "At least 2 DC should be used during this ceremony. (see devotion condition for details)",
+            "This ceremony takes at least 10 minutes to perform."
+          ],
+          "marketPrice": "50¢"
+        },
+        {
+          "type": "consumable",
+          "name": "(Ceremony Components) Self blessing",
+          "details": "When no priests are around crusades still need blessings.",
+          "uniqueRules": [
+            "You can use DC from the shrine to cast blessings on yourself. The total amount of DC you should gather from the shrine is detailed on your devotion condition. The blessing conditions detail the amount of DC they cost."
+          ],
+          "sharedRules": [
+            "This ceremony takes at least 5 minutes to perform and must be performed near a shrine and requires a devotion condition."
+          ],
+          "marketPrice": "10¢"
+        },
+        {
+          "type": "consumable",
+          "name": "(Ceremony Components) Blighting",
+          "details": "This ceremony is used to temporarily destroy the link with the divine realms. If left unlinked for too long, the item also loses its divine protection and might be destroyed.",
+          "uniqueRules": ["Put a blight condition on a divine item."],
+          "sharedRules": [
+            "This ceremony takes 10 seconds to perform and you must have 2 blessing conditions. If you are damaged or receive an effect during these 10 seconds the ceremony fails.",
+            "You lose both blessing conditions."
+          ],
+          "marketPrice": "25¢"
+        },
+        {
+          "type": "consumable",
+          "name": "(Ceremony Components) Flash nullify",
+          "details": "This transfers the blessings to the item while unweaving them, causing reality to be distorted and the already weakened connection with the divine realm to shatter completely.",
+          "uniqueRules": ["An item you are touching is destroyed."],
+          "sharedRules": [
+            "This ceremony takes 10 seconds to perform and you must sacrifice 2 blessing conditions. If you are damaged or receive an effect during the ceremony it fails. The targeted item must have a blight condition older than 2 hours."
+          ],
+          "marketPrice": "25¢"
+        },
+        {
+          "type": "consumable",
+          "name": "(Ceremony Components) Combat Exorcism",
+          "details": "This ceremony transfers the blessings to the poor mortal while unweaving them in such a way that it temporarily distorts the link to the entity.",
+          "uniqueRules": [
+            "Touch up to 4 possessed beings in the next minute and state \"I exorcise you, being!\". The possession is temporarily suppressed for a time depending on it's strength. Weak bonds might take days to regain control, but strong bonds only seconds."
+          ],
+          "sharedRules": [
+            "This ceremony takes no time but you must sacrifice 2 blessing conditions."
+          ],
+          "marketPrice": "40¢"
+        },
+        {
+          "type": "consumable",
+          "name": "(Ceremony Components) Binding",
+          "details": "A crusader can transfer its blessings to the divine being weaving them into the link between the divine essence and the material body, strengthening it.",
+          "uniqueRules": [
+            "Touch a divine being and state \"I bind you, being!\". If weak enough the divine being is unable to use its ability to decouple itself from material bodies and flee to the divine realms today. If the divine being is strong several binding ceremonies are needed."
+          ],
+          "sharedRules": [
+            "This ceremony takes no time but you must sacrifice 2 blessing conditions."
+          ],
+          "marketPrice": "25¢"
+        },
+        {
+          "type": "consumable",
+          "name": "(Ceremony Components) Unweaving",
+          "details": "You take your three carefully interwoven blessings, transfer them to the divine being and unweave them slowly but violently, causing reality to be distorted and the divine being to slowly disappear entirely. This will almost assuredly anger other divine beings.",
+          "uniqueRules": [
+            "Touch a divine being during the entire ceremony. Its very essence is utterly destroyed. Tell a GM afterwards."
+          ],
+          "sharedRules": [
+            "This ceremony takes at least 5 minutes to perform. You must sacrifice 3 blessing conditions."
+          ],
+          "marketPrice": "400¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Sacred Incense",
+          "uniqueRules": [
+            "Burn this during your indulgence (should be some form of worship): You regain 2 WP from the indulgence instead of 1."
+          ],
+          "sharedRules": ["This item is Sacred."],
+          "marketPrice": "6¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Sacred Ointment",
+          "uniqueRules": [
+            "Use this as a medium to transfer a blessing: The recipient regains 3 WP from his or her next indulgence instead of 1."
+          ],
+          "sharedRules": ["This item is Sacred."],
+          "marketPrice": "20¢"
+        }
       ]
     },
     {
@@ -1325,6 +1744,905 @@
           ],
           "large": false,
           "marketPrice": "300¢"
+        }
+      ],
+      "consumables": [
+        {
+          "type": "consumable",
+          "name": "Hermlock",
+          "details": "Hermlock is a well known preservation agent. However it also has a quick acting primordial calming and dazing effect.",
+          "uniqueRules": [
+            "If you mix this substance with an ingredient it will not spoil for 2 years.",
+            "If the product of this mixture has no negative side effects you can sell it in downtime for 20¢ per effect."
+          ],
+          "marketPrice": "10¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Forntusk",
+          "details": "Forntusk is a well known preservation agent. However it also has a slow acting adrenaline inducing and addicting effect.",
+          "uniqueRules": [
+            "If you mix this substance with an ingredient it will not spoil for 2 years.",
+            "If the product of this mixture has no negative side effects you can sell it in downtime for 20¢ per effect."
+          ],
+          "marketPrice": "10¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Goodmir",
+          "details": "Goodmir is a well known preservation agent. However it also has an analgesic and sleep inducing effect.",
+          "uniqueRules": [
+            "If you mix this substance with an ingredient it will not spoil for 2 years.",
+            "If the product of this mixture has no negative side effects you can sell it in downtime for 20¢ per effect."
+          ],
+          "marketPrice": "10¢"
+        },
+        {
+          "type": "consumable",
+          "name": "West-leaf powder",
+          "details": "West-leaf powder is a well known preservation agent. However it also has a snail like strength enhancing and fear inducing effect.",
+          "uniqueRules": [
+            "If you mix this substance with an ingredient it will not spoil for 2 years.",
+            "If the product of this mixture has no negative side effects you can sell it in downtime for 20¢ per effect."
+          ],
+          "marketPrice": "10¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Godstem",
+          "details": "Godstem is a well known preservation agent. However it is also well known for it's snail like potential healing effect while at the same time being a deadly substance.",
+          "uniqueRules": [
+            "If you mix this substance with an ingredient it will not spoil for 2 years.",
+            "If the product of this mixture has no negative side effects you can sell it in downtime for 20¢ per effect."
+          ],
+          "marketPrice": "10¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Perdota",
+          "details": "Perdota reacts with about 90% of all known analgesic substances.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "10¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Fymota",
+          "details": "Fymota reacts with about 95% of all known hallucinogenic substances.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "9¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Nurstata",
+          "details": "Nurstata reacts with about 95% of all known healing substances.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "12¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Hitsata",
+          "details": "Hitsata reacts with about 92% of all known uppers.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "10¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Normta",
+          "details": "Normta reacts with about 91% of all known beta-blocking substances.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "8¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Gigata",
+          "details": "Gigata reacts with about 94% of all known strength enhancing substances.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "12¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Primota",
+          "details": "Primota reacts with about 89% of all known substances that ripple the primordial flow.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "12¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Clencita",
+          "details": "Clencita reacts with about 85% of all known substances that calm the primordial flow.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "11¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Berserta",
+          "details": "Berserta reacts with about 89% of all known adrenaline heightening substances.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "12¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Savita",
+          "details": "Savita reacts with about 92% of all known anti-toxins.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "9¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Darkta",
+          "details": "Darkta reacts with about 94% of all known blinding substances.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "8¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Mordta",
+          "details": "Mordta reacts with about 94% of all known deadly substances.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "13¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Zicklyta",
+          "details": "Zicklyta reacts with about 91% of all known infectiousness substances.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "14¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Smalta",
+          "details": "Smalta reacts with about 87% of all known weakening substances.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "7¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Trumbleta",
+          "details": "Trumbleta reacts with about 92% of all known fear inducing substances.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "10¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Zazarta",
+          "details": "Zazarta reacts with about 85% of all known soporific substances.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "13¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Transita",
+          "details": "Transita reacts with about 91% of all known addictive substances.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "6¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Melota",
+          "details": "Melota reacts with about 92% of all known dazing substances.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "6¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Vibrota",
+          "details": "Vibrota reacts with about 92% of all known substances that induce tremors.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "8¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Domyta",
+          "details": "Domyta reacts with about 87% of all known substances that suppress intelligence.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "8¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Perdolim",
+          "details": "Perdolim reacts with about 73% of all known analgesic substances.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "3¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Fymolim",
+          "details": "Fymolim reacts with about 73% of all known hallucinogenic substances.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "5¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Nurstalim",
+          "details": "Nurstalim reacts with about 70% of all known healing substances.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "3¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Hitsalim",
+          "details": "Hitsalim reacts with about 78% of all known uppers.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "5¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Normlim",
+          "details": "Normlim reacts with about 79% of all known beta-blocking substances.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "6¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Gigalim",
+          "details": "Gigalim reacts with about 78% of all known strength enhancing substances.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "5¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Primolim",
+          "details": "Primolim reacts with about 74% of all known substances that ripple the primordial flow.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "3¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Clencilim",
+          "details": "Clencilim reacts with about 71% of all known substances that calm the primordial flow.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "7¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Berserlim",
+          "details": "Berserlim reacts with about 77% of all known adrenaline heightening substances.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "3¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Savilim",
+          "details": "Savilim reacts with about 78% of all known anti-toxins.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "4¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Darklim",
+          "details": "Darklim reacts with about 72% of all known blinding substances.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "3¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Mordlim",
+          "details": "Mordlim reacts with about 79% of all known deadly substances.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "5¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Zicklylim",
+          "details": "Zicklylim reacts with about 70% of all known infectiousness substances.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "6¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Smallim",
+          "details": "Smallim reacts with about 73% of all known weakening substances.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "5¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Trumblelim",
+          "details": "Trumblelim reacts with about 71% of all known fear inducing substances.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "5¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Zazarlim",
+          "details": "Zazarlim reacts with about 79% of all known soporific substances.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "6¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Transilim",
+          "details": "Transilim reacts with about 72% of all known addictive substances.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "7¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Melolim",
+          "details": "Melolim reacts with about 75% of all known dazing substances.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "6¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Vibrolim",
+          "details": "Vibrolim reacts with about 71% of all known substances that induce tremors.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "5¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Domylim",
+          "details": "Domylim reacts with about 71% of all known substances that suppress intelligence.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "6¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Perdorum",
+          "details": "Perdorum reacts with about 54% of all known analgesic substances.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "3¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Fymorum",
+          "details": "Fymorum reacts with about 52% of all known hallucinogenic substances.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "1¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Nurstarum",
+          "details": "Nurstarum reacts with about 49% of all known healing substances.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "1¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Hitsarum",
+          "details": "Hitsarum reacts with about 49% of all known uppers.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "2¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Normrum",
+          "details": "Normrum reacts with about 55% of all known beta-blocking substances.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "3¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Gigarum",
+          "details": "Gigarum reacts with about 45% of all known strength enhancing substances.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "1¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Primorum",
+          "details": "Primorum reacts with about 46% of all known substances that ripple the primordial flow.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "3¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Clencirum",
+          "details": "Clencirum reacts with about 53% of all known substances that calm the primordial flow.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "1¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Berserrum",
+          "details": "Berserrum reacts with about 50% of all known adrenaline heightening substances.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "1¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Savirum",
+          "details": "Savirum reacts with about 54% of all known anti-toxins.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "2¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Darkrum",
+          "details": "Darkrum reacts with about 54% of all known blinding substances.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "3¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Mordrum",
+          "details": "Mordrum reacts with about 55% of all known deadly substances.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "2¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Zicklyrum",
+          "details": "Zicklyrum reacts with about 48% of all known infectiousness substances.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "1¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Smalrum",
+          "details": "Smalrum reacts with about 54% of all known weakening substances.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "3¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Trumblerum",
+          "details": "Trumblerum reacts with about 53% of all known fear inducing substances.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "3¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Zazarrum",
+          "details": "Zazarrum reacts with about 55% of all known soporific substances.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "1¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Transirum",
+          "details": "Transirum reacts with about 51% of all known addictive substances.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "1¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Melorum",
+          "details": "Melorum reacts with about 52% of all known dazing substances.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "1¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Vibrorum",
+          "details": "Vibrorum reacts with about 55% of all known substances that induce tremors.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "3¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Domyrum",
+          "details": "Domyrum reacts with about 54% of all known substances that suppress intelligence.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "2¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Perdosil",
+          "details": "Perdosil is used to detect analgesic catalysts with a 91% accuracy.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "4¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Fymosil",
+          "details": "Fymosil is used to detect hallucinogenic catalysts with a 95% accuracy.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "4¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Nurstasil",
+          "details": "Nurstasil is used to detect catalysts for substances that promote healing with a 98% accuracy.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "7¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Hitsasil",
+          "details": "Hitsasil is used to detect catalysts for uppers with a 97% accuracy.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "6¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Normsil",
+          "details": "Normsil is used to detect catalysts for beta-blocking substances with a 98% accuracy.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "6¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Gigasil",
+          "details": "Gigasil is used to detect catalysts for strength enhancing substances with a 90% accuracy.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "4¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Primosil",
+          "details": "Primosil is used to detect catalysts for substances that ripple the primordial flow with a 95% accuracy.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "6¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Clencisil",
+          "details": "Clencisil is used to detect catalysts for substances that calm the primordial flow with a 95% accuracy.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "7¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Bersersil",
+          "details": "Bersersil is used to detect catalysts for adrenaline with a 95% accuracy.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "5¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Savisil",
+          "details": "Savisil is used to detect catalysts for anti-toxins with a 91% accuracy.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "7¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Darksil",
+          "details": "Darksil is used to detect catalysts for blinding substances with a 91% accuracy.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "7¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Mordsil",
+          "details": "Mordsil is used to detect catalysts for deadly substances with a 98% accuracy.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "3¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Zicklysil",
+          "details": "Zicklysil is used to detect catalysts for infectiousness substances with a 90% accuracy.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "3¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Smalsil",
+          "details": "Smalsil is used to detect catalysts for weakening substances with a 91% accuracy.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "4¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Trumblesil",
+          "details": "Trumblesil is used to detect catalysts for fear inducing substances with a 99% accuracy.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "7¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Zazarsil",
+          "details": "Zazarsil is used to detect catalysts for soporific substances with a 92% accuracy.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "3¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Transisil",
+          "details": "Transisil is used to detect catalysts for addictive substances with a 94% accuracy.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "5¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Melosil",
+          "details": "Melosil is used to detect catalysts for dazing substances with a 91% accuracy.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "7¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Virbrosil",
+          "details": "Virbrosil is used to detect catalysts for substances that induce tremors with a 97% accuracy.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "3¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Domysil",
+          "details": "Domysil is used to detect catalysts for substances that suppress intelligence with a 95% accuracy.",
+          "uniqueRules": [
+            "If you mix this with an ingredient and study it after 10 minutes contact a GM. You can use up to 5 testing substances parallel. Both this item and the ingredient are lost in the process."
+          ],
+          "marketPrice": "3¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Analgesic potion",
+          "details": "This toxic mixture will stop you from feeling pain while you are being stitched up.",
+          "uniqueRules": [
+            "1 hour after consuming this you are immune to WP loss due to stitching and bandaging for 12 hours."
+          ],
+          "sharedRules": [
+            "Your toxin level is increased by 1. If your toxin reaches 2 or higher you have to contact a GM.",
+            "At first light of each day you lose one toxin level."
+          ],
+          "marketPrice": "40¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Hallucination potion",
+          "details": "This toxic mixture is used by shamans to visit the world of the spirits for long periods of time.",
+          "uniqueRules": [
+            "1 hour after consuming this you will start to hallucinate for 12 hours. You can snap yourself out of this."
+          ],
+          "sharedRules": [
+            "Your toxin level is increased by 1. If your toxin reaches 2 or higher you have to contact a GM.",
+            "At first light of each day you lose one toxin level."
+          ],
+          "marketPrice": "40¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Healing potion",
+          "details": "This toxic mixture is used by to heal wounded people faster. Usually only used by the rich.",
+          "uniqueRules": [
+            "Your wounds will cost 10ℜ less to heal if consumed at the latests 4 hours after receiving the wound or infection."
+          ],
+          "sharedRules": [
+            "Your toxin level is increased by 1. If your toxin reaches 2 or higher you have to contact a GM.",
+            "At first light of each day you lose one toxin level."
+          ],
+          "marketPrice": "40¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Upper potion",
+          "details": "This toxic mixture is used to make you feel good about the world. Usually consumed after stressful events.",
+          "uniqueRules": [
+            "1 hour after consuming this you will regain 3 willpower. You will lose 3 willpower after 12 hours."
+          ],
+          "sharedRules": [
+            "Your toxin level is increased by 1. If your toxin reaches 2 or higher you have to contact a GM.",
+            "At first light of each day you lose one toxin level."
+          ],
+          "marketPrice": "40¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Beta-Blocking potion",
+          "details": "This toxic mixture is used to increase the focus of your fine motor skills.",
+          "uniqueRules": [
+            "10 seconds after consuming this you won't lose the next 2 willpower during the use of surgery or ranged skills. (within 10 minutes)."
+          ],
+          "sharedRules": [
+            "Your toxin level is increased by 1. If your toxin reaches 2 or higher you have to contact a GM.",
+            "At first light of each day you lose one toxin level."
+          ],
+          "marketPrice": "40¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Strength potion",
+          "details": "This toxic mixture is used by warriors to increase their raw strength.",
+          "uniqueRules": [
+            "10 seconds after consuming this you won't lose the next 2 willpower during the use of melee weapon skills. (within 10 minutes)."
+          ],
+          "sharedRules": [
+            "Your toxin level is increased by 1. If your toxin reaches 2 or higher you have to contact a GM.",
+            "At first light of each day you lose one toxin level."
+          ],
+          "marketPrice": "40¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Magic resistance potion",
+          "details": "This toxic mixture is used by warriors to protect against enemy mages.",
+          "uniqueRules": [
+            "10 seconds after consuming this you can call Resist against the next primordial automata effect cast on you. (within 10 minutes)."
+          ],
+          "sharedRules": [
+            "Your toxin level is increased by 1. If your toxin reaches 2 or higher you have to contact a GM.",
+            "At first light of each day you lose one toxin level."
+          ],
+          "marketPrice": "40¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Primordial flow calming potion",
+          "details": "This toxic mixture is used by mages and priests to calm the primordial flow around them.",
+          "uniqueRules": [
+            "10 seconds after consuming this you won't lose the next 2 willpower during the use of primordial magic or divine magic. (within 10 minutes)."
+          ],
+          "sharedRules": [
+            "Your toxin level is increased by 1. If your toxin reaches 2 or higher you have to contact a GM.",
+            "At first light of each day you lose one toxin level."
+          ],
+          "marketPrice": "40¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Adrenaline potion",
+          "details": "This toxic mixture is used to keep warriors on their feet longer and make them unafraid in battle.",
+          "uniqueRules": [
+            "10 seconds after consuming this you ignore fear and effects from getting wounded (until you reach -2 HP) for 10 minutes."
+          ],
+          "sharedRules": [
+            "Your toxin level is increased by 1. If your toxin reaches 2 or higher you have to contact a GM.",
+            "At first light of each day you lose one toxin level."
+          ],
+          "marketPrice": "40¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Anti-toxin potion",
+          "details": "This mixture is used to save people from poisons. It is also used by frequent consumers of potions to reset their pallets so to speak in between consumption.",
+          "uniqueRules": [
+            "10 seconds after consuming this you lose 1 toxin level and all other effects from potions are removed.",
+            "You are immune to poisons for up to 10 minutes."
+          ],
+          "marketPrice": "40¢"
         }
       ]
     },
@@ -1450,6 +2768,74 @@
           ],
           "large": false,
           "marketPrice": "300¢"
+        }
+      ],
+      "consumables": [
+        {
+          "type": "consumable",
+          "name": "Imbued Paper",
+          "details": "Cheap scrolls are often used to weave and sell one-time uses of specific automata.",
+          "uniqueRules": [
+            "Can hold an 8 by 10 automata grid.",
+            "This item is consumed after activating the automata on it."
+          ],
+          "marketPrice": "1¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Imbued Canvas",
+          "details": "Larger than the scroll, which means it can hold more complex automata.",
+          "uniqueRules": [
+            "Can hold a 10 by 16 automata grid.",
+            "This item is consumed after activating the automata on it."
+          ],
+          "marketPrice": "5¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Basic Material Component",
+          "details": "A handful of fine sand, a puff of smoke, a cup of water or similar material.",
+          "uniqueRules": [
+            "Provides 100 power when used to activate an automata."
+          ],
+          "marketPrice": "3¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Improved Material Component",
+          "details": "A small rod of iron, a wedge of dried wood, a lit candle.",
+          "uniqueRules": [
+            "Provides 300 power when used to activate an automata."
+          ],
+          "marketPrice": "9¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Superior Material Component",
+          "details": "A silver coin. A rabbit's foot.",
+          "uniqueRules": [
+            "Provides 1000 power when used to activate an automata."
+          ],
+          "marketPrice": "30¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Exquisite Material Component",
+          "details": "A gold coin. A piece of silk.",
+          "uniqueRules": [
+            "Provides 3000 power when used to activate an automata."
+          ],
+          "marketPrice": "90¢"
+        },
+        {
+          "type": "consumable",
+          "name": "Extraplanar Material Component",
+          "details": "A living flame from Danu's divine realm. The essence of a murder spirit. The threads woven by a fate weaver.",
+          "uniqueRules": [
+            "This is a special item made from parts acquired from different planes. If you wish to sell it, you will have to find a specific buyer. It cannot be bought normally.",
+            "Provides 6000 power when used to activate an automata."
+          ],
+          "marketPrice": "Var"
         }
       ]
     }
