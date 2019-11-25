@@ -64,7 +64,7 @@ export type RaceCards = {
 
 export type RuleType = "item" | "skill" | "condition" | "consumable";
 export type CardType = "race" | RuleType;
-export type RuleCard = SkillCard | ConditionCard | ItemCard;
+export type RuleCard = SkillCard | ConditionCard | ItemCard | ConsumableCard;
 
 // App stuff
 export type DbEntry = {

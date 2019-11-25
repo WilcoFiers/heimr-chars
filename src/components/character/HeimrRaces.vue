@@ -5,7 +5,7 @@
         <v-card>
           <h2 class="pl-3 pt-2">Races</h2>
           <v-list height="250" class="overflow-auto">
-            <v-list-item-group v-model="activeItem">
+            <v-list-item-group v-model="activeItem" mandatory>
               <v-list-item
                 v-for="(race, index) in races"
                 :key="index"

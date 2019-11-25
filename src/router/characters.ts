@@ -3,7 +3,7 @@ import CharacterNew from "@/views/character/CharacterNew.vue";
 import CharacterUpdate from "@/views/character/CharacterUpdate.vue";
 import CharacterResources from "@/views/character/CharacterResources.vue";
 import CharacterDomains from "@/views/character/CharacterDomains.vue";
-import DomainOverview from "@/views/DomainOverview.vue";
+import DomainContent from "@/views/DomainContent.vue";
 import AuthGuard from "./AuthGuard";
 
 export const characterRoutes = [
@@ -33,8 +33,8 @@ export const characterRoutes = [
   },
   {
     path: "/characters/:charId/domains/:domain",
-    name: "domain-overview",
-    component: DomainOverview,
+    name: "domain-content",
+    component: DomainContent,
     beforeEnter: AuthGuard
   },
   {

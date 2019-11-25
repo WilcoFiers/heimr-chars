@@ -1,5 +1,11 @@
 import heimrData from "@/assets/heimr-data.json";
-import { Domain, RaceCard, RuleCard, CharacterRule } from "@/types";
+import { Domain, RaceCard, RuleCard, CharacterRule, Character } from "@/types";
+import {
+  ruleCardRestrictions,
+  RuleCardRestrictions
+} from "./heimr/validateCardActions";
+
+export { isSameCard } from "@/heimr/isSameCard";
 
 export const date = heimrData.date as string;
 export const races = heimrData.races as RaceCard[];
@@ -88,8 +94,58 @@ export function parseRuleValue(str?: string): RuleValue | null {
   }
 
   const match = str.match(parserReg);
-  if (match === null) {
+  if (match === null || isNaN(parseInt(match[0]))) {
     return null;
   }
   return { value: +match[1], unit: match[2] };
+}
+
+export interface RuleCardGroup {
+  groupName: string;
+  length: number;
+  ruleCards: {
+    ruleCard: RuleCard;
+    restrictions: RuleCardRestrictions;
+  }[];
+}
+// Character, CharacterRule[], RuleCard[], string
+export function groupCards(
+  character: Character,
+  charRules: CharacterRule[],
+  domainName: string,
+  ruleCards?: RuleCard[]
+): RuleCardGroup[] {
+  const groups: RuleCardGroup[] = [];
+  ruleCards = ruleCards || ([] as RuleCard[]);
+
+  ruleCards.forEach(ruleCard => {
+    let groupName: string;
+    if (
+      (ruleCard.type === "skill" || ruleCard.type === "condition") &&
+      ruleCard.category
+    ) {
+      groupName = ruleCard.category;
+    } else {
+      groupName = ruleCard.name;
+    }
+    const restrictions = ruleCardRestrictions(
+      character,
+      charRules,
+      ruleCard,
+      domainName
+    );
+    const group = groups.find(group => group.groupName === groupName);
+    if (group) {
+      group.ruleCards.push({ ruleCard, restrictions });
+      group.length++;
+    } else {
+      groups.push({
+        groupName,
+        length: 1,
+        ruleCards: [{ ruleCard, restrictions }]
+      });
+    }
+  });
+
+  return groups;
 }

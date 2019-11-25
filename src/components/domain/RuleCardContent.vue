@@ -6,7 +6,42 @@
       <strong>Willpower:</strong>
       {{ ruleCard.willpower }}
     </p>
-    <p v-if="ruleCard.details">{{ ruleCard.details }}</p>
+    <v-row>
+      <v-col v-if="ruleCard.points">
+        <strong>Points:</strong>
+        {{ ruleCard.points }}
+      </v-col>
+      <v-col v-if="ruleCard.points && ruleCard.type === 'skill'">
+        <strong>Monthly cost:</strong>
+        {{ ruleCard.points }} ℜ
+      </v-col>
+
+      <v-col v-if="ruleCard.marketPrice">
+        <strong>Market price:</strong>
+        {{ ruleCard.marketPrice }}
+      </v-col>
+      <v-col v-if="ruleCard.restorePrice">
+        <strong>Restore price:</strong>
+        {{ ruleCard.restorePrice }}
+      </v-col>
+
+      <v-col v-if="ruleCard.toughness">
+        <strong>Toughness:</strong>
+        {{ ruleCard.toughness }}
+      </v-col>
+      <v-col v-if="ruleCard.large">
+        <strong>Large</strong>
+      </v-col>
+    </v-row>
+
+    <p v-if="ruleCard.details" class="mt-2">
+      <i>{{ ruleCard.details }}</i>
+    </p>
+
+    <p v-if="ruleCard.requires">
+      <strong>Requires:</strong>
+      {{ ruleCard.requires }}
+    </p>
     <div v-if="ruleCard.uniqueRules">
       <h4>Unique rules</h4>
       <ul>

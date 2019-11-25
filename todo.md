@@ -1,30 +1,23 @@
 # TODO
 
-- Separate component for / resources view
-- Group skills / conditions by level
+- Show star in domain overview and in domain content tabs
+- Add "info" tab to domain content
 - unmount everything on sign-out
 - Show link to domains in resources view
-- Consumables: http://heimr.nl/development/draft_domains/alchemy_and_apothecary_early_draft/testing_substances
-- Overrides & counters for ruleCards
-- Record "pricedPaid" value with items with "var" marketPrice
-- Warn before duplicate buys of skills and of (most) conditions
-- Warn before buying items & conditions not available during char creation
-- Fix bug: clicking a race twice causes it to disapear
-- Add Loading component for Characters data
-- Build out tests
-- Type safety on props?
+- Update resources view UX
+- Update race selection view UX
 - Improve UX of ResourceMini component
-- Deploy project to CDN
-- ability to set tokens
+- Overrides & counters for ruleCards
+- Prevent buying things with insufficient funds
 - ability to set custom names for cards with "..."
+- Build out tests
+- Add Loading component for Characters data
+- Type safety on props?
+- Deploy project to CDN
 - Update the design
 - Set up Github, including deploy action
-- Separate prod and dev databases
 - Separate the bottom buttons
-- Set up as a web app (add a manifest + service worker)
 - Handle login from view, instead of through redirects / render before autoSignin
-- Upgrade leveled skills
-- Limit duplicate selection of skills
 - Enable offline mode
 - Include domain complexity indicator
 - Forgot password feature
@@ -34,6 +27,8 @@
 - Lock characters after an event
 - Checkout items for an event
 - Downtime system
+- Set up as a web app (add a manifest + service worker)
 - Alchemy mini game
 - Surgery mini game
 - Primordial magic simulator
+- Separate prod and dev databases

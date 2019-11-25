@@ -110,6 +110,11 @@ export const character: CharacterModule = {
     removeCharacterRule({ state }, id: string) {
       const characterRulePath = `characters/${state.charId}/rules/${id}`;
       return db.doc(characterRulePath).delete();
+    },
+
+    changeCharacterRule({ state }, charRule: CharacterRule) {
+      const characterRulePath = `characters/${state.charId}/rules/${charRule.id}`;
+      return db.doc(characterRulePath).update(charRule);
     }
   }
 };
