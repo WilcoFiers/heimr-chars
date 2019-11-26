@@ -16,17 +16,26 @@
     </v-row>
 
     <v-row>
-      <v-col :cols="4" v-for="domain in domains" :key="domain.domainName">
+      <v-col
+        cols="12"
+        md="6"
+        lg="4"
+        xl="3"
+        v-for="domain in domains"
+        :key="domain.domainName"
+      >
         <v-card :to="toDomain(domain)">
           <v-list-item three-line>
             <v-list-item-content>
-              <v-list-item-title class="headline mb-1">{{
-                domain.domainName
-              }}</v-list-item-title>
-              <v-list-item-subtitle
-                >Greyhound divisely hello coldly
-                fonwderfully</v-list-item-subtitle
-              >
+              <v-list-item-title class="headline mb-1">
+                {{ domain.domainName }}
+                <v-icon color="primary" small v-if="ownsDomain(domain)"
+                  >mdi-star-outline</v-icon
+                >
+              </v-list-item-title>
+              <v-list-item-subtitle>
+                Greyhound divisely hello coldly fonwderfully
+              </v-list-item-subtitle>
             </v-list-item-content>
             <v-list-item-avatar tile size="80" color="grey">
               <v-img :src="domainImg(domain)" contain class="black" />
@@ -45,18 +54,25 @@ import { Domain } from "@/types";
 
 export default Vue.extend({
   name: "DomainSelection",
+  props: {
+    ownedDomains: {
+      type: Array
+    }
+  },
   data() {
     return { domains };
   },
+
   methods: {
+    domainImg,
     toDomain({ domainName }: Domain): string {
       const domainUrl = domainName.toLowerCase().replace(/\s+/g, "_");
       const { charId } = this.$route.params;
       return `/characters/${charId}/domains/${domainUrl}`;
     },
 
-    domainImg(domain: Domain): string {
-      return domainImg(domain);
+    ownsDomain({ domainName }: Domain): boolean {
+      return this.ownedDomains.includes(domainName);
     }
   }
 });

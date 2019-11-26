@@ -1,10 +1,19 @@
 <template>
   <v-container>
     <v-row>
-      <v-col><h1>My Characters</h1></v-col></v-row
-    >
+      <v-col>
+        <h1>My Characters</h1>
+      </v-col>
+    </v-row>
     <v-row>
-      <v-col :cols="4" v-for="char in characters" :key="char.id">
+      <v-col
+        cols="12"
+        md="6"
+        lg="4"
+        xl="3"
+        v-for="char in characters"
+        :key="char.id"
+      >
         <v-card :to="charUri(char)">
           <v-list-item three-line>
             <v-list-item-content>

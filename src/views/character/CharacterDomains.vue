@@ -7,20 +7,18 @@
         :rules="rules"
         :money="500"
         :resources="20"
-        :to="resources()"
+        to="./resources"
       />
     </v-row>
     <v-row>
-      <DomainSelection />
+      <DomainSelection :ownedDomains="ownedDomains()" />
     </v-row>
 
     <v-row class="px-5">
-      <v-btn :to="back()">
-        <v-icon>mdi-arrow-left</v-icon>Name &amp; Race
-      </v-btn>
+      <v-btn to="./"> <v-icon>mdi-arrow-left</v-icon>Name &amp; Race </v-btn>
       <v-spacer />
-      <v-btn type="submit" class="primary">
-        Next: Items &amp; Money
+      <v-btn class="primary" to="./resources">
+        Next: Resources
         <v-icon>mdi-arrow-right</v-icon>
       </v-btn>
     </v-row>
@@ -39,8 +37,10 @@ export default Vue.extend({
   components: { DomainSelection, ResourceMini },
 
   computed: {
-    character(): Character | undefined {
-      return (this.$store.state as State).character.charProps;
+    character(): Character {
+      return (
+        (this.$store.state as State).character.charProps || ({} as Character)
+      );
     },
     rules(): CharacterRule[] {
       const { rules } = (this.$store.state as State).character;
@@ -49,13 +49,15 @@ export default Vue.extend({
   },
 
   methods: {
-    resources() {
-      const { charId } = this.$route.params;
-      return `/characters/${charId}/resources`;
-    },
-    back() {
-      const { charId } = this.$route.params;
-      return `/characters/${charId}`;
+    ownedDomains(): string[] {
+      const ownedDomains: Set<string> = new Set();
+      const { character } = this.$store.state as State;
+      if (!character || !character.rules) {
+        return [];
+      }
+
+      character.rules.forEach(({ domainName }) => ownedDomains.add(domainName));
+      return Array.from(ownedDomains);
     }
   }
 });

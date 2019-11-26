@@ -5,13 +5,16 @@
         <div class="d-flex flex-grow-1">
           <h1>{{ domain.domainName }}</h1>
           <v-spacer />
-          <v-btn to="./" text>Different domain</v-btn>
+          <v-btn to="../domains" text>Different domain</v-btn>
         </div>
 
         <v-tabs v-model="activeTab" grow>
-          <v-tab v-for="(_, cardType) in tabs" :key="cardType">{{
-            cardType
-          }}</v-tab>
+          <v-tab v-for="(_, cardType) in tabs" :key="cardType">
+            {{ cardType }}
+            <v-icon small right color="blue" v-if="ownsInGroup(cardType)"
+              >mdi-star-outline</v-icon
+            >
+          </v-tab>
         </v-tabs>
 
         <v-tabs-items v-model="activeTab">
@@ -112,6 +115,17 @@ export default Vue.extend({
       return this.characterRules.filter(charRule =>
         isSameCard(charRule, ruleCard, anyLevel)
       );
+    },
+
+    ownsInGroup(cardType: string): boolean {
+      if (!this.tabs[cardType]) {
+        return false;
+      }
+      return this.tabs[cardType].some(ruleCardGroup => {
+        return ruleCardGroup.ruleCards.some(({ restrictions }) => {
+          return restrictions.owned > 0;
+        });
+      });
     },
 
     cardAction({ action, ruleCard }: { action: string; ruleCard: RuleCard }) {

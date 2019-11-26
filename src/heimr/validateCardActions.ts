@@ -82,8 +82,9 @@ export const validateCardAdd: ValidationAction = (
   }
   if (!hasRequired(charRules, ruleCard)) {
     // @ts-ignore // Yes, ruleCard.requires is defined
+    const requires = ruleCard.requires;
     issues.push(
-      `${character.name} does not meet the requirement "${ruleCard.requires}"`
+      `${character.name} does not meet the requirement "${requires}"`
     );
   }
 
@@ -134,8 +135,9 @@ export const validateLevelChange: ValidationAction = (
 
   if (!hasRequired(charRules, ruleCard)) {
     // @ts-ignore // Yes, ruleCard.requires is defined
+    const requires = ruleCard.requires;
     issues.push(
-      `${character.name} does not meet the requirement "${ruleCard.requires}"`
+      `${character.name} does not meet the requirement "${requires}"`
     );
   }
 

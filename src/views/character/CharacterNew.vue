@@ -4,8 +4,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import {
-  default as CharacterOverview,
+import CharacterOverview, {
   CharacterMeta
 } from "@/components/character/CharacterOverview.vue";
 
