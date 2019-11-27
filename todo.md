@@ -1,6 +1,5 @@
 # TODO
 
-- Improve UX of ResourceMini component
 - Update resources view UX
 - Show link to domains in resources view
 - Prevent buying things with insufficient funds

@@ -11,7 +11,7 @@
         <v-tabs v-model="activeTab" grow>
           <v-tab v-for="(_, cardType) in tabs" :key="cardType">
             {{ cardType }}
-            <v-icon small right color="blue" v-if="ownsInGroup(cardType)"
+            <v-icon small right color="primary" v-if="ownsInGroup(cardType)"
               >mdi-star-outline</v-icon
             >
           </v-tab>
@@ -47,11 +47,9 @@
       </v-col>
 
       <v-col cols="3">
-        <ResourceMini
-          :rules="characterRules"
-          :money="500"
-          :resources="20"
-          to="../resources"
+        <ResourceSummary
+          :characterRules="characterRules"
+          :character="character"
         />
       </v-col>
     </v-row>
@@ -64,15 +62,16 @@ import { domains, groupCards, RuleCardGroup } from "@/heimr-data";
 import { isSameCard } from "@/heimr/isSameCard";
 import RuleExpansionPanel from "@/components/domain/RuleExpansionPanel.vue";
 import RuleCardGroupPanel from "@/components/domain/RuleCardGroup.vue";
-import ResourceMini from "@/components/character/ResourceMini.vue";
+import ResourceSummary from "@/components/character/ResourceSummary.vue";
 import { getCharacterRulesCol } from "@/firebase";
 import { Domain, RuleCard, State, CharacterRule, ConditionCard } from "@/types";
+import { Character } from "../store/types";
 
 type Tabs = { [propName: string]: RuleCardGroup[] };
 
 export default Vue.extend({
   name: "DomainOverview",
-  components: { ResourceMini, RuleCardGroupPanel },
+  components: { ResourceSummary, RuleCardGroupPanel },
   data() {
     const activeTab = null;
     const domain = domains.find(({ domainName }) => {
@@ -84,6 +83,11 @@ export default Vue.extend({
   },
 
   computed: {
+    character(): Partial<Character> {
+      const { charProps } = (this.$store.state as State).character;
+      return charProps || {};
+    },
+
     characterRules(): CharacterRule[] {
       const { rules } = (this.$store.state as State).character;
       return rules || [];

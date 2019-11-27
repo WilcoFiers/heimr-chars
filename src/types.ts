@@ -78,6 +78,8 @@ export type NewCharacter = {
   archive: boolean;
   createdAt?: any;
   lastUpdated?: any;
+  startingPoints?: number;
+  startingCash?: number;
 };
 
 export type Character = NewCharacter & DbEntry;
@@ -98,6 +100,8 @@ export type NewCharacterRule = {
   name: string;
   domainName: string;
   type: RuleType;
+  cashPaid?: number;
+  pointsPaid?: number;
 };
 
 export type CharacterRule = NewCharacterRule & DbEntry;
