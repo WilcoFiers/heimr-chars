@@ -59,9 +59,16 @@ export const hasRequired = (
     return true; // These don't have requirements
   }
 
+  function simplifyText(str: string) {
+    return str
+      .toLowerCase()
+      .replace(/[^a-z\s]/gi, "")
+      .trim();
+  }
+
   const requires = ruleCard.requires.toLowerCase();
   return charRules.some(charRule => {
-    return requires.includes(charRule.name.toLowerCase());
+    return requires.includes(simplifyText(charRule.name));
   });
 };
 

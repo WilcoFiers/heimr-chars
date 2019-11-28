@@ -1,6 +1,8 @@
 # TODO
 
 - Update resources view UX
+- Set required props
+- Show "free" and "var" as prices in grou view
 - Show link to domains in resources view
 - Prevent buying things with insufficient funds
 - ability to set custom names for cards with "..."
