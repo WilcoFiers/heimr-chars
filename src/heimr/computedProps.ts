@@ -57,3 +57,30 @@ export const getCashSpent = (characterRules: CharacterRule[]): number => {
     return sum;
   }, 0);
 };
+
+export function getMonthlySavings(
+  character: Character,
+  characterRules: CharacterRule[]
+): number {
+  const skillPointCount = characterRules.reduce(
+    (sum, characterRule): number => {
+      if (
+        characterRule.type === "skill" &&
+        characterRule.pointsPaid !== undefined
+      ) {
+        return sum + characterRule.pointsPaid;
+      }
+      const ruleCard = findRuleCard(characterRule);
+      if (
+        ruleCard &&
+        ruleCard.type === "skill" &&
+        ruleCard.points !== undefined
+      ) {
+        return sum + ruleCard.points;
+      }
+      return sum;
+    },
+    0
+  );
+  return getStartingPoints(character) - skillPointCount;
+}

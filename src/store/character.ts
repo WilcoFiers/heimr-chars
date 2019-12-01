@@ -89,11 +89,11 @@ export const character: CharacterModule = {
       return charId;
     },
 
-    updateCharacter({ state }, { name, race }) {
+    updateCharacter({ state }, newProps: Character) {
       const lastUpdated = serverTimestamp();
       return charactersCol
         .doc(state.charId)
-        .update({ name, race, lastUpdated });
+        .update({ lastUpdated, ...newProps });
     },
 
     archiveCharacter({ state }) {

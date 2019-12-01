@@ -47,10 +47,29 @@
       </v-col>
 
       <v-col cols="3">
-        <ResourceSummary
+        <CreationSummary
           :characterRules="characterRules"
           :character="character"
-        />
+        >
+          <v-row>
+            <v-col>
+              <TradePointsBtn
+                block
+                color="primary"
+                :value="characterPoints"
+                @updateStartingPoints="updateStartingPoints"
+              />
+            </v-col>
+          </v-row>
+
+          <v-row>
+            <v-col>
+              <v-btn block :to="`/characters/${$route.params.charId}/resources`"
+                >Details</v-btn
+              >
+            </v-col>
+          </v-row>
+        </CreationSummary>
       </v-col>
     </v-row>
   </v-container>
@@ -60,18 +79,20 @@
 import Vue from "vue";
 import { domains, groupCards, RuleCardGroup } from "@/heimr-data";
 import { isSameCard } from "@/heimr/isSameCard";
+import { getStartingPoints } from "@/heimr/computedProps";
 import RuleExpansionPanel from "@/components/domain/RuleExpansionPanel.vue";
 import RuleCardGroupPanel from "@/components/domain/RuleCardGroup.vue";
-import ResourceSummary from "@/components/character/ResourceSummary.vue";
+import CreationSummary from "@/components/summary/CreationSummary.vue";
+import TradePointsBtn from "@/components/character/TradePointsBtn.vue";
 import { getCharacterRulesCol } from "@/firebase";
 import { Domain, RuleCard, State, CharacterRule, ConditionCard } from "@/types";
-import { Character } from "../store/types";
+import { Character } from "@/types";
 
 type Tabs = { [propName: string]: RuleCardGroup[] };
 
 export default Vue.extend({
   name: "DomainOverview",
-  components: { ResourceSummary, RuleCardGroupPanel },
+  components: { CreationSummary, RuleCardGroupPanel, TradePointsBtn },
   data() {
     const activeTab = null;
     const domain = domains.find(({ domainName }) => {
@@ -106,8 +127,15 @@ export default Vue.extend({
         tabs.Items = groupCardsMapping(this.domain.items);
         tabs.Consumables = groupCardsMapping(this.domain.consumables);
       }
-
       return tabs;
+    },
+
+    characterPoints() {
+      const { charProps } = (this.$store.state as State).character;
+      if (charProps) {
+        return getStartingPoints(charProps);
+      }
+      return 20;
     }
   },
 
@@ -173,6 +201,13 @@ export default Vue.extend({
         id: charRules[0].id,
         name: ruleCard.name
       });
+    },
+
+    updateStartingPoints(pointDifference: number) {
+      const charUpdate = {} as Character;
+      charUpdate.startingPoints = 20 - pointDifference;
+      charUpdate.startingCash = 500 + pointDifference * 100;
+      this.$store.dispatch("updateCharacter", charUpdate);
     }
   }
 });

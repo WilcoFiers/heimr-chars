@@ -1,17 +1,18 @@
 # TODO
 
+- Add a homepage
+- Add help icons throughout
 - Update resources view UX
-- Set required props
-- Show "free" and "var" as prices in grou view
+- Add dormant skill buy at char creation
+- Set required props in compnents
+- Show "free" and "var" as prices in group view
 - Show link to domains in resources view
-- Prevent buying things with insufficient funds
 - ability to set custom names for cards with "..."
 - Update race selection view UX
 - Overrides & counters for ruleCards
 - Build out tests
 - unmount everything on sign-out
 - Type safety on props?
-- Deploy project to CDN
 - Add theming / design / logo
 - Add "info" tab to domain content
 - Set up Github, including deploy action
@@ -51,3 +52,4 @@
 - loan / loan use tokens instead of levels
 - Figure out which conditions can be bought during char creation
 - Why is "share" an item, and "loan" a condition?
+- How do you get a higher salary if you don't meet the "X points in a domain" requirement
