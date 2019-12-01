@@ -1,6 +1,5 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "@/views/Home.vue";
 import { SignIn, SignUp } from "@/views/user";
 import PageNotFound from "@/views/PageNotFound.vue";
 import AuthGuard from "./AuthGuard";
@@ -11,7 +10,7 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
-    component: Home
+    redirect: "/characters"
   },
   {
     path: "/sign-in",
