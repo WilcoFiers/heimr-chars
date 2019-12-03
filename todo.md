@@ -1,8 +1,11 @@
 # TODO
 
-- Add a homepage
-- Add help icons throughout
 - Update resources view UX
+- Add a homepage
+- Used named slots to simplify cards stuff
+- "Add special" option under the "add" button
+- Add skills / items as new char doesn't show up
+- Add help icons throughout
 - Add dormant skill buy at char creation
 - Set required props in compnents
 - Show "free" and "var" as prices in group view
@@ -39,17 +42,15 @@
 - "You receive a free Materal Compendium item when you acquire this skill."
 - "If you have XX points worth of non-dormant skills or conditions in a single domain this condition is free."
 - "In character creation, spend 14 extra points on dormant skills."
-- "Retraining dormant skills costs 5ℜ per point"
-- "Once per month you can reduce the cost of training a skill with 7ℜ"
+- "In character creation, spend 3pt on dormant skills"
 - "You have an additional 6ℜ each month."
 - "You have 5ℜ additional each month."
+- "Retraining dormant skills costs 5ℜ per point"
+- "Once per month you can reduce the cost of training a skill with 7ℜ"
 - "You gain the Sturdy Stance 1 skill and it costs 2ℜ less to maintain"
-- "In character creation, spend 3pt on dormant skills"
 
 ## Fix Heimr stuff
 
-- higher cost of living => higher cost of living 1
 - loan / loan use tokens instead of levels
 - Figure out which conditions can be bought during char creation
-- Why is "share" an item, and "loan" a condition?
 - How do you get a higher salary if you don't meet the "X points in a domain" requirement

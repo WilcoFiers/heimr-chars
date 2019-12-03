@@ -1,13 +1,12 @@
 <template>
   <div class="mt-3 d-flex justify-space-between">
-    <v-btn
+    <AddRuleCardBtn
       outlined
       v-if="!ownsOtherLevel"
       :disabled="!canAdd"
-      @click="cardAction('addRule')"
-    >
-      <v-icon left>mdi-plus</v-icon>Add
-    </v-btn>
+      :ruleCard="ruleCard"
+      @add="cardAction('addRule')"
+    />
     <v-btn
       outlined
       v-else
@@ -33,11 +32,14 @@
 <script lang="ts">
 import Vue from "vue";
 import { RuleCardRestrictions } from "@/heimr/validateCardActions";
+import AddRuleCardBtn from "./AddRuleCardBtn.vue";
 
 export default Vue.extend({
   name: "RuleCardBtnBar",
+  components: { AddRuleCardBtn },
   props: {
-    restrictions: Object
+    restrictions: Object,
+    ruleCard: Object
   },
   computed: {
     owned(): number {

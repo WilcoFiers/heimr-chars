@@ -46,9 +46,10 @@
       </v-row>
       <v-row>
         <v-col class="pt-0">
-          <RuleCardBtnBar
+          <slot
+            name="cardActions"
+            :ruleCard="ruleCard"
             :restrictions="restrictions"
-            @cardAction="cardAction"
           />
         </v-col>
       </v-row>
@@ -59,7 +60,6 @@
 <script lang="ts">
 import Vue from "vue";
 import RuleCardContent from "./RuleCardContent.vue";
-import RuleCardBtnBar from "./RuleCardBtnBar.vue";
 import { RuleCard } from "@/types";
 import { RuleCardRestrictions } from "@/heimr/validateCardActions";
 import { parseRuleValue, RuleCardGroup } from "@/heimr-data";
@@ -93,7 +93,7 @@ function getItemCardCost(ruleCardGroup: RuleCardGroup) {
 
 export default Vue.extend({
   name: "RuleCardGroup",
-  components: { RuleCardContent, RuleCardBtnBar },
+  components: { RuleCardContent },
   props: {
     ruleCardGroup: {
       type: Object

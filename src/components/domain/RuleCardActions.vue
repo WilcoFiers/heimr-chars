@@ -1,9 +1,7 @@
 <template>
   <div class="flex-grow-1">
-    <div class=" d-flex" v-if="!multiple">
-      <v-btn @click="add" v-if="hasAdd">
-        <v-icon left>mdi-plus</v-icon>Add
-      </v-btn>
+    <div class="d-flex" v-if="!multiple">
+      <AddRuleCardBtn @click="add" v-if="hasAdd" :ruleCard="ruleCard" />
       <v-spacer />
       <v-btn @click="remove" v-if="hasRemove">
         <v-icon left>mdi-minus</v-icon>Remove
@@ -11,12 +9,11 @@
     </div>
 
     <div class="d-flex justify-space-between" v-else>
-      <v-btn @click="add" v-if="hasAdd">
-        <v-icon left>mdi-plus</v-icon>Add
-      </v-btn>
-      <span class="py-2"
-        >Quantity: <strong>{{ quantity }}</strong></span
-      >
+      <AddRuleCardBtn @click="add" v-if="hasAdd" :ruleCard="ruleCard" />
+      <span class="py-2">
+        Quantity:
+        <strong>{{ quantity }}</strong>
+      </span>
 
       <v-btn @click="remove" :disabled="!hasRemove">
         <v-icon left>mdi-minus</v-icon>Remove
@@ -27,8 +24,11 @@
 
 <script lang="ts">
 import Vue from "vue";
+import AddRuleCardBtn from "./AddRuleCardBtn.vue";
+
 export default Vue.extend({
   name: "RuleCardActions",
+  components: { AddRuleCardBtn },
   props: {
     ruleCard: Object,
     quantity: Number,

@@ -70,14 +70,19 @@ export default Vue.extend({
     const current = this.value * 20;
     return { dialog, current, ticksLabels };
   },
+  watch: {
+    value(val) {
+      this.current = val * 20;
+    }
+  },
 
   computed: {
     points(): number {
-      const remove = Math.round(this.value / 20);
+      const remove = Math.round(this.current / 20);
       return this.maxPoints - remove;
     },
     cash(): number {
-      const add = Math.round(this.value / 20);
+      const add = Math.round(this.current / 20);
       return this.maxCash + add * this.exchangeRate;
     }
   },

@@ -8,42 +8,19 @@
           <v-btn to="../domains" text>Different domain</v-btn>
         </div>
 
-        <v-tabs v-model="activeTab" grow>
-          <v-tab v-for="(_, cardType) in tabs" :key="cardType">
-            {{ cardType }}
-            <v-icon small right color="primary" v-if="ownsInGroup(cardType)"
-              >mdi-star-outline</v-icon
-            >
-          </v-tab>
-        </v-tabs>
-
-        <v-tabs-items v-model="activeTab">
-          <v-tab-item
-            v-for="(ruleCardGroups, cardType) in tabs"
-            :key="cardType"
-          >
-            <v-container>
-              <v-row v-if="ruleCardGroups.length === 0">
-                <v-col>
-                  <p>No cards in this domain</p>
-                </v-col>
-              </v-row>
-
-              <v-row v-else>
-                <v-col>
-                  <v-expansion-panels>
-                    <RuleCardGroupPanel
-                      v-for="ruleCardGroup in ruleCardGroups"
-                      :key="ruleCardGroup.groupName"
-                      :ruleCardGroup="ruleCardGroup"
-                      @cardAction="cardAction"
-                    />
-                  </v-expansion-panels>
-                </v-col>
-              </v-row>
-            </v-container>
-          </v-tab-item>
-        </v-tabs-items>
+        <DomainTabs
+          :domain="domain"
+          :characterRules="characterRules"
+          :character="character"
+        >
+          <template #cardActions="{ ruleCard, restrictions }">
+            <RuleCardBtnBar
+              :restrictions="restrictions"
+              :ruleCard="ruleCard"
+              @cardAction="action => cardAction({ action, ruleCard })"
+            />
+          </template>
+        </DomainTabs>
       </v-col>
 
       <v-col cols="3">
@@ -57,7 +34,7 @@
                 block
                 color="primary"
                 :value="characterPoints"
-                @updateStartingPoints="updateStartingPoints"
+                @update="updateStartingPoints"
               />
             </v-col>
           </v-row>
@@ -81,26 +58,31 @@ import { domains, groupCards, RuleCardGroup } from "@/heimr-data";
 import { isSameCard } from "@/heimr/isSameCard";
 import { getStartingPoints } from "@/heimr/computedProps";
 import RuleExpansionPanel from "@/components/domain/RuleExpansionPanel.vue";
-import RuleCardGroupPanel from "@/components/domain/RuleCardGroup.vue";
+import RuleCardBtnBar from "@/components/domain/RuleCardBtnBar.vue";
 import CreationSummary from "@/components/summary/CreationSummary.vue";
 import TradePointsBtn from "@/components/character/TradePointsBtn.vue";
-import { getCharacterRulesCol } from "@/firebase";
 import { Domain, RuleCard, State, CharacterRule, ConditionCard } from "@/types";
 import { Character } from "@/types";
+
+import DomainTabs from "@/components/domain/DomainTabs.vue";
 
 type Tabs = { [propName: string]: RuleCardGroup[] };
 
 export default Vue.extend({
   name: "DomainOverview",
-  components: { CreationSummary, RuleCardGroupPanel, TradePointsBtn },
+  components: {
+    CreationSummary,
+    TradePointsBtn,
+    DomainTabs,
+    RuleCardBtnBar
+  },
   data() {
-    const activeTab = null;
     const domain = domains.find(({ domainName }) => {
       const match = domainName.toLowerCase().replace(/\s+/g, "_");
       return match === this.$route.params.domain;
     }) as Domain;
 
-    return { domain, activeTab };
+    return { domain };
   },
 
   computed: {
@@ -114,28 +96,13 @@ export default Vue.extend({
       return rules || [];
     },
 
-    tabs() {
-      const { charProps, rules } = (this.$store.state as State).character;
-
-      const tabs: Tabs = {};
-      if (charProps && rules) {
-        const groupCardsMapping = (cards?: RuleCard[]) =>
-          groupCards(charProps, rules, this.domain.domainName, cards);
-
-        tabs.Skills = groupCardsMapping(this.domain.skills);
-        tabs.Conditions = groupCardsMapping(this.domain.conditions);
-        tabs.Items = groupCardsMapping(this.domain.items);
-        tabs.Consumables = groupCardsMapping(this.domain.consumables);
-      }
-      return tabs;
-    },
-
     characterPoints() {
+      let charPoints = 0;
       const { charProps } = (this.$store.state as State).character;
       if (charProps) {
-        return getStartingPoints(charProps);
+        charPoints = 20 - getStartingPoints(charProps);
       }
-      return 20;
+      return charPoints;
     }
   },
 
@@ -147,17 +114,6 @@ export default Vue.extend({
       return this.characterRules.filter(charRule =>
         isSameCard(charRule, ruleCard, anyLevel)
       );
-    },
-
-    ownsInGroup(cardType: string): boolean {
-      if (!this.tabs[cardType]) {
-        return false;
-      }
-      return this.tabs[cardType].some(ruleCardGroup => {
-        return ruleCardGroup.ruleCards.some(({ restrictions }) => {
-          return restrictions.owned > 0;
-        });
-      });
     },
 
     cardAction({ action, ruleCard }: { action: string; ruleCard: RuleCard }) {
@@ -204,7 +160,7 @@ export default Vue.extend({
     },
 
     updateStartingPoints(pointDifference: number) {
-      const charUpdate = {} as Character;
+      const charUpdate: Partial<Character> = {};
       charUpdate.startingPoints = 20 - pointDifference;
       charUpdate.startingCash = 500 + pointDifference * 100;
       this.$store.dispatch("updateCharacter", charUpdate);
