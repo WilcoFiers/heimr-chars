@@ -21,19 +21,17 @@
           <v-row v-else>
             <v-col>
               <v-expansion-panels>
-                <RuleCardGroupPanel
+                <v-expansion-panel
                   v-for="ruleCardGroup in ruleCardGroups"
                   :key="ruleCardGroup.groupName"
-                  :ruleCardGroup="ruleCardGroup"
                 >
-                  <template #cardActions="{ ruleCard, restrictions }">
-                    <slot
-                      name="cardActions"
-                      :ruleCard="ruleCard"
-                      :restrictions="restrictions"
-                    />
-                  </template>
-                </RuleCardGroupPanel>
+                  <v-expansion-panel-header class="d-flex">
+                    <RuleCardGroupHeader :ruleCardGroup="ruleCardGroup" />
+                  </v-expansion-panel-header>
+                  <v-expansion-panel-content>
+                    <slot :ruleCardGroup="ruleCardGroup" />
+                  </v-expansion-panel-content>
+                </v-expansion-panel>
               </v-expansion-panels>
             </v-col>
           </v-row>
@@ -47,14 +45,15 @@
 import Vue from "vue";
 import { RuleCard, CharacterRule, Character } from "@/types";
 import { groupCards, RuleCardGroup } from "@/heimr-data";
-import RuleCardGroupPanel from "@/components/domain/RuleCardGroup.vue";
+import RuleCardGroupHeader from "@/components/domain/RuleCardGroupHeader.vue";
+import { RuleCardRestrictions } from "@/heimr/validateCardActions";
 
 type Tabs = { [propName: string]: RuleCardGroup[] };
 
 export default Vue.extend({
   name: "DomainTabs",
   components: {
-    RuleCardGroupPanel
+    RuleCardGroupHeader
   },
   props: {
     domain: {

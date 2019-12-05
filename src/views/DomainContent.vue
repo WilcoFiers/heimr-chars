@@ -13,12 +13,16 @@
           :characterRules="characterRules"
           :character="character"
         >
-          <template #cardActions="{ ruleCard, restrictions }">
-            <RuleCardBtnBar
-              :restrictions="restrictions"
-              :ruleCard="ruleCard"
-              @cardAction="action => cardAction({ action, ruleCard })"
-            />
+          <template #default="{ ruleCardGroup }">
+            <RuleCardGroupPanel :ruleCardGroup="ruleCardGroup">
+              <template #cardActions="{ ruleCard, restrictions }">
+                <RuleCardBtnBar
+                  :restrictions="restrictions"
+                  :ruleCard="ruleCard"
+                  @cardAction="action => cardAction({ action, ruleCard })"
+                />
+              </template>
+            </RuleCardGroupPanel>
           </template>
         </DomainTabs>
       </v-col>
@@ -54,13 +58,14 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { domains, groupCards, RuleCardGroup } from "@/heimr-data";
+import { domains, RuleCardGroup } from "@/heimr-data";
 import { isSameCard } from "@/heimr/isSameCard";
 import { getStartingPoints } from "@/heimr/computedProps";
-import RuleExpansionPanel from "@/components/domain/RuleExpansionPanel.vue";
 import RuleCardBtnBar from "@/components/domain/RuleCardBtnBar.vue";
 import CreationSummary from "@/components/summary/CreationSummary.vue";
 import TradePointsBtn from "@/components/character/TradePointsBtn.vue";
+import RuleCardGroupPanel from "@/components/domain/RuleCardGroup.vue";
+
 import { Domain, RuleCard, State, CharacterRule, ConditionCard } from "@/types";
 import { Character } from "@/types";
 
@@ -74,6 +79,7 @@ export default Vue.extend({
     CreationSummary,
     TradePointsBtn,
     DomainTabs,
+    RuleCardGroupPanel,
     RuleCardBtnBar
   },
   data() {
