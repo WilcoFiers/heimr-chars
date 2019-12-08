@@ -1,10 +1,37 @@
-import { Character, CharacterRule } from "@/types";
+import { Character, CharacterRule, RuleCard } from "@/types";
 import { findRuleCard, parseRuleValue } from "@/heimr-data";
 
 export const rulesetDefaults = {
   startingPoints: 20,
   startingCash: 500,
   resources: 20
+};
+
+export const getRulePoints = (
+  characterRule: CharacterRule,
+  ruleCard: RuleCard
+): number | void => {
+  if (characterRule.points !== undefined) {
+    return characterRule.points;
+  }
+  if (ruleCard.type === "skill" || ruleCard.type === "condition") {
+    return ruleCard.points;
+  }
+};
+
+export const getRulePrice = (
+  characterRule: CharacterRule,
+  ruleCard: RuleCard
+): number | void => {
+  if (characterRule.cashPaid !== undefined) {
+    return characterRule.cashPaid;
+  }
+  if (ruleCard.type === "item" || ruleCard.type === "consumable") {
+    const { value } = parseRuleValue(ruleCard.marketPrice) || {
+      value: undefined
+    };
+    return value;
+  }
 };
 
 export const getStartingPoints = (character: Character): number => {
@@ -23,8 +50,8 @@ export const getStartingCash = (character: Character): number => {
 
 export const getPointsSpent = (characterRules: CharacterRule[]): number => {
   return characterRules.reduce((sum: number, characterRule) => {
-    if (characterRule.pointsPaid !== undefined) {
-      return sum + characterRule.pointsPaid;
+    if (characterRule.points !== undefined) {
+      return sum + characterRule.points;
     }
 
     const ruleCard = findRuleCard(characterRule);
@@ -66,9 +93,9 @@ export function getMonthlySavings(
     (sum, characterRule): number => {
       if (
         characterRule.type === "skill" &&
-        characterRule.pointsPaid !== undefined
+        characterRule.points !== undefined
       ) {
-        return sum + characterRule.pointsPaid;
+        return sum + characterRule.points;
       }
       const ruleCard = findRuleCard(characterRule);
       if (

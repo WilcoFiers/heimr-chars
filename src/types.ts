@@ -100,8 +100,12 @@ export type NewCharacterRule = {
   name: string;
   domainName: string;
   type: RuleType;
+  nameDetail?: string;
   cashPaid?: number;
-  pointsPaid?: number;
+  points?: number;
+  upkeep?: number;
+  dormant?: boolean;
+  counters?: number;
 };
 
 export type CharacterRule = NewCharacterRule & DbEntry;

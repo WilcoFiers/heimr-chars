@@ -92,6 +92,9 @@ export function parseRuleValue(str?: string): RuleValue | null {
   if (!str) {
     return null;
   }
+  if (str.toLowerCase() === "free") {
+    return { value: 0, unit: "¢" };
+  }
 
   const match = str.match(parserReg);
   if (match === null || isNaN(parseInt(match[0]))) {

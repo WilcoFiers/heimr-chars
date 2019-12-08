@@ -100,11 +100,11 @@ export const character: CharacterModule = {
       return charactersCol.doc(state.charId).update({ archive: true });
     },
 
-    addCharacterRule({ state }, { type, name, domainName }: NewCharacterRule) {
+    addCharacterRule({ state }, ruleCard: NewCharacterRule) {
       const rulesRef: CharacterRuleCol = db.collection(
         `characters/${state.charId}/rules`
       );
-      return rulesRef.add({ type, name, domainName });
+      return rulesRef.add(ruleCard);
     },
 
     removeCharacterRule({ state }, id: string) {

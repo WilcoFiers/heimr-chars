@@ -1,9 +1,30 @@
 <template>
   <v-container>
     <v-row>
-      <h1>{{ name }}'s Skills &amp; Conditions</h1>
+      <h1>{{ characterName }}'s Details</h1>
       <v-spacer />
       <v-btn :to="domains()">Domains</v-btn>
+    </v-row>
+
+    <v-row>
+      <v-col cols="4">
+        <CreationSummary
+          :character="character"
+          :characterRules="characterRules"
+        />
+      </v-col>
+      <v-col cols="4">
+        <CharacterSummary
+          :character="character"
+          :characterRules="characterRules"
+        />
+      </v-col>
+      <v-col cols="4">
+        <DowntimeSummary
+          :character="character"
+          :characterRules="characterRules"
+        />
+      </v-col>
     </v-row>
 
     <v-row>
@@ -14,6 +35,7 @@
             v-for="(skill, index) in skills"
             removable
             :key="index"
+            :characterRule="skill"
             :ruleCard="findRuleCard(skill)"
             @remove="removeRule(skill)"
           />
@@ -27,6 +49,7 @@
             v-for="(condition, index) in conditions"
             removable
             :key="index"
+            :characterRule="condition"
             :ruleCard="findRuleCard(condition)"
             @remove="removeRule(condition)"
           />
@@ -40,6 +63,7 @@
             v-for="(item, index) in items"
             removable
             :key="index"
+            :characterRule="item"
             :ruleCard="findRuleCard(item)"
             @remove="removeRule(item)"
           />
@@ -53,6 +77,7 @@
             v-for="(consumable, index) in consumables"
             removable
             :key="index"
+            :characterRule="consumable"
             :ruleCard="findRuleCard(consumable)"
             @remove="removeRule(consumable)"
           />
@@ -65,40 +90,53 @@
 <script lang="ts">
 import Vue from "vue";
 import RuleExpansionPanel from "@/components/domain/RuleExpansionPanel.vue";
-import { CharacterRule } from "@/types";
+import CreationSummary from "@/components/summary/CreationSummary.vue";
+import CharacterSummary from "@/components/summary/CharacterSummary.vue";
+import DowntimeSummary from "@/components/summary/DowntimeSummary.vue";
+import { CharacterRule, Character } from "@/types";
 import { getCharacterRulesCol } from "@/firebase";
 import { domains, findRuleCard } from "@/heimr-data";
 import { State } from "@/store";
 
 export default Vue.extend({
   name: "CharacterResources",
-  components: { RuleExpansionPanel },
-
-  data() {
-    const { charProps } = (this.$store.state as State).character;
-    return {
-      name: charProps ? charProps.name : ""
-    };
+  components: {
+    RuleExpansionPanel,
+    CreationSummary,
+    CharacterSummary,
+    DowntimeSummary
   },
 
   computed: {
-    rules(): CharacterRule[] {
+    characterName() {
+      const { name = "" } =
+        (this.$store.state as State).character.charProps || {};
+      return name;
+    },
+    character(): Character | undefined {
+      return (this.$store.state as State).character.charProps;
+    },
+    characterRules(): CharacterRule[] {
       const { rules } = (this.$store.state as State).character;
       return rules || [];
     },
     skills(): CharacterRule[] {
-      return this.rules.filter(({ type }: CharacterRule) => type === "skill");
+      return this.characterRules.filter(
+        ({ type }: CharacterRule) => type === "skill"
+      );
     },
     conditions(): CharacterRule[] {
-      return this.rules.filter(
+      return this.characterRules.filter(
         ({ type }: CharacterRule) => type === "condition"
       );
     },
     items(): CharacterRule[] {
-      return this.rules.filter(({ type }: CharacterRule) => type === "item");
+      return this.characterRules.filter(
+        ({ type }: CharacterRule) => type === "item"
+      );
     },
     consumables(): CharacterRule[] {
-      return this.rules.filter(
+      return this.characterRules.filter(
         ({ type }: CharacterRule) => type === "consumable"
       );
     }

@@ -53,6 +53,15 @@
         </CreationSummary>
       </v-col>
     </v-row>
+
+    <v-dialog v-model="dialog" max-width="600">
+      <RuleCardForm
+        :ruleCard="customRuleCard"
+        @save="addRuleCustomSave"
+        @cancel="dialog = false"
+        ref="form"
+      />
+    </v-dialog>
   </v-container>
 </template>
 
@@ -65,9 +74,10 @@ import RuleCardBtnBar from "@/components/domain/RuleCardBtnBar.vue";
 import CreationSummary from "@/components/summary/CreationSummary.vue";
 import TradePointsBtn from "@/components/character/TradePointsBtn.vue";
 import RuleCardGroupPanel from "@/components/domain/RuleCardGroup.vue";
+import RuleCardForm from "@/components/domain/RuleCardForm.vue";
 
 import { Domain, RuleCard, State, CharacterRule, ConditionCard } from "@/types";
-import { Character } from "@/types";
+import { Character, NewCharacterRule } from "@/types";
 
 import DomainTabs from "@/components/domain/DomainTabs.vue";
 
@@ -80,15 +90,26 @@ export default Vue.extend({
     TradePointsBtn,
     DomainTabs,
     RuleCardGroupPanel,
-    RuleCardBtnBar
+    RuleCardBtnBar,
+    RuleCardForm
   },
-  data() {
+  data(): { domain: Domain; dialog: boolean; customRuleCard: RuleCard | null } {
     const domain = domains.find(({ domainName }) => {
       const match = domainName.toLowerCase().replace(/\s+/g, "_");
       return match === this.$route.params.domain;
     }) as Domain;
+    const dialog = false;
+    const customRuleCard: RuleCard | null = null;
+    return { domain, dialog, customRuleCard };
+  },
 
-    return { domain };
+  watch: {
+    dialog(val) {
+      if (val === false) {
+        // @ts-ignore // Cancel everything on this form
+        this.$refs.form.reset();
+      }
+    }
   },
 
   computed: {
@@ -130,6 +151,8 @@ export default Vue.extend({
           return this.removeRule(ruleCard);
         case "changeRuleLevel":
           return this.changeRuleLevel(ruleCard);
+        case "addRuleCustom":
+          return this.addRuleCustom(ruleCard);
 
         default:
           throw new Error(
@@ -142,6 +165,27 @@ export default Vue.extend({
       const domainName = this.domain.domainName;
       const { type, name } = rule;
       const characterCard = { type, name, domainName };
+      this.$store.dispatch("addCharacterRule", characterCard);
+    },
+
+    addRuleCustom(ruleCard: RuleCard) {
+      this.dialog = true;
+      this.customRuleCard = ruleCard;
+    },
+
+    addRuleCustomSave(out: Partial<NewCharacterRule>) {
+      this.dialog = false;
+      if (this.customRuleCard === null) {
+        return;
+      }
+      const domainName = this.domain.domainName;
+      const { type, name } = this.customRuleCard;
+      const characterCard: NewCharacterRule = {
+        ...out,
+        type,
+        name,
+        domainName
+      };
       this.$store.dispatch("addCharacterRule", characterCard);
     },
 

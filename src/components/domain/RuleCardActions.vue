@@ -1,7 +1,9 @@
 <template>
   <div class="flex-grow-1">
     <div class="d-flex" v-if="!multiple">
-      <AddRuleCardBtn @click="add" v-if="hasAdd" :ruleCard="ruleCard" />
+      <v-btn @click="add" v-if="hasAdd">
+        <v-icon left>mdi-plus</v-icon>add
+      </v-btn>
       <v-spacer />
       <v-btn @click="remove" v-if="hasRemove">
         <v-icon left>mdi-minus</v-icon>Remove
@@ -24,11 +26,9 @@
 
 <script lang="ts">
 import Vue from "vue";
-import AddRuleCardBtn from "./AddRuleCardBtn.vue";
 
 export default Vue.extend({
   name: "RuleCardActions",
-  components: { AddRuleCardBtn },
   props: {
     ruleCard: Object,
     quantity: Number,

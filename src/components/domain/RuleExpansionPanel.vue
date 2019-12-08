@@ -30,6 +30,7 @@ export default Vue.extend({
   },
   props: {
     ruleCard: Object,
+    characterRule: Object,
     quantity: Number,
     multiple: Boolean,
     removable: Boolean

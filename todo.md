@@ -1,16 +1,16 @@
 # TODO
 
 - Update resources view UX
-- Add a homepage
-- Used named slots to simplify cards stuff
-- "Add special" option under the "add" button
-- Add skills / items as new char doesn't show up
-- Add help icons throughout
+- Implement "Monthly savings"
 - Add dormant skill buy at char creation
-- Set required props in compnents
 - Show "free" and "var" as prices in group view
+- Enforce required fields for "var" prices and "..." in rule name
+- Add a v-stepper for char creation: 1. Race, 2 domsinas, 3. <domain> ... x. complete
+- Add a homepage
+- fix bug where adding rules to a newly created char don't show up
+- Add help icons throughout
+- Set required props in compnents
 - Show link to domains in resources view
-- ability to set custom names for cards with "..."
 - Update race selection view UX
 - Overrides & counters for ruleCards
 - Build out tests
@@ -54,3 +54,4 @@
 - loan / loan use tokens instead of levels
 - Figure out which conditions can be bought during char creation
 - How do you get a higher salary if you don't meet the "X points in a domain" requirement
+- Armor is not types as "item" but as "armour": http://heimr.nl/rulebooks/domains/armed_combat/armour
