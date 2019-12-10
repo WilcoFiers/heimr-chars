@@ -1,5 +1,5 @@
 {
-  "date": "2019-11-22T22:16:10.138Z",
+  "date": "2019-12-10T20:07:15.421Z",
   "races": [
     {
       "type": "race",
@@ -64,7 +64,7 @@
       "uniqueRules": [
         "Extra indulgence: Three times per day, do something you enjoy for 5 min (Indulgence): Regain 1 WP"
       ],
-      "downtimeRules": ["You have 5ℜ additional each month."],
+      "downtimeRules": ["You have an additional 5ℜ each month."],
       "hitpoints": 1,
       "willpower": 6
     },
@@ -147,7 +147,7 @@
         "Once per day, do something you enjoy for 5 min (Indulgence): Regain 1 WP"
       ],
       "downtimeRules": [
-        "In character creation, spend 3pt on dormant skills",
+        "In character creation, spend 3 extra points on dormant skills.",
         "Lose 4 months downtime (Tree regeneration): Lose all conditions, all skills go dormant. After this, spend 18 points regaining conditions lost this way and retraining dormant skills. You can only do this once."
       ],
       "hitpoints": 1,
@@ -374,6 +374,96 @@
       ],
       "conditions": [],
       "items": [
+        {
+          "type": "item",
+          "name": "Light Armour",
+          "uniqueRules": ["When wearing this, you have +1 HP."],
+          "sharedRules": [
+            "When you drop to 0 HP or lower, add 1 counter.",
+            "When this item has 3 counters it is broken and cannot be worn.",
+            "This item has special Physrep requirements."
+          ],
+          "large": true,
+          "marketPrice": "200¢",
+          "restorePrice": "200¢"
+        },
+        {
+          "type": "item",
+          "name": "Medium Armour",
+          "uniqueRules": ["When wearing this, you have +2 HP."],
+          "sharedRules": [
+            "When you drop to 0 HP or lower, add 1 counter.",
+            "When this item has 3 counters it is broken and cannot be worn.",
+            "This item has special Physrep requirements."
+          ],
+          "large": true,
+          "marketPrice": "500¢",
+          "restorePrice": "400¢"
+        },
+        {
+          "type": "item",
+          "name": "Heavy/Medium Armour",
+          "uniqueRules": [
+            "When wearing this, you have +2 HP.",
+            "Once per day call resist against a stumble effect."
+          ],
+          "sharedRules": [
+            "When you drop to 0 HP or lower, add 1 counter.",
+            "When this item has 3 counters it is broken and cannot be worn.",
+            "This item has special Physrep requirements."
+          ],
+          "large": true,
+          "marketPrice": "700¢",
+          "restorePrice": "500¢"
+        },
+        {
+          "type": "item",
+          "name": "Heavy Armour",
+          "uniqueRules": [
+            "When wearing this, you have +3 HP.",
+            "Once per day call resist against a stumble effect."
+          ],
+          "sharedRules": [
+            "When you drop to 0 HP or lower, add 1 counter.",
+            "When this item has 3 counters it is broken and cannot be worn."
+          ],
+          "large": true,
+          "marketPrice": "1100¢",
+          "restorePrice": "600¢"
+        },
+        {
+          "type": "item",
+          "name": "Massive/Heavy Armour",
+          "uniqueRules": [
+            "When wearing this, you have +3 HP.",
+            "Once after every short rest you can call resist against a stumble effect."
+          ],
+          "sharedRules": [
+            "When you drop to 0 HP or lower, add 1 counter.",
+            "When this item has 3 counters it is broken and cannot be worn.",
+            "This item has special Physrep requirements."
+          ],
+          "large": true,
+          "marketPrice": "1600¢",
+          "restorePrice": "700¢"
+        },
+        {
+          "type": "item",
+          "name": "Massive Armour",
+          "uniqueRules": [
+            "When wearing this, you have +4 HP.",
+            "Once after every short rest you can call resist against a stumble effect.",
+            "This armour only fits the original owner. Pay the restore price to refit the item."
+          ],
+          "sharedRules": [
+            "When you drop to 0 HP or lower, add 1 counter.",
+            "When this item has 3 counters it is broken and cannot be worn.",
+            "This item has special Physrep requirements."
+          ],
+          "large": true,
+          "marketPrice": "2100¢",
+          "restorePrice": "800¢"
+        },
         {
           "type": "item",
           "name": "Buckler",
@@ -1575,7 +1665,7 @@
         },
         {
           "type": "condition",
-          "name": "Higher Cost of Living",
+          "name": "Higher Cost of Living 1",
           "details": "You are living a bit more luxurious than your peers. You are probably burning the wealth gained from a lucky investment or a shady one time income.",
           "uniqueRules": [
             "You have 1 more maximum WP.",
@@ -1584,7 +1674,9 @@
           ],
           "sharedRules": [
             "You are free to lose this condition at any time: If you do; you will have 1 less maximum WP for a full year."
-          ]
+          ],
+          "category": "Higher Cost of Living",
+          "level": 1
         },
         {
           "type": "condition",
@@ -3909,7 +4001,7 @@
         },
         {
           "type": "item",
-          "name": "\"Material Compendium\"",
+          "name": "Material Compendium",
           "details": "Almost all mages that create their own spells have a copy of this or a similar book. This book details how spells can be crafted. Author: The Thaumatology caste of Asgard.",
           "uniqueRules": [
             "OC updated book which contains descriptions of several things important for Primordial Magic, primarily among them descriptions of the various types of matter, their properties and uses. Get the physrep from the GM's."
