@@ -1,13 +1,13 @@
 # TODO
 
-- Update resources view UX
-- Implement "Monthly savings"
-- Add dormant skill buy at char creation
-- Show "free" and "var" as prices in group view
 - Enforce required fields for "var" prices and "..." in rule name
-- Add a v-stepper for char creation: 1. Race, 2 domsinas, 3. <domain> ... x. complete
-- Add a homepage
+- Show "free" and "var" as prices in group view
+- Add dormant skill buy at char creation
+- Group weapons, shields & armor
 - fix bug where adding rules to a newly created char don't show up
+- Add a v-stepper for char creation: 1. Race, 2 domsinas, 3. <domain> ... x. complete
+- Update resources view UX
+- Add a homepage
 - Add help icons throughout
 - Set required props in compnents
 - Show link to domains in resources view
@@ -41,10 +41,8 @@
 
 - "You receive a free Materal Compendium item when you acquire this skill."
 - "If you have XX points worth of non-dormant skills or conditions in a single domain this condition is free."
-- "In character creation, spend 14 extra points on dormant skills."
-- "In character creation, spend 3pt on dormant skills"
-- "You have an additional 6ℜ each month."
-- "You have 5ℜ additional each month."
+- "In character creation, spend X extra points on dormant skills."
+- "You have an additional Xℜ each month."
 - "Retraining dormant skills costs 5ℜ per point"
 - "Once per month you can reduce the cost of training a skill with 7ℜ"
 - "You gain the Sturdy Stance 1 skill and it costs 2ℜ less to maintain"

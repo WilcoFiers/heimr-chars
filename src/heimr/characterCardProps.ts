@@ -1,11 +1,6 @@
 import { Character, CharacterRule, RuleCard } from "@/types";
 import { findRuleCard, parseRuleValue } from "@/heimr-data";
-
-export const rulesetDefaults = {
-  startingPoints: 20,
-  startingCash: 500,
-  resources: 20
-};
+import { getCharacterProps } from "./characterProps";
 
 export const getRulePoints = (
   characterRule: CharacterRule,
@@ -32,20 +27,6 @@ export const getRulePrice = (
     };
     return value;
   }
-};
-
-export const getStartingPoints = (character: Character): number => {
-  if (character.startingPoints === undefined) {
-    return rulesetDefaults.startingPoints;
-  }
-  return character.startingPoints;
-};
-
-export const getStartingCash = (character: Character): number => {
-  if (character.startingCash === undefined) {
-    return rulesetDefaults.startingCash;
-  }
-  return character.startingCash;
 };
 
 export const getPointsSpent = (characterRules: CharacterRule[]): number => {
@@ -97,6 +78,7 @@ export function getMonthlySavings(
       ) {
         return sum + characterRule.points;
       }
+
       const ruleCard = findRuleCard(characterRule);
       if (
         ruleCard &&
@@ -109,5 +91,10 @@ export function getMonthlySavings(
     },
     0
   );
-  return getStartingPoints(character) - skillPointCount;
+  const { monthlyResources, costOfLiving, resourceToCash } = getCharacterProps(
+    character
+  );
+  const remainder =
+    monthlyResources - Math.round(costOfLiving / resourceToCash);
+  return remainder - skillPointCount;
 }

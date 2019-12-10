@@ -9,14 +9,12 @@ import Vue from "vue";
 import ResourceSummary from "./ResourceSummary.vue";
 import { Character, CharacterRule } from "@/types";
 import { character } from "@/store/character";
+import { getStartingPoints, getStartingCash } from "@/heimr/characterProps";
 import {
   getPointsSpent,
-  getStartingPoints,
   getCashSpent,
-  getStartingCash,
   getMonthlySavings
-} from "@/heimr/computedProps";
-
+} from "@/heimr/characterCardProps";
 type numTuple = [number, number];
 
 function tupleToString(val: numTuple, unit: string = ""): string {

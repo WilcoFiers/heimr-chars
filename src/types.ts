@@ -80,6 +80,9 @@ export type NewCharacter = {
   lastUpdated?: any;
   startingPoints?: number;
   startingCash?: number;
+  monthlyResources?: number;
+  costOfLiving?: number;
+  resourceToCash?: number;
 };
 
 export type Character = NewCharacter & DbEntry;

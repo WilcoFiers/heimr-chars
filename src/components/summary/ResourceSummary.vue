@@ -34,12 +34,8 @@
 import Vue from "vue";
 import { Character, CharacterRule } from "@/types";
 import { character } from "@/store/character";
-import {
-  getPointsSpent,
-  getStartingPoints,
-  getCashSpent,
-  getStartingCash
-} from "@/heimr/computedProps";
+import { getStartingPoints, getStartingCash } from "@/heimr/characterProps";
+import { getPointsSpent, getCashSpent } from "@/heimr/characterCardProps";
 
 export default Vue.extend({
   name: "ResourceSummary",

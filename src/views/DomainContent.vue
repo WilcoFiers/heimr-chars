@@ -69,7 +69,7 @@
 import Vue from "vue";
 import { domains, RuleCardGroup } from "@/heimr-data";
 import { isSameCard } from "@/heimr/isSameCard";
-import { getStartingPoints } from "@/heimr/computedProps";
+import { getStartingPoints } from "@/heimr/characterProps";
 import RuleCardBtnBar from "@/components/domain/RuleCardBtnBar.vue";
 import CreationSummary from "@/components/summary/CreationSummary.vue";
 import TradePointsBtn from "@/components/character/TradePointsBtn.vue";

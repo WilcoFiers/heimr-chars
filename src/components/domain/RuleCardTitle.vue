@@ -15,16 +15,16 @@
       :title="'Heimr lore for ' + loreName(ruleCard)"
       >lore</a
     >
-    <span v-else-if="pricePaid" :class="{ 'purple--text': pricePaid.custom }">{{
-      pricePaid.value
-    }}</span>
+    <span v-else-if="pricePaid" :class="{ 'purple--text': pricePaid.custom }">
+      {{ pricePaid.value }}
+    </span>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
 import { RaceCard } from "@/types";
-import { getRulePoints, getRulePrice } from "@/heimr/computedProps";
+import { getRulePoints, getRulePrice } from "@/heimr/characterCardProps";
 
 export default Vue.extend({
   name: "RuleCardTitle",
