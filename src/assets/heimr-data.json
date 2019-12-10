@@ -1,5 +1,5 @@
 {
-  "date": "2019-12-10T20:07:15.421Z",
+  "date": "2019-12-10T20:53:05.888Z",
   "races": [
     {
       "type": "race",
@@ -2732,10 +2732,12 @@
           "uniqueRules": [
             "You can change a plant ingredient into a roots, stem and flower ingredient.",
             "You can change a stem ingredient into a leaves and internodes ingredient.",
-            "You can change a flower ingredient into a petals, ovary and stamen ingredient.",
+            "You can change a flower ingredient into a petals, ovary and stamen ingredient."
+          ],
+          "sharedRules": [
+            "Note the new ingredients in your stock booklet.",
             "Each change takes 1 minute."
           ],
-          "sharedRules": ["Note the new ingredients in your stock booklet."],
           "points": 4,
           "requires": "You need a Plant knife set for this skill to work."
         },
@@ -2744,11 +2746,11 @@
           "name": "Alchemic cooking",
           "details": "You know how to keep temperate even and how to boil gasses away from certain ingredient.",
           "uniqueRules": [
-            "With a cauldron you can change some ingredients into cooked versions.",
-            "Each change takes 5 minutes."
+            "With a cauldron you can change some ingredients into cooked versions."
           ],
           "sharedRules": [
-            "Note a \"cooked\" version of the old ingredient into your stock booklet."
+            "Note a \"cooked\" version of the old ingredient into your stock booklet.",
+            "Each change takes 5 minutes."
           ],
           "points": 4,
           "requires": "You need a cauldron for this skill to work."
@@ -2758,11 +2760,11 @@
           "name": "Distilling",
           "details": "When you boil gasses away from certain ingredient you know how to catch them and turn them back into fluids by cooling.",
           "uniqueRules": [
-            "With a distillery you can change some ingredients into two different ingredients.",
-            "Each change takes 5 minutes."
+            "With a distillery you can change some ingredients into two different ingredients."
           ],
           "sharedRules": [
-            "Note both a \"still residue\" and a \"distilled\" version of the old ingredient into your stock booklet."
+            "Note both a \"still residue\" and a \"distilled\" version of the old ingredient into your stock booklet.",
+            "Each change takes 5 minutes."
           ],
           "points": 4,
           "requires": "Alchemic cooking skill. You also need a distillery for this skill to work."

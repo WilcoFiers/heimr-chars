@@ -18,8 +18,7 @@ const baseProps = [
   "details",
   "unique rule",
   "shared rule",
-  "downtime rule",
-  "rule"
+  "downtime rule"
 ];
 
 export function toBaseRule(ruleObj: RuleObject): BaseRuleCard | null {
@@ -43,9 +42,6 @@ export function toBaseRule(ruleObj: RuleObject): BaseRuleCard | null {
   }
   if (ruleObj["downtime rule"]) {
     baseRule.downtimeRules = ruleObj["downtime rule"];
-  }
-  if (ruleObj.rule) {
-    baseRule.uniqueRules = (baseRule.uniqueRules || []).concat(ruleObj.rule);
   }
   return baseRule;
 }
@@ -164,7 +160,7 @@ export function toConsumable(ruleObj: RuleObject): ConsumableCard | null {
   return consumable;
 }
 
-const skillProps = ["skill", "points", "point", "requires", "level", "wp"];
+const skillProps = ["skill", "points", "requires", "level", "wp"];
 
 export function toSkill(ruleObj: RuleObject): SkillCard | null {
   const base = toBaseRule(ruleObj);
@@ -174,8 +170,7 @@ export function toSkill(ruleObj: RuleObject): SkillCard | null {
   logUnknowns(ruleObj, skillProps);
 
   const points = parseInt(ruleObj.points && ruleObj.points[0]);
-  const point = parseInt(ruleObj.point && ruleObj.point[0]);
-  if (isNaN(points) && isNaN(point)) {
+  if (isNaN(points)) {
     console.log(`skill '${ruleObj.name}' has no points`);
     return null;
   }
@@ -183,7 +178,7 @@ export function toSkill(ruleObj: RuleObject): SkillCard | null {
   const skill: SkillCard = {
     ...base,
     type: "skill",
-    points: points || point,
+    points: points,
     ...toLevel(base.name)
   };
   const { requires, level } = ruleObj;
