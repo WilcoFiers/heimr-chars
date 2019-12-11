@@ -1,6 +1,6 @@
 import { Character, RuleCard, CharacterRule } from "@/types";
 import { isSameCard } from "./isSameCard";
-import { multiCardRuleMatches } from "./rule-regex";
+import { multiCardRuleMatches, cardMatchesRule } from "./rule-regex";
 
 export type ValidationIssues = string[];
 
@@ -31,20 +31,7 @@ export const canOwnMultiple = (ruleCard: RuleCard): boolean => {
   if (isMultiOwnedType) {
     return isMultiOwnedType;
   }
-
-  const rules: string[] = [];
-  if (Array.isArray(ruleCard.uniqueRules)) {
-    rules.push(...ruleCard.uniqueRules);
-  }
-  if (Array.isArray(ruleCard.downtimeRules)) {
-    rules.push(...ruleCard.downtimeRules);
-  }
-  if (Array.isArray(ruleCard.sharedRules)) {
-    rules.push(...ruleCard.sharedRules);
-  }
-  return rules.some(ruleText =>
-    multiCardRuleMatches.some(regex => regex.test(ruleText))
-  );
+  return !!cardMatchesRule(ruleCard, multiCardRuleMatches);
 };
 
 export const hasRequired = (

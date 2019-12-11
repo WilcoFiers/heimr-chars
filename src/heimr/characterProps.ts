@@ -1,4 +1,6 @@
-import { Character } from "@/types";
+import { Character, RaceCard } from "@/types";
+import { races } from "@/heimr-data";
+import { cardMatchesRule, freeDormantSkills } from "./rule-regex";
 
 interface CharacterProps {
   startingPoints: number;
@@ -53,11 +55,21 @@ export const getResourceToCash = (character: Character): number => {
   return character.resourceToCash;
 };
 
+export const getRaceCard = (character: Character): RaceCard | null => {
+  return races.find(({ name }) => name === character.race) || null;
+};
+
 export const getFreeDormant = (character: Character): number => {
-  if (character.resourceToCash === undefined) {
-    return rulesetDefaults.resourceToCash;
+  const raceCard = getRaceCard(character);
+  if (!raceCard) {
+    return 0;
   }
-  return character.resourceToCash;
+  const freeDormantPoints = cardMatchesRule(raceCard, freeDormantSkills);
+  if (typeof freeDormantPoints !== "string") {
+    return 0;
+  }
+  const int = parseInt(freeDormantPoints);
+  return isNaN(int) ? 0 : int;
 };
 
 export const getCharacterProps = (character: Character): CharacterProps => {

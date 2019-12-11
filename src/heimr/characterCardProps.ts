@@ -29,21 +29,26 @@ export const getRulePrice = (
   }
 };
 
-export const getPointsSpent = (characterRules: CharacterRule[]): number => {
+export const getPointsSpent = (
+  characterRules: CharacterRule[],
+  dormant = false
+): number => {
   return characterRules.reduce((sum: number, characterRule) => {
     if (characterRule.points !== undefined) {
       return sum + characterRule.points;
     }
-
     const ruleCard = findRuleCard(characterRule);
     if (
-      ruleCard &&
-      (ruleCard.type === "skill" || ruleCard.type === "condition") &&
-      ruleCard.points !== undefined
+      !ruleCard ||
+      ruleCard.type === "item" ||
+      ruleCard.type === "consumable"
     ) {
-      return sum + ruleCard.points;
+      return sum;
     }
-    return sum;
+    if (!!characterRule.dormant !== dormant) {
+      return sum;
+    }
+    return sum + (ruleCard.points || 0);
   }, 0);
 };
 

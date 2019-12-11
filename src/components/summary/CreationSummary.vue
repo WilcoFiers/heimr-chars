@@ -6,18 +6,19 @@
 
 <script lang="ts">
 import Vue from "vue";
-import ResourceSummary from "./ResourceSummary.vue";
+import ResourceSummary, { Stat } from "./ResourceSummary.vue";
 import { Character, CharacterRule } from "@/types";
 import { character } from "@/store/character";
-import { getStartingPoints, getStartingCash } from "@/heimr/characterProps";
+import { getCharacterProps } from "@/heimr/characterProps";
 import {
   getPointsSpent,
   getCashSpent,
   getMonthlySavings
 } from "@/heimr/characterCardProps";
-type numTuple = [number, number];
 
-function tupleToString(val: numTuple, unit: string = ""): string {
+type NumTuple = [number, number];
+
+function tupleToString(val: NumTuple, unit: string = ""): string {
   return `${val[0]}${unit} / ${val[1]}${unit}`;
 }
 
@@ -34,14 +35,17 @@ export default Vue.extend({
   },
 
   computed: {
-    creationStats(): object {
+    creationStats(): Stat[] {
       const charRules = this.characterRules as CharacterRule[];
       const char = (this.character || {}) as Character;
-      const cash: numTuple = [getCashSpent(charRules), getStartingCash(char)];
-      const points: numTuple = [
-        getPointsSpent(charRules),
-        getStartingPoints(char)
-      ];
+
+      const { startingPoints, startingCash, freeDormant } = getCharacterProps(
+        char
+      );
+
+      const cash: NumTuple = [getCashSpent(charRules), startingCash];
+      const points: NumTuple = [getPointsSpent(charRules), startingPoints];
+      const dormant: NumTuple = [getPointsSpent(charRules, true), freeDormant];
       const monthlySavings = getMonthlySavings(char, charRules);
 
       return [
@@ -54,6 +58,12 @@ export default Vue.extend({
           title: "Cash",
           value: tupleToString(cash, "¢"),
           error: cash[0] > cash[1]
+        },
+        {
+          title: "Dormant skills",
+          value: tupleToString(dormant),
+          error: dormant[0] > dormant[1],
+          hidden: !dormant[0] && !dormant[1]
         },
         {
           title: "Monthly savings",

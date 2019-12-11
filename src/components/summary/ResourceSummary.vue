@@ -7,7 +7,7 @@
     </v-row>
 
     <v-row
-      v-for="(stat, i) in statBlocks"
+      v-for="(stat, i) in visibleStatBlocks"
       :key="i"
       dense
       :class="{ 'error--text': stat.error }"
@@ -25,7 +25,6 @@
       </v-col>
       <v-col>{{ stat.value }}</v-col>
     </v-row>
-
     <slot />
   </v-container>
 </template>
@@ -37,11 +36,23 @@ import { character } from "@/store/character";
 import { getStartingPoints, getStartingCash } from "@/heimr/characterProps";
 import { getPointsSpent, getCashSpent } from "@/heimr/characterCardProps";
 
+export type Stat = {
+  title: string;
+  value: string;
+  error?: boolean;
+  hidden?: boolean;
+};
+
 export default Vue.extend({
   name: "ResourceSummary",
   props: {
     blockTitle: String,
     statBlocks: Array
+  },
+  computed: {
+    visibleStatBlocks() {
+      return (this.statBlocks as Stat[]).filter(({ hidden }) => !hidden);
+    }
   }
 });
 </script>
