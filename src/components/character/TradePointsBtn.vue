@@ -97,7 +97,7 @@ export default Vue.extend({
       this.dialog = false;
       const newValue = this.current / 20;
       if (newValue !== this.value) {
-        this.$emit("updateStartingPoints", newValue);
+        this.$emit("update", newValue);
       }
     }
   }
