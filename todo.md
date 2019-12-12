@@ -1,7 +1,6 @@
 # TODO
 
 - Distinguish dormant skills from active skills
-- Show "free" and "var" as prices in group view
 - Enforce required fields for "var" prices and "..." in rule name
 - Create an "Add as dormant" option to Add button, if Dormant skills > 0
 - Group weapons, shields & armor
