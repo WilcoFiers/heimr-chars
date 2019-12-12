@@ -77,10 +77,10 @@ export function getMonthlySavings(
 ): number {
   const skillPointCount = characterRules.reduce(
     (sum, characterRule): number => {
-      if (
-        characterRule.type === "skill" &&
-        characterRule.points !== undefined
-      ) {
+      if (characterRule.type !== "skill" || characterRule.dormant) {
+        return sum;
+      }
+      if (characterRule.points !== undefined) {
         return sum + characterRule.points;
       }
 

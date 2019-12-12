@@ -1,8 +1,9 @@
 # TODO
 
-- Enforce required fields for "var" prices and "..." in rule name
+- Distinguish dormant skills from active skills
 - Show "free" and "var" as prices in group view
-- Add dormant skill buy at char creation
+- Enforce required fields for "var" prices and "..." in rule name
+- Create an "Add as dormant" option to Add button, if Dormant skills > 0
 - Group weapons, shields & armor
 - fix bug where adding rules to a newly created char don't show up
 - Add a v-stepper for char creation: 1. Race, 2 domsinas, 3. <domain> ... x. complete
