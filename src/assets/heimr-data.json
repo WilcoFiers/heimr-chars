@@ -1,5 +1,5 @@
 {
-  "date": "2019-12-10T20:53:05.888Z",
+  "date": "2019-12-12T21:12:36.747Z",
   "races": [
     {
       "type": "race",
@@ -2730,6 +2730,7 @@
           "name": "Plant anatomy",
           "details": "You know what parts of the plant are what.",
           "uniqueRules": [
+            "You need a Plant knife set for this skill to work.",
             "You can change a plant ingredient into a roots, stem and flower ingredient.",
             "You can change a stem ingredient into a leaves and internodes ingredient.",
             "You can change a flower ingredient into a petals, ovary and stamen ingredient."
@@ -2738,28 +2739,28 @@
             "Note the new ingredients in your stock booklet.",
             "Each change takes 1 minute."
           ],
-          "points": 4,
-          "requires": "You need a Plant knife set for this skill to work."
+          "points": 4
         },
         {
           "type": "skill",
           "name": "Alchemic cooking",
           "details": "You know how to keep temperate even and how to boil gasses away from certain ingredient.",
           "uniqueRules": [
+            "You need a cauldron for this skill to work.",
             "With a cauldron you can change some ingredients into cooked versions."
           ],
           "sharedRules": [
             "Note a \"cooked\" version of the old ingredient into your stock booklet.",
             "Each change takes 5 minutes."
           ],
-          "points": 4,
-          "requires": "You need a cauldron for this skill to work."
+          "points": 4
         },
         {
           "type": "skill",
           "name": "Distilling",
           "details": "When you boil gasses away from certain ingredient you know how to catch them and turn them back into fluids by cooling.",
           "uniqueRules": [
+            "You need a distillery for this skill to work.",
             "With a distillery you can change some ingredients into two different ingredients."
           ],
           "sharedRules": [
@@ -2767,7 +2768,7 @@
             "Each change takes 5 minutes."
           ],
           "points": 4,
-          "requires": "Alchemic cooking skill. You also need a distillery for this skill to work."
+          "requires": "Alchemic cooking skill."
         },
         {
           "type": "skill",
@@ -3902,9 +3903,7 @@
             "Your verbal component provides 100 power.",
             "You can use verbal, somatic, hitpoint, willpower components to power automata."
           ],
-          "downtimeRules": [
-            "You can gain this condition during character creation for 1 skillpoint."
-          ]
+          "points": 1
         },
         {
           "type": "condition",
@@ -3916,9 +3915,7 @@
           "sharedRules": [
             "You can have this condition multiple times. Each time gives you access to another use of the power reserve component during the same activation."
           ],
-          "downtimeRules": [
-            "You can gain this condition during character creation for 5 skillpoints."
-          ],
+          "points": 5,
           "requires": "The Spark condition"
         }
       ],
