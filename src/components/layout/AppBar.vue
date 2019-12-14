@@ -34,7 +34,7 @@ export default Vue.extend({
   name: "AppBar",
 
   computed: mapState({
-    signedIn: (state: State) => state.user.signedIn,
+    signedIn: (state: State, _) => state.user.signedIn,
     displayName: (state: State) => state.user.displayName
   }),
 
