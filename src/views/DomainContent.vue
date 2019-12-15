@@ -19,6 +19,7 @@
                 <RuleCardBtnBar
                   :restrictions="restrictions"
                   :ruleCard="ruleCard"
+                  :allowDormant="allowDormant(ruleCard)"
                   @cardAction="action => cardAction({ action, ruleCard })"
                 />
               </template>
@@ -79,7 +80,7 @@ import {
 } from "@/types";
 import { domains, RuleCardGroup } from "@/heimr-data";
 import { isSameCard } from "@/heimr/isSameCard";
-import { getStartingPoints } from "@/heimr/characterProps";
+import { getStartingPoints, getFreeDormant } from "@/heimr/characterProps";
 import { getFormData } from "@/heimr/rule-card-customize";
 
 import RuleCardBtnBar from "@/components/domain/RuleCardBtnBar.vue";
@@ -167,6 +168,8 @@ export default Vue.extend({
           return this.removeRule(ruleCard);
         case "changeRuleLevel":
           return this.changeRuleLevel(ruleCard);
+        case "addDormantSkill":
+          return this.addRule(ruleCard, true);
         case "addRuleCustom":
           return this.addRuleCustom(ruleCard);
 
@@ -177,7 +180,12 @@ export default Vue.extend({
       }
     },
 
-    addRule(ruleCard: RuleCard) {
+    addRule(ruleCard: RuleCard, dormant: boolean = false) {
+      if (dormant && ruleCard.type !== "skill") {
+        throw new Error(
+          `Card ${ruleCard.name} can not be dormant, because it is not a skill`
+        );
+      }
       const formData = getFormData(ruleCard, { requiredOnly: true });
       const hasRequired = Object.values(formData).some(
         val => typeof val !== "undefined"
@@ -191,7 +199,8 @@ export default Vue.extend({
 
       const domainName = this.domain.domainName;
       const { type, name } = ruleCard;
-      this.$store.dispatch("addCharacterRule", { type, name, domainName });
+      const newCharRule: NewCharacterRule = { type, name, domainName, dormant };
+      this.$store.dispatch("addCharacterRule", newCharRule);
     },
 
     addRuleCustom(ruleCard: RuleCard) {
@@ -241,6 +250,14 @@ export default Vue.extend({
       charUpdate.startingPoints = 20 - pointDifference;
       charUpdate.startingCash = 500 + pointDifference * 100;
       this.$store.dispatch("updateCharacter", charUpdate);
+    },
+
+    allowDormant(ruleCard: RuleCard): boolean {
+      const { charProps } = (this.$store.state as State).character;
+      if (ruleCard.type !== "skill" || !charProps) {
+        return false;
+      }
+      return getFreeDormant(charProps) > 0;
     }
   }
 });

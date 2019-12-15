@@ -6,11 +6,14 @@
       v-if="!ownsOtherLevel"
       :disabled="!canAdd"
     >
-      <template #default>
-        <v-icon left>mdi-plus</v-icon>Add
-      </template>
+      <template #default> <v-icon left>mdi-plus</v-icon>Add </template>
       <template #menu>
         <v-list class="py-1">
+          <v-list-item
+            v-if="allowDormant"
+            @click="cardAction('addDormantSkill')"
+            >Add as dormant skill</v-list-item
+          >
           <v-list-item @click="cardAction('addRuleCustom')"
             >Add with changes</v-list-item
           >
@@ -50,7 +53,8 @@ export default Vue.extend({
   components: { OptionsBtn },
   props: {
     restrictions: Object,
-    ruleCard: Object
+    ruleCard: Object,
+    allowDormant: Boolean
   },
   computed: {
     owned(): number {

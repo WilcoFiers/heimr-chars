@@ -1,6 +1,6 @@
 # TODO
 
-- Create an "Add as dormant" option to Add button, if Dormant skills > 0
+- bug: dormant skills can not meet requirements
 - Prompt users when adding race / skill that gives a bonus ruleCard
 - Group weapons, shields & armor
 - Remove everything dependent on a required skill / condition when removing that ruleCard

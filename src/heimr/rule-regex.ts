@@ -18,6 +18,7 @@ export function cardMatchesRule(
   }
   for (const rule of rules) {
     for (const regex of matches) {
+      regex.lastIndex = 0; // Reset regex, prevent a gnarly bug
       const out = regex.exec(rule);
       if (out) {
         return out.groups && out.groups.value ? out.groups.value : true;
