@@ -49,7 +49,7 @@
 
         <v-spacer />
 
-        <v-btn type="submit" class="primary">
+        <v-btn type="submit" class="primary" :loading="saving">
           Next: Skills &amp; Conditions
           <v-icon>mdi-arrow-right</v-icon>
         </v-btn>
@@ -82,6 +82,9 @@ export default Vue.extend({
     },
     rules: {
       type: Array
+    },
+    saving: {
+      type: Boolean
     }
   },
 

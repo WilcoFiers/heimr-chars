@@ -73,12 +73,12 @@ export const character: CharacterModule = {
       });
     },
 
-    createCharacter(_, { name, race }) {
+    async createCharacter(_, { name, race }) {
       const playerID = (auth.currentUser as firebase.User).uid;
       const charId = createID();
 
       // Use .doc().set() instead of .add() so we can return charId when offline
-      charactersCol.doc(charId).set({
+      await charactersCol.doc(charId).set({
         name,
         race,
         playerID,

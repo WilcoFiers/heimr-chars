@@ -1,10 +1,9 @@
 # TODO
 
-- Distinguish dormant skills from active skills
-- Enforce required fields for "var" prices and "..." in rule name
 - Create an "Add as dormant" option to Add button, if Dormant skills > 0
+- Prompt users when adding race / skill that gives a bonus ruleCard
 - Group weapons, shields & armor
-- fix bug where adding rules to a newly created char don't show up
+- Remove everything dependent on a required skill / condition when removing that ruleCard
 - Add a v-stepper for char creation: 1. Race, 2 domsinas, 3. <domain> ... x. complete
 - Update resources view UX
 - Add a homepage
