@@ -57,6 +57,7 @@
     <v-dialog v-model="dialog" max-width="600">
       <RuleCardForm
         :ruleCard="customRuleCard"
+        :requiredOnly="ruleCardFormRequiredOnly"
         @save="addRuleCustomSave"
         @cancel="dialog = false"
         ref="form"
@@ -67,21 +68,35 @@
 
 <script lang="ts">
 import Vue from "vue";
+import {
+  Character,
+  NewCharacterRule,
+  Domain,
+  RuleCard,
+  State,
+  CharacterRule,
+  ConditionCard
+} from "@/types";
 import { domains, RuleCardGroup } from "@/heimr-data";
 import { isSameCard } from "@/heimr/isSameCard";
 import { getStartingPoints } from "@/heimr/characterProps";
+import { getFormData } from "@/heimr/rule-card-customize";
+
 import RuleCardBtnBar from "@/components/domain/RuleCardBtnBar.vue";
 import CreationSummary from "@/components/summary/CreationSummary.vue";
 import TradePointsBtn from "@/components/character/TradePointsBtn.vue";
 import RuleCardGroupPanel from "@/components/domain/RuleCardGroup.vue";
 import RuleCardForm from "@/components/domain/RuleCardForm.vue";
-
-import { Domain, RuleCard, State, CharacterRule, ConditionCard } from "@/types";
-import { Character, NewCharacterRule } from "@/types";
-
 import DomainTabs from "@/components/domain/DomainTabs.vue";
 
 type Tabs = { [propName: string]: RuleCardGroup[] };
+
+type DomainOverviewData = {
+  domain: Domain;
+  dialog: boolean;
+  customRuleCard: RuleCard | null;
+  ruleCardFormRequiredOnly: boolean;
+};
 
 export default Vue.extend({
   name: "DomainOverview",
@@ -93,14 +108,15 @@ export default Vue.extend({
     RuleCardBtnBar,
     RuleCardForm
   },
-  data(): { domain: Domain; dialog: boolean; customRuleCard: RuleCard | null } {
+  data(): DomainOverviewData {
     const domain = domains.find(({ domainName }) => {
       const match = domainName.toLowerCase().replace(/\s+/g, "_");
       return match === this.$route.params.domain;
     }) as Domain;
     const dialog = false;
+    const ruleCardFormRequiredOnly = false;
     const customRuleCard: RuleCard | null = null;
-    return { domain, dialog, customRuleCard };
+    return { domain, dialog, customRuleCard, ruleCardFormRequiredOnly };
   },
 
   watch: {
@@ -161,16 +177,27 @@ export default Vue.extend({
       }
     },
 
-    addRule(rule: RuleCard) {
+    addRule(ruleCard: RuleCard) {
+      const formData = getFormData(ruleCard, { requiredOnly: true });
+      const hasRequired = Object.values(formData).some(
+        val => typeof val !== "undefined"
+      );
+      if (hasRequired) {
+        this.dialog = true;
+        this.customRuleCard = ruleCard;
+        this.ruleCardFormRequiredOnly = true;
+        return;
+      }
+
       const domainName = this.domain.domainName;
-      const { type, name } = rule;
-      const characterCard = { type, name, domainName };
-      this.$store.dispatch("addCharacterRule", characterCard);
+      const { type, name } = ruleCard;
+      this.$store.dispatch("addCharacterRule", { type, name, domainName });
     },
 
     addRuleCustom(ruleCard: RuleCard) {
       this.dialog = true;
       this.customRuleCard = ruleCard;
+      this.ruleCardFormRequiredOnly = false;
     },
 
     addRuleCustomSave(out: Partial<NewCharacterRule>) {

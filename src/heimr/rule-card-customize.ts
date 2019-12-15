@@ -24,14 +24,24 @@ export const dataDefault: CustomCardData = Object.freeze({
   counters: undefined
 });
 
-export function getFormData(ruleCard: RuleCard): CustomCardData {
+export type FormDataOptions = {
+  requiredOnly?: boolean;
+};
+
+export function getFormData(
+  ruleCard: RuleCard,
+  options: FormDataOptions = {}
+): CustomCardData {
+  const { requiredOnly = false } = options;
   const data: CustomCardData = { ...dataDefault };
+
   if (ruleCard.name.includes("...")) {
     data.nameDetail = {
       required: true
     };
   }
-  if (ruleCard.type === "skill") {
+
+  if (ruleCard.type === "skill" && !requiredOnly) {
     data.points = {
       required: true,
       preset: ruleCard.points
@@ -44,19 +54,26 @@ export function getFormData(ruleCard: RuleCard): CustomCardData {
       required: true,
       preset: false
     };
-  } else if (ruleCard.type === "condition") {
+  }
+
+  if (ruleCard.type === "condition" && !requiredOnly) {
     data.points = {
       required: false,
       preset: ruleCard.points
     };
-  } else {
-    const { value = undefined } = parseRuleValue(ruleCard.marketPrice) || {};
-    data.cashPaid = {
-      required: true,
-      preset: value
-    };
   }
-  if (canHaveCounters(ruleCard)) {
+
+  if (ruleCard.type === "item" || ruleCard.type === "consumable") {
+    const { value = undefined } = parseRuleValue(ruleCard.marketPrice) || {};
+    if (!requiredOnly || typeof value === "undefined") {
+      data.cashPaid = {
+        required: true,
+        preset: value
+      };
+    }
+  }
+
+  if (!requiredOnly && canHaveCounters(ruleCard)) {
     data.counters = {
       required: true,
       preset: 0
