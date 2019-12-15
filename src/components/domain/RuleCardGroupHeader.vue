@@ -3,6 +3,7 @@
     <h3>
       {{ ruleGroupLevelText }}
       <v-icon small color="primary" v-if="groupIcon">{{ groupIcon }}</v-icon>
+      <em class="font-weight-light" v-if="dormant">Dorment</em>
     </h3>
     <v-spacer />
     <span class="flex-grow-0 mr-5">{{ ruleGroupCostText }}</span>
@@ -30,6 +31,13 @@ export default Vue.extend({
 
     ruleGroupCostText(): string {
       return ruleGroupCostText(this.ruleCardGroup);
+    },
+
+    dormant(): boolean {
+      const ruleCards = (this.ruleCardGroup as RuleCardGroup).ruleCards;
+      return ruleCards.some(
+        ({ restrictions }) => restrictions.canBeTrained.length === 0
+      );
     },
 
     groupIcon(): string {

@@ -140,9 +140,20 @@ export const validateLevelChange: ValidationAction = (
   return issues;
 };
 
-function validateAddDormantSkill() {}
-
-function validateMakeSkillDormant() {}
+export const validateDormantTraining: ValidationAction = (
+  _,
+  charRules,
+  ruleCard
+) => {
+  if (ruleCard.type !== "skill") {
+    return [`${ruleCard.name} can not be trained. You can only train skills`];
+  }
+  const charRule = charRules.find(charRule => isSameCard(charRule, ruleCard));
+  if (charRule?.dormant !== true) {
+    return [`${ruleCard.name} can not be trained. It is not dormant`];
+  }
+  return [];
+};
 
 export type RuleCardRestrictions = {
   owned: number;
@@ -151,6 +162,7 @@ export type RuleCardRestrictions = {
   add: ValidationIssues;
   remove: ValidationIssues;
   levelChange: ValidationIssues;
+  canBeTrained: ValidationIssues;
 };
 
 export const ruleCardRestrictions = (
@@ -164,6 +176,7 @@ export const ruleCardRestrictions = (
     canOwnMultiple: canOwnMultiple(args[2]),
     add: validateCardAdd(...args),
     remove: validateCardRemove(...args),
-    levelChange: validateLevelChange(...args)
+    levelChange: validateLevelChange(...args),
+    canBeTrained: validateDormantTraining(...args)
   };
 };

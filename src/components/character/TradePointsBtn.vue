@@ -2,11 +2,11 @@
   <div class="text-center">
     <v-dialog v-model="dialog" width="500">
       <template v-slot:activator="{ on }">
-        <v-btn v-on="on" v-bind="$attrs">Trade points for cash</v-btn>
+        <v-btn v-on="on" v-bind="$attrs">Exchange points</v-btn>
       </template>
 
       <v-card>
-        <v-card-title primary-title>Trade points for cash</v-card-title>
+        <v-card-title primary-title>Exchange points for cash</v-card-title>
 
         <v-card-text>
           <p>
