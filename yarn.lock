@@ -295,6 +295,14 @@
     "@babel/helper-plugin-utils" "^7.0.0"
     "@babel/plugin-syntax-optional-catch-binding" "^7.7.4"
 
+"@babel/plugin-proposal-optional-chaining@^7.7.5":
+  version "7.7.5"
+  resolved "https://agora.dequecloud.com/artifactory/api/npm/dequelabs/@babel/plugin-proposal-optional-chaining/-/plugin-proposal-optional-chaining-7.7.5.tgz#f0835f044cef85b31071a924010a2a390add11d4"
+  integrity sha1-8INfBEzvhbMQcakkAQoqOQrdEdQ=
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.0.0"
+    "@babel/plugin-syntax-optional-chaining" "^7.7.4"
+
 "@babel/plugin-proposal-unicode-property-regex@^7.7.4":
   version "7.7.4"
   resolved "https://agora.dequecloud.com/artifactory/api/npm/dequelabs/@babel/plugin-proposal-unicode-property-regex/-/plugin-proposal-unicode-property-regex-7.7.4.tgz#7c239ccaf09470dbe1d453d50057460e84517ebb"
@@ -349,6 +357,13 @@
   version "7.7.4"
   resolved "https://agora.dequecloud.com/artifactory/api/npm/dequelabs/@babel/plugin-syntax-optional-catch-binding/-/plugin-syntax-optional-catch-binding-7.7.4.tgz#a3e38f59f4b6233867b4a92dcb0ee05b2c334aa6"
   integrity sha1-o+OPWfS2IzhntKktyw7gWywzSqY=
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.0.0"
+
+"@babel/plugin-syntax-optional-chaining@^7.7.4":
+  version "7.7.4"
+  resolved "https://agora.dequecloud.com/artifactory/api/npm/dequelabs/@babel/plugin-syntax-optional-chaining/-/plugin-syntax-optional-chaining-7.7.4.tgz#c91fdde6de85d2eb8906daea7b21944c3610c901"
+  integrity sha1-yR/d5t6F0uuJBtrqeyGUTDYQyQE=
   dependencies:
     "@babel/helper-plugin-utils" "^7.0.0"
 
@@ -1806,7 +1821,7 @@
   resolved "https://agora.dequecloud.com/artifactory/api/npm/dequelabs/@vue/cli-overlay/-/cli-overlay-4.1.1.tgz#d4559c12e50075a4817ac977cc0bde504520d9de"
   integrity sha1-1FWcEuUAdaSBesl3zAveUEUg2d4=
 
-"@vue/cli-plugin-babel@^4.0.0":
+"@vue/cli-plugin-babel@^4.1.1":
   version "4.1.1"
   resolved "https://agora.dequecloud.com/artifactory/api/npm/dequelabs/@vue/cli-plugin-babel/-/cli-plugin-babel-4.1.1.tgz#aa27100a25a385f54e2a7a2bc97af47dfdd57b25"
   integrity sha1-qicQCiWjhfVOKnoryXr0ff3VeyU=
@@ -1819,7 +1834,7 @@
     thread-loader "^2.1.3"
     webpack "^4.0.0"
 
-"@vue/cli-plugin-e2e-cypress@^4.0.0":
+"@vue/cli-plugin-e2e-cypress@^4.1.1":
   version "4.1.1"
   resolved "https://agora.dequecloud.com/artifactory/api/npm/dequelabs/@vue/cli-plugin-e2e-cypress/-/cli-plugin-e2e-cypress-4.1.1.tgz#22f3568655550d031b5b4a44ba796013e1e19c97"
   integrity sha1-IvNWhlVVDQMbW0pEunlgE+HhnJc=
@@ -1828,7 +1843,7 @@
     cypress "^3.3.1"
     eslint-plugin-cypress "^2.7.0"
 
-"@vue/cli-plugin-eslint@^4.0.0":
+"@vue/cli-plugin-eslint@^4.1.1":
   version "4.1.1"
   resolved "https://agora.dequecloud.com/artifactory/api/npm/dequelabs/@vue/cli-plugin-eslint/-/cli-plugin-eslint-4.1.1.tgz#ad09b71f94dc7518a6c83debacd39e34f6d5a71e"
   integrity sha1-rQm3H5TcdRimyD3rrNOeNPbVpx4=
@@ -1839,14 +1854,14 @@
     webpack "^4.0.0"
     yorkie "^2.0.0"
 
-"@vue/cli-plugin-router@^4.0.0", "@vue/cli-plugin-router@^4.1.1":
+"@vue/cli-plugin-router@^4.1.1":
   version "4.1.1"
   resolved "https://agora.dequecloud.com/artifactory/api/npm/dequelabs/@vue/cli-plugin-router/-/cli-plugin-router-4.1.1.tgz#85c7f2d34f9217ad70b49a71dae6bf7067042759"
   integrity sha1-hcfy00+SF61wtJpx2ua/cGcEJ1k=
   dependencies:
     "@vue/cli-shared-utils" "^4.1.1"
 
-"@vue/cli-plugin-typescript@^4.0.0":
+"@vue/cli-plugin-typescript@^4.1.1":
   version "4.1.1"
   resolved "https://agora.dequecloud.com/artifactory/api/npm/dequelabs/@vue/cli-plugin-typescript/-/cli-plugin-typescript-4.1.1.tgz#cc43cb82efb0b4e504c5de0e0e0cd21665dc158c"
   integrity sha1-zEPLgu+wtOUExd4ODgzSFmXcFYw=
@@ -1862,7 +1877,7 @@
     webpack "^4.0.0"
     yorkie "^2.0.0"
 
-"@vue/cli-plugin-unit-jest@^4.0.0":
+"@vue/cli-plugin-unit-jest@^4.1.1":
   version "4.1.1"
   resolved "https://agora.dequecloud.com/artifactory/api/npm/dequelabs/@vue/cli-plugin-unit-jest/-/cli-plugin-unit-jest-4.1.1.tgz#481f706e26afbac3787896cd95c7536e04f65dd6"
   integrity sha1-SB9wbiavusN4eJbNlcdTbgT2XdY=
@@ -1883,12 +1898,12 @@
     ts-jest "^24.2.0"
     vue-jest "^3.0.5"
 
-"@vue/cli-plugin-vuex@^4.0.0", "@vue/cli-plugin-vuex@^4.1.1":
+"@vue/cli-plugin-vuex@^4.1.1":
   version "4.1.1"
   resolved "https://agora.dequecloud.com/artifactory/api/npm/dequelabs/@vue/cli-plugin-vuex/-/cli-plugin-vuex-4.1.1.tgz#81908ee66370dda162b5517afc869f91d3abe2bf"
   integrity sha1-gZCO5mNw3aFitVF6/IafkdOr4r8=
 
-"@vue/cli-service@^4.0.0":
+"@vue/cli-service@^4.1.1":
   version "4.1.1"
   resolved "https://agora.dequecloud.com/artifactory/api/npm/dequelabs/@vue/cli-service/-/cli-service-4.1.1.tgz#a14e9d455752f1a8e4e87ac436ebde88cad82276"
   integrity sha1-oU6dRVdS8ajk6HrENuveiMrYInY=
