@@ -1,10 +1,9 @@
 # TODO
 
-- bug: dormant skills can not meet requirements
+- Add a v-stepper for char creation: 1. Race, 2 domains, 3. Char points, 4 Coppers, 5 Finalise
 - Prompt users when adding race / skill that gives a bonus ruleCard
 - Group weapons, shields & armor
 - Remove everything dependent on a required skill / condition when removing that ruleCard
-- Add a v-stepper for char creation: 1. Race, 2 domsinas, 3. <domain> ... x. complete
 - Update resources view UX
 - Add a homepage
 - Add help icons throughout

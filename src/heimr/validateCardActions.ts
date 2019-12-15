@@ -55,7 +55,7 @@ export const hasRequired = (
 
   const requires = ruleCard.requires.toLowerCase();
   return charRules.some(charRule => {
-    return requires.includes(simplifyText(charRule.name));
+    return !charRule.dormant && requires.includes(simplifyText(charRule.name));
   });
 };
 
