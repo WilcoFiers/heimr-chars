@@ -29,6 +29,29 @@ export const getRulePrice = (
   }
 };
 
+export function sumCharacterCardCosts(
+  type: string,
+  characterRules: CharacterRule[]
+): string {
+  const isItem = type === "item" || type === "consumable";
+  const costFunction = isItem ? getRulePrice : getRulePoints;
+  const sum = characterRules.reduce((sum, characterRule): number => {
+    if (characterRule.type !== type) {
+      throw new Error(
+        `Cannot compute cost of ${characterRule.name}, as it is not a ${type}`
+      );
+    }
+
+    const ruleCard = findRuleCard(characterRule);
+    if (ruleCard && !characterRule.dormant) {
+      sum += costFunction(characterRule, ruleCard) || 0;
+    }
+    return sum;
+  }, 0);
+
+  return String(sum) + (isItem ? "¢" : " points");
+}
+
 export const getPointsSpent = (
   characterRules: CharacterRule[],
   dormant = false

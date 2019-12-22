@@ -1,10 +1,12 @@
 # TODO
 
-- Add a v-stepper for char creation: 1. Race, 2 domains, 3. Char points, 4 Coppers, 5 Finalise
+- Prevent domains from disapearing when deleting a charCard
+- Add a button to "My characters" at the beginning and end of the stepper
+- Add the "Guide" button to each page
+- Make the tiles in My Characters wider, include a status, and info about its skills
 - Prompt users when adding race / skill that gives a bonus ruleCard
 - Group weapons, shields & armor
 - Remove everything dependent on a required skill / condition when removing that ruleCard
-- Update resources view UX
 - Add a homepage
 - Add help icons throughout
 - Set required props in compnents

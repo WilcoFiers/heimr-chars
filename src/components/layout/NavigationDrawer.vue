@@ -28,33 +28,33 @@ type NavItem = Link | Divider;
 
 const navItems: NavItem[] = [
   {
-    text: "Characters",
+    text: "My Characters",
     to: "/characters",
     icon: "account-search"
-  },
-  {
-    text: "Events",
-    to: "/events",
-    icon: "calendar-month"
-  },
-  {
-    text: "Profile",
-    to: "/profile",
-    icon: "card-bulleted"
-  },
-  {
-    divider: true
-  },
-  {
-    text: "Settings",
-    to: "/settings",
-    icon: "settings"
-  },
-  {
-    text: "Help",
-    to: "/help",
-    icon: "help"
   }
+  // {
+  //   text: "Events",
+  //   to: "/events",
+  //   icon: "calendar-month"
+  // },
+  // {
+  //   text: "Profile",
+  //   to: "/profile",
+  //   icon: "card-bulleted"
+  // },
+  // {
+  //   divider: true
+  // },
+  // {
+  //   text: "Settings",
+  //   to: "/settings",
+  //   icon: "settings"
+  // },
+  // {
+  //   text: "Help",
+  //   to: "/help",
+  //   icon: "help"
+  // }
 ];
 
 export default Vue.extend({

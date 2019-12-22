@@ -2,7 +2,7 @@ import { Character, RaceCard } from "@/types";
 import { races } from "@/heimr-data";
 import { cardMatchesRule, freeDormantSkills } from "./rule-regex";
 
-interface CharacterProps {
+export interface CharacterProps {
   startingPoints: number;
   startingCash: number;
   monthlyResources: number;
@@ -20,47 +20,47 @@ export const rulesetDefaults: CharacterProps = {
   freeDormant: 0
 };
 
-export const getStartingPoints = (character: Character): number => {
-  if (character.startingPoints === undefined) {
+export const getStartingPoints = (character?: Character): number => {
+  if (character?.startingPoints === undefined) {
     return rulesetDefaults.startingPoints;
   }
   return character.startingPoints;
 };
 
-export const getStartingCash = (character: Character): number => {
-  if (character.startingCash === undefined) {
+export const getStartingCash = (character?: Character): number => {
+  if (character?.startingCash === undefined) {
     return rulesetDefaults.startingCash;
   }
   return character.startingCash;
 };
 
-export const getMonthlyResources = (character: Character): number => {
-  if (character.monthlyResources === undefined) {
+export const getMonthlyResources = (character?: Character): number => {
+  if (character?.monthlyResources === undefined) {
     return rulesetDefaults.monthlyResources;
   }
   return character.monthlyResources;
 };
 
-export const getCostOfLiving = (character: Character): number => {
-  if (character.costOfLiving === undefined) {
+export const getCostOfLiving = (character?: Character): number => {
+  if (character?.costOfLiving === undefined) {
     return rulesetDefaults.costOfLiving;
   }
   return character.costOfLiving;
 };
 
-export const getResourceToCash = (character: Character): number => {
-  if (character.resourceToCash === undefined) {
+export const getResourceToCash = (character?: Character): number => {
+  if (character?.resourceToCash === undefined) {
     return rulesetDefaults.resourceToCash;
   }
   return character.resourceToCash;
 };
 
-export const getRaceCard = (character: Character): RaceCard | null => {
-  return races.find(({ name }) => name === character.race) || null;
+export const getRaceCard = (character: Character): RaceCard | undefined => {
+  return races.find(({ name }) => name === character.race);
 };
 
-export const getFreeDormant = (character: Character): number => {
-  const raceCard = getRaceCard(character);
+export const getFreeDormant = (character?: Character): number => {
+  const raceCard = character && getRaceCard(character);
   if (!raceCard) {
     return 0;
   }
@@ -72,7 +72,7 @@ export const getFreeDormant = (character: Character): number => {
   return isNaN(int) ? 0 : int;
 };
 
-export const getCharacterProps = (character: Character): CharacterProps => {
+export const getCharacterProps = (character?: Character): CharacterProps => {
   return {
     startingCash: getStartingCash(character),
     startingPoints: getStartingPoints(character),

@@ -50,7 +50,7 @@ export default Vue.extend({
 
       return [
         {
-          title: "Starting points",
+          title: "Character points",
           value: tupleToString(points),
           error: points[0] > points[1]
         },

@@ -1,12 +1,25 @@
 <template>
   <div>
-    <p v-if="ruleCard.type === 'race'">
-      <strong>Hitpoints:</strong>
-      {{ ruleCard.hitpoints }} /
-      <strong>Willpower:</strong>
-      {{ ruleCard.willpower }}
-    </p>
+    <div v-if="ruleCard.type === 'race'">
+      {{ raceMeta.description }}
+      <a
+        :href="raceMeta.url"
+        target="blank"
+        :title="`More about ${raceMeta.plural}`"
+        >Learn more</a
+      >
+    </div>
+
     <v-row>
+      <v-col v-if="ruleCard.type === 'race'">
+        <strong>Hitpoints:</strong>
+        {{ ruleCard.hitpoints }}
+      </v-col>
+      <v-col v-if="ruleCard.type === 'race'">
+        <strong>Willpower:</strong>
+        {{ ruleCard.willpower }}
+      </v-col>
+
       <v-col v-if="ruleCard.points">
         <strong>Points:</strong>
         {{ ruleCard.points }}
@@ -66,11 +79,20 @@
 <script lang="ts">
 import Vue from "vue";
 import { RaceCard } from "@/types";
+import { getRaceMeta, RaceMeta } from "@/heimr-data";
 
 export default Vue.extend({
   name: "RuleCardContent",
   props: {
     ruleCard: Object
+  },
+  computed: {
+    raceMeta(): Partial<RaceMeta> {
+      if (this.ruleCard.type !== "race") {
+        return {};
+      }
+      return getRaceMeta(this.ruleCard) || {};
+    }
   },
   methods: {
     loreName({ name }: RaceCard) {

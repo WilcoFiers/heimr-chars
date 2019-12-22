@@ -1,32 +1,28 @@
 <template>
-  <v-container>
-    <v-row>
-      <v-col>
-        <h2>{{ blockTitle }}</h2>
-      </v-col>
-    </v-row>
-
-    <v-row
-      v-for="(stat, i) in visibleStatBlocks"
-      :key="i"
-      dense
-      :class="{ 'error--text': stat.error }"
-    >
-      <v-col cols="7">
-        {{ stat.title }}
-        <v-tooltip v-if="stat.error" top>
-          <template v-slot:activator="{ on }">
-            <v-icon color="error" v-on="on" small tabindex="0"
-              >mdi-alert-rhombus-outline</v-icon
-            >
-          </template>
-          <span>Spent more than allowed</span>
-        </v-tooltip>
-      </v-col>
-      <v-col>{{ stat.value }}</v-col>
-    </v-row>
+  <v-sheet elevation="1">
+    <v-container class="d-block d-sm-flex d-xl-block">
+      <v-row
+        v-for="(stat, i) in visibleStatBlocks"
+        :key="i"
+        dense
+        :class="{ 'error--text': stat.error }"
+      >
+        <v-col cols="6" sm="12" xl="6">
+          <strong>{{ stat.title }}</strong>
+          <v-tooltip v-if="stat.error" top>
+            <template v-slot:activator="{ on }">
+              <v-icon color="error" v-on="on" small tabindex="0"
+                >mdi-alert-rhombus-outline</v-icon
+              >
+            </template>
+            <span>Spent more than allowed</span>
+          </v-tooltip>
+        </v-col>
+        <v-col cols="6" sm="12" xl="6">{{ stat.value }}</v-col>
+      </v-row>
+    </v-container>
     <slot />
-  </v-container>
+  </v-sheet>
 </template>
 
 <script lang="ts">

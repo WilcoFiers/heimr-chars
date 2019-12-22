@@ -3,7 +3,7 @@ import VueRouter from "vue-router";
 import { SignIn, SignUp } from "@/views/user";
 import PageNotFound from "@/views/PageNotFound.vue";
 import AuthGuard from "./AuthGuard";
-import { characterRoutes } from "./characters";
+import { characterStepRoutes } from "./character-steps";
 
 Vue.use(VueRouter);
 
@@ -29,7 +29,7 @@ const routes = [
       import("../views/About.vue") /* webpackChunkName: "about" */,
     beforeEnter: AuthGuard
   },
-  ...characterRoutes,
+  ...characterStepRoutes,
   { path: "*", component: PageNotFound }
 ];
 

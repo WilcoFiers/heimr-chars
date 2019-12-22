@@ -1,23 +1,15 @@
 <template>
-  <div class="d-flex flex-grow-1">
-    <h3>
+  <div class="d-flex flex-grow-1 align-baseline">
+    <h3 class="subheading-1">
       <span>{{ ruleCard.name }}</span>
       <v-icon small v-if="quantity" color="primary" right
         >mdi-check-bold</v-icon
       >
     </h3>
     <v-spacer />
-
-    <a
-      v-if="ruleCard.type === 'race'"
-      target="blank"
-      :href="'http://heimr.nl/in_character/lore/' + loreName(ruleCard)"
-      :title="'Heimr lore for ' + loreName(ruleCard)"
-      >lore</a
-    >
-    <span v-else-if="pricePaid" :class="{ 'purple--text': pricePaid.custom }">
-      {{ pricePaid.value }}
-    </span>
+    <span v-if="pricePaid" :class="{ 'grey--text': pricePaid.custom }">{{
+      pricePaid.value
+    }}</span>
   </div>
 </template>
 
@@ -37,6 +29,16 @@ export default Vue.extend({
   computed: {
     pricePaid(): { value: string; custom: boolean } | null {
       const { characterRule, ruleCard } = this;
+      if (ruleCard.type === "race") {
+        return null;
+      }
+      if (characterRule.dormant) {
+        return {
+          value: "dormant",
+          custom: true
+        };
+      }
+
       const points = getRulePoints(characterRule, ruleCard);
       if (points) {
         return {

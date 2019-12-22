@@ -1,4 +1,6 @@
 import heimrData from "@/assets/heimr-data.json";
+import heimrMeta from "@/assets/heimr-metadata.json";
+
 import { Domain, RaceCard, RuleCard, CharacterRule, Character } from "@/types";
 import {
   ruleCardRestrictions,
@@ -7,9 +9,32 @@ import {
 
 export { isSameCard } from "@/heimr/isSameCard";
 
+export interface RaceMeta {
+  name: string;
+  plural: string;
+  description: string;
+  region: string;
+  diety: string;
+  url: string;
+}
+
+export interface DomainMeta {
+  domainName: string;
+  complexity: number;
+  description: string;
+}
+
 export const date = heimrData.date as string;
 export const races = heimrData.races as RaceCard[];
 export const domains = heimrData.domains as Domain[];
+
+export const racesMeta = heimrMeta.races as RaceMeta[];
+export const domainsMeta = heimrMeta.domains as DomainMeta[];
+
+export const getRaceMeta = (raceCard: RaceCard): RaceMeta | undefined => {
+  const raceName = raceCard.name.split(" ")[0];
+  return racesMeta.find(({ name }) => name === raceName);
+};
 
 export const domainImages = [
   "alchemy",

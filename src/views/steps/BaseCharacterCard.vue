@@ -1,20 +1,30 @@
 <template>
-  <v-container>
-    <v-row>
-      <v-col cols="9">
-        <div class="d-flex flex-grow-1">
-          <h1>{{ domain.domainName }}</h1>
-          <v-spacer />
-          <v-btn to="../domains" text>Different domain</v-btn>
-        </div>
-
-        <DomainTabs
-          :domain="domain"
+  <v-container class="pa-0">
+    <v-row v-if="character" class="flex-row-reverse">
+      <v-col cols="12" xl="3">
+        <CreationSummary
           :characterRules="characterRules"
           :character="character"
         >
+          <v-col class="d-flex justify-space-around">
+            <v-spacer class="d-none d-sm-inline d-xl-none" />
+            <TradePointsBtn
+              color="accent"
+              :value="characterPoints"
+              @update="updateStartingPoints"
+            />
+          </v-col>
+        </CreationSummary>
+      </v-col>
+
+      <v-col>
+        <DomainCardTabs
+          :domains="domains"
+          :character="character"
+          :characterRules="characterRules"
+        >
           <template #default="{ ruleCardGroup }">
-            <RuleCardGroupPanel :ruleCardGroup="ruleCardGroup">
+            <RuleCardGroup :ruleCardGroup="ruleCardGroup">
               <template #cardActions="{ ruleCard, restrictions }">
                 <RuleCardBtnBar
                   :restrictions="restrictions"
@@ -23,47 +33,11 @@
                   @cardAction="action => cardAction({ action, ruleCard })"
                 />
               </template>
-            </RuleCardGroupPanel>
+            </RuleCardGroup>
           </template>
-        </DomainTabs>
-      </v-col>
-
-      <v-col cols="3">
-        <CreationSummary
-          :characterRules="characterRules"
-          :character="character"
-        >
-          <v-row>
-            <v-col>
-              <TradePointsBtn
-                block
-                color="primary"
-                :value="characterPoints"
-                @update="updateStartingPoints"
-              />
-            </v-col>
-          </v-row>
-
-          <v-row>
-            <v-col>
-              <v-btn block :to="`/characters/${$route.params.charId}/resources`"
-                >Details</v-btn
-              >
-            </v-col>
-          </v-row>
-        </CreationSummary>
+        </DomainCardTabs>
       </v-col>
     </v-row>
-
-    <v-dialog v-model="dialog" max-width="600">
-      <RuleCardForm
-        :ruleCard="customRuleCard"
-        :requiredOnly="ruleCardFormRequiredOnly"
-        @save="addRuleCustomSave"
-        @cancel="dialog = false"
-        ref="form"
-      />
-    </v-dialog>
   </v-container>
 </template>
 
@@ -78,73 +52,75 @@ import {
   CharacterRule,
   ConditionCard
 } from "@/types";
-import { domains, RuleCardGroup } from "@/heimr-data";
+
 import { isSameCard } from "@/heimr/isSameCard";
-import { getStartingPoints, getFreeDormant } from "@/heimr/characterProps";
 import { getFormData } from "@/heimr/rule-card-customize";
+import { CharacterState } from "@/store/character";
+import { domains } from "@/heimr-data";
 
+import DomainCardTabs from "@/components/domain/DomainCardTabs.vue";
+import RuleCardGroup from "@/components/domain/RuleCardGroup.vue";
 import RuleCardBtnBar from "@/components/domain/RuleCardBtnBar.vue";
-import CreationSummary from "@/components/summary/CreationSummary.vue";
 import TradePointsBtn from "@/components/character/TradePointsBtn.vue";
-import RuleCardGroupPanel from "@/components/domain/RuleCardGroup.vue";
-import RuleCardForm from "@/components/domain/RuleCardForm.vue";
-import DomainTabs from "@/components/domain/DomainTabs.vue";
+import CreationSummary from "@/components/summary/CreationSummary.vue";
 
-type Tabs = { [propName: string]: RuleCardGroup[] };
+import { getStartingPoints, getFreeDormant } from "@/heimr/characterProps";
 
 type DomainOverviewData = {
-  domain: Domain;
   dialog: boolean;
   customRuleCard: RuleCard | null;
   ruleCardFormRequiredOnly: boolean;
 };
 
-export default Vue.extend({
-  name: "DomainOverview",
-  components: {
-    CreationSummary,
-    TradePointsBtn,
-    DomainTabs,
-    RuleCardGroupPanel,
-    RuleCardBtnBar,
-    RuleCardForm
-  },
-  data(): DomainOverviewData {
-    const domain = domains.find(({ domainName }) => {
-      const match = domainName.toLowerCase().replace(/\s+/g, "_");
-      return match === this.$route.params.domain;
-    }) as Domain;
-    const dialog = false;
-    const ruleCardFormRequiredOnly = false;
-    const customRuleCard: RuleCard | null = null;
-    return { domain, dialog, customRuleCard, ruleCardFormRequiredOnly };
-  },
+export function activeDomains({
+  selectedDomains,
+  rules = []
+}: CharacterState): Domain[] {
+  const locked = new Set();
+  rules.forEach(({ domainName }) => locked.add(domainName));
 
-  watch: {
-    dialog(val) {
-      if (val === false) {
-        // @ts-ignore // Cancel everything on this form
-        this.$refs.form.reset();
-      }
+  return domains.filter(
+    ({ domainName }) =>
+      selectedDomains.includes(domainName) ||
+      Array.from(locked).includes(domainName)
+  );
+}
+
+export default Vue.extend({
+  name: "BaseCharacterCard",
+  components: {
+    DomainCardTabs,
+    RuleCardGroup,
+    RuleCardBtnBar,
+    TradePointsBtn,
+    CreationSummary
+  },
+  props: {
+    domains: {
+      type: Array,
+      required: true
     }
   },
 
-  computed: {
-    character(): Partial<Character> {
-      const { charProps } = (this.$store.state as State).character;
-      return charProps || {};
-    },
+  data(): DomainOverviewData {
+    const dialog = false;
+    const ruleCardFormRequiredOnly = false;
+    const customRuleCard: RuleCard | null = null;
+    return { dialog, customRuleCard, ruleCardFormRequiredOnly };
+  },
 
+  computed: {
+    character(): Character | undefined {
+      return (this.$store.state as State).character.charProps;
+    },
     characterRules(): CharacterRule[] {
-      const { rules } = (this.$store.state as State).character;
-      return rules || [];
+      return (this.$store.state as State).character.rules || [];
     },
 
     characterPoints() {
       let charPoints = 0;
-      const { charProps } = (this.$store.state as State).character;
-      if (charProps) {
-        charPoints = 20 - getStartingPoints(charProps);
+      if (this.character) {
+        charPoints = 20 - getStartingPoints(this.character);
       }
       return charPoints;
     }
@@ -158,6 +134,17 @@ export default Vue.extend({
       return this.characterRules.filter(charRule =>
         isSameCard(charRule, ruleCard, anyLevel)
       );
+    },
+
+    domainName({ name, type }: RuleCard): string {
+      const domain = (this.domains as Domain[]).find(domain => {
+        // @ts-ignore
+        return domain[`${type}s`].some(card => card.name === name);
+      });
+      if (!domain) {
+        throw new Error(`Could not find domain of ${name}`);
+      }
+      return domain.domainName;
     },
 
     cardAction({ action, ruleCard }: { action: string; ruleCard: RuleCard }) {
@@ -196,8 +183,7 @@ export default Vue.extend({
         this.ruleCardFormRequiredOnly = true;
         return;
       }
-
-      const domainName = this.domain.domainName;
+      const domainName = this.domainName(ruleCard);
       const { type, name } = ruleCard;
       const newCharRule: NewCharacterRule = { type, name, domainName, dormant };
       this.$store.dispatch("addCharacterRule", newCharRule);
@@ -214,7 +200,7 @@ export default Vue.extend({
       if (this.customRuleCard === null) {
         return;
       }
-      const domainName = this.domain.domainName;
+      const domainName = this.domainName(this.customRuleCard);
       const { type, name } = this.customRuleCard;
       const characterCard: NewCharacterRule = {
         ...out,

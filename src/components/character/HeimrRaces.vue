@@ -3,7 +3,7 @@
     <v-row class="justify-center">
       <v-col :cols="3">
         <v-card>
-          <h2 class="pl-3 pt-2">Races</h2>
+          <h2 class="pl-3 pt-2 title">Races</h2>
           <v-list height="250" class="overflow-auto">
             <v-list-item-group v-model="activeItem" mandatory>
               <v-list-item
@@ -19,7 +19,7 @@
                   v-if="index === selected"
                   aria-label="selected"
                 >
-                  <v-icon color="grey lighten-1">mdi-arrow-left-bold</v-icon>
+                  <v-icon color="grey darken-1">mdi-check-bold</v-icon>
                 </v-list-item-action>
               </v-list-item>
             </v-list-item-group>
@@ -35,8 +35,15 @@
           <v-card-text>
             <RuleCardContent :ruleCard="currentRace" />
           </v-card-text>
-          <v-card-actions>
-            <v-btn primary @click="selectRace">Select race</v-btn>
+          <v-card-actions class="justify-center pb-5">
+            <v-btn
+              class="primary darken-2"
+              :disabled="selected === activeItem"
+              rounded
+              min-width="200"
+              @click="selectRace"
+              >Play as {{ currentRace.name }}</v-btn
+            >
           </v-card-actions>
         </v-card>
       </v-col>
@@ -46,7 +53,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { races } from "@/heimr-data";
+import { races, getRaceMeta, RaceMeta } from "@/heimr-data";
 import { RaceCard } from "@/types";
 import RuleCardContent from "@/components/domain/RuleCardContent.vue";
 import RuleCardTitle from "@/components/domain/RuleCardTitle.vue";

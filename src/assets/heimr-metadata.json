@@ -1,0 +1,162 @@
+{
+  "races": [
+    {
+      "name": "Elf",
+      "plural": "Elves",
+      "region": "Asgard",
+      "diety": "Uastra",
+      "description": "Long eared, stoic, with an affinity for nature. They have an almost compulsive need to regulate their environment and to preserve the status quo. Most elves are skilled at the use of primordial magic.",
+      "url": "http://heimr.nl/in_character/lore/elf"
+    },
+    {
+      "name": "Fae",
+      "plural": "Fae",
+      "region": "Asgard",
+      "diety": "Danu",
+      "description": "Long eared, exuberant, expressive and artistic. All fae can learn primordial magic. Their magical nature causes the veins to be visible under their skin in a variety of bright colours.",
+      "url": "http://heimr.nl/in_character/lore/fae"
+    },
+    {
+      "name": "Human",
+      "plural": "Humans",
+      "region": "Midgard",
+      "diety": "Talor",
+      "description": "White or brown skin tones, with a variety of hair and eye colours. Humans are adventurous, entrepreneurial and studious. Living often in small villages and moderately sized cities.",
+      "url": "http://heimr.nl/in_character/lore/human"
+    },
+    {
+      "name": "Gnome",
+      "plural": "Gnomes",
+      "region": "Midgard",
+      "diety": "Ganinisum",
+      "description": "Light green scaled skin, spiky features, light-hearted and friendly. Gnomes are well known for their mechanical work with water wind and steam powered technology.",
+      "url": "http://heimr.nl/in_character/lore/gnome"
+    },
+    {
+      "name": "Halfling",
+      "plural": "Halflings",
+      "region": "Midgard",
+      "diety": "Ranimsul",
+      "description": "Cautious, reserved but steadfast, with light skin that shows the veins underneath. They often live in isolated communities, traditionally build out of hidden earth homes.",
+      "url": "http://heimr.nl/in_character/lore/halfling"
+    },
+    {
+      "name": "Slemmering",
+      "plural": "Slemmering",
+      "region": "Midgard",
+      "diety": "Sin",
+      "description": "Similar looking to humans, although usually better dressed, better groomed, and almost always over weight. They love to eat, drink, to copulate, and to sleep. They can sleep for years without aging.",
+      "url": "http://heimr.nl/in_character/lore/slemmering"
+    },
+    {
+      "name": "Ogre",
+      "plural": "Ogres",
+      "region": "Southern Heimr",
+      "diety": "Wana",
+      "description": "Hairy, often horned brutes and savages, with an occasional shaman or priest thrown in. Most of them live as nomads. They are impatient and have a practical look on life.",
+      "url": "http://heimr.nl/in_character/lore/ogre"
+    },
+    {
+      "name": "Orc",
+      "plural": "Orcs",
+      "region": "Southern Heimr",
+      "diety": "Ratish",
+      "description": "Fanged, green-brownish skin warrior-people. Honour is essential to their lifestyle. They live together in extended families, called houses. Conflicts are often resolved through ritual combat.",
+      "url": "http://heimr.nl/in_character/lore/orc"
+    },
+    {
+      "name": "Troll",
+      "plural": "Trolls",
+      "region": "Southern Heimr",
+      "diety": "Tal'Kinita",
+      "description": "Grey-blueish skin, ancestor worshiping nomads. They live in small groups. They believe the dead can give them power, and worship them through cannibalism and resting for long periods.",
+      "url": "http://heimr.nl/in_character/lore/troll"
+    },
+    {
+      "name": "Tellurian",
+      "plural": "Tellurians",
+      "region": "Southern Heimr",
+      "diety": "Gataur",
+      "description": "Greyish shined, community oriented people. Almost the entire tellurian population live in one of three huge tellurian-only mountain cities. As they grow older their skin hardens, with rock-like protrusions.",
+      "url": "http://heimr.nl/in_character/lore/tellurian"
+    },
+    {
+      "name": "Feyfolk",
+      "plural": "Feyfolk",
+      "region": "wilderness",
+      "diety": "Tahordyn",
+      "description": "Creatures with no single form. Most are born small and feature wings, but almost all Feyfolk change their appearance and function after only a few years. They live mostly in forests.",
+      "url": "http://heimr.nl/in_character/lore/feyfolk"
+    },
+    {
+      "name": "Nymph",
+      "plural": "Nymph",
+      "region": "wilderness",
+      "diety": "Vanessa",
+      "description": "Seductive forest creatures with slightly pointed ears, and a single sharpened canine. They have an instinct to find love, which compells them to mingle with the other races of Heimr.",
+      "url": "http://heimr.nl/in_character/lore/nymph"
+    },
+    {
+      "name": "Shanata",
+      "plural": "Shanata",
+      "region": "wilderness",
+      "diety": "Nantillion",
+      "description": "Pointy eared, with long claws and fangs, often covered in fur to keep them warm. Shanata are lone hunters. They shun all comfort, living for the challanges of the deep forests and jungles.",
+      "url": "http://heimr.nl/in_character/lore/shanata"
+    },
+    {
+      "name": "Lizardman",
+      "plural": "Lizardmen",
+      "region": "wilderness",
+      "diety": "Zalsz",
+      "description": "Tall, territorial, with a lizard-like appearance. Rarely seen on the Heimr mainland, living on the smile island surrounding the continent, where they guard their fearcly guard monuments to their diety Zalsz.",
+      "url": "http://heimr.nl/in_character/lore/Lizardman"
+    },
+    {
+      "name": "Merfolk",
+      "plural": "Merfolk",
+      "region": "wilderness",
+      "diety": "Januri",
+      "description": "Sea dwelling hunter-gatherers, rarely seen by the rest of the races. They can breath underwater and have a fishlike appearance complete with scales and fins.",
+      "url": "http://heimr.nl/in_character/lore/merfolk"
+    }
+  ],
+  "domains": [
+    {
+      "domainName": "Defence",
+      "complexity": 1,
+      "description": "Guards, soldiers, and for personal protection, you will have armor, shields and skills protect you in combat."
+    },
+    {
+      "domainName": "Armed Combat",
+      "key": "ArmedCombat",
+      "complexity": 1,
+      "description": "Battle your enemies or protect your loved ones, you will want a sword, bow or other weapon, and skills to get the most out of them."
+    },
+    {
+      "domainName": "The Marketplace",
+      "complexity": 2,
+      "description": "Crafters, entertainers, traders and money lenders. The marketplace has you buying and selling, make trade deals and manage your loans and investments."
+    },
+    {
+      "domainName": "Battlefield Surgery",
+      "complexity": 2,
+      "description": "Battlefield surgence and nurses know you can't save them all. You need quick thinking and a cool head to work out who can be saved and who is too far gone."
+    },
+    {
+      "domainName": "Divine Magic",
+      "complexity": 3,
+      "description": "Magic of priests and crusaders. In this domain you will have to find worshippers to pray with, giving them (and you) the power of blessings."
+    },
+    {
+      "domainName": "Alchemy",
+      "complexity": 4,
+      "description": "Chemists, herbalists and potion brewers. Purify, test, and analyse ingradients to create potions and poisons. Alchemy skills require thought and experimentation."
+    },
+    {
+      "domainName": "Primordial Magic",
+      "complexity": 5,
+      "description": "Skills and items for sorcerers and mages. Learn the Primordial language, and program spells that reshape the universe."
+    }
+  ]
+}
