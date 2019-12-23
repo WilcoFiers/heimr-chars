@@ -2,7 +2,10 @@
   <v-container>
     <v-row>
       <v-col>
-        <h1 class="headline">Select Character Domains</h1>
+        <div class="d-flex justify-space-between pb-1">
+          <h1 class="headline">Select Character Domains</h1>
+          <CreationGuideBtn />
+        </div>
         <p>
           A domain is a collection of skills, items, conditions. Every domain
           has its own theme and challenges players in a different way. You can
@@ -75,6 +78,7 @@ import { mapState } from "vuex";
 import { State } from "@/store";
 import { domainsMeta, domainImg, DomainMeta } from "@/heimr-data";
 import { CharacterState } from "@/store/character";
+import CreationGuideBtn from "@/components/character/CreationGuideBtn.vue";
 import ErrorMessage from "@/components/ErrorMessage.vue";
 
 type ActiveDomain = { [propName: string]: boolean };
@@ -84,7 +88,7 @@ export default Vue.extend({
   data() {
     return { domains: domainsMeta, message: "" };
   },
-  components: { ErrorMessage },
+  components: { CreationGuideBtn, ErrorMessage },
 
   computed: {
     charState(): CharacterState {

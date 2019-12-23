@@ -4,11 +4,9 @@
       <v-row class="flex-row-reverse">
         <v-col cols="9">
           <div class="d-flex justify-space-between">
-            <h1 v-if="isNew" class="title">New Character</h1>
-            <h1 v-else class="title">Update Character</h1>
-            <v-btn class="secondary" @click="infoDialog = true">
-              <v-icon left>mdi-help-circle-outline</v-icon>Guide
-            </v-btn>
+            <h1 v-if="isNew" class="headline">New Character</h1>
+            <h1 v-else class="headline">Update Character</h1>
+            <CreationGuideBtn :initialState="infoDialog" />
           </div>
           <v-text-field
             label="Character name"
@@ -34,13 +32,6 @@
         <ErrorMessage :message="message" />
       </div>
     </v-container>
-
-    <v-dialog v-model="infoDialog" max-width="800">
-      <CreateionGuide>
-        <v-spacer />
-        <v-btn text @click="infoDialog = false">Continue</v-btn>
-      </CreateionGuide>
-    </v-dialog>
   </v-form>
 </template>
 
@@ -51,13 +42,13 @@ import { raceImg } from "@/heimr-data";
 
 import ResourceMini from "@/components/character/ResourceMini.vue";
 import ArchiveCharacterBtn from "@/components/character/ArchiveCharacterBtn.vue";
-import CreateionGuide from "@/components/character/CreationGuide.vue";
+import CreationGuideBtn from "@/components/character/CreationGuideBtn.vue";
 import HeimrRaces from "@/components/character/HeimrRaces.vue";
 import ErrorMessage from "@/components/ErrorMessage.vue";
 
 export default Vue.extend({
   name: "CharacterStepOrigins",
-  components: { HeimrRaces, ErrorMessage, CreateionGuide },
+  components: { HeimrRaces, ErrorMessage, CreationGuideBtn },
   data() {
     const newCharacter: Partial<Character> = { name: "" };
     const infoDialog = this.$route.params.charId === "new";
@@ -122,7 +113,7 @@ export default Vue.extend({
       } catch (e) {
         this.message = e.message;
       }
-      return false;
+      return false; // prevent $router.push
     }
   }
 });

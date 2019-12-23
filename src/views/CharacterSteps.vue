@@ -23,16 +23,22 @@
 
     <v-container>
       <div class="d-flex mt-5">
-        <v-btn v-if="previousStep" @click="changeStep(previousStep)">{{
-          previousStep.label
-        }}</v-btn>
+        <v-btn v-if="previousStep" @click="changeStep(previousStep)">
+          <v-icon left>mdi-arrow-left-bold-outline</v-icon>
+          {{ previousStep.label }}
+        </v-btn>
         <v-spacer />
         <v-btn
           v-if="nextStep"
           @click="changeStep(nextStep, true)"
-          class="primary"
-          >.{{ nextStep.label }}</v-btn
+          :class="nextStep.isExit ? 'secondary' : 'primary'"
         >
+          {{ nextStep.label }}
+          <v-icon right v-if="!nextStep.isExit"
+            >mdi-arrow-right-bold-outline</v-icon
+          >
+          <v-icon right v-else>mdi-exit-to-app</v-icon>
+        </v-btn>
       </div>
     </v-container>
   </div>
@@ -45,6 +51,13 @@ import { State } from "@/types";
 type Step = {
   label: string;
   routeName: string;
+  isExit?: boolean;
+};
+
+const exitStep: Step = {
+  label: "My characters",
+  routeName: "character-list",
+  isExit: true
 };
 
 const steps: Step[] = [
@@ -81,13 +94,13 @@ export default Vue.extend({
 
   computed: {
     previousStep(): Step | undefined {
-      return this.steps[this.current - 2];
+      return this.steps[this.current - 2] || exitStep;
     },
     currentStep(): Step | undefined {
-      return this.steps[this.current - 1];
+      return this.steps[this.current - 1] || exitStep;
     },
     nextStep(): Step | undefined {
-      return this.steps[this.current];
+      return this.steps[this.current] || exitStep;
     }
   },
 

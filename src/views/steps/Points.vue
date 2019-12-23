@@ -2,7 +2,10 @@
   <v-container>
     <v-row>
       <v-col>
-        <h1 class="headline">Character Points</h1>
+        <div class="d-flex justify-space-between pb-1">
+          <h1 class="headline">Character Points</h1>
+          <CreationGuideBtn />
+        </div>
         <div>
           Spend between 15 and 20 points on skills and conditions. Unspent
           points give you 100 copper each.
@@ -24,11 +27,12 @@ import Vue from "vue";
 import { Domain, State } from "@/types";
 import BaseCharacterCard, { activeDomains } from "./BaseCharacterCard.vue";
 import { getPointsSpent } from "@/heimr/characterCardProps";
+import CreationGuideBtn from "@/components/character/CreationGuideBtn.vue";
 import ErrorMessage from "@/components/ErrorMessage.vue";
 
 export default Vue.extend({
   name: "CharacterStepPoints",
-  components: { BaseCharacterCard, ErrorMessage },
+  components: { BaseCharacterCard, CreationGuideBtn, ErrorMessage },
   data() {
     const value = 10;
     return { value: value * 5, message: "" };

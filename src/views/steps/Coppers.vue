@@ -2,7 +2,10 @@
   <v-container>
     <v-row>
       <v-col>
-        <h1 class="headline">Coppers</h1>
+        <div class="d-flex justify-space-between pb-1">
+          <h1 class="headline">Coppers</h1>
+          <CreationGuideBtn />
+        </div>
         <p>
           Spend 500 copper on items and consumables, plus 100 points for each
           unspent character point. Unspent coppers are part of your starting
@@ -18,10 +21,11 @@
 import Vue from "vue";
 import { Domain, State } from "@/types";
 import BaseCharacterCard, { activeDomains } from "./BaseCharacterCard.vue";
+import CreationGuideBtn from "@/components/character/CreationGuideBtn.vue";
 
 export default Vue.extend({
   name: "CharacterStepCoppers",
-  components: { BaseCharacterCard },
+  components: { BaseCharacterCard, CreationGuideBtn },
 
   computed: {
     domains(): Domain[] {
