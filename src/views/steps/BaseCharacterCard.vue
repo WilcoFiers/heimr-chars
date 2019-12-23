@@ -38,6 +38,16 @@
         </DomainCardTabs>
       </v-col>
     </v-row>
+
+    <v-dialog v-model="dialog" max-width="600">
+      <RuleCardForm
+        :ruleCard="customRuleCard"
+        :requiredOnly="ruleCardFormRequiredOnly"
+        @save="addRuleCustomSave"
+        @cancel="dialog = false"
+        ref="form"
+      />
+    </v-dialog>
   </v-container>
 </template>
 
@@ -58,10 +68,11 @@ import { getFormData } from "@/heimr/rule-card-customize";
 import { CharacterState } from "@/store/character";
 import { domains } from "@/heimr-data";
 
+import TradePointsBtn from "@/components/character/TradePointsBtn.vue";
 import DomainCardTabs from "@/components/domain/DomainCardTabs.vue";
 import RuleCardGroup from "@/components/domain/RuleCardGroup.vue";
 import RuleCardBtnBar from "@/components/domain/RuleCardBtnBar.vue";
-import TradePointsBtn from "@/components/character/TradePointsBtn.vue";
+import RuleCardForm from "@/components/domain/RuleCardForm.vue";
 import CreationSummary from "@/components/summary/CreationSummary.vue";
 
 import { getStartingPoints, getFreeDormant } from "@/heimr/characterProps";
@@ -93,7 +104,8 @@ export default Vue.extend({
     RuleCardGroup,
     RuleCardBtnBar,
     TradePointsBtn,
-    CreationSummary
+    CreationSummary,
+    RuleCardForm
   },
   props: {
     domains: {

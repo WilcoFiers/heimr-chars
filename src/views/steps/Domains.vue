@@ -116,15 +116,8 @@ export default Vue.extend({
   methods: {
     domainImg,
     toggle({ domainName }: DomainMeta) {
-      if (this.locked[domainName]) {
-        return;
-      }
-      const { selectedDomains } = this.charState;
-      const index = selectedDomains.indexOf(domainName);
-      if (index === -1) {
-        selectedDomains.push(domainName);
-      } else {
-        selectedDomains.splice(index, 1);
+      if (!this.locked[domainName]) {
+        this.$store.commit("toggleSelectedDomain", domainName);
       }
     }
   }

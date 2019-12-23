@@ -1,8 +1,9 @@
 # TODO
 
-- Prevent domains from disapearing when deleting a charCard
 - Add a button to "My characters" at the beginning and end of the stepper
 - Add the "Guide" button to each page
+- Automatically exchange between char points and copper
+- Make better user of store getters
 - Make the tiles in My Characters wider, include a status, and info about its skills
 - Prompt users when adding race / skill that gives a bonus ruleCard
 - Group weapons, shields & armor
@@ -41,7 +42,6 @@
 
 - "You receive a free Materal Compendium item when you acquire this skill."
 - "If you have XX points worth of non-dormant skills or conditions in a single domain this condition is free."
-- "In character creation, spend X extra points on dormant skills."
 - "You have an additional Xℜ each month."
 - "Retraining dormant skills costs 5ℜ per point"
 - "Once per month you can reduce the cost of training a skill with 7ℜ"
