@@ -1,15 +1,14 @@
 # TODO
 
-- Add a button to "My characters" at the beginning and end of the stepper
-- Add the "Guide" button to each page
 - Automatically exchange between char points and copper
 - Make better user of store getters
+- Add "Core rules" section
+- In "finish", show replacement of "..."
+- Add a homepage
 - Make the tiles in My Characters wider, include a status, and info about its skills
 - Prompt users when adding race / skill that gives a bonus ruleCard
 - Group weapons, shields & armor
 - Remove everything dependent on a required skill / condition when removing that ruleCard
-- Add a homepage
-- Add help icons throughout
 - Set required props in compnents
 - Show link to domains in resources view
 - Update race selection view UX

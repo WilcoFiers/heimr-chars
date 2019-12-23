@@ -127,7 +127,7 @@ export default Vue.extend({
 
     canAccessStep(step: Step | undefined): boolean {
       const statusSteps = this.$store.getters.stepStates as {
-        [propName: string]: "valid" | "invalid";
+        [propName: string]: boolean;
       };
 
       if (!step) {
@@ -139,7 +139,7 @@ export default Vue.extend({
       // If any of the steps before the one passed in is not valid, return false
       for (let i = 0; i < index; i++) {
         const stepName = this.steps[i].routeName.split("/")[1];
-        if (statusSteps[stepName] !== "valid") {
+        if (!statusSteps[stepName]) {
           return false;
         }
       }

@@ -14,11 +14,7 @@ import {
   getCashSpent,
   getMonthlySavings
 } from "@/heimr/characterCardProps";
-import {
-  getRaceCard,
-  getCharacterProps,
-  CharacterProps
-} from "@/heimr/characterProps";
+import { getRaceCard, getCharacterProps } from "@/heimr/characterProps";
 
 export interface CharacterState {
   list: Character[];
@@ -48,16 +44,31 @@ export const character: CharacterModule = {
     },
 
     characterRuleStates({ charProps, rules = [] }) {
+      // TODO: Rename this getter. Add types, isolate
       const characterProps = getCharacterProps(charProps);
+      const {
+        pointConvertionMax,
+        startingPoints,
+        freeDormant,
+        pointsToCopperValue,
+        startingCash
+      } = characterProps;
       const pointsSpent = getPointsSpent(rules);
       const dormantSpent = getPointsSpent(rules, true);
       const coppersSpent = getCashSpent(rules);
       const monthlySavings = charProps
         ? getMonthlySavings(charProps, rules || [])
         : 0;
-      const pointsLeft = characterProps.startingPoints - pointsSpent;
-      const dormantLeft = characterProps.freeDormant - dormantSpent;
-      const unspentCoppers = characterProps.startingCash - coppersSpent;
+      const pointsLeft = startingPoints - pointsSpent;
+      const dormantLeft = freeDormant - dormantSpent;
+
+      const convertedPoints = Math.max(
+        0,
+        Math.min(pointsLeft, pointConvertionMax)
+      );
+      // TODO: rename to "coppersLeft"
+      const unspentCoppers =
+        startingCash + convertedPoints * pointsToCopperValue - coppersSpent;
 
       return {
         pointsSpent,
@@ -67,26 +78,43 @@ export const character: CharacterModule = {
         pointsLeft,
         dormantLeft,
         unspentCoppers,
+        convertedPoints,
         ...characterProps
       };
     },
 
-    stepStates(state) {
-      let origins = "invalid",
-        domains = "invalid",
-        points = "invalid",
-        coppers = "invalid";
+    stepStates(state, { characterRuleStates }) {
+      // TODO: Abstract these methods for reuse
+      const {
+        pointsLeft,
+        pointConvertionMax,
+        dormantSpent,
+        freeDormant,
+        unspentCoppers
+      } = characterRuleStates;
+
+      let origins = false;
+      let domains = false;
+      let points = false;
+      let coppers = false;
+
       if (state.charProps?.name && state.charProps?.race) {
-        origins = "valid";
+        origins = true;
       }
       const rules = state.rules || [];
       if (rules.length > 0 || state.selectedDomains.length > 0) {
-        domains = "valid";
+        domains = true;
       }
-      const pointsSpent = getPointsSpent(rules);
-      if (pointsSpent >= 15) {
-        points = "valid";
-        coppers = "valid";
+
+      if (
+        pointsLeft >= 0 &&
+        pointsLeft <= pointConvertionMax &&
+        dormantSpent <= freeDormant
+      ) {
+        points = true;
+      }
+      if (unspentCoppers >= 0) {
+        coppers = true;
       }
       return { origins, domains, points, coppers };
     }

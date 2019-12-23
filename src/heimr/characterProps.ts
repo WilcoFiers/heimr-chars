@@ -9,6 +9,8 @@ export interface CharacterProps {
   costOfLiving: number;
   resourceToCash: number;
   freeDormant: number;
+  pointConvertionMax: number;
+  pointsToCopperValue: number;
 }
 
 export const rulesetDefaults: CharacterProps = {
@@ -17,8 +19,12 @@ export const rulesetDefaults: CharacterProps = {
   monthlyResources: 120,
   costOfLiving: 400,
   resourceToCash: 4,
-  freeDormant: 0
+  pointConvertionMax: 5,
+  pointsToCopperValue: 100,
+  freeDormant: 0 // Rename to "startingDormant"
 };
+
+// @TODO: DRY these methods
 
 export const getStartingPoints = (character?: Character): number => {
   if (character?.startingPoints === undefined) {
@@ -79,6 +85,8 @@ export const getCharacterProps = (character?: Character): CharacterProps => {
     monthlyResources: getMonthlyResources(character),
     costOfLiving: getCostOfLiving(character),
     resourceToCash: getResourceToCash(character),
-    freeDormant: getFreeDormant(character)
+    freeDormant: getFreeDormant(character),
+    pointConvertionMax: rulesetDefaults.pointConvertionMax,
+    pointsToCopperValue: rulesetDefaults.pointsToCopperValue
   };
 };

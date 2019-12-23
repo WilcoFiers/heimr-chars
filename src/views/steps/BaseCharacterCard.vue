@@ -1,43 +1,24 @@
 <template>
-  <v-container class="pa-0">
-    <v-row v-if="character" class="flex-row-reverse">
-      <v-col cols="12" xl="3">
-        <CreationSummary
-          :characterRules="characterRules"
-          :character="character"
-        >
-          <v-col class="d-flex justify-space-around">
-            <v-spacer class="d-none d-sm-inline d-xl-none" />
-            <TradePointsBtn
-              color="accent"
-              :value="characterPoints"
-              @update="updateStartingPoints"
+  <div>
+    <DomainCardTabs
+      v-if="character"
+      :domains="domains"
+      :character="character"
+      :characterRules="characterRules"
+    >
+      <template #default="{ ruleCardGroup }">
+        <RuleCardGroup :ruleCardGroup="ruleCardGroup">
+          <template #cardActions="{ ruleCard, restrictions }">
+            <RuleCardBtnBar
+              :restrictions="restrictions"
+              :ruleCard="ruleCard"
+              :allowDormant="allowDormant(ruleCard)"
+              @cardAction="action => cardAction({ action, ruleCard })"
             />
-          </v-col>
-        </CreationSummary>
-      </v-col>
-
-      <v-col>
-        <DomainCardTabs
-          :domains="domains"
-          :character="character"
-          :characterRules="characterRules"
-        >
-          <template #default="{ ruleCardGroup }">
-            <RuleCardGroup :ruleCardGroup="ruleCardGroup">
-              <template #cardActions="{ ruleCard, restrictions }">
-                <RuleCardBtnBar
-                  :restrictions="restrictions"
-                  :ruleCard="ruleCard"
-                  :allowDormant="allowDormant(ruleCard)"
-                  @cardAction="action => cardAction({ action, ruleCard })"
-                />
-              </template>
-            </RuleCardGroup>
           </template>
-        </DomainCardTabs>
-      </v-col>
-    </v-row>
+        </RuleCardGroup>
+      </template>
+    </DomainCardTabs>
 
     <v-dialog v-model="dialog" max-width="600">
       <RuleCardForm
@@ -48,7 +29,7 @@
         ref="form"
       />
     </v-dialog>
-  </v-container>
+  </div>
 </template>
 
 <script lang="ts">
@@ -68,12 +49,10 @@ import { getFormData } from "@/heimr/rule-card-customize";
 import { CharacterState } from "@/store/character";
 import { domains } from "@/heimr-data";
 
-import TradePointsBtn from "@/components/character/TradePointsBtn.vue";
 import DomainCardTabs from "@/components/domain/DomainCardTabs.vue";
 import RuleCardGroup from "@/components/domain/RuleCardGroup.vue";
 import RuleCardBtnBar from "@/components/domain/RuleCardBtnBar.vue";
 import RuleCardForm from "@/components/domain/RuleCardForm.vue";
-import CreationSummary from "@/components/summary/CreationSummary.vue";
 
 import { getStartingPoints, getFreeDormant } from "@/heimr/characterProps";
 
@@ -103,8 +82,6 @@ export default Vue.extend({
     DomainCardTabs,
     RuleCardGroup,
     RuleCardBtnBar,
-    TradePointsBtn,
-    CreationSummary,
     RuleCardForm
   },
   props: {
@@ -132,6 +109,7 @@ export default Vue.extend({
     characterPoints() {
       let charPoints = 0;
       if (this.character) {
+        // TODO: remove hard-coded value, use $store.getter
         charPoints = 20 - getStartingPoints(this.character);
       }
       return charPoints;

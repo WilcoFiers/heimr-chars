@@ -77,7 +77,6 @@
 <script lang="ts">
 import Vue from "vue";
 import { Character, CharacterRule, State, RuleCard, RaceCard } from "@/types";
-import CreationSummary from "@/components/summary/CreationSummary.vue";
 import RuleExpansionPanel from "@/components/domain/RuleExpansionPanel.vue";
 import { findRuleCard } from "@/heimr-data";
 import { sumCharacterCardCosts } from "@/heimr/characterCardProps";
@@ -108,21 +107,24 @@ export default Vue.extend({
       const {
         pointsLeft,
         dormantLeft,
-        unspentCoppers
+        unspentCoppers,
+        monthlySavings,
+        freeDormant
       } = getters.characterRuleStates;
 
-      return [
-        [
-          ["Race", raceCard.name],
-          ["Hitpoints", raceCard.hitpoints],
-          ["Willpower", raceCard.willpower]
-        ],
-        [
-          ["Character points left", String(pointsLeft)],
-          ["Dormant points left", String(dormantLeft)],
-          ["Starting coppers", `${unspentCoppers}¢`]
-        ]
+      const charCardProps = [
+        ["Race", raceCard.name],
+        ["Hitpoints", raceCard.hitpoints],
+        ["Willpower", raceCard.willpower]
       ];
+      const ruleCardProps = [
+        ["Starting coppers", `${unspentCoppers}¢`],
+        ["Monthly savings", `${monthlySavings}¢`]
+      ];
+      if (freeDormant || dormantLeft) {
+        ruleCardProps.unshift(["Dormant points left", String(dormantLeft)]);
+      }
+      return [charCardProps, ruleCardProps];
     },
 
     itemCardTypes() {

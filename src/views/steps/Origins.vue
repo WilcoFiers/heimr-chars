@@ -40,8 +40,6 @@ import Vue from "vue";
 import { Character, CharacterRule, NewCharacter, State } from "@/types";
 import { raceImg } from "@/heimr-data";
 
-import ResourceMini from "@/components/character/ResourceMini.vue";
-import ArchiveCharacterBtn from "@/components/character/ArchiveCharacterBtn.vue";
 import CreationGuideBtn from "@/components/character/CreationGuideBtn.vue";
 import HeimrRaces from "@/components/character/HeimrRaces.vue";
 import ErrorMessage from "@/components/ErrorMessage.vue";
