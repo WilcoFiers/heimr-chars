@@ -4,7 +4,7 @@
       <template v-for="(item, i) in navItems">
         <v-divider v-if="item.divider" :key="i" dark></v-divider>
 
-        <v-list-item v-else :key="i" @click="goto(item.to)">
+        <v-list-item v-else :key="i" :to="item.to" active-class="highlighted">
           <v-list-item-action>
             <v-icon>mdi-{{ item.icon }}</v-icon>
           </v-list-item-action>
@@ -31,6 +31,19 @@ const navItems: NavItem[] = [
     text: "My Characters",
     to: "/characters",
     icon: "account-search"
+  },
+  {
+    divider: true
+  },
+  {
+    text: "Core rules",
+    to: "/books/core-rules",
+    icon: "feather"
+  },
+  {
+    text: "Domains",
+    to: "/books/domains",
+    icon: "layers-triple-outline"
   }
   // {
   //   text: "Events",
@@ -67,11 +80,17 @@ export default Vue.extend({
     this.$root.$on("toggleDrawer", () => {
       this.drawerState = !this.drawerState;
     });
-  },
-  methods: {
-    goto(to: string) {
-      this.$router.push(to);
-    }
   }
 });
 </script>
+
+<style scoped>
+.highlighted {
+  background-image: linear-gradient(
+    to right,
+    #424242,
+    #424242 6px,
+    transparent 6px
+  );
+}
+</style>

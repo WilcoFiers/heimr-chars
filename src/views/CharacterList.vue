@@ -14,12 +14,12 @@
         v-for="char in characters"
         :key="char.id"
       >
-        <v-card :to="charUri(char)">
+        <v-card :to="charUri(char)" height="100%">
           <v-list-item three-line>
             <v-list-item-content>
-              <v-list-item-title class="headline mb-1">{{
-                char.name
-              }}</v-list-item-title>
+              <v-list-item-title class="headline mb-1">
+                {{ char.name }}
+              </v-list-item-title>
               <v-list-item-subtitle>{{ summary(char) }}</v-list-item-subtitle>
             </v-list-item-content>
             <v-list-item-avatar tile size="50" color="grey">

@@ -125,3 +125,10 @@ export interface CharacterRuleCol
   add(data: NewCharacterRule): Promise<firebase.firestore.DocumentReference>;
   doc(documentPath?: string): CharacterRuleDoc;
 }
+
+export type HeimrBook = {
+  sectionName: string;
+  sectionPath: string;
+  html: string;
+  subsections: string[];
+};

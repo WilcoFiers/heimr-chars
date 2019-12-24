@@ -12,7 +12,7 @@
           choose skills from as many domains as you like. We recommend using 1
           to 3 domains for a character. Detailed information of the domains are
           in the
-          <a href="http://heimr.nl/game_rules">Heimr Rulebook</a>.
+          <router-link to="/books/domains">Heimr Domains</router-link>
         </p>
       </v-col>
     </v-row>

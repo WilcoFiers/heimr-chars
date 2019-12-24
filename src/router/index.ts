@@ -2,6 +2,8 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import { SignIn, SignUp } from "@/views/user";
 import PageNotFound from "@/views/PageNotFound.vue";
+import HeimrBook from "@/views/HeimrBook.vue";
+import DomainsBook from "@/views/DomainsBook.vue";
 import AuthGuard from "./AuthGuard";
 import { characterStepRoutes } from "./character-steps";
 
@@ -19,6 +21,16 @@ const routes = [
   {
     path: "/sign-up",
     component: SignUp
+  },
+  {
+    path: "/books/domains",
+    name: "DomainsBook",
+    component: DomainsBook
+  },
+  {
+    path: "/books/*",
+    name: "book",
+    component: HeimrBook
   },
   {
     path: "/about",

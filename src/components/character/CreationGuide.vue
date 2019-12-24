@@ -9,9 +9,8 @@
     <v-card-text class="pt-2">
       <p>
         Before you begin, it is helpful know the
-        <a target="blank" href="http://heimr.nl/game_rules"
-          >Heimr Rulebook, chapter 2: Core Rules</a
-        >. To create a new character, you will go through the following steps:
+        <router-link to="/books/core-rules">core rules</router-link>. To create
+        a new character, you will go through the following steps:
       </p>
       <ol>
         <li>Pick the race of your character</li>

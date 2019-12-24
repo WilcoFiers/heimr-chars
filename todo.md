@@ -1,29 +1,14 @@
 # TODO
 
-- Automatically exchange between char points and copper
-- Make better user of store getters
-- Add "Core rules" section
-- In "finish", show replacement of "..."
+- Properly style the books
 - Add a homepage
-- Make the tiles in My Characters wider, include a status, and info about its skills
-- Prompt users when adding race / skill that gives a bonus ruleCard
-- Group weapons, shields & armor
-- Remove everything dependent on a required skill / condition when removing that ruleCard
-- Set required props in compnents
-- Show link to domains in resources view
-- Update race selection view UX
-- Overrides & counters for ruleCards
+- Set required props in components and provide type saftey
 - Build out tests
 - unmount everything on sign-out
-- Type safety on props?
 - Add theming / design / logo
-- Add "info" tab to domain content
+- Add user profile
 - Set up Github, including deploy action
-- Add Loading component for Characters data
-- Separate the bottom buttons
-- Handle login from view, instead of through redirects / render before autoSignin
 - Enable offline mode
-- Include domain complexity indicator
 - Forgot password feature
 - Surgery deck
 - Admin
@@ -36,6 +21,21 @@
 - Surgery mini game
 - Primordial magic simulator
 - Separate prod and dev databases
+- Handle login from view, instead of through redirects / render before autoSignin
+
+### Char creation
+
+- Make better user of store getters
+- In "finish", show replacement of "..."
+- Group Feyfolk
+- Add filter textfield to races
+- Adjust the divider position in the stepper
+- In finish, "feyfolk destroyer" wraps when it shouldn't
+- Make the tiles in My Characters wider, include a status, and info about its skills
+- Prompt users when adding race / skill that gives a bonus ruleCard
+- Group weapons, shields, armor, emblems
+- Remove everything dependent on a required skill / condition when removing that ruleCard
+- Add Loading component for Characters data
 
 ## Handle custom rules
 
@@ -51,4 +51,3 @@
 - loan / loan use tokens instead of levels
 - Figure out which conditions can be bought during char creation
 - How do you get a higher salary if you don't meet the "X points in a domain" requirement
-- Armor is not types as "item" but as "armour": http://heimr.nl/rulebooks/domains/armed_combat/armour

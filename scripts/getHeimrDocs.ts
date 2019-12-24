@@ -8,7 +8,8 @@ import {
   SkillCard,
   ConditionCard,
   ItemCard,
-  ConsumableCard
+  ConsumableCard,
+  HeimrBook
 } from "../src/types";
 import {
   RuleObject,
@@ -18,6 +19,7 @@ import {
   toRace,
   toConsumable
 } from "./toCardObject";
+import { getHeimrBook } from "./getHeimrBook";
 
 const url = "http://heimr.nl/book/export/html/1838";
 
@@ -36,6 +38,7 @@ request(url, (error, response, html) => {
   const $ = cheerio.load(html);
   const races: RaceCard[] = [];
   const domains: Domain[] = [];
+  const heimrBooks: HeimrBook[] = [];
 
   $(".section-3").each((_, elm) => {
     const $domain = $(elm);
@@ -91,14 +94,22 @@ request(url, (error, response, html) => {
         items,
         consumables
       });
+      // Save the book as a domains book
+      heimrBooks.push(...getHeimrBook($, $domain, "domains/"));
+    } else {
+      // Save the section as a book
+      heimrBooks.push(...getHeimrBook($, $domain));
     }
   });
 
   const date = new Date().toISOString();
   const heimrData = JSON.stringify({ date, races, domains }, null, 2);
-
   console.log("creating file at /src/assets/heimr-data.json");
   fs.writeFileSync("../src/assets/heimr-data.json", heimrData, "utf-8");
+
+  const booksString = JSON.stringify({ date, heimrBooks }, null, 2);
+  console.log("creating file at /src/assets/heimr-books.json");
+  fs.writeFileSync("../src/assets/heimr-books.json", booksString, "utf8");
 });
 
 function tableToRuleObject($: CheerioStatic, $table: Cheerio): RuleObject {

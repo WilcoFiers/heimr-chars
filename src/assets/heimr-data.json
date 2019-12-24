@@ -1,5 +1,5 @@
 {
-  "date": "2019-12-12T21:12:36.747Z",
+  "date": "2019-12-24T19:48:39.344Z",
   "races": [
     {
       "type": "race",
@@ -277,98 +277,98 @@
         },
         {
           "type": "skill",
-          "name": "Sturdy stance 2",
+          "name": "Sturdy Stance 2",
           "details": "You don't fall down so easily. They will have to work for that.",
           "uniqueRules": [
             "If you spend 1 WP you can call Resist against a Stumble or fall effect."
           ],
           "points": 7,
-          "category": "Sturdy stance",
+          "category": "Sturdy Stance",
           "level": 2,
           "upgrade": "Upgrade to Level 3 by training 5 points"
         },
         {
           "type": "skill",
-          "name": "Sturdy stance 3",
+          "name": "Sturdy Stance 3",
           "details": "Your legs tend to be strong enough to resist most magical barriers.",
           "uniqueRules": [
             "If you spend 1 WP you can call Resist against a Stumble, fall or bind effect.",
             "You can perform this skill once without spending WP after every short rest."
           ],
           "points": 12,
-          "category": "Sturdy stance",
+          "category": "Sturdy Stance",
           "level": 3
         },
         {
           "type": "skill",
-          "name": "Sturdy hands 1",
+          "name": "Sturdy Hands 1",
           "details": "Bashing a weapon from your hands is harder than they think.",
           "uniqueRules": [
             "If you spend 2 WP you can call Resist against a drop weapon effect."
           ],
           "points": 4,
-          "category": "Sturdy hands",
+          "category": "Sturdy Hands",
           "level": 1,
           "upgrade": "Upgrade to Level 2 by training 4 points"
         },
         {
           "type": "skill",
-          "name": "Sturdy hands 2",
+          "name": "Sturdy Hands 2",
           "details": "A light grasp not a clingy one. It is all in the wrist.",
           "uniqueRules": [
             "If you spend 1 WP you can call Resist against a drop weapon effect."
           ],
           "points": 8,
-          "category": "Sturdy hands",
+          "category": "Sturdy Hands",
           "level": 2,
           "upgrade": "Upgrade to Level 3 by training 5 points"
         },
         {
           "type": "skill",
-          "name": "Sturdy hands 3",
+          "name": "Sturdy Hands 3",
           "details": "Your weapon is your life. Rarely do you drop it.",
           "uniqueRules": [
             "If you spend 1 WP you can call Resist against a drop weapon effect.",
             "You can perform this skill once without spending WP after every short rest."
           ],
           "points": 11,
-          "category": "Sturdy hands",
+          "category": "Sturdy Hands",
           "level": 3
         },
         {
           "type": "skill",
-          "name": "Clear head 1",
+          "name": "Clear Head 1",
           "details": "You are not distracted by fear that easily.",
           "uniqueRules": [
             "If you spend 1 WP you can call Resist against a fear effect."
           ],
           "points": 4,
-          "category": "Clear head",
+          "category": "Clear Head",
           "level": 1,
           "upgrade": "Upgrade to Level 2 by training 4 points"
         },
         {
           "type": "skill",
-          "name": "Clear head 2",
+          "name": "Clear Head 2",
           "details": "It is really hard to stun you. Even spellcasters might be surprised.",
           "uniqueRules": [
             "If you spend 1 WP you can call Resist against a fear or daze effect."
           ],
           "points": 8,
-          "category": "Clear head",
+          "category": "Clear Head",
           "level": 2,
           "upgrade": "Upgrade to Level 3 by training 5 points"
         },
         {
           "type": "skill",
-          "name": "Clear head 3",
+          "name": "Clear Head 3",
           "details": "You have seen it all. Nothing distracts you from the battle at hand.",
           "uniqueRules": [
             "If you spend 1 WP you can call Resist against a fear, daze or charm effect.",
             "You can perform this skill once without spending WP after every short rest."
           ],
           "points": 11,
-          "category": "Clear head",
+          "category": "Clear Head",
           "level": 3
         }
       ],
@@ -1601,7 +1601,7 @@
       "conditions": [
         {
           "type": "condition",
-          "name": "Home",
+          "name": "Homeowner in ...",
           "details": "You are bound to a single location that you return to in downtime.",
           "uniqueRules": [
             "At the beginning of every event you receive one free rumour and a list of items that are expensive or cheap in your location.",
