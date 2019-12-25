@@ -1,10 +1,10 @@
 <template>
   <div class="d-flex">
-    <h3>
+    <h4>
       {{ ruleGroupLevelText }}
       <v-icon small color="primary" v-if="groupIcon">{{ groupIcon }}</v-icon>
       <em class="font-weight-light" v-if="dormant">Dorment</em>
-    </h3>
+    </h4>
     <v-spacer />
     <span class="flex-grow-0 mr-5">{{ ruleGroupCostText }}</span>
   </div>

@@ -27,7 +27,7 @@
           }"
         >
           <v-card-title>
-            <h3 class="title d-flex flex-row-reverse">
+            <h3 class="d-flex flex-row-reverse">
               {{ domain.domainName }}
               <v-img
                 :src="domainImg(domain)"

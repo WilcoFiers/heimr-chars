@@ -1,6 +1,5 @@
 # TODO
 
-- Properly style the books
 - Add a homepage
 - Set required props in components and provide type saftey
 - Build out tests
@@ -22,6 +21,7 @@
 - Primordial magic simulator
 - Separate prod and dev databases
 - Handle login from view, instead of through redirects / render before autoSignin
+- Remove internal links from books
 
 ### Char creation
 

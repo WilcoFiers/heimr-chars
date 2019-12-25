@@ -1,15 +1,15 @@
 <template>
   <div class="d-flex flex-grow-1 align-baseline">
-    <h3 class="subheading-1">
+    <h4 :class="heading">
       <span>{{ ruleCard.name }}</span>
       <v-icon small v-if="quantity" color="primary" right
         >mdi-check-bold</v-icon
       >
-    </h3>
+    </h4>
     <v-spacer />
-    <span v-if="pricePaid" :class="{ 'grey--text': pricePaid.custom }">{{
-      pricePaid.value
-    }}</span>
+    <span v-if="pricePaid" :class="{ 'grey--text': pricePaid.custom }">
+      {{ pricePaid.value }}
+    </span>
   </div>
 </template>
 
@@ -24,7 +24,8 @@ export default Vue.extend({
     ruleCard: Object,
     characterRule: Object,
     quantity: Number,
-    multiple: Boolean
+    multiple: Boolean,
+    heading: String
   },
   computed: {
     pricePaid(): { value: string; custom: boolean } | null {

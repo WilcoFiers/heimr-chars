@@ -30,7 +30,7 @@
       <v-col :cols="9">
         <v-card>
           <v-card-title>
-            <RuleCardTitle :ruleCard="currentRace" />
+            <RuleCardTitle :ruleCard="currentRace" heading="title" />
           </v-card-title>
           <v-card-text>
             <RuleCardContent :ruleCard="currentRace" />

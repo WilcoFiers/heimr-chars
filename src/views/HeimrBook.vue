@@ -1,25 +1,25 @@
 <template>
   <v-container>
     <v-row>
-      <v-col>
+      <v-col xl="9">
         <article v-html="html" />
         <ol>
           <li v-for="(subsection, i) in subsections" :key="i">
-            <router-link :to="toRoute(subsection)">{{
-              subsection.sectionName
-            }}</router-link>
+            <router-link :to="toRoute(subsection)">
+              {{ subsection.sectionName }}
+            </router-link>
           </li>
         </ol>
       </v-col>
     </v-row>
     <v-row>
-      <v-col cols="4">
+      <v-col cols="4" xl="3">
         <v-btn v-if="previousSection" :to="toRoute(previousSection)" text>
           <v-icon left>mdi-arrow-left</v-icon>
           {{ previousSection.sectionName }}
         </v-btn>
       </v-col>
-      <v-col cols="4" class="text-center">
+      <v-col cols="4" xl="3" class="text-center">
         <v-btn
           v-if="parentSection"
           :to="toRoute(parentSection)"
@@ -30,7 +30,7 @@
           <v-icon right>mdi-arrow-up</v-icon>
         </v-btn>
       </v-col>
-      <v-col cols="4" class="text-right">
+      <v-col cols="4" xl="3" class="text-right">
         <v-btn v-if="nextSection" :to="toRoute(nextSection)" text>
           {{ nextSection.sectionName }}
           <v-icon right>mdi-arrow-right</v-icon>
