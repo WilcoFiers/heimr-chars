@@ -5,10 +5,10 @@
       aria-label="Toggle navbar"
     ></v-app-bar-nav-icon>
 
-    <span class="title ml-3 mr-5">
+    <router-link to="/" class="title ml-3 mr-5 unstyled">
       <v-icon left large>mdi-account-group</v-icon>Heimr LARP&nbsp;
       <span class="font-weight-light">Unofficial App</span>
-    </span>
+    </router-link>
     <v-spacer></v-spacer>
 
     <v-btn v-if="!signedIn" to="/sign-in">Sign In</v-btn>
@@ -49,3 +49,10 @@ export default Vue.extend({
   }
 });
 </script>
+
+<style lang="scss">
+a.unstyled {
+  color: inherit !important;
+  text-decoration: none;
+}
+</style>

@@ -23,7 +23,7 @@
         <v-card :to="domainRoute(domain)" height="100%">
           <div class="d-flex flex-no-wrap justify-space-between">
             <div>
-              <v-card-title class="title" v-text="domain.domainName" />
+              <v-card-title v-text="domain.domainName" />
               <v-card-subtitle v-text="domain.description" />
             </div>
             <v-avatar class="ma-4" size="60" tile>

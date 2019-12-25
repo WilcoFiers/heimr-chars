@@ -1,18 +1,18 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import { SignIn, SignUp } from "@/views/user";
+import Home from "@/views/Home.vue";
 import PageNotFound from "@/views/PageNotFound.vue";
-import HeimrBook from "@/views/HeimrBook.vue";
-import DomainsBook from "@/views/DomainsBook.vue";
 import AuthGuard from "./AuthGuard";
 import { characterStepRoutes } from "./character-steps";
+import { bookRoutes } from "./books";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    redirect: "/characters"
+    component: Home
   },
   {
     path: "/sign-in",
@@ -21,16 +21,6 @@ const routes = [
   {
     path: "/sign-up",
     component: SignUp
-  },
-  {
-    path: "/books/domains",
-    name: "DomainsBook",
-    component: DomainsBook
-  },
-  {
-    path: "/books/*",
-    name: "book",
-    component: HeimrBook
   },
   {
     path: "/about",
@@ -42,6 +32,7 @@ const routes = [
     beforeEnter: AuthGuard
   },
   ...characterStepRoutes,
+  ...bookRoutes,
   { path: "*", component: PageNotFound }
 ];
 

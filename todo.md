@@ -1,6 +1,5 @@
 # TODO
 
-- Add a homepage
 - Set required props in components and provide type saftey
 - Build out tests
 - unmount everything on sign-out
