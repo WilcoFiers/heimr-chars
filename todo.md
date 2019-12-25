@@ -1,13 +1,13 @@
 # TODO
 
+- Add user profile
+- Forgot password feature
 - Set required props in components and provide type saftey
 - Build out tests
 - unmount everything on sign-out
 - Add theming / design / logo
-- Add user profile
 - Set up Github, including deploy action
 - Enable offline mode
-- Forgot password feature
 - Surgery deck
 - Admin
 - Event display & creation

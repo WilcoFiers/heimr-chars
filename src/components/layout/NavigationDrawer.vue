@@ -44,7 +44,10 @@ const navItems: NavItem[] = [
     text: "Domains",
     to: "/books/domains",
     icon: "layers-triple-outline"
-  }
+  },
+  {
+    divider: true
+  },
   // {
   //   text: "Events",
   //   to: "/events",
@@ -63,11 +66,11 @@ const navItems: NavItem[] = [
   //   to: "/settings",
   //   icon: "settings"
   // },
-  // {
-  //   text: "Help",
-  //   to: "/help",
-  //   icon: "help"
-  // }
+  {
+    text: "About",
+    to: "/about",
+    icon: "information-outline"
+  }
 ];
 
 export default Vue.extend({
