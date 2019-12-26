@@ -190,10 +190,9 @@ export default Vue.extend({
       if (!this.signInForm.validate()) {
         return;
       }
-      const { email } = this.$store.getters.currentUser;
       const password = this.signInPassword;
       try {
-        await this.$store.dispatch("emailSignIn", { email, password });
+        await this.$store.dispatch("reauthenticate", password);
         if (
           this.signInAction !== "updateProfile" &&
           this.signInAction !== "updatePassword"

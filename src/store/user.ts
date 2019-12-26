@@ -1,4 +1,4 @@
-import { auth } from "@/firebase";
+import { auth, EmailAuthProvider } from "@/firebase";
 import { RootModule } from "./types";
 
 export interface UserState {
@@ -61,7 +61,7 @@ export const user: UserModules = {
       const promises = [];
       const user = auth.currentUser;
       if (!user) {
-        throw new Error("Can not locate user to reset password for.");
+        throw new Error("Can not locate user to update the profile for.");
       }
       if (displayName) {
         promises.push(user.updateProfile({ displayName }));
@@ -78,6 +78,19 @@ export const user: UserModules = {
         throw new Error("Can not locate user to reset password for.");
       }
       return user.updatePassword(newPassword);
+    },
+
+    reauthenticate(_, password: string) {
+      const user = auth.currentUser;
+      if (!user || !user.email) {
+        throw new Error("No user to reauthenticate.");
+      }
+      const credential = EmailAuthProvider.credential(user.email, password);
+      return user.reauthenticateWithCredential(credential);
+    },
+
+    resetPassword(_, email) {
+      return auth.sendPasswordResetEmail(email);
     }
   }
 };

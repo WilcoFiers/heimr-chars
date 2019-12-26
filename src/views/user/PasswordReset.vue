@@ -2,8 +2,11 @@
   <v-container>
     <v-row class="justify-center">
       <v-col :md="6">
-        <v-form @submit.prevent="signIn" ref="form">
-          <h1>Sign In</h1>
+        <v-form @submit.prevent="resetPassword" ref="form">
+          <v-row>
+            <h1>Reset Password</h1>
+            <p>Lost your password? Send an e-mail to reset the password:</p>
+          </v-row>
           <v-row>
             <v-text-field
               label="E-mail"
@@ -11,35 +14,28 @@
               :rules="[required, validEmail]"
             />
           </v-row>
-
           <v-row>
-            <v-text-field
-              label="Password"
-              v-model="password"
-              type="password"
-              :rules="[required]"
-            />
-          </v-row>
-
-          <v-row v-if="message">
             <ErrorMessage :message="message" />
           </v-row>
           <v-row>
-            <v-btn type="submit">Sign in</v-btn>
+            <v-btn type="submit">Send e-mail</v-btn>
           </v-row>
-
           <v-row>
             <p class="py-5">
-              Unable to sign in? You can
-              <router-link to="/password-reset"
-                >request a new password</router-link
-              >. <br />Don't have an account, just
-              <router-link to="/sign-up">Sign up</router-link>.
+              Already have a password? You can
+              <router-link to="/sign-in">sign in</router-link>. <br />Don't have
+              an account, just
+              <router-link to="/sign-up">Sign up</router-link>
             </p>
           </v-row>
         </v-form>
       </v-col>
     </v-row>
+
+    <v-snackbar v-model="snackbar" color="primary" role="alert">
+      An e-mail with a link to reset your password has been sent.
+      <v-btn @click="snackbar = false" text>Close</v-btn>
+    </v-snackbar>
   </v-container>
 </template>
 
@@ -49,27 +45,28 @@ import { mapActions } from "vuex";
 import ErrorMessage from "@/components/ErrorMessage.vue";
 
 export default Vue.extend({
-  name: "SignIn",
+  name: "PasswordReset",
   components: { ErrorMessage },
   data() {
     return {
       email: "",
-      password: "",
       message: "",
+      snackbar: false,
       required: (val: string) => val !== "" || "Field must be filled out",
       validEmail: (val: string) =>
         /\S+@\S+\.\S+/.test(val) || "E-mail address must be valid"
     };
   },
   methods: {
-    async signIn() {
+    async resetPassword() {
       if (!this.form.validate()) {
         return;
       }
-      const { email, password } = this;
       try {
-        await this.$store.dispatch("emailSignIn", { email, password });
-        this.$router.push("/");
+        await this.$store.dispatch("resetPassword", this.email);
+        this.snackbar = true;
+        // @ts-ignore
+        this.form.reset();
       } catch (e) {
         this.message = e.message;
       }

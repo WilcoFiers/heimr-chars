@@ -1,4 +1,4 @@
-import { initializeApp, firestore } from "firebase";
+import { initializeApp, firestore, auth as fbAuth } from "firebase";
 import { CharacterCol, CharacterRuleCol } from "./types";
 
 // Get a Firestore instance
@@ -13,6 +13,7 @@ export const firebaseApp = initializeApp({
   measurementId: "G-YZ5QQN5LXP"
 });
 
+export const EmailAuthProvider = fbAuth.EmailAuthProvider;
 export const auth = firebaseApp.auth();
 
 export const db = firebaseApp.firestore();
