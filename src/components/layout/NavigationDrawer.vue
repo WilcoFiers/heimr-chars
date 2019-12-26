@@ -53,11 +53,11 @@ const navItems: NavItem[] = [
   //   to: "/events",
   //   icon: "calendar-month"
   // },
-  // {
-  //   text: "Profile",
-  //   to: "/profile",
-  //   icon: "card-bulleted"
-  // },
+  {
+    text: "Profile",
+    to: "/profile",
+    icon: "card-bulleted"
+  },
   // {
   //   divider: true
   // },

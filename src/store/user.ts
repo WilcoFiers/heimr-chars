@@ -19,10 +19,16 @@ export const user: UserModules = {
     setDisplayName: (state, val) => (state.displayName = val)
   },
 
+  getters: {
+    currentUser() {
+      return auth.currentUser;
+    }
+  },
+
   actions: {
     async signUp({ dispatch }, { email, password, displayName }) {
       await auth.createUserWithEmailAndPassword(email, password);
-      await dispatch("signIn", { email, password });
+      await dispatch("emailSignIn", { email, password });
       const user = auth.currentUser;
       if (user) {
         user.updateProfile({ displayName });
@@ -49,6 +55,29 @@ export const user: UserModules = {
     signOut({ commit }) {
       auth.signOut();
       commit("signedIn", false);
+    },
+
+    updateProfile(_, { displayName, email }) {
+      const promises = [];
+      const user = auth.currentUser;
+      if (!user) {
+        throw new Error("Can not locate user to reset password for.");
+      }
+      if (displayName) {
+        promises.push(user.updateProfile({ displayName }));
+      }
+      if (email) {
+        promises.push(user.updateEmail(email));
+      }
+      return Promise.all(promises);
+    },
+
+    updatePassword(_, newPassword) {
+      const user = auth.currentUser;
+      if (!user) {
+        throw new Error("Can not locate user to reset password for.");
+      }
+      return user.updatePassword(newPassword);
     }
   }
 };

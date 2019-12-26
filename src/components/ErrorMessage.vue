@@ -1,5 +1,5 @@
 <template>
-  <p class="error--text" v-if="message">
+  <p class="error--text" v-if="message" role="alert">
     <v-icon class="error--text" small>mdi-alert-circle</v-icon>
     {{ message }}
   </p>

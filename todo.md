@@ -1,6 +1,5 @@
 # TODO
 
-- Add user profile
 - Forgot password feature
 - Set required props in components and provide type saftey
 - Build out tests
