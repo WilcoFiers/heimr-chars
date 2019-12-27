@@ -33,6 +33,11 @@ const navItems: NavItem[] = [
     icon: "account-search"
   },
   {
+    text: "My Account",
+    to: "/account",
+    icon: "card-bulleted"
+  },
+  {
     divider: true
   },
   {
@@ -45,19 +50,11 @@ const navItems: NavItem[] = [
     to: "/books/domains",
     icon: "layers-triple-outline"
   },
-  {
-    divider: true
-  },
   // {
   //   text: "Events",
   //   to: "/events",
   //   icon: "calendar-month"
   // },
-  {
-    text: "Profile",
-    to: "/profile",
-    icon: "card-bulleted"
-  },
   // {
   //   divider: true
   // },

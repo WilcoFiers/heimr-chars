@@ -12,16 +12,9 @@
     <v-spacer></v-spacer>
 
     <v-btn v-if="!signedIn" to="/sign-in">Sign In</v-btn>
-    <span v-else>
-      <v-btn to="/profile" class="mr-3">
-        <v-icon left>mdi-account</v-icon>
-        {{ displayName }}
-      </v-btn>
-
-      <v-btn @click="signOut">
-        <v-icon left>mdi-exit-to-app</v-icon>Sign Out
-      </v-btn>
-    </span>
+    <v-btn v-else @click="signOut">
+      <v-icon left>mdi-exit-to-app</v-icon>Sign Out
+    </v-btn>
   </v-app-bar>
 </template>
 

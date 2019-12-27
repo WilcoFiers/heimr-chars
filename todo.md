@@ -1,17 +1,18 @@
 # TODO
 
 - Set up Github, including deploy action
+- Rename "core rules" to "Heimr LARP rules" and add a well-styled page for it
 - Enable offline mode
-- Surgery deck
 - Build out tests
-- Admin
+- Surgery deck
+- Admin features
 - Set required props in components and provide type saftey
 - unmount everything on sign-out
 - Add theming / design / logo
 - Event display & creation
+- Downtime system
 - Lock characters after an event
 - Checkout items for an event
-- Downtime system
 - Set up as a web app (add a manifest + service worker)
 - Alchemy mini game
 - Surgery mini game

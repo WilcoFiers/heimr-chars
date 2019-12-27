@@ -4,7 +4,7 @@
       <v-col cols="12" sm="9" md="6">
         <v-row>
           <v-col>
-            <h1>Profile</h1>
+            <h1>My Account</h1>
           </v-col>
         </v-row>
         <v-row>
@@ -101,7 +101,7 @@ import ErrorMessage from "@/components/ErrorMessage.vue";
 const emailRegex = /\S+@\S+\.\S+/;
 
 export default Vue.extend({
-  name: "Profile",
+  name: "Account",
   components: { ErrorMessage },
   data() {
     const { displayName = "", email = "" } = this.$store.getters.currentUser;
