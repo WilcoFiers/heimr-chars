@@ -37,7 +37,7 @@
             <span class="subtitle-1">Cost: {{ itemCardType.total }}</span>
           </v-card-title>
           <v-card-text>
-            <p>
+            <p class="mb-0">
               {{ character.name }} does not have any
               {{ itemCardType.label.toLowerCase() }}
             </p>

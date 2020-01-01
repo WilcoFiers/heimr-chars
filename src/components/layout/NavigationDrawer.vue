@@ -50,19 +50,9 @@ const navItems: NavItem[] = [
     to: "/books/domains",
     icon: "layers-triple-outline"
   },
-  // {
-  //   text: "Events",
-  //   to: "/events",
-  //   icon: "calendar-month"
-  // },
-  // {
-  //   divider: true
-  // },
-  // {
-  //   text: "Settings",
-  //   to: "/settings",
-  //   icon: "settings"
-  // },
+  {
+    divider: true
+  },
   {
     text: "About",
     to: "/about",
