@@ -27,8 +27,6 @@
 
 ### Char creation
 
-- "100 points for each unspent" should be "100 coppers"
-- bug: characters/new redirects naar characters/sign-in instead of to just /sign-in
 - Bug: "points" validation does not look at custom values
 - Bug: progress bar of coppers is positioned left in xl instead of on the right
 - Bug: Too many dormant skills does not cause a visible error

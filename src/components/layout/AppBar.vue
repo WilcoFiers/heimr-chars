@@ -37,7 +37,7 @@ export default Vue.extend({
     },
     signOut() {
       this.$store.dispatch("signOut");
-      this.$router.push("sign-in");
+      this.$router.push("/sign-in");
     }
   }
 });
