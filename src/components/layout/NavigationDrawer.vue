@@ -41,7 +41,7 @@ const navItems: NavItem[] = [
     divider: true
   },
   {
-    text: "Core rules",
+    text: "LARP rules",
     to: "/books/core-rules",
     icon: "feather"
   },
@@ -51,7 +51,7 @@ const navItems: NavItem[] = [
     icon: "layers-triple-outline"
   },
   {
-    text: "Downtime rules",
+    text: "Downtime Periods",
     to: "/books/downtime-periods",
     icon: "hotel"
   },
