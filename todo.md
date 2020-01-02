@@ -1,8 +1,8 @@
 # TODO
 
-- Add "downtime rules" page
 - Scroll move focus after navigation
 - Indicate that the password has to be 6 chars long
+- Add "downtime rules" page
 - It is not clear that the domains in books/domains are links
 - Set up Github, including deploy action
 - Rename "core rules" to "Heimr LARP rules" and add a well-styled page for it
@@ -28,9 +28,9 @@
 ### Char creation
 
 - "100 points for each unspent" should be "100 coppers"
+- bug: characters/new redirects naar characters/sign-in instead of to just /sign-in
 - Bug: "points" validation does not look at custom values
 - Bug: progress bar of coppers is positioned left in xl instead of on the right
-- Bug: the guide modal for new char pops up twice
 - Bug: Too many dormant skills does not cause a visible error
 - Improve the text about "domains" in the guide
 - Open all links from char creation in a new window
@@ -75,7 +75,7 @@
 
 ## Fix Heimr stuff
 
-- loan / loan use tokens instead of levels
+- loan / loan use counters instead of levels
 - Figure out which conditions can be bought during char creation
 - How do you get a higher salary if you don't meet the "X points in a domain" requirement
 - It's unclear how in "priest 1" you should choose blessings. There is no mechanism for recording the blessings you chose. I suggest letting a priets decide at the start of an event instead.
