@@ -7,7 +7,7 @@
           <CreationGuideBtn />
         </div>
         <p class="ma-0">
-          Spend 500 copper on items and consumables, plus 100 points for each
+          Spend 500 copper on items and consumables, plus 100 copper for each
           unspent character point. Unspent coppers are part of your starting
           capital.
         </p>
