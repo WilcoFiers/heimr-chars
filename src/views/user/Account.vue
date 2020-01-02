@@ -44,6 +44,8 @@
               <h2>Update password</h2>
               <v-text-field
                 label="New password"
+                hint="At least 6 characters"
+                persistent-hint
                 v-model="password"
                 type="password"
                 prepend-icon="mdi-lock-outline"

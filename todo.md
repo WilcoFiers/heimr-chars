@@ -1,7 +1,5 @@
 # TODO
 
-- Scroll move focus after navigation
-- Indicate that the password has to be 6 chars long
 - Add "downtime rules" page
 - It is not clear that the domains in books/domains are links
 - Set up Github, including deploy action

@@ -29,6 +29,8 @@
           <v-row>
             <v-text-field
               label="Password"
+              hint="At least 6 characters"
+              persistent-hint
               v-model="password"
               type="password"
               prepend-icon="mdi-lock-outline"
