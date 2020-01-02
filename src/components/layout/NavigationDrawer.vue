@@ -51,6 +51,11 @@ const navItems: NavItem[] = [
     icon: "layers-triple-outline"
   },
   {
+    text: "Downtime rules",
+    to: "/books/downtime-periods",
+    icon: "hotel"
+  },
+  {
     divider: true
   },
   {

@@ -1,6 +1,5 @@
 # TODO
 
-- Add "downtime rules" page
 - It is not clear that the domains in books/domains are links
 - Set up Github, including deploy action
 - Rename "core rules" to "Heimr LARP rules" and add a well-styled page for it
