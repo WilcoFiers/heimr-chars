@@ -19,6 +19,9 @@ auth.onAuthStateChanged(user => {
       store,
       vuetify: new Vuetify({
         theme: {
+          options: {
+            customProperties: true
+          },
           themes: {
             light: {
               // primary: '#3f51b5',

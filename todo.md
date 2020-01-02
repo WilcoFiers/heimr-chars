@@ -1,6 +1,5 @@
 # TODO
 
-- It is not clear that the domains in books/domains are links
 - Set up Github, including deploy action
 - Enable offline mode
 - Build out tests

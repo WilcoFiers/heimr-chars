@@ -23,9 +23,10 @@
         <v-card :to="domainRoute(domain)" height="100%">
           <div class="d-flex flex-no-wrap justify-space-between">
             <div>
-              <v-card-title v-text="domain.domainName" />
+              <v-card-title class="link" v-text="domain.domainName" />
               <v-card-subtitle v-text="domain.description" />
             </div>
+
             <v-avatar class="ma-4" size="60" tile>
               <v-img :src="domainImg(domain)" class="image" />
             </v-avatar>
@@ -68,5 +69,12 @@ export default Vue.extend({
 .image {
   background: rgba(0, 0, 0, 0.85);
   border-radius: 6px;
+}
+.link {
+  text-decoration: underline;
+  text-decoration-color: rgba(0, 0, 0, 0.25);
+}
+.v-card--link:hover:before {
+  opacity: 0.08;
 }
 </style>

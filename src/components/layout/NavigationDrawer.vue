@@ -53,7 +53,7 @@ const navItems: NavItem[] = [
   {
     text: "Downtime Periods",
     to: "/books/downtime-periods",
-    icon: "hotel"
+    icon: "briefcase-clock-outline"
   },
   {
     divider: true
