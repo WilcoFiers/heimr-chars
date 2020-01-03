@@ -13,7 +13,7 @@
         </p>
       </v-col>
     </v-row>
-    <v-row class="justify-center">
+    <v-row class="justify-center flex-row-reverse">
       <v-col cols="10" sm="8" md="6" lg="4" xl="3">
         <v-card>
           <v-card-text class="text-center">

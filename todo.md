@@ -23,7 +23,6 @@
 ### Char creation
 
 - Bug: "points" validation does not look at custom values
-- Bug: progress bar of coppers is positioned left in xl instead of on the right
 - Bug: Too many dormant skills does not cause a visible error
 - Improve the text about "domains" in the guide
 - Open all links from char creation in a new window
