@@ -1,5 +1,7 @@
 export { State } from "@/store";
 
+export { CharacterInfo } from "@/heimr/computedProps";
+
 // Heimr stuff
 export type BaseRuleCard = {
   type: string;

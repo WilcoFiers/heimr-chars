@@ -138,6 +138,7 @@ export default Vue.extend({
     },
 
     cardAction({ action, ruleCard }: { action: string; ruleCard: RuleCard }) {
+      this.$emit("action", { action, ruleCard });
       switch (action) {
         case "addRule":
           return this.addRule(ruleCard);

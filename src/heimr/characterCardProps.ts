@@ -75,7 +75,7 @@ export const getPointsSpent = (
   }, 0);
 };
 
-export const getCashSpent = (characterRules: CharacterRule[]): number => {
+export const getCoppersSpent = (characterRules: CharacterRule[]): number => {
   return characterRules.reduce((sum: number, characterRule) => {
     if (characterRule.cashPaid !== undefined) {
       return sum + characterRule.cashPaid;

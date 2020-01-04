@@ -15,7 +15,7 @@
     <v-row class="justify-center flex-row-reverse">
       <v-col cols="10" sm="8" md="6" lg="4" xl="3">
         <v-card>
-          <v-card-text class=" text-center">
+          <v-card-text class="text-center">
             <div class="font-weight-bold">{{ pointsProgress.label }}</div>
             <v-progress-linear
               :value="pointsProgress.value"
@@ -39,13 +39,13 @@
       </v-col>
 
       <v-col cols="12" xl="9">
-        <BaseCharacterCard :domains="domains" />
+        <BaseCharacterCard :domains="domains" @action="messages = []" />
       </v-col>
     </v-row>
 
-    <v-row v-if="message">
+    <v-row v-if="messages">
       <v-col>
-        <ErrorMessage :message="message" />
+        <ErrorMessage :message="messages" />
       </v-col>
     </v-row>
   </v-container>
@@ -53,11 +53,12 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { Domain, State } from "@/types";
+import { Domain, State, CharacterInfo } from "@/types";
 import BaseCharacterCard, { activeDomains } from "./BaseCharacterCard.vue";
 import { getPointsSpent } from "@/heimr/characterCardProps";
 import CreationGuideBtn from "@/components/character/CreationGuideBtn.vue";
 import ErrorMessage from "@/components/ErrorMessage.vue";
+import { validatePoints } from "@/heimr/validateSteps";
 
 export type ProgressBarVal = {
   label: string;
@@ -69,7 +70,7 @@ export default Vue.extend({
   name: "CharacterStepPoints",
   components: { BaseCharacterCard, CreationGuideBtn, ErrorMessage },
   data() {
-    return { message: "" };
+    return { messages: [] as String[] };
   },
 
   computed: {
@@ -87,7 +88,7 @@ export default Vue.extend({
         pointsSpent,
         startingPoints,
         pointConvertionMax
-      } = this.$store.getters.characterRuleStates;
+      } = this.$store.getters.characterInfo;
       let color = "accent";
       if (pointsSpent < startingPoints - pointConvertionMax) {
         color = "warning lighten-2";
@@ -102,10 +103,7 @@ export default Vue.extend({
     },
 
     dormantProgress(): ProgressBarVal | undefined {
-      const {
-        dormantSpent,
-        freeDormant
-      } = this.$store.getters.characterRuleStates;
+      const { dormantSpent, freeDormant } = this.$store.getters.characterInfo;
       if (!freeDormant) {
         return undefined;
       }
@@ -122,15 +120,11 @@ export default Vue.extend({
   },
 
   methods: {
-    save() {
-      const pointsSpent = this.$store.getters.characterRuleStates
-        .pointsSpent as number;
-      if (pointsSpent < 15) {
-        this.message = `You must spend at least 15 points. You spent ${pointsSpent} points so far.`;
-      } else if (pointsSpent > 20) {
-        this.message = `You can not spend more then 20 points. You spent  ${pointsSpent}`;
-      }
-      return this.message === "";
+    save(): boolean {
+      this.messages = validatePoints(
+        this.$store.getters.characterInfo as CharacterInfo
+      );
+      return this.messages.length === 0;
     }
   }
 });

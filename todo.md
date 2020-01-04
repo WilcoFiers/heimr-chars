@@ -1,5 +1,7 @@
 # TODO
 
+- Add types to the store
+- Make better user of store getters
 - Set up Github, including deploy action
 - Enable offline mode
 - Build out tests
@@ -22,11 +24,10 @@
 
 ### Char creation
 
-- Bug: "points" validation does not look at custom values
-- Bug: Too many dormant skills does not cause a visible error
 - Improve the text about "domains" in the guide
-- Open all links from char creation in a new window
+- Don't allow dormant in "add with changes" if char has no dormant points
 - In a card group, if any is owned, select it by default
+- Make the headings in the tablist more distinct
 - Add an explainer about what "add with changes" is for
 - Make it clear that your race is your character card
 - Include all costs in the card group heading, instead of a range: "4, 6 or 10 points" instead of "4 - 10 points",
@@ -36,14 +37,12 @@
 - When updating a char, redirect to the last uncompleted step
 - Add a distinct style (such is italic or a color change) defined terms. For example "sturdy stance 1" in "tellurian"
 - Add a way for people to learn about common terms such as "charm", "DC, "blessing", "medium weapon", "R", "C".
-- When you check "dormant" in "add with changes", the points and upkeep fields should get disabled
 - Merge step 3 and 4, so that people can buy skills and items together.
 - Put "priest" before "ceremony master", priest is the more important skill.
 - Explain what dormant skills are, maybe in the guide?
 - Show a "total HP" in finish, including armor and combat mobility
 - Show a "total WP" considering
 - Consider "loan" as part of your total coppers
-- Make better user of store getters
 - In "finish", show replacement of "..."
 - Group Feyfolk race cards
 - Bij xs, zet de level knoppen boven de regels ipv rechts ernaast

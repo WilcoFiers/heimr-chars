@@ -29,13 +29,13 @@
       </v-col>
 
       <v-col cols="12" xl="9">
-        <BaseCharacterCard :domains="domains" />
+        <BaseCharacterCard :domains="domains" @action="messages = []" />
       </v-col>
     </v-row>
 
-    <v-row v-if="message">
+    <v-row v-if="messages">
       <v-col>
-        <ErrorMessage :message="message" />
+        <ErrorMessage :message="messages" />
       </v-col>
     </v-row>
   </v-container>
@@ -43,17 +43,18 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { Domain, State } from "@/types";
+import { Domain, State, CharacterInfo } from "@/types";
 import BaseCharacterCard, { activeDomains } from "./BaseCharacterCard.vue";
 import CreationGuideBtn from "@/components/character/CreationGuideBtn.vue";
 import ErrorMessage from "@/components/ErrorMessage.vue";
 import { ProgressBarVal } from "./points.vue";
+import { validateCoppers } from "@/heimr/validateSteps";
 
 export default Vue.extend({
   name: "CharacterStepCoppers",
   components: { BaseCharacterCard, CreationGuideBtn, ErrorMessage },
   data() {
-    return { message: "" };
+    return { messages: [] as string[] };
   },
 
   computed: {
@@ -67,13 +68,10 @@ export default Vue.extend({
     },
 
     coppersProgress(): ProgressBarVal {
-      const {
-        coppersSpent,
-        unspentCoppers
-      } = this.$store.getters.characterRuleStates;
-      const totalCoppers = coppersSpent + unspentCoppers;
+      const { coppersSpent, coppersLeft } = this.$store.getters.characterInfo;
+      const totalCoppers = coppersSpent + coppersLeft;
       let color = "accent";
-      if (unspentCoppers < 0) {
+      if (coppersLeft < 0) {
         color = "error lighten-4";
       }
       return {
@@ -85,13 +83,11 @@ export default Vue.extend({
   },
 
   methods: {
-    save() {
-      const unspentCoppers = this.$store.getters.characterRuleStates
-        .unspentCoppers as number;
-      if (unspentCoppers < 0) {
-        this.message = `You have spent ${-unspentCoppers} coppers too much`;
-      }
-      return this.message === "";
+    save(): boolean {
+      this.messages = validateCoppers(
+        this.$store.getters.characterInfo as CharacterInfo
+      );
+      return this.messages.length === 0;
     }
   }
 });
