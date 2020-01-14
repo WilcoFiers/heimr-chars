@@ -3,6 +3,7 @@ import Vuex from "vuex";
 import { vuexfireMutations } from "vuexfire";
 import { user, UserState } from "./user";
 import { character, CharacterState } from "./character";
+import { automata, AutomataState } from "./automata";
 import router from "@/router";
 import { RootState } from "./types";
 
@@ -13,13 +14,14 @@ const defaultState: RootState = {
 export interface State extends RootState {
   user: UserState;
   character: CharacterState;
+  automata: AutomataState;
 }
 
 Vue.use(Vuex);
 
 const store = new Vuex.Store<RootState>({
   state: defaultState,
-  modules: { user, character },
+  modules: { user, character, automata },
 
   mutations: {
     ...vuexfireMutations,

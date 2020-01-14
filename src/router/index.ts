@@ -6,6 +6,7 @@ import PageNotFound from "@/views/PageNotFound.vue";
 import { characterStepRoutes } from "./character-steps";
 import { bookRoutes } from "./books";
 import { userRoutes } from "./user";
+import { toolsRoutes } from "./tools";
 
 Vue.use(VueRouter);
 
@@ -26,6 +27,7 @@ const routes = [
   ...userRoutes,
   ...characterStepRoutes,
   ...bookRoutes,
+  ...toolsRoutes,
   { path: "*", component: PageNotFound }
 ];
 

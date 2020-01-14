@@ -11,7 +11,8 @@
     "lint": "vue-cli-service lint",
     "prettier": "prettier src/**/*.{ts,vue,json} --write",
     "scrape-heimr": "cd scripts && ts-node getHeimrDocs.ts",
-    "deploy": "firebase deploy"
+    "deploy": "firebase deploy",
+    "deploy:rules": "firebase deploy --only firestore:rules"
   },
   "dependencies": {
     "core-js": "^3.5.0",
@@ -30,6 +31,7 @@
     "@commitlint/config-conventional": "^8.2.0",
     "@firebase/testing": "^0.16.3",
     "@types/cheerio": "^0.22.13",
+    "@types/firebase": "^3.2.1",
     "@types/jest": "^24.0.11",
     "@types/node": "latest",
     "@types/request": "^2.48.3",

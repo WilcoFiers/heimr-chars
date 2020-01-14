@@ -1,6 +1,7 @@
 # TODO
 
 - Add types to the store
+- Give names to all routes and use those in navbar
 - Make better user of store getters
 - Set up Github, including deploy action
 - Enable offline mode
@@ -55,6 +56,21 @@
 - Remove everything dependent on a required skill / condition when removing that ruleCard
 - Add Loading component for Characters data
 
+## Automata editor
+
+- Download SVG option
+- Share automata through a URL
+- Autocomplete for particles, atoms & take
+- Add example automata
+- Make "duration" a integer only
+- Type checking for "amount"
+- Show glyph execution order
+- Show errors for short curcut or multiple begins
+- Compute the automata's cost
+- Compute the automata's dominance
+- Add a "run" button that returns the output of the last glyph
+- Sort my automata by date, and add a search option to it
+
 ## Handle custom rules
 
 - "You receive a free Materal Compendium item when you acquire this skill."
@@ -78,3 +94,4 @@
 - Stop using base 6. It makes an already difficult domain far more difficult, for no real benefit
 - Use the metric system. The imperial system makes this domain harder then it needs to be
 - "this item has special physrep requirements" -> can we just say what the requirement is on the card?
+- "Imbue" increases standard of living without increasing the value of 1ℜ. Suggest taking this out. Downtime system should be optional.

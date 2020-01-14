@@ -21,6 +21,25 @@ service cloud.firestore {
       }
     }
 
+    match /automata/{automataId} {
+      function isUpdatingField(fieldName) {
+        return fieldname in incomingData() == false
+      }
+
+      allow create: if isSignedIn() && uid() == incomingData().playerID;
+      allow read: if existingData().playerID == uid()
+      allow update: if isPlayer() // Can't change playerID
+      allow delete: if isAdmin()
+
+      match /cells/{cellId} {
+				allow read, write: if isPlayer();
+      }
+
+      function isPlayer() {
+        return get(/databases/$(database)/documents/automata/$(automataId)).data.playerID == uid()
+      }
+    }
+
     function uid() {
       return request.auth.uid
     }

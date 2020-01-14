@@ -27,8 +27,11 @@ export default Vue.extend({
       const message = this.message as string | string[];
       if (Array.isArray(message)) {
         return message;
+      } else if (message.trim() !== "") {
+        return [message];
+      } else {
+        return [];
       }
-      return [message];
     }
   }
 });

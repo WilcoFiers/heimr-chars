@@ -1,5 +1,5 @@
 export { State } from "@/store";
-
+import { firestore } from "firebase";
 export { CharacterInfo } from "@/heimr/computedProps";
 
 // Heimr stuff
@@ -89,15 +89,12 @@ export type NewCharacter = {
 
 export type Character = NewCharacter & DbEntry;
 
-export interface CharacterDoc extends firebase.firestore.DocumentReference {
-  set(
-    data: Partial<Character>,
-    options?: firebase.firestore.SetOptions
-  ): Promise<void>;
+export interface CharacterDoc extends firestore.DocumentReference {
+  set(data: Partial<Character>, options?: firestore.SetOptions): Promise<void>;
 }
 
-export interface CharacterCol extends firebase.firestore.CollectionReference {
-  add(data: NewCharacter): Promise<firebase.firestore.DocumentReference>;
+export interface CharacterCol extends firestore.CollectionReference {
+  add(data: NewCharacter): Promise<firestore.DocumentReference>;
   doc(documentPath?: string): CharacterDoc;
 }
 
@@ -115,16 +112,15 @@ export type NewCharacterRule = {
 
 export type CharacterRule = NewCharacterRule & DbEntry;
 
-export interface CharacterRuleDoc extends firebase.firestore.DocumentReference {
+export interface CharacterRuleDoc extends firestore.DocumentReference {
   set(
     data: Partial<CharacterRule>,
-    options?: firebase.firestore.SetOptions
+    options?: firestore.SetOptions
   ): Promise<void>;
 }
 
-export interface CharacterRuleCol
-  extends firebase.firestore.CollectionReference {
-  add(data: NewCharacterRule): Promise<firebase.firestore.DocumentReference>;
+export interface CharacterRuleCol extends firestore.CollectionReference {
+  add(data: NewCharacterRule): Promise<firestore.DocumentReference>;
   doc(documentPath?: string): CharacterRuleDoc;
 }
 
@@ -134,3 +130,51 @@ export type HeimrBook = {
   html: string;
   subsections: string[];
 };
+
+export type Glyph = {
+  type: "glyph";
+  name: string;
+  pick: string[];
+  input?: string;
+  output?: string[];
+  cost: string;
+  comment: string[];
+  dominant?: string;
+};
+
+export type NewAutomata = {
+  title: string;
+  playerID: string;
+  width: number;
+  height: number;
+  createdAt?: any;
+  lastUpdated?: any;
+};
+
+export type Automata = NewAutomata & DbEntry;
+
+export interface AutomataDoc extends firestore.DocumentReference {
+  set(data: Partial<Automata>, options?: firestore.SetOptions): Promise<void>;
+}
+
+export interface AutomataCol extends firestore.CollectionReference {
+  add(data: NewAutomata): Promise<firestore.DocumentReference>;
+  doc(documentPath?: string): AutomataDoc;
+}
+
+export type NewGlyphCell = {
+  glyph: string;
+  pick1?: string;
+  pick2?: string;
+};
+
+export type GlyphCell = NewGlyphCell & DbEntry;
+
+export interface GlyphCellDoc extends firestore.DocumentReference {
+  set(data: Partial<GlyphCell>, options?: firestore.SetOptions): Promise<void>;
+}
+
+export interface GlyphCellCol extends firestore.CollectionReference {
+  add(data: NewGlyphCell): Promise<firestore.DocumentReference>;
+  doc(documentPath?: string): GlyphCellDoc;
+}

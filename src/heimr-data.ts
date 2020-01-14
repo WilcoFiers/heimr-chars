@@ -1,7 +1,14 @@
 import heimrData from "@/assets/heimr-data.json";
 import heimrMeta from "@/assets/heimr-metadata.json";
 
-import { Domain, RaceCard, RuleCard, CharacterRule, Character } from "@/types";
+import {
+  Domain,
+  RaceCard,
+  RuleCard,
+  CharacterRule,
+  Character,
+  Glyph
+} from "@/types";
 import {
   ruleCardRestrictions,
   RuleCardRestrictions
@@ -27,6 +34,7 @@ export interface DomainMeta {
 export const date = heimrData.date as string;
 export const races = heimrData.races as RaceCard[];
 export const domains = heimrData.domains as Domain[];
+export const glyphs = heimrData.glyphs as Glyph[];
 
 export const racesMeta = heimrMeta.races as RaceMeta[];
 export const domainsMeta = heimrMeta.domains as DomainMeta[];

@@ -1,5 +1,5 @@
 {
-  "date": "2019-12-24T19:48:39.344Z",
+  "date": "2020-01-07T19:27:52.757Z",
   "races": [
     {
       "type": "race",
@@ -4076,6 +4076,335 @@
           ],
           "marketPrice": "Var"
         }
+      ]
+    }
+  ],
+  "glyphs": [
+    {
+      "type": "glyph",
+      "name": "Begin",
+      "pick": [],
+      "input": "None",
+      "output": ["None"],
+      "cost": "0",
+      "comment": ["Indicates the beginning of an automata."]
+    },
+    {
+      "type": "glyph",
+      "name": "Take <Location>",
+      "pick": [
+        "Pick a location. This glyph will take the value of that location."
+      ],
+      "input": "None",
+      "output": ["Value at <Location>"],
+      "cost": "10",
+      "comment": [
+        "Takes the value at <Location> and makes it available to be used as input to the next glyph. Note that <Location> will be empty after this."
+      ]
+    },
+    {
+      "type": "glyph",
+      "name": "Put <Location>",
+      "pick": [
+        "Pick a location. This glyph will take the value of that location."
+      ],
+      "input": "Any value",
+      "output": ["None"],
+      "cost": "10",
+      "comment": [
+        "Takes the output of the last glyph and puts it at <Location>. Note that this will fail if <Location> already contains a value."
+      ]
+    },
+    {
+      "type": "glyph",
+      "name": "Spacer",
+      "pick": [],
+      "input": "None",
+      "output": ["None"],
+      "cost": "10",
+      "comment": ["Does nothing."]
+    },
+    {
+      "type": "glyph",
+      "name": "Create Particles <Amount> <Type>",
+      "pick": [
+        "Pick an amount. This glyph will create that amount of particles.",
+        "Pick a type except Force. This glyph will create particles of that type."
+      ],
+      "input": "None",
+      "output": ["<Amount> particles of type <Type>"],
+      "cost": "The cost of this glyph is equal to <Amount>",
+      "comment": ["A picked glyph used to create particles."],
+      "dominant": "The glyph is <Type> dominant."
+    },
+    {
+      "type": "glyph",
+      "name": "Create Force <Amount>",
+      "pick": [
+        "Pick an amount. This glyph will create that amount of particles."
+      ],
+      "input": "None",
+      "output": ["<Amount> particles of Force"],
+      "cost": "The cost of this glyph is equal to 2 * <Amount>",
+      "comment": ["A picked glyph used to create force."],
+      "dominant": "The glyph is Force dominant."
+    },
+    {
+      "type": "glyph",
+      "name": "Create Atoms <Amount> <Type>",
+      "pick": [
+        "Pick an amount. This glyph will create atoms equal to that amount.",
+        "Pick a type of atom. This glyph will create atoms of that type."
+      ],
+      "input": "None",
+      "output": ["<Amount> grains of <Type> matter."],
+      "cost": "<Amount> * <Cost of Type> * 5",
+      "comment": [
+        "A templated glyph used to create matter. See your Material Compendium for the types of atoms you can create and the associated cost multiplier. Several parameters of the new matter are determined by what type of matter is created. Please see your Material Compendium for details."
+      ]
+    },
+    {
+      "type": "glyph",
+      "name": "Create Inverse",
+      "pick": [],
+      "input": "An amount of particles.",
+      "output": [
+        "The inverse of the input particles. If the input is not particles, an error value will be output."
+      ],
+      "cost": "200",
+      "comment": ["Modifies IN1 to output its inverse."],
+      "dominant": "This glyph is dominant of the inverse type of IN1."
+    },
+    {
+      "type": "glyph",
+      "name": "Combine",
+      "pick": [],
+      "input": "Two particle values.",
+      "output": ["The combination of both values."],
+      "cost": "50",
+      "comment": [
+        "Combines IN1 with IN2. The type of the parameters determines what happens.",
+        "* If IN1 and IN2 are the same type, the output will be IN1 + IN2.",
+        "* If IN1 and IN2 are opposites, the output will be IN1 - IN2.",
+        "* If they are unrelated, IN1 will be output.",
+        "* If either input is a non-particle value an error value will be output."
+      ]
+    },
+    {
+      "type": "glyph",
+      "name": "Join",
+      "pick": [],
+      "input": "Two values.",
+      "output": [
+        "This glyph is used to create complex structures, called aggregations, from base particles."
+      ],
+      "cost": "100",
+      "comment": [
+        "Joins IN1 and IN2 together to create an aggregation. Aggregations of particles are atoms. Aggregations of atoms are molecules. Aggregations of molecules are objects. Note that this process can not be reversed. This process is potentially wasteful. It will create matter equal to the lowest amount of the inputs."
+      ]
+    },
+    {
+      "type": "glyph",
+      "name": "Apply",
+      "pick": [],
+      "input": "Two values.",
+      "output": ["IN1 modified by IN2, see below."],
+      "cost": "150",
+      "comment": [
+        "Applies IN2 to IN1. This has different results depending on the types of IN1 and IN2.",
+        "* If both inputs are particles IN1 is output.",
+        "* If IN1 is not particles, atoms or molecules, IN1 is output.",
+        "* If IN2 is an atom, molecule or something else IN1 is output.",
+        "* If IN2 is Force, IN1 will be accelerated by that amount of force.",
+        "* If IN2 is Fire, IN1 will be heated 1C for every 50 Fire.",
+        "* If IN2 is Water, IN1 will be cooled 1C for every 50 Water.",
+        "* If IN2 is Earth, IN1 will be compressed with 1 Pa for every 50 Earth.",
+        "* If IN2 is Air, IN1 will be expanded with 1 Pa for every 50 Air.",
+        "* If IN2 is Spririt, IN1 will be pulled closer to the material world.",
+        "* If IN2 is Divine, IN1 will be pushed towards the divine realms.",
+        "* If IN2 is a Trigger target, IN1 will be shaped in such a way that it fits onto the target like armour."
+      ]
+    },
+    {
+      "type": "glyph",
+      "name": "Heat",
+      "pick": [],
+      "input": "A value of atoms or molecules and an amount of Fire.",
+      "output": ["IN1 heated by IN2."],
+      "cost": "200",
+      "comment": [
+        "Heats IN1 using IN2, as if using the Apply glyph. Will do nothing if IN1 is not atoms or molecules or if IN2 is not Fire."
+      ],
+      "dominant": "Fire"
+    },
+    {
+      "type": "glyph",
+      "name": "Cool",
+      "pick": [],
+      "input": "A value of atoms or molecules and an amount of Water.",
+      "output": ["IN1 cooled by IN2."],
+      "cost": "200",
+      "comment": [
+        "Cools IN1 using IN2, as if using the Apply glyph. Will do nothing if IN1 is not atoms or molecules or if IN2 is not Water."
+      ],
+      "dominant": "Water"
+    },
+    {
+      "type": "glyph",
+      "name": "Propel <Amount>",
+      "pick": [
+        "Pick an amount of Force. This glyph will create that amount of force and use it to propel IN1."
+      ],
+      "input": "A value of particles, atoms or molecules.",
+      "output": ["IN1 accelerated by <Amount> force."],
+      "cost": "<Amount> + 200",
+      "comment": [
+        "A convenience glyph used to propel objects created using primordial magic. Will do nothing if IN1 is not particles, atoms or molecules."
+      ],
+      "dominant": "Force"
+    },
+    {
+      "type": "glyph",
+      "name": "Add",
+      "pick": [],
+      "input": "Two values.",
+      "output": ["IN1 + IN2"],
+      "cost": "100",
+      "comment": [
+        "Adds IN1 to IN2. The output type is always the same type as IN1."
+      ]
+    },
+    {
+      "type": "glyph",
+      "name": "Subtract",
+      "pick": [],
+      "input": "Two values.",
+      "output": ["IN1 - IN2"],
+      "cost": "200",
+      "comment": [
+        "Subtracts IN1 from IN2. The output type is always the same type as IN1."
+      ]
+    },
+    {
+      "type": "glyph",
+      "name": "Multiply",
+      "pick": [],
+      "input": "Two values.",
+      "output": ["IN1 * IN2"],
+      "cost": "300",
+      "comment": [
+        "Multiplies IN1 by IN2. The output type is always the same type as IN1."
+      ]
+    },
+    {
+      "type": "glyph",
+      "name": "Divide",
+      "pick": [],
+      "input": "Two values.",
+      "output": [
+        "The floor of IN1 / IN2 when IN2 is not empty.",
+        "An error value when IN2 is empty."
+      ],
+      "cost": "500",
+      "comment": [
+        "Divides IN1 by IN2. The output type is always the same type as IN1."
+      ]
+    },
+    {
+      "type": "glyph",
+      "name": "Modulo",
+      "pick": [],
+      "input": "Two values.",
+      "output": [
+        "The remainder of IN1 / IN2 when IN2 is not empty.",
+        "An error value when IN2 is empty."
+      ],
+      "cost": "500",
+      "comment": []
+    },
+    {
+      "type": "glyph",
+      "name": "Minimum",
+      "pick": [],
+      "input": "Two values",
+      "output": ["Whichever value is the smallest."],
+      "cost": "100",
+      "comment": [
+        "This will compare two values and output the smallest. Type is ignored for this comparison."
+      ]
+    },
+    {
+      "type": "glyph",
+      "name": "Maximum",
+      "pick": [],
+      "input": "Two Values",
+      "output": ["Whichever value is the greatest."],
+      "cost": "100",
+      "comment": [
+        "This will compare two values and output the greatest. Type is ignored for this comparison."
+      ]
+    },
+    {
+      "type": "glyph",
+      "name": "Fear <Duration>",
+      "pick": [
+        "Pick a duration in seconds. This glyph will produce enough substance for a Fear effect of that duration."
+      ],
+      "input": "None",
+      "output": [
+        "An amount of substance that can be used to produce a Fear effect when it comes into contact with someone."
+      ],
+      "cost": "750 * <Duration>",
+      "comment": [
+        "Using specially crafted atom-like structures using Divine particles, it is possible to induce a Fear effect in someone."
+      ]
+    },
+    {
+      "type": "glyph",
+      "name": "Charm <Duration>",
+      "pick": [
+        "Pick a duration in seconds. This glyph will produce enough substance for a Charm effect of that duration."
+      ],
+      "input": "None",
+      "output": [
+        "An amount of substance that can be used to produce a Charm effect when it comes into contact with someone."
+      ],
+      "cost": "750 * <Duration>",
+      "comment": [
+        "Using specially crafted atom-like structures using Divine particles, it is possible to induce a Charm effect in someone."
+      ]
+    },
+    {
+      "type": "glyph",
+      "name": "Wait",
+      "pick": [],
+      "input": "One value",
+      "output": ["None"],
+      "cost": "10",
+      "comment": [
+        "Waits for a number of seconds equal to value. Waiting costs no addiitonal power."
+      ]
+    },
+    {
+      "type": "glyph",
+      "name": "Loop",
+      "pick": [],
+      "input": "A value.",
+      "output": ["IN1 reduced by 1."],
+      "cost": "10",
+      "comment": [
+        "This glyph can be used to create loops in the power flow of an automata. The first time this glyph would be considered for the next glyph to flow power to, it is ignored. The second time it will be activated as normal."
+      ]
+    },
+    {
+      "type": "glyph",
+      "name": "Branch",
+      "pick": [],
+      "input": "A value.",
+      "output": ["IN1"],
+      "cost": "10",
+      "comment": [
+        "This glyph will divert the power flow. It checks to see if IN1 is a value. If it is, the flow of power continues normally at the next glyph. If the value is empty instead, it will skip the first glyph it finds and instead divert the flow to the next glyph."
       ]
     }
   ]

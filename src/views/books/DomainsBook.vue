@@ -72,7 +72,7 @@ export default Vue.extend({
 }
 .link {
   text-decoration: underline;
-  text-decoration-color: rgba(0, 0, 0, 0.25);
+  text-decoration-color: rgba(0, 0, 0, 0.35);
 }
 .v-card--link:hover:before {
   opacity: 0.08;

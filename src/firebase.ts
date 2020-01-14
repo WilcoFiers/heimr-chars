@@ -1,5 +1,5 @@
 import { initializeApp, firestore, auth as fbAuth } from "firebase";
-import { CharacterCol, CharacterRuleCol } from "./types";
+import { CharacterCol, CharacterRuleCol, AutomataCol } from "./types";
 
 // Get a Firestore instance
 export const firebaseApp = initializeApp({
@@ -17,7 +17,10 @@ export const EmailAuthProvider = fbAuth.EmailAuthProvider;
 export const auth = firebaseApp.auth();
 
 export const db = firebaseApp.firestore();
+
 export const charactersCol: CharacterCol = db.collection("characters");
+
+export const automataCol: AutomataCol = db.collection("automata");
 
 export const serverTimestamp = firestore.FieldValue.serverTimestamp;
 

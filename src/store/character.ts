@@ -1,6 +1,7 @@
-import { charactersCol, db, serverTimestamp } from "@/firebase";
 import { firestoreAction } from "vuexfire";
-import { auth, createID } from "@/firebase";
+import { User } from "firebase";
+
+import { charactersCol, db, serverTimestamp, auth, createID } from "@/firebase";
 import {
   CharacterRuleCol,
   Character,
@@ -120,7 +121,7 @@ export const character: CharacterModule = {
       unbindFirestoreRef("list");
     }),
 
-    async loadCharacter({ commit, dispatch, state }, charId) {
+    async loadCharacter({ commit, dispatch }, charId) {
       commit("setCharId", charId);
       if (charId === "new") {
         return dispatch("unbindRef", ["charProps", "rules"]).then(() =>
@@ -140,7 +141,7 @@ export const character: CharacterModule = {
     },
 
     async createCharacter(_, { name, race }) {
-      const playerID = (auth.currentUser as firebase.User).uid;
+      const playerID = (auth.currentUser as User).uid;
       const charId = createID();
 
       // Use .doc().set() instead of .add() so we can return charId when offline

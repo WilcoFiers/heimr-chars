@@ -9,7 +9,8 @@ import {
   ConditionCard,
   ItemCard,
   ConsumableCard,
-  HeimrBook
+  HeimrBook,
+  Glyph
 } from "../src/types";
 import {
   RuleObject,
@@ -19,6 +20,7 @@ import {
   toRace,
   toConsumable
 } from "./toCardObject";
+import { toGlyph } from "./toGlyph";
 import { getHeimrBook } from "./getHeimrBook";
 
 const url = "http://heimr.nl/book/export/html/1838";
@@ -37,6 +39,7 @@ request(url, (error, response, html) => {
 
   const $ = cheerio.load(html);
   const races: RaceCard[] = [];
+  const glyphs: Glyph[] = [];
   const domains: Domain[] = [];
   const heimrBooks: HeimrBook[] = [];
 
@@ -57,12 +60,15 @@ request(url, (error, response, html) => {
         .toLowerCase();
 
       const name = $table
-        .find("td")
+        .find("td, th")
         .first()
+        .next()
         .text();
 
       if (
-        !["skill", "condition", "item", "race", "consumable"].includes(type)
+        !["skill", "condition", "item", "race", "consumable", "glyph"].includes(
+          type
+        )
       ) {
         return;
       }
@@ -80,12 +86,13 @@ request(url, (error, response, html) => {
     const consumables: ConsumableCard[] = ruleObjects
       .map(toConsumable)
       .filter(notNull);
-    const newRaces: RaceCard[] = ruleObjects.map(toRace).filter(notNull);
 
+    const newRaces: RaceCard[] = ruleObjects.map(toRace).filter(notNull);
     if (newRaces.length) {
       races.push(...newRaces);
     }
 
+    glyphs.push(...ruleObjects.map(toGlyph).filter(notNull));
     if (skills.length || conditions.length || items.length) {
       domains.push({
         domainName,
@@ -103,7 +110,7 @@ request(url, (error, response, html) => {
   });
 
   const date = new Date().toISOString();
-  const heimrData = JSON.stringify({ date, races, domains }, null, 2);
+  const heimrData = JSON.stringify({ date, races, domains, glyphs }, null, 2);
   console.log("creating file at /src/assets/heimr-data.json");
   fs.writeFileSync("../src/assets/heimr-data.json", heimrData, "utf-8");
 
@@ -113,21 +120,37 @@ request(url, (error, response, html) => {
 });
 
 function tableToRuleObject($: CheerioStatic, $table: Cheerio): RuleObject {
+  let previousKey: string = "";
   const returnVal: RuleObject = {};
+
   $table.find("tr").each((_, elm) => {
-    const key = $("th", elm)
+    let key = $("th", elm)
       .first()
       .text()
       .toLowerCase();
-    const val = $("td", elm)
+
+    let val = $("td", elm)
       .first()
       .text();
+
+    // It the first th and td are empty, and there is a second td, append it to the previous value
+    // This is used in glyphs
+    if (!val && !key && previousKey) {
+      val = $("td", elm)
+        .first()
+        .next()
+        .text();
+      if (val) {
+        key = previousKey;
+      }
+    }
 
     if (typeof returnVal[key] === "undefined") {
       returnVal[key] = [val];
     } else {
       returnVal[key].push(val);
     }
+    previousKey = key;
   });
   return returnVal;
 }

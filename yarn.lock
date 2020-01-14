@@ -894,6 +894,17 @@
   resolved "https://agora.dequecloud.com/artifactory/api/npm/dequelabs/@firebase/analytics-types/-/analytics-types-0.2.5.tgz#18f4400482a445504b69d6b64c7d98f11fd3ea5e"
   integrity sha1-GPRABIKkRVBLada2TH2Y8R/T6l4=
 
+"@firebase/analytics@0.2.10":
+  version "0.2.10"
+  resolved "https://agora.dequecloud.com/artifactory/api/npm/dequelabs/@firebase/analytics/-/analytics-0.2.10.tgz#a30ef507382c2228b57e6e9f3124da27783a850d"
+  integrity sha1-ow71BzgsIii1fm6fMSTaJ3g6hQ0=
+  dependencies:
+    "@firebase/analytics-types" "0.2.5"
+    "@firebase/component" "0.1.2"
+    "@firebase/installations" "0.3.9"
+    "@firebase/util" "0.2.37"
+    tslib "1.10.0"
+
 "@firebase/analytics@0.2.9":
   version "0.2.9"
   resolved "https://agora.dequecloud.com/artifactory/api/npm/dequelabs/@firebase/analytics/-/analytics-0.2.9.tgz#8a74d966a0e57528282073283dc9003cf65ac8dd"
@@ -923,6 +934,24 @@
     tslib "1.10.0"
     xmlhttprequest "1.8.0"
 
+"@firebase/app@0.5.1":
+  version "0.5.1"
+  resolved "https://agora.dequecloud.com/artifactory/api/npm/dequelabs/@firebase/app/-/app-0.5.1.tgz#23ecc510e0d8efc3ef5550c459b436e9a885bd5c"
+  integrity sha1-I+zFEODY78PvVVDEWbQ26aiFvVw=
+  dependencies:
+    "@firebase/app-types" "0.5.0"
+    "@firebase/component" "0.1.2"
+    "@firebase/logger" "0.1.33"
+    "@firebase/util" "0.2.37"
+    dom-storage "2.1.0"
+    tslib "1.10.0"
+    xmlhttprequest "1.8.0"
+
+"@firebase/auth-interop-types@0.1.1":
+  version "0.1.1"
+  resolved "https://agora.dequecloud.com/artifactory/api/npm/dequelabs/@firebase/auth-interop-types/-/auth-interop-types-0.1.1.tgz#b3e1bc5ea8b2df1c376b5fc14aae8a3572dbcace"
+  integrity sha1-s+G8Xqiy3xw3a1/BSq6KNXLbys4=
+
 "@firebase/auth-types@0.9.3":
   version "0.9.3"
   resolved "https://agora.dequecloud.com/artifactory/api/npm/dequelabs/@firebase/auth-types/-/auth-types-0.9.3.tgz#c2e719a9911486177c31fb0c25a857e82c455e0d"
@@ -943,6 +972,14 @@
     "@firebase/util" "0.2.36"
     tslib "1.10.0"
 
+"@firebase/component@0.1.2":
+  version "0.1.2"
+  resolved "https://agora.dequecloud.com/artifactory/api/npm/dequelabs/@firebase/component/-/component-0.1.2.tgz#195caafeb556eaad562d60d24e5d5f36a10bc54b"
+  integrity sha1-GVyq/rVW6q1WLWDSTl1fNqELxUs=
+  dependencies:
+    "@firebase/util" "0.2.37"
+    tslib "1.10.0"
+
 "@firebase/database-types@0.4.10":
   version "0.4.10"
   resolved "https://agora.dequecloud.com/artifactory/api/npm/dequelabs/@firebase/database-types/-/database-types-0.4.10.tgz#baa10bc78cfb57dd6159e0264b8305994a8e24d0"
@@ -959,6 +996,19 @@
     "@firebase/database-types" "0.4.10"
     "@firebase/logger" "0.1.33"
     "@firebase/util" "0.2.36"
+    faye-websocket "0.11.3"
+    tslib "1.10.0"
+
+"@firebase/database@0.5.18":
+  version "0.5.18"
+  resolved "https://agora.dequecloud.com/artifactory/api/npm/dequelabs/@firebase/database/-/database-0.5.18.tgz#1f9edda7ae1ebab95ce98911b2848b66e9deee13"
+  integrity sha1-H57dp64eurlc6YkRsoSLZune7hM=
+  dependencies:
+    "@firebase/auth-interop-types" "0.1.1"
+    "@firebase/component" "0.1.2"
+    "@firebase/database-types" "0.4.10"
+    "@firebase/logger" "0.1.33"
+    "@firebase/util" "0.2.37"
     faye-websocket "0.11.3"
     tslib "1.10.0"
 
@@ -981,6 +1031,20 @@
     grpc "1.24.2"
     tslib "1.10.0"
 
+"@firebase/firestore@1.9.2":
+  version "1.9.2"
+  resolved "https://agora.dequecloud.com/artifactory/api/npm/dequelabs/@firebase/firestore/-/firestore-1.9.2.tgz#d9fa07e4d972710de4a3ec068ef02156a97fa21f"
+  integrity sha1-2foH5NlycQ3ko+wGjvAhVql/oh8=
+  dependencies:
+    "@firebase/component" "0.1.2"
+    "@firebase/firestore-types" "1.9.0"
+    "@firebase/logger" "0.1.33"
+    "@firebase/util" "0.2.37"
+    "@firebase/webchannel-wrapper" "0.2.34"
+    "@grpc/proto-loader" "^0.5.0"
+    grpc "1.24.2"
+    tslib "1.10.0"
+
 "@firebase/functions-types@0.3.13":
   version "0.3.13"
   resolved "https://agora.dequecloud.com/artifactory/api/npm/dequelabs/@firebase/functions-types/-/functions-types-0.3.13.tgz#f8fd6a3423abb32e2be1496268a514b500a547d1"
@@ -992,6 +1056,17 @@
   integrity sha1-gsxwq1h4oPZ1CNtqlFvjeqyren8=
   dependencies:
     "@firebase/component" "0.1.1"
+    "@firebase/functions-types" "0.3.13"
+    "@firebase/messaging-types" "0.4.0"
+    isomorphic-fetch "2.2.1"
+    tslib "1.10.0"
+
+"@firebase/functions@0.4.29":
+  version "0.4.29"
+  resolved "https://agora.dequecloud.com/artifactory/api/npm/dequelabs/@firebase/functions/-/functions-0.4.29.tgz#0cf8e90916969581c0bd61b4670ca7331f5850e4"
+  integrity sha1-DPjpCRaWlYHAvWG0ZwynMx9YUOQ=
+  dependencies:
+    "@firebase/component" "0.1.2"
     "@firebase/functions-types" "0.3.13"
     "@firebase/messaging-types" "0.4.0"
     isomorphic-fetch "2.2.1"
@@ -1010,6 +1085,17 @@
     "@firebase/component" "0.1.1"
     "@firebase/installations-types" "0.2.4"
     "@firebase/util" "0.2.36"
+    idb "3.0.2"
+    tslib "1.10.0"
+
+"@firebase/installations@0.3.9":
+  version "0.3.9"
+  resolved "https://agora.dequecloud.com/artifactory/api/npm/dequelabs/@firebase/installations/-/installations-0.3.9.tgz#8114fde81319fb5cbab0744c0f30011f5a9efd64"
+  integrity sha1-gRT96BMZ+1y6sHRMDzABH1qe/WQ=
+  dependencies:
+    "@firebase/component" "0.1.2"
+    "@firebase/installations-types" "0.2.4"
+    "@firebase/util" "0.2.37"
     idb "3.0.2"
     tslib "1.10.0"
 
@@ -1034,6 +1120,17 @@
     "@firebase/util" "0.2.36"
     tslib "1.10.0"
 
+"@firebase/messaging@0.6.1":
+  version "0.6.1"
+  resolved "https://agora.dequecloud.com/artifactory/api/npm/dequelabs/@firebase/messaging/-/messaging-0.6.1.tgz#036700850cdc525a5f58737602430d60712e8c6e"
+  integrity sha1-A2cAhQzcUlpfWHN2AkMNYHEujG4=
+  dependencies:
+    "@firebase/component" "0.1.2"
+    "@firebase/installations" "0.3.9"
+    "@firebase/messaging-types" "0.4.0"
+    "@firebase/util" "0.2.37"
+    tslib "1.10.0"
+
 "@firebase/performance-types@0.0.8":
   version "0.0.8"
   resolved "https://agora.dequecloud.com/artifactory/api/npm/dequelabs/@firebase/performance-types/-/performance-types-0.0.8.tgz#2ed5510dd06d2cb5650382106272b6597187f5b4"
@@ -1051,6 +1148,18 @@
     "@firebase/util" "0.2.36"
     tslib "1.10.0"
 
+"@firebase/performance@0.2.29":
+  version "0.2.29"
+  resolved "https://agora.dequecloud.com/artifactory/api/npm/dequelabs/@firebase/performance/-/performance-0.2.29.tgz#3a2573a0fdd21717a70eacbaff23b88b64097d60"
+  integrity sha1-OiVzoP3SFxenDqy6/yO4i2QJfWA=
+  dependencies:
+    "@firebase/component" "0.1.2"
+    "@firebase/installations" "0.3.9"
+    "@firebase/logger" "0.1.33"
+    "@firebase/performance-types" "0.0.8"
+    "@firebase/util" "0.2.37"
+    tslib "1.10.0"
+
 "@firebase/polyfill@0.3.30":
   version "0.3.30"
   resolved "https://agora.dequecloud.com/artifactory/api/npm/dequelabs/@firebase/polyfill/-/polyfill-0.3.30.tgz#c6c041abed7c8ff117a2596a450d1cca7a999e23"
@@ -1064,6 +1173,18 @@
   version "0.1.5"
   resolved "https://agora.dequecloud.com/artifactory/api/npm/dequelabs/@firebase/remote-config-types/-/remote-config-types-0.1.5.tgz#5f01f4d73a2c5869042316ef973fa6fa80e38d47"
   integrity sha1-XwH01zosWGkEIxbvlz+m+oDjjUc=
+
+"@firebase/remote-config@0.1.10":
+  version "0.1.10"
+  resolved "https://agora.dequecloud.com/artifactory/api/npm/dequelabs/@firebase/remote-config/-/remote-config-0.1.10.tgz#72a397d6b3d4d96edf7a11156ed3661c4d0ef100"
+  integrity sha1-cqOX1rPU2W7fehEVbtNmHE0O8QA=
+  dependencies:
+    "@firebase/component" "0.1.2"
+    "@firebase/installations" "0.3.9"
+    "@firebase/logger" "0.1.33"
+    "@firebase/remote-config-types" "0.1.5"
+    "@firebase/util" "0.2.37"
+    tslib "1.10.0"
 
 "@firebase/remote-config@0.1.9":
   version "0.1.9"
@@ -1092,6 +1213,16 @@
     "@firebase/util" "0.2.36"
     tslib "1.10.0"
 
+"@firebase/storage@0.3.23":
+  version "0.3.23"
+  resolved "https://agora.dequecloud.com/artifactory/api/npm/dequelabs/@firebase/storage/-/storage-0.3.23.tgz#dc480a2568f7c7f2cf592e2330c3ba327b04b758"
+  integrity sha1-3EgKJWj3x/LPWS4jMMO6MnsEt1g=
+  dependencies:
+    "@firebase/component" "0.1.2"
+    "@firebase/storage-types" "0.3.8"
+    "@firebase/util" "0.2.37"
+    tslib "1.10.0"
+
 "@firebase/testing@^0.16.3":
   version "0.16.3"
   resolved "https://agora.dequecloud.com/artifactory/api/npm/dequelabs/@firebase/testing/-/testing-0.16.3.tgz#c418b53847627cc28040d920bcf07c3ea170903b"
@@ -1108,6 +1239,13 @@
   version "0.2.36"
   resolved "https://agora.dequecloud.com/artifactory/api/npm/dequelabs/@firebase/util/-/util-0.2.36.tgz#0c4edb3573f567f407b76dd767691fe72819acf2"
   integrity sha1-DE7bNXP1Z/QHt23XZ2kf5ygZrPI=
+  dependencies:
+    tslib "1.10.0"
+
+"@firebase/util@0.2.37":
+  version "0.2.37"
+  resolved "https://agora.dequecloud.com/artifactory/api/npm/dequelabs/@firebase/util/-/util-0.2.37.tgz#7275eaa41a3194dccb17f1ec89c69ff50a4a2ae3"
+  integrity sha1-cnXqpBoxlNzLF/Hsicaf9QpKKuM=
   dependencies:
     tslib "1.10.0"
 
@@ -1561,6 +1699,13 @@
   version "3.0.0"
   resolved "https://agora.dequecloud.com/artifactory/api/npm/dequelabs/@types/events/-/events-3.0.0.tgz#2862f3f58a9a7f7c3e78d79f130dd4d71c25c2a7"
   integrity sha1-KGLz9Yqaf3w+eNefEw3U1xwlwqc=
+
+"@types/firebase@^3.2.1":
+  version "3.2.1"
+  resolved "https://agora.dequecloud.com/artifactory/api/npm/dequelabs/@types/firebase/-/firebase-3.2.1.tgz#17c1c8fee7485ab09668d2461e34540bdf44b3b1"
+  integrity sha1-F8HI/udIWrCWaNJGHjRUC99Es7E=
+  dependencies:
+    firebase "*"
 
 "@types/glob@^7.1.1":
   version "7.1.1"
@@ -6028,6 +6173,26 @@ firebase-tools@^7.7.0:
     update-notifier "^2.5.0"
     uuid "^3.0.0"
     winston "^1.0.1"
+
+firebase@*:
+  version "7.6.2"
+  resolved "https://agora.dequecloud.com/artifactory/api/npm/dequelabs/firebase/-/firebase-7.6.2.tgz#db591aacd97cb9f83c673f19812e5bc540988180"
+  integrity sha1-21karNl8ufg8Zz8ZgS5bxUCYgYA=
+  dependencies:
+    "@firebase/analytics" "0.2.10"
+    "@firebase/app" "0.5.1"
+    "@firebase/app-types" "0.5.0"
+    "@firebase/auth" "0.13.3"
+    "@firebase/database" "0.5.18"
+    "@firebase/firestore" "1.9.2"
+    "@firebase/functions" "0.4.29"
+    "@firebase/installations" "0.3.9"
+    "@firebase/messaging" "0.6.1"
+    "@firebase/performance" "0.2.29"
+    "@firebase/polyfill" "0.3.30"
+    "@firebase/remote-config" "0.1.10"
+    "@firebase/storage" "0.3.23"
+    "@firebase/util" "0.2.37"
 
 firebase@7.6.0, firebase@^7.6.0:
   version "7.6.0"
