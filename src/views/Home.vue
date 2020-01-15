@@ -37,16 +37,15 @@ export default Vue.extend({
           avatar: ""
         },
         {
-          to: "/books/core-rules",
-          title: "Heimr LARP: Core Rules",
-          subtitle: "Minimal rules that all players should know.",
+          to: { name: "GamesTools" },
+          title: "Heimr Games & Tools",
+          subtitle: "Try out mini games and tools for Heimr domains.",
           avatar: ""
         },
         {
-          to: "/books/domains",
-          title: "Heimr LARP: Domains",
-          subtitle:
-            "A domain is a collection of skills, items, conditions. Every domain has its own theme and challenges players in a different way. Characters usually have skills, conditions and items from two or three domains.",
+          to: "/books/core-rules",
+          title: "Heimr LARP: Core Rules",
+          subtitle: "Minimal rules that all players should know.",
           avatar: ""
         }
       ]
