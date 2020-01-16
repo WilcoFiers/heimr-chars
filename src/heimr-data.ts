@@ -76,9 +76,9 @@ export function findRuleCard({
 export function domainImg({ domainName }: Domain): string {
   const imgName: string = domainName.toLowerCase().replace(/\s/g, "-");
   if (domainImages.includes(imgName)) {
-    return require(`./assets/domains/${imgName}.png`);
+    return `domains/${imgName}.png`;
   }
-  return require("./assets/auto-repair.png");
+  return "auto-repair.png";
 }
 
 export const raceImages = [
@@ -102,13 +102,13 @@ export const raceImages = [
 
 export function raceImg(name?: string): string {
   if (typeof name !== "string") {
-    return require("./assets/auto-repair.png");
+    return "auto-repair.png";
   }
   const imgName: string = name.toLowerCase().replace(/\s/g, "-");
   if (raceImages.includes(imgName)) {
-    return require(`./assets/races/${imgName}.png`);
+    return `races/${imgName}.png`;
   }
-  return require("./assets/auto-repair.png");
+  return "auto-repair.png";
 }
 
 type RuleValue = {

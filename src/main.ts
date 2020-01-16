@@ -24,9 +24,9 @@ auth.onAuthStateChanged(user => {
           },
           themes: {
             light: {
-              // primary: '#3f51b5',
-              // secondary: '#b0bec5',
-              // accent: '#8c9eff',
+              primary: "#437050",
+              secondary: "#472515",
+              accent: "#52b355",
               error: "#ce1401"
             }
           }

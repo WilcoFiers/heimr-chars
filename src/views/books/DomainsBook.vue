@@ -28,7 +28,7 @@
             </div>
 
             <v-avatar class="ma-4" size="60" tile>
-              <v-img :src="domainImg(domain)" class="image" />
+              <IconImage :asset="domainImg(domain)" />
             </v-avatar>
           </div>
         </v-card>
@@ -41,6 +41,7 @@
 import Vue from "vue";
 import { domainsMeta, domainImg, DomainMeta } from "@/heimr-data";
 import { HeimrBook } from "@/types";
+import IconImage from "@/components/IconImage.vue";
 
 function domainRoute({ domainName }: DomainMeta): string {
   const kababName = domainName.replace(/\s/g, "-").toLowerCase();
@@ -58,6 +59,7 @@ export const domainsBook: HeimrBook = {
 
 export default Vue.extend({
   name: "DomainsBook",
+  components: { IconImage },
   data() {
     return { domainsMeta };
   },
@@ -66,10 +68,6 @@ export default Vue.extend({
 </script>
 
 <style scoped>
-.image {
-  background: rgba(0, 0, 0, 0.85);
-  border-radius: 6px;
-}
 .link {
   text-decoration: underline;
   text-decoration-color: rgba(0, 0, 0, 0.35);

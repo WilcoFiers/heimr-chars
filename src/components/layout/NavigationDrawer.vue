@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer app clipped color="grey lighten-4" v-model="drawerState">
+  <v-navigation-drawer app clipped class="drawer" v-model="drawerState">
     <v-list>
       <template v-for="(item, i) in navItems">
         <v-divider v-if="item.divider" :key="i" dark></v-divider>
@@ -33,7 +33,7 @@ const navItems: NavItem[] = [
     icon: "account-search"
   },
   {
-    text: "Games & tools",
+    text: "Games & Tools",
     to: { name: "GamesTools" },
     icon: "dice-d20"
   },
@@ -46,7 +46,7 @@ const navItems: NavItem[] = [
     divider: true
   },
   {
-    text: "LARP rules",
+    text: "LARP Rules",
     to: "/books/core-rules",
     icon: "feather"
   },
@@ -88,9 +88,12 @@ export default Vue.extend({
 .highlighted {
   background-image: linear-gradient(
     to right,
-    #424242,
-    #424242 6px,
+    var(--v-primary-base),
+    var(--v-primary-base) 6px,
     transparent 6px
   );
+}
+.v-navigation-drawer.drawer {
+  background-color: #f1f4e6;
 }
 </style>

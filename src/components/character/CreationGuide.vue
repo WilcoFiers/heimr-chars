@@ -33,8 +33,10 @@
 
       <h3>Domains</h3>
       <p>
-        Skills, conditions and items often used together, such as for combat,
-        surgery, different types of magic, or trading.
+        A collection of skills, conditions and items often used together. For
+        example "battlefield surgery" has all skills related to surgery and
+        stitching up wounds, all items necessary for it, and conditions releated
+        to recovering from surgery.
       </p>
     </v-card-text>
     <v-card-actions>

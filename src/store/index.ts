@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import { vuexfireMutations } from "vuexfire";
+import { vuexfireMutations, firestoreAction } from "vuexfire";
 import { user, UserState } from "./user";
 import { character, CharacterState } from "./character";
 import { automata, AutomataState } from "./automata";

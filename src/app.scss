@@ -1,8 +1,16 @@
 @import "~vuetify/src/styles/main.sass";
 
+
 html .v-application {
+  main {
+    // TODO: figure out how to do this with sass variables: 
+    // https://vuetifyjs.com/en/customization/sass-variables
+    background-color: #f3f9f1; // #f9f7f1; 
+  }
   h1 {
     @extend .display-1;
+    color: var(--v-primary-base);
+    font-weight: 600;
   }
   h2 {
     @extend .headline;

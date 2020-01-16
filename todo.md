@@ -18,20 +18,15 @@
 - Set up as a web app (add a manifest + service worker)
 - Alchemy mini game
 - Surgery mini game
-- Primordial magic simulator
 - Separate prod and dev databases
-- Handle login from view, instead of through redirects / render before autoSignin
-- Remove internal links from books
 
 ### Char creation
 
-- Improve the text about "domains" in the guide
-- Don't allow dormant in "add with changes" if char has no dormant points
-- In a card group, if any is owned, select it by default
 - Make the headings in the tablist more distinct
 - Add an explainer about what "add with changes" is for
 - Make it clear that your race is your character card
 - Include all costs in the card group heading, instead of a range: "4, 6 or 10 points" instead of "4 - 10 points",
+- In a card group, if any is owned, select it by default
 - Allow someone to add character notes, and a bio in "finish". Replace it with the randomised character string.
 - In the domains step, add links to the various domain rules
 - Immediately save new characters instead of waiting until step 2
@@ -59,6 +54,7 @@
 ## Automata editor
 
 - Download SVG option
+- Don't reload My Automata on each page load
 - Share automata through a URL
 - Autocomplete for particles, atoms & take
 - Add example automata
@@ -70,6 +66,11 @@
 - Compute the automata's dominance
 - Add a "run" button that returns the output of the last glyph
 - Sort my automata by date, and add a search option to it
+
+## Books
+
+- Have the "next" link go into a book if it has subcontent
+- Remove internal links from books
 
 ## Handle custom rules
 
@@ -83,6 +84,7 @@
 ## Fix Heimr stuff
 
 - loan / loan use counters instead of levels
+- Add example automata
 - Figure out which conditions can be bought during char creation
 - How do you get a higher salary if you don't meet the "X points in a domain" requirement
 - It's unclear how in "priest 1" you should choose blessings. There is no mechanism for recording the blessings you chose. I suggest letting a priets decide at the start of an event instead.

@@ -16,12 +16,7 @@
         </v-col>
 
         <v-col cols="3">
-          <v-img
-            :src="raceImg(character.race)"
-            contain
-            width="90"
-            class="black ml-4 rounded"
-          ></v-img>
+          <IconImage :asset="raceImg(character.race)" class="ml-4" width="90" />
         </v-col>
       </v-row>
 
@@ -43,10 +38,11 @@ import { raceImg } from "@/heimr-data";
 import CreationGuideBtn from "@/components/character/CreationGuideBtn.vue";
 import HeimrRaces from "@/components/character/HeimrRaces.vue";
 import ErrorMessage from "@/components/ErrorMessage.vue";
+import IconImage from "@/components/IconImage.vue";
 
 export default Vue.extend({
   name: "CharacterStepOrigins",
-  components: { HeimrRaces, ErrorMessage, CreationGuideBtn },
+  components: { HeimrRaces, ErrorMessage, CreationGuideBtn, IconImage },
   data() {
     const newCharacter: Partial<Character> = { name: "" };
     const infoDialog = this.$route.params.charId === "new";

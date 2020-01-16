@@ -41,7 +41,7 @@ export const automata: AutomataModule = {
       }
     },
 
-    bindRef: firestoreAction(
+    bindRefAutomata: firestoreAction(
       ({ bindFirestoreRef }, { propName, ref, options }) => {
         return bindFirestoreRef(propName, ref, options);
       }
@@ -59,12 +59,12 @@ export const automata: AutomataModule = {
 
     async loadAutomata({ commit, dispatch }, automataId) {
       commit("setAutomataId", automataId);
-      dispatch("bindRef", {
+      dispatch("bindRefAutomata", {
         propName: "current",
         ref: db.doc(`automata/${automataId}`)
       });
 
-      dispatch("bindRef", {
+      dispatch("bindRefAutomata", {
         propName: "cells",
         ref: db.collection(`automata/${automataId}/cells`),
         options: { wait: true } // Ensure we can tell when the cells aren't loaded

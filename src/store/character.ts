@@ -93,11 +93,11 @@ export const character: CharacterModule = {
       }
     },
 
-    bindRef: firestoreAction((context, { propName, ref, options }) => {
+    bindRefCharacter: firestoreAction((context, { propName, ref, options }) => {
       return context.bindFirestoreRef(propName, ref, options);
     }),
 
-    unbindRef: firestoreAction(
+    unbindRefCharacter: firestoreAction(
       ({ unbindFirestoreRef }, refs: string | string[]) => {
         refs = Array.isArray(refs) ? refs : [refs];
         refs.forEach(ref => unbindFirestoreRef(ref));
@@ -124,20 +124,22 @@ export const character: CharacterModule = {
     async loadCharacter({ commit, dispatch }, charId) {
       commit("setCharId", charId);
       if (charId === "new") {
-        return dispatch("unbindRef", ["charProps", "rules"]).then(() =>
+        return dispatch("unbindRefCharacter", ["charProps", "rules"]).then(() =>
           commit("resetSelectedDomains")
         );
       }
 
-      dispatch("bindRef", {
+      dispatch("bindRefCharacter", {
         propName: "charProps",
         ref: db.doc(`characters/${charId}`)
       });
 
-      dispatch("bindRef", {
+      dispatch("bindRefCharacter", {
         propName: "rules",
         ref: db.collection(`characters/${charId}/rules`)
-      }).then(() => commit("resetSelectedDomains"));
+      }).then(() => {
+        commit("resetSelectedDomains");
+      });
     },
 
     async createCharacter(_, { name, race }) {

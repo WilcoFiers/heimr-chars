@@ -9,7 +9,7 @@
             :step="i + 1"
             :editable="canAccessStep(step)"
             :complete="canAccessStep(step) && step !== currentStep"
-            :color="step === currentStep ? 'primary' : 'accent'"
+            :color="step === currentStep ? 'secondary' : 'accent'"
             edit-icon="$complete"
             @click="changeStep(step)"
             >{{ step.label }}</v-stepper-step

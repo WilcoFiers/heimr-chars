@@ -14,7 +14,7 @@
               <v-card-subtitle v-text="tool.description" />
             </div>
             <v-avatar class="ma-4" size="60" tile>
-              <v-img :src="tool.image" class="image" />
+              <IconImage :asset="tool.image" />
             </v-avatar>
           </div>
         </v-card>
@@ -25,8 +25,11 @@
 
 <script lang="ts">
 import Vue from "vue";
+import IconImage from "@/components/IconImage.vue";
+
 export default Vue.extend({
   name: "GamesTools",
+  components: { IconImage },
   data() {
     return {
       tools: [
@@ -34,7 +37,7 @@ export default Vue.extend({
           name: "Automata crafting",
           description: `Create magic spells, known in Heimr as "automata" using the glyph language from the Primordial magic domain.`,
           route: { name: "AutomataList" },
-          image: require("../assets/auto-repair.png")
+          image: "auto-repair"
         }
       ]
     };
@@ -43,10 +46,6 @@ export default Vue.extend({
 </script>
 
 <style scoped>
-.image {
-  background: rgba(0, 0, 0, 0.85);
-  border-radius: 6px;
-}
 .link {
   text-decoration: underline;
   text-decoration-color: rgba(0, 0, 0, 0.35);

@@ -1,7 +1,7 @@
 import SignUp from "@/views/user/SignUp.vue";
 import SignIn from "@/views/user/SignIn.vue";
 import PasswordReset from "@/views/user/PasswordReset.vue";
-import Account from "@/views/user/Account.vue";
+import MyAccount from "@/views/user/MyAccount.vue";
 import AuthGuard from "./AuthGuard";
 
 export const userRoutes = [
@@ -19,7 +19,7 @@ export const userRoutes = [
   },
   {
     path: "/account",
-    component: Account,
+    component: MyAccount,
     beforeEnter: AuthGuard
   }
 ];

@@ -17,13 +17,13 @@
         <v-card :to="charUri(char)" height="100%">
           <v-list-item three-line>
             <v-list-item-content>
-              <v-list-item-title class="headline mb-1">
-                {{ char.name }}
-              </v-list-item-title>
+              <v-list-item-title class="headline mb-1">{{
+                char.name
+              }}</v-list-item-title>
               <v-list-item-subtitle>{{ summary(char) }}</v-list-item-subtitle>
             </v-list-item-content>
             <v-list-item-avatar tile size="50" color="grey">
-              <v-img :src="raceImg(char.race)" contain class="black" />
+              <IconImage :asset="raceImg(char.race)" contain />
             </v-list-item-avatar>
           </v-list-item>
         </v-card>
@@ -44,6 +44,7 @@
 import Vue from "vue";
 import { State } from "@/store";
 import { raceImg } from "@/heimr-data";
+import IconImage from "@/components/IconImage.vue";
 
 const adjectives = ["badass", "honourable", "woke", "wise", "humble"];
 const quests = [
@@ -56,6 +57,7 @@ const quests = [
 
 export default Vue.extend({
   name: "CharacterList",
+  components: { IconImage },
   computed: {
     characters() {
       return (this.$store.state as State).character.list;

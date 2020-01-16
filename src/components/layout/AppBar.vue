@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar app dark clipped-left>
+  <v-app-bar app clipped-left dark class="primary">
     <v-app-bar-nav-icon
       @click.stop="toggleDrawer"
       aria-label="Toggle navbar"

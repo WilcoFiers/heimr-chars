@@ -37,7 +37,7 @@
           </v-card-text>
           <v-card-actions class="justify-center pb-5">
             <v-btn
-              class="primary darken-2"
+              class="primary darken-1"
               :disabled="selected === activeItem"
               rounded
               min-width="200"

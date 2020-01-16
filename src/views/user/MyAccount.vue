@@ -1,7 +1,7 @@
 <template>
   <v-container>
-    <v-row class="justify-center">
-      <v-col cols="12" sm="9" md="6">
+    <v-row>
+      <v-col cols="12" sm="9" md="8">
         <v-row>
           <v-col>
             <h1>My Account</h1>
@@ -14,22 +14,30 @@
               autocomplete="off"
               ref="profileForm"
             >
-              <v-text-field
-                label="Display name"
-                v-model="displayName"
-                prepend-icon="mdi-monitor-screenshot"
-                type="text"
-                :rules="[required]"
-              />
-              <v-text-field
-                label="E-mail"
-                v-model="email"
-                prepend-icon="mdi-at"
-                type="text"
-                :rules="[required, validEmail]"
-              />
-              <ErrorMessage :message="profileMessage" />
-              <v-btn type="submit">Update profile</v-btn>
+              <v-card>
+                <v-card-title class="pb-0">
+                  <h2>Profile Information</h2>
+                </v-card-title>
+                <v-card-text>
+                  <v-text-field
+                    label="Display name"
+                    v-model="displayName"
+                    prepend-icon="mdi-monitor-screenshot"
+                    type="text"
+                    :rules="[required]"
+                  />
+                  <v-text-field
+                    label="E-mail"
+                    v-model="email"
+                    prepend-icon="mdi-at"
+                    type="text"
+                    autocomplete="email"
+                    :rules="[required, validEmail]"
+                  />
+                  <ErrorMessage :message="profileMessage" />
+                  <v-btn type="submit" class="secondary">Update profile</v-btn>
+                </v-card-text>
+              </v-card>
             </v-form>
           </v-col>
         </v-row>
@@ -41,25 +49,31 @@
               autocomplete="off"
               ref="passwordForm"
             >
-              <h2>Update password</h2>
-              <v-text-field
-                label="New password"
-                hint="At least 6 characters"
-                persistent-hint
-                v-model="password"
-                type="password"
-                prepend-icon="mdi-lock-outline"
-                :rules="[required]"
-              />
-              <v-text-field
-                label="Repeat your new password"
-                v-model="passwordRepeat"
-                type="password"
-                prepend-icon="mdi-lock-outline"
-                :rules="[required]"
-              />
-              <ErrorMessage :message="passwordMessage" />
-              <v-btn type="submit">Update password</v-btn>
+              <v-card>
+                <v-card-title class="pb-0">
+                  <h2>Update password</h2>
+                </v-card-title>
+                <v-card-text>
+                  <v-text-field
+                    label="New password"
+                    hint="At least 6 characters"
+                    persistent-hint
+                    v-model="password"
+                    type="password"
+                    prepend-icon="mdi-lock-outline"
+                    :rules="[required]"
+                  />
+                  <v-text-field
+                    label="Repeat your new password"
+                    v-model="passwordRepeat"
+                    type="password"
+                    prepend-icon="mdi-lock-outline"
+                    :rules="[required]"
+                  />
+                  <ErrorMessage :message="passwordMessage" />
+                  <v-btn type="submit" class="secondary">Update password</v-btn>
+                </v-card-text>
+              </v-card>
             </v-form>
           </v-col>
         </v-row>
