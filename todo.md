@@ -3,7 +3,6 @@
 - Add types to the store
 - Give names to all routes and use those in navbar
 - Make better user of store getters
-- Set up Github, including deploy action
 - Enable offline mode
 - Build out tests
 - Surgery deck
