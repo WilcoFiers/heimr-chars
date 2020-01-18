@@ -29,12 +29,7 @@
           <v-card-title>
             <h3 class="d-flex flex-row-reverse">
               {{ domain.domainName }}
-              <v-img
-                :src="domainImg(domain)"
-                class="image"
-                width="28"
-                height="28"
-              />
+              <IconImage :asset="domainImg(domain)" width="28" />
               <v-icon
                 v-if="locked[domain.domainName]"
                 class="check"
@@ -80,6 +75,7 @@ import { domainsMeta, domainImg, DomainMeta } from "@/heimr-data";
 import { CharacterState } from "@/store/character";
 import CreationGuideBtn from "@/components/character/CreationGuideBtn.vue";
 import ErrorMessage from "@/components/ErrorMessage.vue";
+import IconImage from "@/components/IconImage.vue";
 
 type ActiveDomain = { [propName: string]: boolean };
 
@@ -88,7 +84,7 @@ export default Vue.extend({
   data() {
     return { domains: domainsMeta, message: "" };
   },
-  components: { CreationGuideBtn, ErrorMessage },
+  components: { CreationGuideBtn, ErrorMessage, IconImage },
 
   computed: {
     charState(): CharacterState {
@@ -138,9 +134,6 @@ export default Vue.extend({
   margin-right: 10px;
   color: white;
 }
-.image {
-  background: black;
-}
 
 .check {
   margin-right: -28px;
@@ -152,6 +145,6 @@ export default Vue.extend({
 
 .activeCard,
 .lockedCard {
-  background: #d2e7f9;
+  background: #e6f4d7;
 }
 </style>

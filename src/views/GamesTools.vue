@@ -6,14 +6,14 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-col cols="12" md="6" xl="4" v-for="tool in tools" :key="tool.name">
+      <v-col cols="12" md="8" xl="6" v-for="tool in tools" :key="tool.name">
         <v-card :to="tool.route" height="100%">
           <div class="d-flex flex-no-wrap justify-space-between">
             <div>
               <v-card-title class="link" v-text="tool.name" />
               <v-card-subtitle v-text="tool.description" />
             </div>
-            <v-avatar class="ma-4" size="60" tile>
+            <v-avatar class="ma-4" size="70" tile>
               <IconImage :asset="tool.image" />
             </v-avatar>
           </div>

@@ -9,10 +9,9 @@
     <v-row>
       <v-col cols="12" md="9">
         <p>
-          Heimr is a fairly unique LARP, with a entirely unique rules for
-          playing the game, for creating characters and for downtime. This has
-          proven to be a barrier to some players. This app is designed to help
-          you learn the Heimr rules and create Heimr characters.
+          Heimr is a unique LARP, with a entirely unique rules for playing the
+          game, for creating characters and for downtime. This app is designed
+          to help you learn the Heimr rules and create Heimr characters.
         </p>
         <p>
           This app is developed in collaboration with the Heimr Game Master
