@@ -6124,10 +6124,10 @@ find-up@^4.0.0, find-up@^4.1.0:
     locate-path "^5.0.0"
     path-exists "^4.0.0"
 
-firebase-tools@^7.7.0:
-  version "7.10.0"
-  resolved "https://agora.dequecloud.com/artifactory/api/npm/dequelabs/firebase-tools/-/firebase-tools-7.10.0.tgz#597a11c468f8e3fa09fec8e8bd23603d9df1a88a"
-  integrity sha1-WXoRxGj44/oJ/sjovSNgPZ3xqIo=
+firebase-tools@^7.12.1:
+  version "7.12.1"
+  resolved "https://agora.dequecloud.com/artifactory/api/npm/dequelabs/firebase-tools/-/firebase-tools-7.12.1.tgz#af78bbc446ae46d722938bd8009c351d52ec01f3"
+  integrity sha1-r3i7xEauRtcik4vYAJw1HVLsAfM=
   dependencies:
     "@google-cloud/pubsub" "^1.1.5"
     JSONStream "^1.2.1"
@@ -6150,6 +6150,7 @@ firebase-tools@^7.7.0:
     fs-extra "^0.23.1"
     glob "^7.1.2"
     google-auto-auth "^0.7.2"
+    google-gax "~1.12.0"
     inquirer "~6.3.1"
     jsonschema "^1.0.2"
     jsonwebtoken "^8.2.1"
@@ -6701,7 +6702,7 @@ google-auto-auth@^0.7.2:
     google-auth-library "^0.10.0"
     request "^2.79.0"
 
-google-gax@^1.7.5:
+google-gax@^1.7.5, google-gax@~1.12.0:
   version "1.12.0"
   resolved "https://agora.dequecloud.com/artifactory/api/npm/dequelabs/google-gax/-/google-gax-1.12.0.tgz#f926f7e6abda245db38ecbebbbf58daaf3a8f687"
   integrity sha1-+Sb35qvaJF2zjsvru/WNqvOo9oc=

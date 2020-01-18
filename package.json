@@ -53,7 +53,7 @@
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-vue": "^6.0.1",
     "eslint-plugin-vue-a11y": "^0.0.31",
-    "firebase-tools": "^7.7.0",
+    "firebase-tools": "^7.12.1",
     "husky": "^3.1.0",
     "lint-staged": "^9.4.2",
     "prettier": "^1.18.2",
