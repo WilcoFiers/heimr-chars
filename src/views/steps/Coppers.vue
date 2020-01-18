@@ -47,7 +47,7 @@ import { Domain, State, CharacterInfo } from "@/types";
 import BaseCharacterCard, { activeDomains } from "./BaseCharacterCard.vue";
 import CreationGuideBtn from "@/components/character/CreationGuideBtn.vue";
 import ErrorMessage from "@/components/ErrorMessage.vue";
-import { ProgressBarVal } from "./points.vue";
+import { ProgressBarVal } from "./Points.vue";
 import { validateCoppers } from "@/heimr/validateSteps";
 
 export default Vue.extend({
