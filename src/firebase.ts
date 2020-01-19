@@ -17,6 +17,17 @@ export const EmailAuthProvider = fbAuth.EmailAuthProvider;
 export const auth = firebaseApp.auth();
 
 export const db = firebaseApp.firestore();
+db.enablePersistence().catch(function(err) {
+  if (err.code == "failed-precondition") {
+    console.error(
+      "Multiple tabs open, persistence can only be enabled in one tab at a a time."
+    );
+  } else if (err.code == "unimplemented") {
+    console.error(
+      "The current browser does not support all of the features required to enable persistence"
+    );
+  }
+});
 
 export const charactersCol: CharacterCol = db.collection("characters");
 

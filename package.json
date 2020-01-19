@@ -4,19 +4,20 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "serve:firestore": "firebase serve --only firestore",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint",
+    "deploy": "vue-cli-service build && firebase deploy",
+    "deploy:rules": "firebase deploy --only firestore:rules",
     "prettier": "prettier src/**/*.{ts,vue,json} --write",
     "scrape-heimr": "cd scripts && ts-node getHeimrDocs.ts",
-    "deploy": "vue-cli-service build && firebase deploy",
-    "deploy:rules": "firebase deploy --only firestore:rules"
+    "serve:firestore": "firebase serve --only firestore"
   },
   "dependencies": {
     "core-js": "^3.5.0",
     "firebase": "^7.6.0",
+    "register-service-worker": "^1.6.2",
     "vue": "^2.6.10",
     "vue-class-component": "^7.0.2",
     "vue-property-decorator": "^8.3.0",
@@ -40,6 +41,7 @@
     "@vue/cli-plugin-babel": "^4.1.1",
     "@vue/cli-plugin-e2e-cypress": "^4.1.1",
     "@vue/cli-plugin-eslint": "^4.1.1",
+    "@vue/cli-plugin-pwa": "^4.1.2",
     "@vue/cli-plugin-router": "^4.1.1",
     "@vue/cli-plugin-typescript": "^4.1.1",
     "@vue/cli-plugin-unit-jest": "^4.1.1",
@@ -109,17 +111,6 @@
   "jest": {
     "preset": "@vue/cli-plugin-unit-jest/presets/typescript-and-babel"
   },
-  "lint-staged": {
-    "*.{ts,vue}": [
-      "vue-cli-service lint",
-      "prettier --write",
-      "git add"
-    ],
-    "*.{json,css,md,html}": [
-      "prettier --write",
-      "git add"
-    ]
-  },
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
@@ -131,7 +122,15 @@
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
-  "peerDependencies": {
-    "webpack": "^4.41.2"
+  "lint-staged": {
+    "*.{ts,vue}": [
+      "vue-cli-service lint",
+      "prettier --write",
+      "git add"
+    ],
+    "*.{json,css,md,html}": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }

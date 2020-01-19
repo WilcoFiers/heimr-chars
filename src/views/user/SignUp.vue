@@ -34,6 +34,7 @@
               v-model="password"
               type="password"
               prepend-icon="mdi-lock-outline"
+              autocomplete="new-password"
               :rules="[required]"
             />
           </v-row>
@@ -44,6 +45,7 @@
               v-model="passwordRepeat"
               type="password"
               prepend-icon="mdi-lock-outline"
+              autocomplete="new-password"
               :rules="[required]"
             />
           </v-row>

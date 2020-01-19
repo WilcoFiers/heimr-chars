@@ -1,20 +1,21 @@
 # TODO
 
+- Show the navbar on smaller resolutions
+- Replace the Vue logo with a Heimr logo
+- unmount everything and clear the cache on sign-out
 - Add types to the store
 - Give names to all routes and use those in navbar
 - Make better user of store getters
-- Enable offline mode
 - Build out tests
 - Surgery deck
 - Admin features
+- Figure out what to do with multiple tab offline mode
 - Set required props in components and provide type saftey
-- unmount everything on sign-out
 - Add theming / design / logo
 - Event display & creation
 - Downtime system
 - Lock characters after an event
 - Checkout items for an event
-- Set up as a web app (add a manifest + service worker)
 - Alchemy mini game
 - Surgery mini game
 - Separate prod and dev databases

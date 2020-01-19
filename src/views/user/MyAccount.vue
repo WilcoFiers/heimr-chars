@@ -44,11 +44,7 @@
 
         <v-row class="mt-5">
           <v-col>
-            <v-form
-              @submit.prevent="updatePassword"
-              autocomplete="off"
-              ref="passwordForm"
-            >
+            <v-form @submit.prevent="updatePassword" ref="passwordForm">
               <v-card>
                 <v-card-title class="pb-0">
                   <h2>Update password</h2>
@@ -56,6 +52,7 @@
                 <v-card-text>
                   <v-text-field
                     label="New password"
+                    autocomplete="new-password"
                     hint="At least 6 characters"
                     persistent-hint
                     v-model="password"
@@ -65,6 +62,7 @@
                   />
                   <v-text-field
                     label="Repeat your new password"
+                    autocomplete="new-password"
                     v-model="passwordRepeat"
                     type="password"
                     prepend-icon="mdi-lock-outline"

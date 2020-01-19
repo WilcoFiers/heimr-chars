@@ -4,16 +4,18 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import Vuetify from "vuetify/lib";
+import "./registerServiceWorker";
 
 Vue.use(Vuetify);
 
 let app: object;
+
 auth.onAuthStateChanged(user => {
   if (user) {
     store.dispatch("autoSignIn", user);
   }
+  // Prevents mounting multiple times
   if (!app) {
-    // Prevents mounting multiple times
     app = new Vue({
       router,
       store,
