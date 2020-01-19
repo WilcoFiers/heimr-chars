@@ -2,7 +2,10 @@
 
 - Show the navbar on smaller resolutions
 - Replace the Vue logo with a Heimr logo
+- Offline firestore does not seem to work
+- UI is a little busted on mobile
 - unmount everything and clear the cache on sign-out
+- Move all data into cache on sign-in. There isn't that much, and its better for offline
 - Add types to the store
 - Give names to all routes and use those in navbar
 - Make better user of store getters
@@ -54,6 +57,7 @@
 ## Automata editor
 
 - Download SVG option
+- Improve layout for mobile
 - Don't reload My Automata on each page load
 - Share automata through a URL
 - Autocomplete for particles, atoms & take

@@ -10,10 +10,10 @@
         <v-card :to="tool.route" height="100%">
           <div class="d-flex flex-no-wrap justify-space-between">
             <div>
-              <v-card-title class="link" v-text="tool.name" />
-              <v-card-subtitle v-text="tool.description" />
+              <v-card-title class="underline" v-text="tool.title" />
+              <v-card-subtitle v-text="tool.subtitle" />
             </div>
-            <v-avatar class="ma-4" size="70" tile>
+            <v-avatar class="ma-4" size="50" tile>
               <IconImage :asset="tool.image" />
             </v-avatar>
           </div>
@@ -27,29 +27,25 @@
 import Vue from "vue";
 import IconImage from "@/components/IconImage.vue";
 
+const tools = [
+  {
+    title: "Automata crafting",
+    subtitle: `Create magic spells, known in Heimr as "automata" using the glyph language from the Primordial magic domain.`,
+    route: { name: "AutomataList" },
+    image: "auto-repair"
+  }
+];
+
 export default Vue.extend({
   name: "GamesTools",
   components: { IconImage },
   data() {
-    return {
-      tools: [
-        {
-          name: "Automata crafting",
-          description: `Create magic spells, known in Heimr as "automata" using the glyph language from the Primordial magic domain.`,
-          route: { name: "AutomataList" },
-          image: "auto-repair"
-        }
-      ]
-    };
+    return { tools };
   }
 });
 </script>
 
 <style scoped>
-.link {
-  text-decoration: underline;
-  text-decoration-color: rgba(0, 0, 0, 0.35);
-}
 .v-card--link:hover:before {
   opacity: 0.08;
 }

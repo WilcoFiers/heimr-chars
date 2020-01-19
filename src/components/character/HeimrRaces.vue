@@ -1,7 +1,16 @@
 <template>
-  <v-container>
+  <v-container class="pa-0">
     <v-row class="justify-center">
-      <v-col :cols="3">
+      <v-col class="d-sm-none col-12">
+        <v-autocomplete
+          :items="races.map(({ name }) => name)"
+          label="Find a race"
+          :value="currentRace.name"
+          @input="updateCard"
+        />
+      </v-col>
+
+      <v-col class="d-none d-sm-block col-3">
         <v-card>
           <h2 class="pl-3 pt-2 title">Races</h2>
           <v-list height="250" class="overflow-auto">
@@ -27,7 +36,7 @@
         </v-card>
       </v-col>
 
-      <v-col :cols="9">
+      <v-col cols="12" sm="9">
         <v-card>
           <v-card-title>
             <RuleCardTitle :ruleCard="currentRace" heading="title" />
@@ -101,8 +110,12 @@ export default Vue.extend({
   },
 
   methods: {
-    updateCard(index: number) {
-      this.activeItem = index;
+    updateCard(next: number | string) {
+      if (typeof next === "string") {
+        this.activeItem = this.races.findIndex(race => race.name === next);
+      } else {
+        this.activeItem = next;
+      }
     },
 
     selectRace() {

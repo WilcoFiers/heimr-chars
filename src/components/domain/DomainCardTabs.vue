@@ -1,18 +1,19 @@
 <template>
   <div>
-    <v-tabs v-model="activeTab" grow>
-      <v-tab v-for="tabPanel in tabs" :key="tabPanel.domainName">
-        {{ tabPanel.domainName }}
-      </v-tab>
+    <v-tabs v-model="activeTab" grow hide-slider>
+      <v-tab v-for="tabPanel in tabs" :key="tabPanel.domainName">{{
+        tabPanel.domainName
+      }}</v-tab>
     </v-tabs>
 
     <v-tabs-items v-model="activeTab">
       <v-tab-item v-for="tabPanel in tabs" :key="tabPanel.domainName">
-        <v-container
+        <div
+          class="pt-4"
           v-for="cardTypeGroups in tabPanel.cardGroups"
           :key="cardTypeGroups.cardType"
         >
-          <h3>{{ cardTypeGroups.cardType }}</h3>
+          <h3 class="title ma-2">{{ cardTypeGroups.cardType }}</h3>
           <v-expansion-panels>
             <v-expansion-panel
               v-for="ruleCardGroup in cardTypeGroups.groupCards"
@@ -27,7 +28,7 @@
               </v-expansion-panel-content>
             </v-expansion-panel>
           </v-expansion-panels>
-        </v-container>
+        </div>
       </v-tab-item>
     </v-tabs-items>
   </div>

@@ -2,19 +2,22 @@
   <v-container>
     <v-row>
       <v-col>
-        <h1>Unofficial Heimr App</h1>
+        <h1>
+          Heimr LARP
+          <span class="font-weight-light no-wrap">Unofficial App</span>
+        </h1>
       </v-col>
     </v-row>
     <v-row>
-      <v-col cols="12" md="9" v-for="link in links" :key="link.to">
-        <v-card :to="link.to" height="100%">
+      <v-col cols="12" md="8" xl="6" v-for="(link, i) in links" :key="i">
+        <v-card :to="link.route" height="100%">
           <div class="d-flex flex-no-wrap justify-space-between">
             <div>
-              <v-card-title v-text="link.title" />
+              <v-card-title class="underline" v-text="link.title" />
               <v-card-subtitle v-text="link.subtitle" />
             </div>
-            <v-avatar class="ma-4" size="60" tile>
-              <!-- <v-img :src="domainImg(domain)" class="image" /> -->
+            <v-avatar class="ma-4" size="50" tile>
+              <IconImage :asset="link.image" />
             </v-avatar>
           </div>
         </v-card>
@@ -25,31 +28,34 @@
 
 <script lang="ts">
 import Vue from "vue";
+import IconImage from "@/components/IconImage.vue";
+
+const links = [
+  {
+    route: "/characters",
+    title: "My Characters",
+    subtitle: "Create and manage your Heimr characters.",
+    image: "characters"
+  },
+  {
+    route: { name: "GamesTools" },
+    title: "Games & Tools",
+    subtitle: "Try out mini games and tools for Heimr domains.",
+    image: "games"
+  },
+  {
+    route: "/books/core-rules",
+    title: "Core LARP Rules",
+    subtitle: "Minimal rules that all players should know.",
+    image: "book"
+  }
+];
+
 export default Vue.extend({
   name: "Home",
+  components: { IconImage },
   data() {
-    return {
-      links: [
-        {
-          to: "/characters",
-          title: "My Characters",
-          subtitle: "Create and manage your Heimr characters.",
-          avatar: ""
-        },
-        {
-          to: { name: "GamesTools" },
-          title: "Heimr Games & Tools",
-          subtitle: "Try out mini games and tools for Heimr domains.",
-          avatar: ""
-        },
-        {
-          to: "/books/core-rules",
-          title: "Heimr LARP: Core Rules",
-          subtitle: "Minimal rules that all players should know.",
-          avatar: ""
-        }
-      ]
-    };
+    return { links };
   }
 });
 </script>

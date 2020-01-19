@@ -6,7 +6,9 @@
       <em class="font-weight-light" v-if="dormant">Dorment</em>
     </h4>
     <v-spacer />
-    <span class="flex-grow-0 mr-5">{{ ruleGroupCostText }}</span>
+    <span class="d-none d-sm-inline flex-grow-0 mr-5">{{
+      ruleGroupCostText
+    }}</span>
   </div>
 </template>
 

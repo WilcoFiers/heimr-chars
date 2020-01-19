@@ -38,11 +38,6 @@ const navItems: NavItem[] = [
     icon: "dice-d20"
   },
   {
-    text: "My Account",
-    to: "/account",
-    icon: "card-bulleted"
-  },
-  {
     divider: true
   },
   {
@@ -62,6 +57,11 @@ const navItems: NavItem[] = [
   },
   {
     divider: true
+  },
+  {
+    text: "Settings",
+    to: { name: "Settings" },
+    icon: "settings"
   },
   {
     text: "About",

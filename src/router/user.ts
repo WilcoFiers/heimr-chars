@@ -1,7 +1,7 @@
 import SignUp from "@/views/user/SignUp.vue";
 import SignIn from "@/views/user/SignIn.vue";
 import PasswordReset from "@/views/user/PasswordReset.vue";
-import MyAccount from "@/views/user/MyAccount.vue";
+import Settings from "@/views/user/Settings.vue";
 import AuthGuard from "./AuthGuard";
 
 export const userRoutes = [
@@ -18,8 +18,9 @@ export const userRoutes = [
     component: PasswordReset
   },
   {
-    path: "/account",
-    component: MyAccount,
+    path: "/settings",
+    name: "Settings",
+    component: Settings,
     beforeEnter: AuthGuard
   }
 ];

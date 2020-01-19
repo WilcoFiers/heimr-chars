@@ -1,45 +1,52 @@
 <template>
-  <div class="mt-3 d-flex justify-space-between">
-    <OptionsBtn
-      outlined
-      @click="cardAction('addRule')"
-      v-if="!ownsOtherLevel"
-      :disabled="!canAdd"
-    >
-      <template #default> <v-icon left>mdi-plus</v-icon>Add </template>
-      <template #menu>
-        <v-list class="py-1">
-          <v-list-item
-            v-if="allowDormant"
-            @click="cardAction('addDormantSkill')"
-            >Add as dormant skill</v-list-item
-          >
-          <v-list-item @click="cardAction('addRuleCustom')"
-            >Add with changes</v-list-item
-          >
-        </v-list>
-      </template>
-    </OptionsBtn>
+  <div class="mt-3">
+    <p class="d-sm-none text-center" v-if="canOwnMultiple">
+      Currently owned: {{ owned }}
+    </p>
 
-    <v-btn
-      outlined
-      v-else
-      :disabled="!canChangeLevel"
-      @click="cardAction('changeRuleLevel')"
-    >
-      <v-icon left>mdi-swap-vertical</v-icon>Change level
-    </v-btn>
+    <div class="d-flex justify-space-between">
+      <OptionsBtn
+        outlined
+        @click="cardAction('addRule')"
+        v-if="!ownsOtherLevel"
+        :disabled="!canAdd"
+      >
+        <template #default> <v-icon left>mdi-plus</v-icon>Add </template>
+        <template #menu>
+          <v-list class="py-1">
+            <v-list-item
+              v-if="allowDormant"
+              @click="cardAction('addDormantSkill')"
+              >Add as dormant skill</v-list-item
+            >
+            <v-list-item @click="cardAction('addRuleCustom')"
+              >Add with changes</v-list-item
+            >
+          </v-list>
+        </template>
+      </OptionsBtn>
+      <v-btn
+        outlined
+        v-else
+        :disabled="!canChangeLevel"
+        @click="cardAction('changeRuleLevel')"
+      >
+        <v-icon left>mdi-swap-vertical</v-icon>Change level
+      </v-btn>
 
-    <span v-if="canOwnMultiple" class="pt-2">Currently owned: {{ owned }}</span>
+      <span v-if="canOwnMultiple" class="pt-2 d-none d-sm-inline"
+        >Currently owned: {{ owned }}</span
+      >
 
-    <v-btn
-      outlined
-      v-if="canRemove || canOwnMultiple"
-      :disabled="!canRemove"
-      @click="cardAction('removeRule')"
-    >
-      <v-icon left>mdi-minus</v-icon>remove
-    </v-btn>
+      <v-btn
+        outlined
+        v-if="canRemove || canOwnMultiple"
+        :disabled="!canRemove"
+        @click="cardAction('removeRule')"
+      >
+        <v-icon left>mdi-minus</v-icon>remove
+      </v-btn>
+    </div>
   </div>
 </template>
 

@@ -14,7 +14,7 @@
       </v-col>
     </v-row>
     <v-row class="justify-center flex-row-reverse">
-      <v-col cols="10" sm="8" md="6" lg="4" xl="3">
+      <v-col cols="12" sm="8" md="6" lg="4" xl="3">
         <v-card>
           <v-card-text class="text-center">
             <div class="font-weight-bold">{{ coppersProgress.label }}</div>
@@ -33,7 +33,7 @@
       </v-col>
     </v-row>
 
-    <v-row v-if="messages">
+    <v-row v-if="messages && messages.length > 0">
       <v-col>
         <ErrorMessage :message="messages" />
       </v-col>
@@ -70,7 +70,7 @@ export default Vue.extend({
     coppersProgress(): ProgressBarVal {
       const { coppersSpent, coppersLeft } = this.$store.getters.characterInfo;
       const totalCoppers = coppersSpent + coppersLeft;
-      let color = "accent";
+      let color = "secondary";
       if (coppersLeft < 0) {
         color = "error lighten-4";
       }

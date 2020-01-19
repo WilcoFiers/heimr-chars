@@ -77,4 +77,17 @@ html .v-application {
     @extend .title;
     border-bottom: solid 1px rgba(0, 0, 0, 0.4);
   }
+
+  .no-wrap {
+    white-space: nowrap;
+    word-break: keep-all;
+  }
+  .v-card__title {  
+    word-break: break-word;
+  }
+
+  .underline {
+    text-decoration: underline;
+    text-decoration-color: rgba(0, 0, 0, 0.35);
+  }
 }

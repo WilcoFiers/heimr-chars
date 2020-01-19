@@ -7,9 +7,9 @@
       >
     </h4>
     <v-spacer />
-    <span v-if="pricePaid" :class="{ 'grey--text': pricePaid.custom }">
-      {{ pricePaid.value }}
-    </span>
+    <span v-if="pricePaid" :class="{ 'grey--text': pricePaid.custom }">{{
+      pricePaid.value
+    }}</span>
   </div>
 </template>
 
@@ -30,7 +30,7 @@ export default Vue.extend({
   computed: {
     pricePaid(): { value: string; custom: boolean } | null {
       const { characterRule, ruleCard } = this;
-      if (ruleCard.type === "race") {
+      if (ruleCard.type === "race" || typeof characterRule !== "object") {
         return null;
       }
       if (characterRule.dormant) {

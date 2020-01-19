@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-row class="flex-row-reverse">
-      <v-col class="py-0" v-if="multiple" :cols="3">
+      <v-col class="py-0" v-if="multiple" cols="12" sm="3">
         <v-list class="py-0">
           <v-list-item-group v-model="level" color="primary" mandatory>
             <v-list-item

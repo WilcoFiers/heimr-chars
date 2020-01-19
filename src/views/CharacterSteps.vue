@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-stepper alt-labels :value="current" class="flat">
+    <v-stepper alt-labels :value="current" class="flat d-none d-sm-block">
       <v-stepper-header>
         <template v-for="(step, i) in steps">
           <v-stepper-step
@@ -18,6 +18,11 @@
         </template>
       </v-stepper-header>
     </v-stepper>
+
+    <div class="d-sm-none title text-center">
+      Step {{ current }} of {{ steps.length }}
+      <!-- TODO: small progress bar -->
+    </div>
 
     <router-view ref="step" />
 

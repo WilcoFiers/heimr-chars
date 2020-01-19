@@ -17,7 +17,12 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-col cols="6" v-for="domain in domains" :key="domain.domainName">
+      <v-col
+        cols="12"
+        md="6"
+        v-for="domain in domains"
+        :key="domain.domainName"
+      >
         <v-card
           height="100%"
           @click="toggle(domain)"

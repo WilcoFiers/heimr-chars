@@ -2,7 +2,7 @@
   <v-form @submit.prevent="save" ref="form">
     <v-container>
       <v-row class="flex-row-reverse">
-        <v-col cols="9">
+        <v-col cols="12" sm="9">
           <div class="d-flex justify-space-between">
             <h1 v-if="isNew" class="headline">New Character</h1>
             <h1 v-else class="headline">Update Character</h1>
@@ -15,7 +15,7 @@
           />
         </v-col>
 
-        <v-col cols="3">
+        <v-col class="col-3 d-none d-sm-block">
           <IconImage :asset="raceImg(character.race)" class="ml-4" width="90" />
         </v-col>
       </v-row>
