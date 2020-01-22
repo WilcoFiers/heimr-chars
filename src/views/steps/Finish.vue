@@ -9,13 +9,13 @@
       </v-col>
     </v-row>
     <v-row class="justify-center">
-      <v-col cols="8">
+      <v-col sm="8">
         <v-card class="px-5 mb-5">
           <v-row>
             <v-col v-for="(stat, i) in summaryStats" :key="i">
               <v-row dense v-for="(pair, i) in stat" :key="i">
-                <v-col cols="8">{{ pair[0] }}</v-col>
-                <v-col>{{ pair[1] }}</v-col>
+                <v-col>{{ pair[0] }}</v-col>
+                <v-col class="mobile-right">{{ pair[1] }}</v-col>
               </v-row>
             </v-col>
           </v-row>
@@ -167,5 +167,12 @@ export default Vue.extend({
 .no-top-radius {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
+}
+
+@media (max-width: 600px) {
+  /* xs */
+  .mobile-right {
+    text-align: right;
+  }
 }
 </style>

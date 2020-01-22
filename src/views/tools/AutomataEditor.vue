@@ -3,7 +3,7 @@
     <v-row>
       <v-col class="py-0">
         <v-toolbar dense>
-          <v-btn icon :to="{ name: 'AutomataList' }">
+          <v-btn icon exact :to="{ name: 'AutomataList' }">
             <!-- not yet implemented -->
             <v-icon>mdi-arrow-left</v-icon>
           </v-btn>

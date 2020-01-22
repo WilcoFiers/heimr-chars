@@ -5,34 +5,35 @@
         <article v-html="html" />
         <ol>
           <li v-for="(subsection, i) in subsections" :key="i">
-            <router-link :to="toRoute(subsection)">
-              {{ subsection.sectionName }}
-            </router-link>
+            <router-link :to="toRoute(subsection)">{{
+              subsection.sectionName
+            }}</router-link>
           </li>
         </ol>
       </v-col>
     </v-row>
-    <v-row>
-      <v-col cols="4" xl="3">
+    <v-row dense>
+      <v-col sm="4" xl="3">
         <v-btn v-if="previousSection" :to="toRoute(previousSection)" text>
           <v-icon left>mdi-arrow-left</v-icon>
-          {{ previousSection.sectionName }}
+          <span class="d-sm-none" v-text="'Back'" />
+          <span
+            class="d-none d-sm-block"
+            v-text="previousSection.sectionName"
+          />
         </v-btn>
       </v-col>
-      <v-col cols="4" xl="3" class="text-center">
-        <v-btn
-          v-if="parentSection"
-          :to="toRoute(parentSection)"
-          text
-          active-class="none"
-        >
-          {{ parentSection.sectionName }}
+      <v-col sm="4" xl="3" class="text-center">
+        <v-btn v-if="parentSection" :to="toRoute(parentSection)" text exact>
+          <span class="d-none d-sm-block" v-text="parentSection.sectionName" />
+          <span class="d-sm-none" v-text="'Up'" />
           <v-icon right>mdi-arrow-up</v-icon>
         </v-btn>
       </v-col>
-      <v-col cols="4" xl="3" class="text-right">
+      <v-col sm="4" xl="3" class="text-right">
         <v-btn v-if="nextSection" :to="toRoute(nextSection)" text>
-          {{ nextSection.sectionName }}
+          <span class="d-none d-sm-block" v-text="nextSection.sectionName" />
+          <span class="d-sm-none" v-text="'Next'" />
           <v-icon right>mdi-arrow-right</v-icon>
         </v-btn>
       </v-col>

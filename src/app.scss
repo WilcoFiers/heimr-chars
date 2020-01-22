@@ -59,17 +59,23 @@ html .v-application {
   }
   table {
     @extend .elevation-2;
+    display: block;
+    overflow-x: auto;
     border-collapse: collapse;
     min-width: 30%;
     margin-bottom: 24px;
-    // display: inline-block; // Ensure the elevation includes the caption
     background: white;
   }
 
   th {
     text-align: left;
-    white-space: nowrap;
   }
+  @media (min-width: 600px) {
+    th {
+      white-space: nowrap;
+    }
+  }
+
   tr:hover {
     background: rgba(0, 0, 0, 0.12);
   }

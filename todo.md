@@ -1,9 +1,14 @@
 # TODO
 
 - Show the navbar on smaller resolutions
+- Use router meta.title prop
 - Replace the Vue logo with a Heimr logo
 - Offline firestore does not seem to work
-- UI is a little busted on mobile
+- Restore sign-out option
+- For mobile, put the h1 in the header, replacing the Heimr logo
+- In char creation mobile, add hamburger in top right for step navigation
+- Animate page transitions
+- Swipe left - right to navigate in books
 - unmount everything and clear the cache on sign-out
 - Move all data into cache on sign-in. There isn't that much, and its better for offline
 - Add types to the store
@@ -25,6 +30,7 @@
 
 ### Char creation
 
+- Don't allow swiping between domains
 - Make the headings in the tablist more distinct
 - Add an explainer about what "add with changes" is for
 - Make it clear that your race is your character card
