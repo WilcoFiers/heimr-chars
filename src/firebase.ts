@@ -1,8 +1,11 @@
-import { initializeApp, firestore, auth as fbAuth } from "firebase";
+import * as firebase from "firebase/app";
+import "firebase/auth";
+import "firebase/firestore";
+
 import { CharacterCol, CharacterRuleCol, AutomataCol } from "./types";
 
 // Get a Firestore instance
-export const firebaseApp = initializeApp({
+export const firebaseApp = firebase.initializeApp({
   apiKey: "AIzaSyC9UksAfuE2u48JTwfxW_eSjXfV5sPvQjU",
   authDomain: "heimr-chars.firebaseapp.com",
   databaseURL: "https://heimr-chars.firebaseio.com",
@@ -13,7 +16,7 @@ export const firebaseApp = initializeApp({
   measurementId: "G-YZ5QQN5LXP"
 });
 
-export const EmailAuthProvider = fbAuth.EmailAuthProvider;
+export const EmailAuthProvider = firebase.auth.EmailAuthProvider;
 export const auth = firebaseApp.auth();
 
 export const db = firebaseApp.firestore();
@@ -33,7 +36,7 @@ export const charactersCol: CharacterCol = db.collection("characters");
 
 export const automataCol: AutomataCol = db.collection("automata");
 
-export const serverTimestamp = firestore.FieldValue.serverTimestamp;
+export const serverTimestamp = firebase.firestore.FieldValue.serverTimestamp;
 
 export function getCharacterRulesCol(charId: string): CharacterRuleCol {
   return db.collection(`characters/${charId}/rules`) as CharacterRuleCol;

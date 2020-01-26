@@ -118,7 +118,7 @@ export default Vue.extend({
       if (save && router.save) {
         const saveResult = await router.save();
         if (saveResult === false) {
-          return;
+          return; // Explicitly prevent routing
         }
       }
 

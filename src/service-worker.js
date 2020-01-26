@@ -1,3 +1,4 @@
+// Not using TS for this one, the type for workbox isn't great
 if (workbox) {
   // adjust log level for displaying workbox logs
   workbox.core.setLogLevel(workbox.core.LOG_LEVELS.debug)

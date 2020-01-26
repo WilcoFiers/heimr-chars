@@ -16,7 +16,6 @@ export const characterStepRoutes = [
   },
   {
     path: "/characters/:charId/",
-    name: "character-steps",
     component: CharacterSteps,
     beforeEnter: AuthGuard,
     children: [

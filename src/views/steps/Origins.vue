@@ -92,7 +92,8 @@ export default Vue.extend({
       if (this.isNew) {
         return this.createCharacter(charData);
       } else {
-        return this.$store.dispatch("updateCharacter", charData);
+        // Don't await, so this can work while offline
+        this.$store.dispatch("updateCharacter", charData);
       }
     },
 

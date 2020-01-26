@@ -142,12 +142,13 @@ export const character: CharacterModule = {
       });
     },
 
-    async createCharacter(_, { name, race }) {
+    createCharacter(_, { name, race }) {
       const playerID = (auth.currentUser as User).uid;
       const charId = createID();
 
       // Use .doc().set() instead of .add() so we can return charId when offline
-      await charactersCol.doc(charId).set({
+      // Don't "await" this so we can return charId
+      charactersCol.doc(charId).set({
         name,
         race,
         playerID,

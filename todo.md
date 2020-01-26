@@ -1,6 +1,7 @@
 # TODO
 
 - Show the navbar on smaller resolutions
+- bug: Unable to exit step 1 while offline
 - Use router meta.title prop
 - Replace the Vue logo with a Heimr logo
 - Offline firestore does not seem to work
