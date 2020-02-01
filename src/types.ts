@@ -131,7 +131,7 @@ export type HeimrBook = {
   subsections: string[];
 };
 
-export type Glyph = {
+export type GlyphCard = {
   type: "glyph";
   name: string;
   pick: string[];

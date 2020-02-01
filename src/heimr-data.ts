@@ -7,7 +7,7 @@ import {
   RuleCard,
   CharacterRule,
   Character,
-  Glyph
+  GlyphCard
 } from "@/types";
 import {
   ruleCardRestrictions,
@@ -34,7 +34,7 @@ export interface DomainMeta {
 export const date = heimrData.date as string;
 export const races = heimrData.races as RaceCard[];
 export const domains = heimrData.domains as Domain[];
-export const glyphs = heimrData.glyphs as Glyph[];
+export const glyphs = heimrData.glyphs as GlyphCard[];
 
 export const racesMeta = heimrMeta.races as RaceMeta[];
 export const domainsMeta = heimrMeta.domains as DomainMeta[];
