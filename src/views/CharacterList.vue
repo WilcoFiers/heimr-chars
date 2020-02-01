@@ -17,9 +17,9 @@
         <v-card :to="charUri(char)" height="100%">
           <v-list-item three-line>
             <v-list-item-content>
-              <v-list-item-title class="headline mb-1">{{
-                char.name
-              }}</v-list-item-title>
+              <v-list-item-title class="headline mb-1">
+                {{ char.name }}
+              </v-list-item-title>
               <v-list-item-subtitle>{{ summary(char) }}</v-list-item-subtitle>
             </v-list-item-content>
             <v-list-item-avatar tile size="50" color="grey">
@@ -29,7 +29,7 @@
         </v-card>
       </v-col>
       <v-col>
-        <v-card min-width="250" to="/characters/new">
+        <v-card min-width="250" to="/characters/new/origin">
           <v-card-title>
             <v-icon left>mdi-plus-box</v-icon>New character
           </v-card-title>

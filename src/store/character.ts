@@ -77,11 +77,7 @@ export const character: CharacterModule = {
     },
 
     resetSelectedDomains(state) {
-      const domains: Set<string> = new Set();
-      if (state.rules) {
-        state.rules.forEach(({ domainName }) => domains.add(domainName));
-      }
-      state.selectedDomains = Array.from(domains);
+      state.selectedDomains = [];
     }
   },
 
@@ -121,25 +117,23 @@ export const character: CharacterModule = {
       unbindFirestoreRef("list");
     }),
 
-    async loadCharacter({ commit, dispatch }, charId) {
+    loadCharacter({ commit, dispatch }, charId) {
       commit("setCharId", charId);
+      commit("resetSelectedDomains");
       if (charId === "new") {
-        return dispatch("unbindRefCharacter", ["charProps", "rules"]).then(() =>
-          commit("resetSelectedDomains")
-        );
+        return dispatch("unbindRefCharacter", ["charProps", "rules"]);
       }
 
-      dispatch("bindRefCharacter", {
-        propName: "charProps",
-        ref: db.doc(`characters/${charId}`)
-      });
-
-      dispatch("bindRefCharacter", {
-        propName: "rules",
-        ref: db.collection(`characters/${charId}/rules`)
-      }).then(() => {
-        commit("resetSelectedDomains");
-      });
+      return Promise.all([
+        dispatch("bindRefCharacter", {
+          propName: "charProps",
+          ref: db.doc(`characters/${charId}`)
+        }),
+        dispatch("bindRefCharacter", {
+          propName: "rules",
+          ref: db.collection(`characters/${charId}/rules`)
+        })
+      ]);
     },
 
     createCharacter(_, { name, race }) {

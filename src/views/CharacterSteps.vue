@@ -51,7 +51,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { State } from "@/types";
+import { State, Character } from "@/types";
 
 type Step = {
   label: string;
@@ -65,7 +65,7 @@ const exitStep: Step = {
   isExit: true
 };
 
-const steps: Step[] = [
+const steps = [
   {
     label: "Origins",
     routeName: "character-steps/origins"
@@ -90,22 +90,49 @@ const steps: Step[] = [
 
 export default Vue.extend({
   name: "CharacterSteps",
-  data(): { steps: Step[]; current: number } {
-    // Stepper is 1-index
-    const current =
-      1 + steps.findIndex(({ routeName }) => routeName === this.$route.name);
-    return { current, steps };
+  data() {
+    return { steps: steps as Step[] };
   },
 
   computed: {
+    character(): Character | undefined {
+      return (this.$store.state as State).character.charProps;
+    },
+
+    current(): number {
+      const index = steps.findIndex(
+        ({ routeName }) => routeName === this.$route.name
+      );
+      return index + 1;
+    },
+
     previousStep(): Step | undefined {
       return this.steps[this.current - 2] || exitStep;
     },
+
     currentStep(): Step | undefined {
       return this.steps[this.current - 1] || exitStep;
     },
+
     nextStep(): Step | undefined {
       return this.steps[this.current] || exitStep;
+    }
+  },
+
+  watch: {
+    current: {
+      immediate: true,
+      handler() {
+        if (this.$route.name === undefined && this.character) {
+          this.routeToLatest();
+        }
+      }
+    },
+    character(newVal) {
+      if (this.$route.name === undefined && newVal) {
+        // Give getters time to update:
+        setTimeout(() => this.routeToLatest(), 50);
+      }
     }
   },
 
@@ -126,7 +153,6 @@ export default Vue.extend({
         throw new Error(`Navigation to ${step.routeName} not permitted`);
         return;
       }
-      this.current = 1 + (index || 0);
       this.$router.push({ name: step.routeName });
     },
 
@@ -149,6 +175,22 @@ export default Vue.extend({
         }
       }
       return true;
+    },
+
+    routeToLatest() {
+      const statusSteps = this.$store.getters.stepStates as {
+        [propName: string]: boolean;
+      };
+      const latestStep = this.steps.find(({ routeName }) => {
+        const stepName = routeName.split("/")[1];
+        return !statusSteps[stepName];
+      });
+
+      if (latestStep) {
+        this.$router.replace({ name: latestStep.routeName });
+      } else {
+        this.$router.replace({ name: "character-steps/finish" });
+      }
     }
   }
 });

@@ -110,11 +110,6 @@ export default Vue.extend({
         selected[domainName] = selectedDomains.includes(domainName);
       });
       return selected;
-    },
-
-    valid(): boolean {
-      const { selectedDomains } = this.charState;
-      return selectedDomains.length > 0 || Object.keys(this.locked).length > 0;
     }
   },
 
@@ -122,8 +117,17 @@ export default Vue.extend({
     domainImg,
     toggle({ domainName }: DomainMeta) {
       if (!this.locked[domainName]) {
+        this.message = "";
         this.$store.commit("toggleSelectedDomain", domainName);
       }
+    },
+
+    save(): boolean {
+      const { selectedDomains } = this.charState;
+      const isValid =
+        selectedDomains.length + Object.keys(this.locked).length > 0;
+      this.message = isValid ? "" : "You must select at least 1 domain";
+      return isValid;
     }
   }
 });

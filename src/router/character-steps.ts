@@ -20,7 +20,7 @@ export const characterStepRoutes = [
     beforeEnter: AuthGuard,
     children: [
       {
-        path: "",
+        path: "origin",
         name: "character-steps/origins",
         component: OriginsStep
       },

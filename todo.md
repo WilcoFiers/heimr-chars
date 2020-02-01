@@ -1,17 +1,15 @@
 # TODO
 
 - Show the navbar on smaller resolutions
-- bug: Unable to exit step 1 while offline
+- Move all data into cache on sign-in. There isn't that much, and its better for offline
 - Use router meta.title prop
 - Replace the Vue logo with a Heimr logo
-- Offline firestore does not seem to work
-- Restore sign-out option
 - For mobile, put the h1 in the header, replacing the Heimr logo
+- Restore sign-out option
 - In char creation mobile, add hamburger in top right for step navigation
 - Animate page transitions
 - Swipe left - right to navigate in books
 - unmount everything and clear the cache on sign-out
-- Move all data into cache on sign-in. There isn't that much, and its better for offline
 - Add types to the store
 - Give names to all routes and use those in navbar
 - Make better user of store getters
@@ -31,16 +29,17 @@
 
 ### Char creation
 
+- Allow saving a char in "finish", which completes it
 - Don't allow swiping between domains
 - Make the headings in the tablist more distinct
 - Add an explainer about what "add with changes" is for
 - Make it clear that your race is your character card
 - Include all costs in the card group heading, instead of a range: "4, 6 or 10 points" instead of "4 - 10 points",
+- Don't wrap on prices
 - In a card group, if any is owned, select it by default
 - Allow someone to add character notes, and a bio in "finish". Replace it with the randomised character string.
 - In the domains step, add links to the various domain rules
 - Immediately save new characters instead of waiting until step 2
-- When updating a char, redirect to the last uncompleted step
 - Add a distinct style (such is italic or a color change) defined terms. For example "sturdy stance 1" in "tellurian"
 - Add a way for people to learn about common terms such as "charm", "DC, "blessing", "medium weapon", "R", "C".
 - Merge step 3 and 4, so that people can buy skills and items together.
