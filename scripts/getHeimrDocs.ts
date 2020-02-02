@@ -10,7 +10,8 @@ import {
   ItemCard,
   ConsumableCard,
   HeimrBook,
-  Glyph
+  GlyphCard,
+  ComplicationCard
 } from "../src/types";
 import {
   RuleObject,
@@ -21,9 +22,19 @@ import {
   toConsumable
 } from "./toCardObject";
 import { toGlyph } from "./toGlyph";
+import { toComplication } from "./toComplication";
 import { getHeimrBook } from "./getHeimrBook";
 
 const url = "http://heimr.nl/book/export/html/1838";
+const cardTypes = [
+  "skill",
+  "condition",
+  "item",
+  "race",
+  "consumable",
+  "glyph",
+  "complication"
+];
 
 console.log("loading " + url);
 
@@ -39,7 +50,8 @@ request(url, (error, response, html) => {
 
   const $ = cheerio.load(html);
   const races: RaceCard[] = [];
-  const glyphs: Glyph[] = [];
+  const glyphs: GlyphCard[] = [];
+  const complications: ComplicationCard[] = [];
   const domains: Domain[] = [];
   const heimrBooks: HeimrBook[] = [];
 
@@ -65,16 +77,16 @@ request(url, (error, response, html) => {
         .next()
         .text();
 
-      if (
-        !["skill", "condition", "item", "race", "consumable", "glyph"].includes(
-          type
-        )
-      ) {
+      if (!cardTypes.includes(type)) {
         return;
       }
       const ruleObj = tableToRuleObject($, $table);
       ruleObj.name = [name];
       ruleObj.type = [type];
+      if (type === "complication") {
+        ruleObj.meta = [$table.prev().text()];
+      }
+
       ruleObjects.push(ruleObj);
     });
 
@@ -93,6 +105,8 @@ request(url, (error, response, html) => {
     }
 
     glyphs.push(...ruleObjects.map(toGlyph).filter(notNull));
+    complications.push(...ruleObjects.map(toComplication).filter(notNull));
+
     if (skills.length || conditions.length || items.length) {
       domains.push({
         domainName,
@@ -110,7 +124,11 @@ request(url, (error, response, html) => {
   });
 
   const date = new Date().toISOString();
-  const heimrData = JSON.stringify({ date, races, domains, glyphs }, null, 2);
+  const heimrData = JSON.stringify(
+    { date, races, domains, glyphs, complications },
+    null,
+    2
+  );
   console.log("creating file at /src/assets/heimr-data.json");
   fs.writeFileSync("../src/assets/heimr-data.json", heimrData, "utf-8");
 

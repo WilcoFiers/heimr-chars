@@ -1,5 +1,5 @@
 {
-  "date": "2020-01-07T19:27:52.757Z",
+  "date": "2020-02-02T16:49:55.835Z",
   "races": [
     {
       "type": "race",
@@ -4406,6 +4406,452 @@
       "comment": [
         "This glyph will divert the power flow. It checks to see if IN1 is a value. If it is, the flow of power continues normally at the next glyph. If the value is empty instead, it will skip the first glyph it finds and instead divert the flow to the next glyph."
       ]
+    }
+  ],
+  "complications": [
+    {
+      "type": "complication",
+      "name": "Vigorous stabilization",
+      "uniqueRules": [
+        "If you pay 1 WP the healing succeeds after about 1 minute otherwise draw another card.",
+        "If the healing succeeds the patient now has 0 HP and should ask a wounded condition from a game master."
+      ],
+      "drawChance": 10
+    },
+    {
+      "type": "complication",
+      "name": "Stabilized",
+      "uniqueRules": [
+        "The patient loses 1 WP and you lose 1 WP.",
+        "The healing succeeds after about 1 minute.",
+        "The patient now has 0 HP and should ask a wounded condition from a game master."
+      ],
+      "drawChance": 30
+    },
+    {
+      "type": "complication",
+      "name": "Stabilized with minor infection",
+      "uniqueRules": [
+        "The patient loses 2 WP and you lose 1 WP.",
+        "The healing succeeds after about 1 minute.",
+        "The patient now has 0 HP and should ask a wounded AND Minor infection condition from a game master."
+      ],
+      "drawChance": 5
+    },
+    {
+      "type": "complication",
+      "name": "Stabilized but infected",
+      "uniqueRules": [
+        "The patient loses 3 WP and you lose 1 WP.",
+        "The healing succeeds after about 1 minute.",
+        "The patient now has 0 HP and should ask a wounded AND Infected condition from a game master."
+      ],
+      "drawChance": 5
+    },
+    {
+      "type": "complication",
+      "name": "Minor blood loss",
+      "uniqueRules": [
+        "You cannot stop the bleeding.",
+        "The patient loses 1 WP, if the patient has 0 WP after this he dies after speaking some last words and you lose 1 WP.",
+        "If the patient lives draw another card after about 1 minute."
+      ],
+      "drawChance": 1
+    },
+    {
+      "type": "complication",
+      "name": "Blood loss",
+      "uniqueRules": [
+        "You cannot stop the bleeding.",
+        "The patient loses 2 WP, if the patient has 0 WP after this he dies after speaking some last words and you lose 1 WP.",
+        "If the patient lives draw another card after about 1 minute."
+      ],
+      "drawChance": 1
+    },
+    {
+      "type": "complication",
+      "name": "Major blood loss",
+      "uniqueRules": [
+        "You cannot stop the bleeding.",
+        "The patient loses 3 WP, if the patient has 0 WP after this he dies after speaking some last words and you lose 1 WP.",
+        "If the patient lives draw another card after about 1 minute."
+      ],
+      "drawChance": 1
+    },
+    {
+      "type": "complication",
+      "name": "Bleeding artery",
+      "uniqueRules": [
+        "You cannot stop the bleeding.",
+        "The patient loses 4 WP, if the patient has 0 WP after this he dies after speaking some last words and you lose 1 WP.",
+        "If the patient lives draw another card after about 1 minute."
+      ],
+      "drawChance": 1
+    },
+    {
+      "type": "complication",
+      "name": "Bleeding major artery",
+      "uniqueRules": [
+        "You cannot stop the bleeding.",
+        "The patient loses 5 WP, if the patient has 0 WP after this he dies after speaking some last words and you lose 1 WP.",
+        "If the patient lives draw another card after about 1 minute."
+      ],
+      "drawChance": 1
+    },
+    {
+      "type": "complication",
+      "name": "Multiple bleeding arteries",
+      "uniqueRules": [
+        "You cannot stop the bleeding.",
+        "The patient loses 6 WP, if the patient has 0 WP after this he dies after speaking some last words and you lose 1 WP.",
+        "If the patient lives draw another card after about 1 minute."
+      ],
+      "drawChance": 1
+    },
+    {
+      "type": "complication",
+      "name": "Stops breathing",
+      "uniqueRules": [
+        "You cannot stop the bleeding.",
+        "The patient loses 7 WP, if the patient has 0 WP after this he dies after speaking some last words and you lose 1 WP.",
+        "If the patient lives draw another card after about 1 minute."
+      ],
+      "drawChance": 1
+    },
+    {
+      "type": "complication",
+      "name": "Heart attack",
+      "uniqueRules": [
+        "You cannot stop the bleeding.",
+        "The patient loses 8 WP, if the patient has 0 WP after this he dies after speaking some last words and you lose 1 WP.",
+        "If the patient lives draw another card after about 1 minute."
+      ],
+      "drawChance": 1
+    },
+    {
+      "type": "complication",
+      "name": "Major heart attack",
+      "uniqueRules": [
+        "You cannot stop the bleeding.",
+        "The patient loses 9 WP, if the patient has 0 WP after this he dies after speaking some last words and you lose 1 WP.",
+        "If the patient lives draw another card after about 1 minute."
+      ],
+      "drawChance": 1
+    },
+    {
+      "type": "complication",
+      "name": "Heaven is calling",
+      "uniqueRules": [
+        "You cannot stop the bleeding.",
+        "The patient loses 10 WP, if the patient has 0 WP after this he dies after speaking some last words and you lose 1 WP.",
+        "If the patient lives draw another card after about 1 minute."
+      ],
+      "drawChance": 1
+    },
+    {
+      "type": "complication",
+      "name": "Highly unfamiliar wound",
+      "uniqueRules": [
+        "You are highly unfamiliar with this sort of wound.",
+        "The patient loses 1 WP, if the patient has 0 WP after this he dies after speaking some last words and you lose 1 WP.",
+        "If the patient lives draw another card after about 1 minute."
+      ],
+      "drawChance": 1,
+      "replaceLevel": 2,
+      "replaceCard": "Stabilized"
+    },
+    {
+      "type": "complication",
+      "name": "Highly unfamiliar puncture wound",
+      "uniqueRules": [
+        "You are highly unfamiliar with this sort of wound.",
+        "The patient loses 2 WP, if the patient has 0 WP after this he dies after speaking some last words and you lose 1 WP.",
+        "If the patient lives draw another card after about 1 minute."
+      ],
+      "drawChance": 1,
+      "replaceLevel": 2,
+      "replaceCard": "Stabilized"
+    },
+    {
+      "type": "complication",
+      "name": "Highly unfamiliar organ hit",
+      "uniqueRules": [
+        "You are highly unfamiliar with this sort of wound.",
+        "The patient loses 3 WP, if the patient has 0 WP after this he dies after speaking some last words and you lose 1 WP.",
+        "If the patient lives draw another card after about 1 minute."
+      ],
+      "drawChance": 1,
+      "replaceLevel": 2,
+      "replaceCard": "Stabilized"
+    },
+    {
+      "type": "complication",
+      "name": "Highly unfamiliar body reaction",
+      "uniqueRules": [
+        "You are highly unfamiliar with this sort of wound.",
+        "The patient loses 4 WP, if the patient has 0 WP after this he dies after speaking some last words and you lose 1 WP.",
+        "If the patient lives draw another card after about 1 minute."
+      ],
+      "drawChance": 1,
+      "replaceLevel": 2,
+      "replaceCard": "Stabilized"
+    },
+    {
+      "type": "complication",
+      "name": "Highly unfamiliar heart attack",
+      "uniqueRules": [
+        "You are highly unfamiliar with this sort of wound.",
+        "The patient loses 5 WP, if the patient has 0 WP after this he dies after speaking some last words and you lose 1 WP.",
+        "If the patient lives draw another card after about 1 minute."
+      ],
+      "drawChance": 1,
+      "replaceLevel": 2,
+      "replaceCard": "Stabilized"
+    },
+    {
+      "type": "complication",
+      "name": "Unfamiliar wound",
+      "uniqueRules": [
+        "You are unfamiliar with this sort of wound.",
+        "The patient loses 1 WP, if the patient has 0 WP after this he dies after speaking some last words and you lose 1 WP.",
+        "If the patient lives draw another card after about 1 minute."
+      ],
+      "drawChance": 1,
+      "replaceLevel": 3,
+      "replaceCard": "Stabilized"
+    },
+    {
+      "type": "complication",
+      "name": "Unfamiliar puncture wound",
+      "uniqueRules": [
+        "You are unfamiliar with this sort of wound.",
+        "The patient loses 2 WP, if the patient has 0 WP after this he dies after speaking some last words and you lose 1 WP.",
+        "If the patient lives draw another card after about 1 minute."
+      ],
+      "drawChance": 1,
+      "replaceLevel": 3,
+      "replaceCard": "Stabilized"
+    },
+    {
+      "type": "complication",
+      "name": "Unfamiliar organ hit",
+      "uniqueRules": [
+        "You are unfamiliar with this sort of wound.",
+        "The patient loses 3 WP, if the patient has 0 WP after this he dies after speaking some last words and you lose 1 WP.",
+        "If the patient lives draw another card after about 1 minute."
+      ],
+      "drawChance": 1,
+      "replaceLevel": 3,
+      "replaceCard": "Stabilized"
+    },
+    {
+      "type": "complication",
+      "name": "Unfamiliar body reaction",
+      "uniqueRules": [
+        "You are unfamiliar with this sort of wound.",
+        "The patient loses 4 WP, if the patient has 0 WP after this he dies after speaking some last words and you lose 1 WP.",
+        "If the patient lives draw another card after about 1 minute."
+      ],
+      "drawChance": 1,
+      "replaceLevel": 3,
+      "replaceCard": "Stabilized"
+    },
+    {
+      "type": "complication",
+      "name": "Unfamiliar heart attack",
+      "uniqueRules": [
+        "You are unfamiliar with this sort of wound.",
+        "The patient loses 5 WP, if the patient has 0 WP after this he dies after speaking some last words and you lose 1 WP.",
+        "If the patient lives draw another card after about 1 minute."
+      ],
+      "drawChance": 1,
+      "replaceLevel": 3,
+      "replaceCard": "Stabilized"
+    },
+    {
+      "type": "complication",
+      "name": "We need more hands!",
+      "uniqueRules": [
+        "There are too many wounds to keep closed just by yourself.",
+        "If you are the only healer tending to this patient he loses 3 WP.",
+        "Draw another card after about 1 minute."
+      ],
+      "drawChance": 4
+    },
+    {
+      "type": "complication",
+      "name": "Don't move the patient!",
+      "uniqueRules": [
+        "Moving a patient can worsen the wounds.",
+        "If you are the only healer tending to this patient he loses 3 WP.",
+        "Draw another card after about 1 minute."
+      ],
+      "drawChance": 3
+    },
+    {
+      "type": "complication",
+      "name": "What the hell?!",
+      "uniqueRules": [
+        "You are completely unfamiliar with other races their biology.",
+        "If the patient is not the same race as any of the healers he loses 4 WP.",
+        "Draw another card after about 1 minute."
+      ],
+      "drawChance": 3,
+      "replaceLevel": 2,
+      "replaceCard": "Hmmm, strange..."
+    },
+    {
+      "type": "complication",
+      "name": "Hmmm, strange...",
+      "uniqueRules": [
+        "You are very unfamiliar with other races their biology.",
+        "If the patient is not the same race as any of the healers he loses 3 WP.",
+        "Draw another card after about 1 minute."
+      ],
+      "drawChance": 0,
+      "replaceLevel": 3,
+      "replaceCard": "I've read about this"
+    },
+    {
+      "type": "complication",
+      "name": "I've read about this",
+      "uniqueRules": [
+        "You are unfamiliar with other races their biology.",
+        "If the patient is not the same race as any of the healers he loses 2 WP.",
+        "Draw another card after about 1 minute."
+      ],
+      "drawChance": 0
+    },
+    {
+      "type": "complication",
+      "name": "No time to clean!",
+      "uniqueRules": [
+        "If you have healed another person in the last 10 minutes your equipment is still dirty.",
+        "If your equipment is still dirty the patient should ask for an infection condition from a GM after this surgery.",
+        "Draw another card after about 1 minute."
+      ],
+      "drawChance": 3
+    },
+    {
+      "type": "complication",
+      "name": "This one might make it",
+      "uniqueRules": [
+        "Healers notice that this patient is pretty stable at the moment.",
+        "Draw another card after about 1 minute, but you are allowed to ignore the next card if you want and draw again."
+      ],
+      "drawChance": 3
+    },
+    {
+      "type": "complication",
+      "name": "This might take a while...",
+      "uniqueRules": [
+        "Stabilizing these wounds is tedious and time consuming.",
+        "Draw another card after about 4 minute (-1 minute per healer working on this patient)."
+      ],
+      "drawChance": 3
+    },
+    {
+      "type": "complication",
+      "name": "So many wounds...",
+      "uniqueRules": [
+        "There are to many wounds to keep closed with 2 people.",
+        "Unless there are three healers tending to this patient he loses 3 WP."
+      ],
+      "drawChance": 2
+    },
+    {
+      "type": "complication",
+      "name": "Magic is cleaner than weapons",
+      "uniqueRules": [
+        "Weapons tend to be dirty, but magic leaves very clean wounds.",
+        "If some of the wounds of this patient are caused by magic spells the patient can't gain further infections during this surgery.",
+        "Draw another card after about 1 minute."
+      ],
+      "drawChance": 2
+    },
+    {
+      "type": "complication",
+      "name": "Fighting in the dirt",
+      "uniqueRules": [
+        "Nature might contaminate wounds.",
+        "If the patient is being treated on a dirt floor (outside) the patient should ask for an infection condition from a GM after this surgery.",
+        "Draw another card after about 1 minute."
+      ],
+      "drawChance": 2
+    },
+    {
+      "type": "complication",
+      "name": "Keep fighting!",
+      "uniqueRules": [
+        "The patient is losing his will to live.",
+        "Unless a non-healer is supporting the patient (comforting words, prayer, holding hands, etc) when this cards is drawn he loses 3 WP.",
+        "Draw another card after about 1 minute."
+      ],
+      "drawChance": 1
+    },
+    {
+      "type": "complication",
+      "name": "I don't know what to do!",
+      "uniqueRules": [
+        "The patient goes into shock and loses consciousness if he was still conscious.",
+        "You can spend 3 WP to prevent this, if you don't do this the patient loses 5 WP.",
+        "Draw another card after about 1 minute."
+      ],
+      "drawChance": 1,
+      "replaceLevel": 2,
+      "replaceCard": "Shock! Oh gods!"
+    },
+    {
+      "type": "complication",
+      "name": "Shock! Oh gods!",
+      "uniqueRules": [
+        "The patient goes into shock and loses consciousness if he was still conscious.",
+        "You can spend 2 WP to prevent this, if you don't do this the patient loses 5 WP.",
+        "Draw another card after about 1 minute."
+      ],
+      "drawChance": 0,
+      "replaceLevel": 3,
+      "replaceCard": "Shock!"
+    },
+    {
+      "type": "complication",
+      "name": "Shock!",
+      "uniqueRules": [
+        "The patient goes into shock and loses consciousness if he was still conscious.",
+        "You can spend 1 WP to prevent this, if you don't do this the patient loses 5 WP.",
+        "Draw another card after about 1 minute."
+      ],
+      "drawChance": 0
+    },
+    {
+      "type": "complication",
+      "name": "Disease",
+      "uniqueRules": [
+        "The open wound and weakness of body triggers a disease to flourish in the patient.",
+        "The patient should ask for a random disease condition from a game master after this surgery.",
+        "Draw another card after about 1 minute."
+      ],
+      "drawChance": 1
+    },
+    {
+      "type": "complication",
+      "name": "Mental Trauma",
+      "uniqueRules": [
+        "The patient gains a mental trauma as a result of this ordeal.",
+        "The patient should ask for a random mental trauma condition from a game master.",
+        "Draw another card after about 1 minute."
+      ],
+      "drawChance": 1
+    },
+    {
+      "type": "complication",
+      "name": "I can handle it alone from here",
+      "uniqueRules": [
+        "Healers notice that this patient is no longer in mortal danger but still needs immediate treatment from 1 healer.",
+        "Ignore any further mention of WP loss or death.",
+        "Draw another card after about 1 minute."
+      ],
+      "drawChance": 1
     }
   ]
 }

@@ -29,6 +29,12 @@ import IconImage from "@/components/IconImage.vue";
 
 const tools = [
   {
+    title: "Complication Deck",
+    subtitle: `The first priority in dealing with combat injuries is to stabilize the patient. Players with the Surgery skill draw cards from this deck.`,
+    route: { name: "ComplicationDeck" },
+    image: "domains/battlefield-surgery"
+  },
+  {
     title: "Automata crafting",
     subtitle: `Create magic spells, known in Heimr as "automata" using the glyph language from the Primordial magic domain.`,
     route: { name: "AutomataList" },

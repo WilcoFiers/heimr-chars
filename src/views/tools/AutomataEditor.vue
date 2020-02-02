@@ -100,7 +100,7 @@
 import Vue from "vue";
 import { State, Automata, GlyphCell } from "@/types";
 import HexGrid, { GridCell, Coords } from "@/heimr/AutomataGrid";
-import { glyphs } from "@/heimr-data";
+import { glyphCards } from "@/heimr-data";
 import HexGridComp from "@/components/HexGrid.vue";
 
 type PickField = {
@@ -122,7 +122,7 @@ export default Vue.extend({
   data() {
     return {
       editTitle: false as Boolean,
-      glyphNames: glyphs.map(({ name }) => name.split("<")[0].trim()),
+      glyphNames: glyphCards.map(({ name }) => name.split("<")[0].trim()),
       activeCellKey: undefined as undefined | string,
       gridData: undefined as GridData | undefined
     };
@@ -158,7 +158,9 @@ export default Vue.extend({
         return [];
       }
       const glyphName = this.activeCell.glyph || "";
-      const glyphSpec = glyphs.find(glyph => glyph.name.includes(glyphName));
+      const glyphSpec = glyphCards.find(glyph =>
+        glyph.name.includes(glyphName)
+      );
       const pickFields: PickField[] = [];
 
       if (!glyphName || !glyphSpec) {
@@ -230,7 +232,9 @@ export default Vue.extend({
       const cellKey = this.activeCellKey;
       const glyphCell = this.activeCell;
       const glyphName = glyphCell.glyph || "";
-      const glyphSpec = glyphs.find(glyph => glyph.name.includes(glyphName));
+      const glyphSpec = glyphCards.find(glyph =>
+        glyph.name.includes(glyphName)
+      );
 
       const pickFields: PickField[] = [];
       if (!glyphName || !glyphSpec) {

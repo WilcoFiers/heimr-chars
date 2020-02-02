@@ -1,7 +1,7 @@
 import { RuleObject } from "./toCardObject";
-import { Glyph } from "../src/types";
+import { GlyphCard } from "../src/types";
 
-export function toGlyph(ruleObj: RuleObject): Glyph | null {
+export function toGlyph(ruleObj: RuleObject): GlyphCard | null {
   const { name: nameArr, type: typeArr } = ruleObj;
   if (!nameArr || typeArr.length !== 1 || typeArr[0] !== "glyph") {
     return null;

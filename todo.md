@@ -14,7 +14,6 @@
 - Give names to all routes and use those in navbar
 - Make better user of store getters
 - Build out tests
-- Surgery deck
 - Admin features
 - Figure out what to do with multiple tab offline mode
 - Set required props in components and provide type saftey
@@ -24,7 +23,6 @@
 - Lock characters after an event
 - Checkout items for an event
 - Alchemy mini game
-- Surgery mini game
 - Separate prod and dev databases
 
 ### Char creation

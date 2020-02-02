@@ -73,6 +73,15 @@
         <li v-for="(rule, i) in ruleCard.downtimeRules" :key="i">{{ rule }}</li>
       </ul>
     </div>
+
+    <div v-if="ruleCard.replaceLevel && ruleCard.replaceCard" class="mt-2">
+      <h4>Replace rule</h4>
+      <p class="pl-4">
+        At
+        <em v-text="`Surgery ${ruleCard.replaceLevel}`" /> this becomes
+        <em v-text="`'${ruleCard.replaceCard}'`" />
+      </p>
+    </div>
   </div>
 </template>
 

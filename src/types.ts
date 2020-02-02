@@ -142,6 +142,15 @@ export type GlyphCard = {
   dominant?: string;
 };
 
+export type ComplicationCard = {
+  type: "complication";
+  name: string;
+  uniqueRules: string[];
+  drawChance: number;
+  replaceLevel?: number;
+  replaceCard?: string;
+};
+
 export type NewAutomata = {
   title: string;
   playerID: string;
