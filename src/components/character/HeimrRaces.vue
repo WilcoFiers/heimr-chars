@@ -2,7 +2,7 @@
   <v-container class="pa-0">
     <v-row class="justify-center">
       <v-col class="d-sm-none col-12">
-        <v-autocomplete
+        <v-select
           :items="races.map(({ name }) => name)"
           label="Find a race"
           :value="currentRace.name"

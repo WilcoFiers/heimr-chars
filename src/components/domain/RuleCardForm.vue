@@ -3,6 +3,10 @@
     <v-card>
       <v-card-title class="headline">{{ ruleCard.name }}</v-card-title>
       <v-card-text>
+        <p>
+          Use this when another card allows you to add something with a discount
+          or for free. This does not happen automatically.
+        </p>
         <v-text-field
           v-if="formData.nameDetail"
           v-model="formData.nameDetail.value"
@@ -67,17 +71,18 @@ import {
 type FormFields = {
   [propName: string]:
     | undefined
-    | CustomField & {
+    | (CustomField & {
         value: string | number | boolean;
         rules: Function[];
-      };
+      });
 };
 
 const required = (val?: string | number) => {
   let error = false;
   if (
     (typeof val === "string" && val.trim() === "") ||
-    (val === undefined || val === 0)
+    val === undefined ||
+    val === 0
   ) {
     error = true;
   }

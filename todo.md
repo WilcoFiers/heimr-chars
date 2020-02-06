@@ -27,32 +27,26 @@
 
 ### Char creation
 
-- Allow saving a char in "finish", which completes it
-- Don't allow swiping between domains
 - Make the headings in the tablist more distinct
-- Add an explainer about what "add with changes" is for
 - Make it clear that your race is your character card
-- Include all costs in the card group heading, instead of a range: "4, 6 or 10 points" instead of "4 - 10 points",
-- Don't wrap on prices
 - In a card group, if any is owned, select it by default
-- Allow someone to add character notes, and a bio in "finish". Replace it with the randomised character string.
+- Don't allow swiping between domains
+- Include all costs in the card group heading, instead of a range: "4, 6 or 10 points" instead of "4 - 10 points",
+- Explain what dormant skills are, maybe in the guide?
 - In the domains step, add links to the various domain rules
 - Immediately save new characters instead of waiting until step 2
 - Add a distinct style (such is italic or a color change) defined terms. For example "sturdy stance 1" in "tellurian"
 - Add a way for people to learn about common terms such as "charm", "DC, "blessing", "medium weapon", "R", "C".
 - Merge step 3 and 4, so that people can buy skills and items together.
 - Put "priest" before "ceremony master", priest is the more important skill.
-- Explain what dormant skills are, maybe in the guide?
 - Show a "total HP" in finish, including armor and combat mobility
 - Show a "total WP" considering
 - Consider "loan" as part of your total coppers
 - In "finish", show replacement of "..."
 - Group Feyfolk race cards
-- Bij xs, zet de level knoppen boven de regels ipv rechts ernaast
 - Add filter textfield to races
 - Adjust the divider position in the stepper
 - In finish, "feyfolk destroyer" wraps when it shouldn't
-- Make the tiles in My Characters wider, include a status, and info about its skills
 - Prompt users when adding race / skill that gives a bonus ruleCard
 - Group weapons, shields, armor, emblems
 - Remove everything dependent on a required skill / condition when removing that ruleCard
@@ -64,6 +58,7 @@
 - Improve layout for mobile
 - Don't reload My Automata on each page load
 - Share automata through a URL
+- Use https://roughjs.com/ for a hand-drawn look
 - Autocomplete for particles, atoms & take
 - Add example automata
 - Make "duration" a integer only

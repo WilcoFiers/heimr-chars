@@ -1,5 +1,5 @@
 {
-  "date": "2020-02-02T16:49:55.835Z",
+  "date": "2020-02-06T22:14:16.189Z",
   "races": [
     {
       "type": "race",
@@ -4586,7 +4586,7 @@
     },
     {
       "type": "complication",
-      "name": "Highly unfamiliar body reaction",
+      "name": "Highly unfamiliar body reaction 1%",
       "uniqueRules": [
         "You are highly unfamiliar with this sort of wound.",
         "The patient loses 4 WP, if the patient has 0 WP after this he dies after speaking some last words and you lose 1 WP.",
@@ -4743,7 +4743,7 @@
     },
     {
       "type": "complication",
-      "name": "This might take a while...",
+      "name": "This might take a while... ",
       "uniqueRules": [
         "Stabilizing these wounds is tedious and time consuming.",
         "Draw another card after about 4 minute (-1 minute per healer working on this patient)."

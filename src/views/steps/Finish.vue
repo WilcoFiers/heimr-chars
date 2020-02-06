@@ -10,7 +10,7 @@
     </v-row>
     <v-row class="justify-center">
       <v-col sm="8">
-        <v-card class="px-5 mb-5">
+        <v-card class="px-5">
           <v-row>
             <v-col v-for="(stat, i) in summaryStats" :key="i">
               <v-row dense v-for="(pair, i) in stat" :key="i">
@@ -20,6 +20,30 @@
             </v-col>
           </v-row>
         </v-card>
+      </v-col>
+      <v-col sm="8">
+        <v-card>
+          <v-card-text>
+            <v-text-field
+              label="Short bio (public)"
+              :value="character.shortBio"
+              @blur="updateField('shortBio', $event.target.value)"
+            />
+            <v-textarea
+              label="Full bio (hidden)"
+              :value="character.fullBio"
+              @blur="updateField('fullBio', $event.target.value)"
+            />
+          </v-card-text>
+        </v-card>
+      </v-col>
+      <v-col sm="8" class="mb-5 text-center">
+        <v-btn
+          class="primary"
+          @click="completeDialog = true"
+          v-if="!character.isComplete"
+          >Complete Character</v-btn
+        >
       </v-col>
     </v-row>
 
@@ -71,6 +95,22 @@
         </v-card>
       </v-col>
     </v-row>
+
+    <v-dialog v-model="completeDialog" persistent max-width="400">
+      <v-card>
+        <v-card-title>Finalise {{ character.name }}?</v-card-title>
+        <v-card-text>
+          Once finalized you can take downtime actions. You will not be able to
+          exchange skills or items for free in downtime. Are you sure you want
+          to continue?
+        </v-card-text>
+        <v-card-actions>
+          <v-btn text @click="completeDialog = false">Cancel</v-btn>
+          <v-spacer></v-spacer>
+          <v-btn color="primary" text @click="completeChar">OK</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-container>
 </template>
 
@@ -98,6 +138,9 @@ const labelMap = {
 export default Vue.extend({
   name: "CharacterStepFinish",
   components: { RuleExpansionPanel },
+  data() {
+    return { completeDialog: false as Boolean };
+  },
 
   computed: {
     character(): Partial<Character> {
@@ -156,7 +199,16 @@ export default Vue.extend({
       });
     }
   },
-  methods: { findRuleCard }
+  methods: {
+    findRuleCard,
+    updateField(fieldName: string, value: any) {
+      this.$store.dispatch("updateCharacter", { [fieldName]: value });
+    },
+    completeChar() {
+      this.$store.dispatch("updateCharacter", { isComplete: true });
+      this.completeDialog = false;
+    }
+  }
 });
 </script>
 

@@ -39,6 +39,7 @@ import CreationGuideBtn from "@/components/character/CreationGuideBtn.vue";
 import HeimrRaces from "@/components/character/HeimrRaces.vue";
 import ErrorMessage from "@/components/ErrorMessage.vue";
 import IconImage from "@/components/IconImage.vue";
+import { randomBio } from "./randomBio";
 
 export default Vue.extend({
   name: "CharacterStepOrigins",
@@ -99,7 +100,10 @@ export default Vue.extend({
 
     async createCharacter(charData: { name: string; race: string }) {
       try {
-        const charId = await this.$store.dispatch("createCharacter", charData);
+        const charId = await this.$store.dispatch("createCharacter", {
+          shortBio: randomBio(charData),
+          ...charData
+        });
         // Manually direct to domains, to avoid a race condition
         this.$router.push({
           name: "character-steps/domains",

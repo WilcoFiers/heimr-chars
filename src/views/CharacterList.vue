@@ -8,17 +8,25 @@
     <v-row>
       <v-col
         cols="12"
-        md="6"
-        lg="4"
-        xl="3"
+        md="9"
+        lg="6"
+        xl="4"
         v-for="char in characters"
         :key="char.id"
       >
         <v-card :to="charUri(char)" height="100%">
           <v-list-item three-line>
             <v-list-item-content>
-              <v-list-item-title class="headline mb-1">
-                {{ char.name }}
+              <v-list-item-title
+                class="headline mb-1 d-flex justify-space-between align-center"
+              >
+                <span>{{ char.name }}</span>
+                <v-chip
+                  v-if="!char.isComplete"
+                  small
+                  class="caption secondary--text"
+                  >New</v-chip
+                >
               </v-list-item-title>
               <v-list-item-subtitle>{{ summary(char) }}</v-list-item-subtitle>
             </v-list-item-content>
@@ -29,7 +37,7 @@
         </v-card>
       </v-col>
       <v-col>
-        <v-card min-width="250" to="/characters/new/origin">
+        <v-card cols="12" md="9" lg="6" xl="4" to="/characters/new/origin">
           <v-card-title>
             <v-icon left>mdi-plus-box</v-icon>New character
           </v-card-title>
@@ -42,18 +50,10 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { State } from "@/store";
+import { Character, State } from "@/types";
 import { raceImg } from "@/heimr-data";
 import IconImage from "@/components/IconImage.vue";
-
-const adjectives = ["badass", "honourable", "woke", "wise", "humble"];
-const quests = [
-  "saving the innocent",
-  "sailing the seas",
-  "delving for gold",
-  "sturggling to survive",
-  "vanquishing their enemies"
-];
+import { randomBio } from "./steps/randomBio";
 
 export default Vue.extend({
   name: "CharacterList",
@@ -68,11 +68,8 @@ export default Vue.extend({
     charUri({ id }: { id: string }) {
       return `/characters/${id}`;
     },
-    summary({ race }: { race: string }) {
-      const adjective =
-        adjectives[Math.floor(Math.random() * adjectives.length)];
-      const quest = quests[Math.floor(Math.random() * adjectives.length)];
-      return `A ${adjective} ${race}, ${quest}.`;
+    summary(char: Character) {
+      return char.shortBio || randomBio(char);
     }
   }
 });

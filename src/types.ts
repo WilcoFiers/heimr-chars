@@ -85,6 +85,9 @@ export type NewCharacter = {
   monthlyResources?: number;
   costOfLiving?: number;
   resourceToCash?: number;
+  isComplete?: boolean;
+  shortBio?: string;
+  fullBio?: string;
 };
 
 export type Character = NewCharacter & DbEntry;

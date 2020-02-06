@@ -26,7 +26,7 @@
       </v-col>
       <v-col v-if="ruleCard.points && ruleCard.type === 'skill'">
         <strong>Monthly cost:</strong>
-        {{ ruleCard.points }} ℜ
+        {{ ruleCard.points }}&nbsp;ℜ
       </v-col>
 
       <v-col v-if="ruleCard.marketPrice">
