@@ -9,7 +9,7 @@
       </v-col>
     </v-row>
     <v-row class="justify-center">
-      <v-col sm="8">
+      <v-col cols="12" sm="8">
         <v-card class="px-5">
           <v-row>
             <v-col v-for="(stat, i) in summaryStats" :key="i">
@@ -21,7 +21,7 @@
           </v-row>
         </v-card>
       </v-col>
-      <v-col sm="8">
+      <v-col cols="12" sm="8">
         <v-card>
           <v-card-text>
             <v-text-field
@@ -37,7 +37,7 @@
           </v-card-text>
         </v-card>
       </v-col>
-      <v-col sm="8" class="mb-5 text-center">
+      <v-col cols="12" sm="8" class="mb-5 text-center">
         <v-btn
           class="primary"
           @click="completeDialog = true"
