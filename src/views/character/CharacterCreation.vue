@@ -130,8 +130,15 @@ export default Vue.extend({
     },
     character(newVal) {
       if (this.$route.name === undefined && newVal) {
-        // Give getters time to update:
-        setTimeout(() => this.routeToLatest(), 50);
+        if (newVal.isComplete) {
+          console.error(
+            "Character creation was already completed. Redirecting user to overview"
+          );
+          this.$router.replace({ name: "character/overview" });
+        } else {
+          // Give getters time to update:
+          setTimeout(() => this.routeToLatest(), 50);
+        }
       }
     }
   },

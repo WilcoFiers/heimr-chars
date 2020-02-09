@@ -1,12 +1,12 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "@/views/Home.vue";
-import About from "@/views/About.vue";
-import PageNotFound from "@/views/PageNotFound.vue";
-import { characterStepRoutes } from "./character-steps";
+import { characterRoutes } from "./character";
 import { bookRoutes } from "./books";
 import { userRoutes } from "./user";
 import { toolsRoutes } from "./tools";
+import Home from "@/views/Home.vue";
+import About from "@/views/About.vue";
+import PageNotFound from "@/views/PageNotFound.vue";
 
 Vue.use(VueRouter);
 
@@ -25,7 +25,7 @@ const routes = [
     component: About
   },
   ...userRoutes,
-  ...characterStepRoutes,
+  ...characterRoutes,
   ...bookRoutes,
   ...toolsRoutes,
   { path: "*", component: PageNotFound }

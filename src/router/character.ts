@@ -1,13 +1,14 @@
-import CharacterSteps from "@/views/CharacterSteps.vue";
-import OriginsStep from "@/views/steps/Origins.vue";
-import DomainStep from "@/views/steps/Domains.vue";
-import PointsStep from "@/views/steps/Points.vue";
-import CoppersStep from "@/views/steps/Coppers.vue";
-import FinishStep from "@/views/steps/Finish.vue";
-import CharacterList from "@/views/CharacterList.vue";
+import CharacterCreation from "@/views/character/CharacterCreation.vue";
+import OriginsStep from "@/views/character/creation/Origins.vue";
+import DomainStep from "@/views/character/creation/Domains.vue";
+import PointsStep from "@/views/character/creation/Points.vue";
+import CoppersStep from "@/views/character/creation/Coppers.vue";
+import FinishStep from "@/views/character/creation/Finish.vue";
+import CharacterList from "@/views/character/CharacterList.vue";
+import CharacterOverview from "@/views/character/CharacterOverview.vue";
 import AuthGuard from "./AuthGuard";
 
-export const characterStepRoutes = [
+export const characterRoutes = [
   {
     path: "/characters",
     name: "character-list",
@@ -15,8 +16,13 @@ export const characterStepRoutes = [
     beforeEnter: AuthGuard
   },
   {
-    path: "/characters/:charId/",
-    component: CharacterSteps,
+    path: "/characters/:charId",
+    name: "character-overview",
+    component: CharacterOverview
+  },
+  {
+    path: "/characters/:charId/create/",
+    component: CharacterCreation,
     beforeEnter: AuthGuard,
     children: [
       {

@@ -37,7 +37,13 @@
         </v-card>
       </v-col>
       <v-col>
-        <v-card cols="12" md="9" lg="6" xl="4" to="/characters/new/origin">
+        <v-card
+          cols="12"
+          md="9"
+          lg="6"
+          xl="4"
+          to="/characters/new/create/origin"
+        >
           <v-card-title>
             <v-icon left>mdi-plus-box</v-icon>New character
           </v-card-title>
@@ -53,7 +59,7 @@ import Vue from "vue";
 import { Character, State } from "@/types";
 import { raceImg } from "@/heimr-data";
 import IconImage from "@/components/IconImage.vue";
-import { randomBio } from "./steps/randomBio";
+import { randomBio } from "./creation/randomBio";
 
 export default Vue.extend({
   name: "CharacterList",
@@ -65,8 +71,12 @@ export default Vue.extend({
   },
   methods: {
     raceImg,
-    charUri({ id }: { id: string }) {
-      return `/characters/${id}`;
+    charUri({ id, isComplete }: Character) {
+      if (isComplete) {
+        return `/characters/${id}`;
+      } else {
+        return `/characters/${id}/create`;
+      }
     },
     summary(char: Character) {
       return char.shortBio || randomBio(char);
