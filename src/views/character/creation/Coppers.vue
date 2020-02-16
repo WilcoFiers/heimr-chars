@@ -68,10 +68,10 @@ export default Vue.extend({
     },
 
     coppersProgress(): ProgressBarVal {
-      const { coppersSpent, coppersLeft } = this.$store.getters.characterInfo;
-      const totalCoppers = coppersSpent + coppersLeft;
+      const { coppersSpent, coppers } = this.$store.getters.characterInfo;
+      const totalCoppers = coppersSpent + coppers;
       let color = "secondary";
-      if (coppersLeft < 0) {
+      if (coppers < 0) {
         color = "error lighten-4";
       }
       return {

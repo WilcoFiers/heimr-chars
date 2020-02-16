@@ -105,7 +105,11 @@ export default Vue.extend({
       this.$store.dispatch("updateCharacter", { [fieldName]: value });
     },
     completeChar() {
-      this.$store.dispatch("updateCharacter", { isComplete: true });
+      this.$store.dispatch("updateCharacter", {
+        isComplete: true,
+        coppers: this.characterInfo.coppers
+      });
+
       this.completeDialog = false;
       this.$router.push({ name: "character-overview" });
     }

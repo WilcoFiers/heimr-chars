@@ -28,7 +28,7 @@ export default Vue.extend({
       const {
         pointsLeft,
         dormantLeft,
-        coppersLeft,
+        coppers,
         monthlySavings,
         freeDormant
       } = this.characterInfo as CharacterInfo;
@@ -40,7 +40,7 @@ export default Vue.extend({
       ];
 
       const ruleCardProps = [
-        ["Starting coppers", `${coppersLeft}¢`],
+        ["Coppers", `${coppers}¢`],
         ["Monthly savings", `${monthlySavings}¢`]
       ];
 

@@ -59,7 +59,7 @@ import Vue from "vue";
 import { Character, State } from "@/types";
 import { raceImg } from "@/heimr-data";
 import IconImage from "@/components/IconImage.vue";
-import { randomBio } from "./creation/randomBio";
+import { randomBio } from "@/heimr/randomBio";
 
 export default Vue.extend({
   name: "CharacterList",

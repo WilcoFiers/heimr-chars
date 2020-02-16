@@ -6,6 +6,7 @@ import CoppersStep from "@/views/character/creation/Coppers.vue";
 import FinishStep from "@/views/character/creation/Finish.vue";
 import CharacterList from "@/views/character/CharacterList.vue";
 import CharacterOverview from "@/views/character/CharacterOverview.vue";
+import DowntimePeriod from "@/views/character/DowntimePeriod.vue";
 import AuthGuard from "./AuthGuard";
 
 export const characterRoutes = [
@@ -19,6 +20,11 @@ export const characterRoutes = [
     path: "/characters/:charId",
     name: "character-overview",
     component: CharacterOverview
+  },
+  {
+    path: "/characters/:charId/downtime/:downtimeId",
+    name: "downtime-period",
+    component: DowntimePeriod
   },
   {
     path: "/characters/:charId/create/",

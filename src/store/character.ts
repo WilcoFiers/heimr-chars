@@ -7,11 +7,16 @@ import {
   Character,
   CharacterRule,
   NewCharacterRule,
-  RaceCard
+  RaceCard,
+  DowntimePeriod,
+  CharacterInfo,
+  DowntimeItem,
+  NewCharacter
 } from "@/types";
 import { RootModule } from "./types";
 import { getRaceCard } from "@/heimr/characterProps";
 import { getComputedProps } from "@/heimr/computedProps";
+import { getDowntimeDefault } from "@/heimr/downtime";
 import { validatePoints, validateCoppers } from "@/heimr/validateSteps";
 
 export interface CharacterState {
@@ -20,6 +25,7 @@ export interface CharacterState {
   charProps?: Character;
   rules?: CharacterRule[];
   selectedDomains: string[];
+  downtimePeriods?: DowntimePeriod[];
 }
 
 export type CharacterModule = RootModule<CharacterState>;
@@ -29,6 +35,7 @@ export const character: CharacterModule = {
     list: [],
     charId: undefined,
     charProps: undefined,
+    downtimePeriods: undefined,
     rules: undefined,
     selectedDomains: []
   },
@@ -132,6 +139,10 @@ export const character: CharacterModule = {
         dispatch("bindRefCharacter", {
           propName: "rules",
           ref: db.collection(`characters/${charId}/rules`)
+        }),
+        dispatch("bindRefCharacter", {
+          propName: "downtimePeriods",
+          ref: db.collection(`characters/${charId}/downtimePeriods`)
         })
       ]);
     },
@@ -153,7 +164,7 @@ export const character: CharacterModule = {
       return charId;
     },
 
-    updateCharacter({ state }, newProps: Character) {
+    updateCharacter({ state }, newProps: Partial<NewCharacter>) {
       const lastUpdated = serverTimestamp();
       return charactersCol
         .doc(state.charId)
@@ -179,6 +190,85 @@ export const character: CharacterModule = {
     changeCharacterRule({ state }, charRule: CharacterRule) {
       const characterRulePath = `characters/${state.charId}/rules/${charRule.id}`;
       return db.doc(characterRulePath).update(charRule);
+    },
+
+    newDowntimePeriod({ state, getters }) {
+      let newRuleId = 1;
+      if (Array.isArray(state.downtimePeriods)) {
+        newRuleId =
+          1 +
+          state.downtimePeriods.reduce(
+            (val: number, { id }): number => Math.max(val, parseInt(id)),
+            0
+          );
+      }
+      const characterRulePath = `characters/${state.charId}/downtimePeriods/${newRuleId}`;
+      const downtimePeriod = getDowntimeDefault(
+        getters.characterInfo as CharacterInfo
+      );
+
+      db.doc(characterRulePath).set(downtimePeriod);
+      return newRuleId;
+    },
+
+    updateDowntimePeriod({ state }, charUpdate: Partial<CharacterRule>) {
+      if (!charUpdate.id) {
+        throw new Error("no id for updating downtime");
+      }
+      const dataCopy = { ...charUpdate };
+      delete dataCopy.id;
+      const characterRulePath = `characters/${state.charId}/downtimePeriods/${charUpdate.id}`;
+      return db.doc(characterRulePath).update(dataCopy);
+    },
+
+    addDowntimeItem(
+      { state },
+      {
+        downtimeId,
+        propName,
+        downtimeItem
+      }: {
+        downtimeId: string;
+        propName: "actions" | "exchanges";
+        downtimeItem: DowntimeItem;
+      }
+    ) {
+      const downtimePeriod = (state.downtimePeriods || []).find(
+        ({ id }) => id === downtimeId
+      );
+      if (!downtimePeriod) {
+        throw new Error("Unable to add item, downtime period is undefined");
+      }
+      const propCopy = downtimePeriod[propName].concat();
+      propCopy.push(downtimeItem);
+
+      const characterRulePath = `characters/${state.charId}/downtimePeriods/${downtimeId}`;
+      return db.doc(characterRulePath).update({ [propName]: propCopy });
+    },
+
+    removeDowntimeItem(
+      { state },
+      {
+        downtimeId,
+        propName,
+        index
+      }: {
+        downtimeId: string;
+        propName: "actions" | "exchanges";
+        index: number;
+      }
+    ) {
+      const downtimePeriod = (state.downtimePeriods || []).find(
+        ({ id }) => id === downtimeId
+      );
+      if (!downtimePeriod) {
+        throw new Error("Unable to add item, downtime period is undefined");
+      }
+      const propCopy = downtimePeriod[propName].concat();
+      propCopy.splice(index, 1);
+
+      const characterRulePath = `characters/${state.charId}/downtimePeriods/${downtimeId}`;
+      return db.doc(characterRulePath).update({ [propName]: propCopy });
     }
   }
 };

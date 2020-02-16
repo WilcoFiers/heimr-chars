@@ -94,31 +94,32 @@ export const getCoppersSpent = (characterRules: CharacterRule[]): number => {
   }, 0);
 };
 
+export function getSkillPointCount(characterRules: CharacterRule[]): number {
+  return characterRules.reduce((sum, characterRule): number => {
+    if (characterRule.type !== "skill" || characterRule.dormant) {
+      return sum;
+    }
+    if (characterRule.points !== undefined) {
+      return sum + characterRule.points;
+    }
+
+    const ruleCard = findRuleCard(characterRule);
+    if (
+      ruleCard &&
+      ruleCard.type === "skill" &&
+      ruleCard.points !== undefined
+    ) {
+      return sum + ruleCard.points;
+    }
+    return sum;
+  }, 0);
+}
+
 export function getMonthlySavings(
   character: Character,
   characterRules: CharacterRule[]
 ): number {
-  const skillPointCount = characterRules.reduce(
-    (sum, characterRule): number => {
-      if (characterRule.type !== "skill" || characterRule.dormant) {
-        return sum;
-      }
-      if (characterRule.points !== undefined) {
-        return sum + characterRule.points;
-      }
-
-      const ruleCard = findRuleCard(characterRule);
-      if (
-        ruleCard &&
-        ruleCard.type === "skill" &&
-        ruleCard.points !== undefined
-      ) {
-        return sum + ruleCard.points;
-      }
-      return sum;
-    },
-    0
-  );
+  const skillPointCount = getSkillPointCount(characterRules);
   const { monthlyResources, costOfLiving, resourceToCash } = getCharacterProps(
     character
   );

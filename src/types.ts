@@ -79,15 +79,18 @@ export type NewCharacter = {
   playerID: string;
   archive: boolean;
   createdAt?: any;
+  coppers?: number;
   lastUpdated?: any;
+  isComplete?: boolean;
+  shortBio?: string;
+  fullBio?: string;
+
+  // TODO: Sort these out, they're not actually in DB:
   startingPoints?: number;
   startingCash?: number;
   monthlyResources?: number;
   costOfLiving?: number;
   resourceToCash?: number;
-  isComplete?: boolean;
-  shortBio?: string;
-  fullBio?: string;
 };
 
 export type Character = NewCharacter & DbEntry;
@@ -126,6 +129,35 @@ export interface CharacterRuleCol extends firestore.CollectionReference {
   add(data: NewCharacterRule): Promise<firestore.DocumentReference>;
   doc(documentPath?: string): CharacterRuleDoc;
 }
+
+export type DowntimeItem = {
+  title: string;
+  subTitle?: string;
+  cost: number;
+};
+
+export interface NewDowntimePeriod {
+  duration: number;
+  costOfLiving: number;
+  resourceValue: number;
+  coppersAtStart: number;
+  monthlyResources: number;
+  skillUpkeepAtStart: number;
+  actions: DowntimeItem[];
+  exchanges: DowntimeItem[];
+  complete: boolean;
+}
+
+export type DowntimeComputed = NewDowntimePeriod & {
+  resourcesTotal: number;
+  costOfLivingTotal: number;
+  skillPointCountTotal: number;
+  unspentResources: number;
+  dayjobIncome: number;
+  cashAfter: number;
+};
+
+export type DowntimePeriod = NewDowntimePeriod & DbEntry;
 
 export type HeimrBook = {
   sectionName: string;

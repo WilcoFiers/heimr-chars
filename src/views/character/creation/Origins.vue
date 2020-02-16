@@ -39,7 +39,7 @@ import CreationGuideBtn from "@/components/character/CreationGuideBtn.vue";
 import HeimrRaces from "@/components/character/HeimrRaces.vue";
 import ErrorMessage from "@/components/ErrorMessage.vue";
 import IconImage from "@/components/IconImage.vue";
-import { randomBio } from "./randomBio";
+import { randomBio } from "@/heimr/randomBio";
 
 export default Vue.extend({
   name: "CharacterStepOrigins",

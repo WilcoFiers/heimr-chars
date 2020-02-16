@@ -3,12 +3,14 @@ import { getCharacterProps, CharacterProps } from "./characterProps";
 import {
   getPointsSpent,
   getCoppersSpent,
+  getSkillPointCount,
   getMonthlySavings
 } from "./characterCardProps";
 
 export type ComputedPointProps = {
   pointsSpent: number;
   dormantSpent: number;
+  skillPointCount: number;
   monthlySavings: number;
   pointsLeft: number;
   dormantLeft: number;
@@ -17,7 +19,7 @@ export type ComputedPointProps = {
 
 export type ComputedCoppersProps = {
   coppersSpent: number;
-  coppersLeft: number;
+  coppers: number;
   coppersTotal: number;
 };
 
@@ -35,6 +37,7 @@ export const getComputedPointProps = (
 
   const pointsSpent = getPointsSpent(rules);
   const dormantSpent = getPointsSpent(rules, true);
+  const skillPointCount = getSkillPointCount(rules);
   const monthlySavings = charProps ? getMonthlySavings(charProps, rules) : 0;
 
   const pointsLeft = startingPoints - pointsSpent;
@@ -44,6 +47,7 @@ export const getComputedPointProps = (
   return {
     pointsSpent,
     dormantSpent,
+    skillPointCount,
     monthlySavings,
     pointsLeft,
     dormantLeft,
@@ -59,10 +63,16 @@ export const getComputedCoppersProps = (
   const { convertedPoints } = getComputedPointProps(charProps, rules);
 
   const coppersSpent = getCoppersSpent(rules);
-  const coppersTotal = startingCash + convertedPoints * pointsToCopperValue;
-  const coppersLeft = coppersTotal - coppersSpent;
 
-  return { coppersSpent, coppersLeft, coppersTotal };
+  if (typeof charProps?.coppers !== "number") {
+    const coppersTotal = startingCash + convertedPoints * pointsToCopperValue;
+    const coppers = coppersTotal - coppersSpent;
+    return { coppersSpent, coppers, coppersTotal };
+  }
+
+  const coppers = charProps.coppers;
+  const coppersTotal = coppersSpent + coppers;
+  return { coppersSpent, coppers, coppersTotal };
 };
 
 export const getComputedProps = (

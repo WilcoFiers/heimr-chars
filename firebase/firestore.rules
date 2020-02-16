@@ -16,6 +16,10 @@ service cloud.firestore {
 				allow read, write: if isPlayer();
       }
 
+      match /downtimePeriods/{ruleId} {
+				allow read, write: if isPlayer();
+      }
+
       function isPlayer() {
         return get(/databases/$(database)/documents/characters/$(charId)).data.playerID == uid()
       }
