@@ -34,7 +34,14 @@ auth.onAuthStateChanged(user => {
           }
         }
       }),
-      render: h => h(App)
+      render: h => h(App),
+      mounted() {
+        if (process.env.NODE_ENV === "development") {
+          const { AxeObserver, logViolations } = require("agnostic-axe");
+          const MyAxeObserver = new AxeObserver(logViolations);
+          MyAxeObserver.observe(document);
+        }
+      }
     }).$mount("#app");
   }
 });

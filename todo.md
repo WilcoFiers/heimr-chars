@@ -1,6 +1,7 @@
 # TODO
 
 - Show the navbar on smaller resolutions
+- Make char notes truely private
 - Ensure applying downtime period can only happen on an up-to-date char
 - Bug: Monthly savings is not reporting right (see Orc)
 - Move all data into cache on sign-in. There isn't that much, and its better for offline

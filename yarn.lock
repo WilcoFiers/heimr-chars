@@ -2453,6 +2453,14 @@ aggregate-error@^3.0.0:
     clean-stack "^2.0.0"
     indent-string "^4.0.0"
 
+agnostic-axe@^3.0.3:
+  version "3.0.3"
+  resolved "https://agora.dequecloud.com/artifactory/api/npm/dequelabs/agnostic-axe/-/agnostic-axe-3.0.3.tgz#2c25ee4cc1d7c12915550f011f6648ce287c1843"
+  integrity sha1-LCXuTMHXwSkVVQ8BH2ZIzih8GEM=
+  dependencies:
+    axe-core "^3.5.1"
+    idlize "^0.1.1"
+
 ajv-errors@^1.0.0:
   version "1.0.1"
   resolved "https://agora.dequecloud.com/artifactory/api/npm/dequelabs/ajv-errors/-/ajv-errors-1.0.1.tgz#f35986aceb91afadec4102fbd85014950cefa64d"
@@ -2880,6 +2888,11 @@ aws4@^1.8.0:
   version "1.9.0"
   resolved "https://agora.dequecloud.com/artifactory/api/npm/dequelabs/aws4/-/aws4-1.9.0.tgz#24390e6ad61386b0a747265754d2a17219de862c"
   integrity sha1-JDkOatYThrCnRyZXVNKhchnehiw=
+
+axe-core@^3.5.1:
+  version "3.5.2"
+  resolved "https://agora.dequecloud.com/artifactory/api/npm/dequelabs/axe-core/-/axe-core-3.5.2.tgz#1946be7a18a05b5d37f18d339989db0d5434ebf6"
+  integrity sha1-GUa+ehigW1038Y0zmYnbDVQ06/Y=
 
 axobject-query@^2.0.2:
   version "2.1.1"
@@ -7230,6 +7243,11 @@ idb@3.0.2:
   version "3.0.2"
   resolved "https://agora.dequecloud.com/artifactory/api/npm/dequelabs/idb/-/idb-3.0.2.tgz#c8e9122d5ddd40f13b60ae665e4862f8b13fa384"
   integrity sha1-yOkSLV3dQPE7YK5mXkhi+LE/o4Q=
+
+idlize@^0.1.1:
+  version "0.1.1"
+  resolved "https://agora.dequecloud.com/artifactory/api/npm/dequelabs/idlize/-/idlize-0.1.1.tgz#2bcb49d11f4c306e8274548a7d3a8f9aa1960ead"
+  integrity sha1-K8tJ0R9MMG6CdFSKfTqPmqGWDq0=
 
 ieee754@^1.1.4:
   version "1.1.13"
