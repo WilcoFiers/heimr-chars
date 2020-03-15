@@ -3,9 +3,9 @@
     <AppBar />
     <NavigationDrawer />
     <v-content>
-      <main class="px-4 pt-4">
+      <div class="px-md-4 pt-md-4">
         <slot></slot>
-      </main>
+      </div>
     </v-content>
   </v-app>
 </template>
