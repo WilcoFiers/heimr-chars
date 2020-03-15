@@ -38,8 +38,8 @@
       <v-col cols="12" md="6">
         <DowntimeActions
           :downtimeComputed="downtimeComputed"
-          :characterInfo="characterInfo"
-          @addItem="addDowntimeItem('actions', $event)"
+          @addItem="setDowntimeItemModal('actions', $event)"
+          @addCustomItem="addDowntimeItem('actions', $event)"
           @removeItem="removeDowntimeItem('actions', $event)"
         />
       </v-col>
@@ -54,17 +54,12 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-col cols="12" sm="6">
+      <v-col cols="6">
         <v-btn :to="{ name: 'character-overview' }">
           <v-icon left>mdi-arrow-left-bold-outline</v-icon>Back
         </v-btn>
       </v-col>
-      <v-col
-        cols="12"
-        sm="6"
-        class="text-right"
-        v-if="!downtimeComputed.complete"
-      >
+      <v-col cols="6" class="text-right" v-if="!downtimeComputed.complete">
         <v-btn @click="completeDialog = true" class="primary">
           Complete
           <v-icon right>mdi-exit-to-app</v-icon>
@@ -75,10 +70,9 @@
     <v-dialog v-model="completeDialog" max-width="400">
       <v-card>
         <v-card-title>Complete Downtime Period?</v-card-title>
-        <v-card-text
-          >Once completed, the downtime period is final. It can not be
-          updated.</v-card-text
-        >
+        <v-card-text>
+          Once completed, the downtime period is final. It can not be updated.
+        </v-card-text>
         <v-card-actions>
           <v-btn @click="completeDialog = false">Cancel</v-btn>
           <v-spacer />
@@ -118,6 +112,17 @@
         ref="modifyForm"
       />
     </v-dialog>
+
+    <DowntimeItemDialog
+      max-width="600"
+      :title="downtimeModalItem && downtimeModalItem.title"
+      :cardType="downtimeModalItem && downtimeModalItem.cardType"
+      :action="downtimeModalItem && downtimeModalItem.action"
+      :charRules="charRules"
+      :downtimeItems="downtimePeriod.actions"
+      v-model="showModal"
+      @action="addDowntimeItem('actions', $event)"
+    />
   </v-container>
 </template>
 
@@ -129,18 +134,16 @@ import {
   NewDowntimePeriod,
   State,
   DowntimeComputed,
-  DowntimePeriod
+  DowntimePeriod,
+  CharacterRule
 } from "@/types";
-import {
-  getDowntimeDefault,
-  getDowntimeComputed,
-  getCharacterMutations
-} from "@/heimr/downtime";
+import { getDowntimeDefault, getDowntimeComputed } from "@/heimr/downtime";
 
 import DowntimeDurationForm from "@/components/downtime/DowntimeDurationForm.vue";
 import DowntimeModifiersForm from "@/components/downtime/DowntimeModifiersForm.vue";
 import DowntimeActions from "@/components/downtime/DowntimeActions.vue";
 import DowntimeExchanges from "@/components/downtime/DowntimeExchanges.vue";
+import DowntimeItemDialog from "@/components/downtime/DowntimeItemDialog.vue";
 
 export default Vue.extend({
   name: "DowntimePeriod",
@@ -148,8 +151,10 @@ export default Vue.extend({
     DowntimeDurationForm,
     DowntimeModifiersForm,
     DowntimeActions,
-    DowntimeExchanges
+    DowntimeExchanges,
+    DowntimeItemDialog
   },
+
   data: () => ({
     modifyDialog: false as boolean,
     durationDialog: false as boolean,
@@ -157,10 +162,16 @@ export default Vue.extend({
     timeModal: false as boolean,
     downtimeExchangeTitle: "" as string,
     downtimeExchangeCost: undefined as number | undefined,
-    downtimeDefault: getDowntimeDefault()
+    downtimeDefault: getDowntimeDefault(),
+    downtimeModalItem: undefined as undefined | DowntimeItem,
+    showModal: false as boolean
   }),
 
   computed: {
+    charRules(): CharacterRule[] {
+      return (this.$store.state.character.rules || []) as CharacterRule[];
+    },
+
     characterInfo(): CharacterInfo {
       return this.$store.getters.characterInfo;
     },
@@ -196,6 +207,15 @@ export default Vue.extend({
       });
     },
 
+    setDowntimeItemModal(
+      propName: "actions" | "exchanges",
+      downtimeItem: DowntimeItem
+    ) {
+      this.downtimeModalItem = downtimeItem;
+      this.showModal = true;
+      return;
+    },
+
     addDowntimeItem(
       propName: "actions" | "exchanges",
       downtimeItem: DowntimeItem
@@ -218,19 +238,8 @@ export default Vue.extend({
     },
 
     completeDowntime() {
-      if (this.downtimePeriod.complete !== false) {
-        throw new Error("Downtime period is undefined or already complete");
-      }
-
-      // TODO: Figure out how to do this as a batch operation
-      this.$store.dispatch("updateDowntimePeriod", {
-        id: this.$route.params.downtimeId,
-        complete: true
-      });
-
-      const charUpdate = getCharacterMutations(this.downtimeComputed);
-      this.$store.dispatch("updateCharacter", charUpdate);
-
+      const { downtimeId } = this.$route.params;
+      this.$store.dispatch("completeDowntimePeriod", downtimeId);
       this.$router.push({ name: "character-overview" });
     }
   }

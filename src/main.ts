@@ -37,7 +37,20 @@ auth.onAuthStateChanged(user => {
       render: h => h(App),
       mounted() {
         if (process.env.NODE_ENV === "development") {
-          const { AxeObserver, logViolations } = require("agnostic-axe");
+          const {
+            AxeObserver,
+            logViolations,
+            axeCoreInstance
+          } = require("agnostic-axe");
+          axeCoreInstance.configure({
+            rules: [
+              {
+                id: "color-contrast",
+                enabled: false
+              }
+            ]
+          });
+
           const MyAxeObserver = new AxeObserver(logViolations);
           MyAxeObserver.observe(document);
         }

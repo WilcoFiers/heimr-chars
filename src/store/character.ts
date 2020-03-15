@@ -16,7 +16,12 @@ import {
 import { RootModule } from "./types";
 import { getRaceCard } from "@/heimr/characterProps";
 import { getComputedProps } from "@/heimr/computedProps";
-import { getDowntimeDefault } from "@/heimr/downtime";
+import {
+  getDowntimeDefault,
+  getDowntimeComputed,
+  getCharacterMutations,
+  getCharacterRuleMutations
+} from "@/heimr/downtime";
 import { validatePoints, validateCoppers } from "@/heimr/validateSteps";
 
 export interface CharacterState {
@@ -187,7 +192,7 @@ export const character: CharacterModule = {
       return db.doc(characterRulePath).delete();
     },
 
-    changeCharacterRule({ state }, charRule: CharacterRule) {
+    updateCharacterRule({ state }, charRule: CharacterRule) {
       const characterRulePath = `characters/${state.charId}/rules/${charRule.id}`;
       return db.doc(characterRulePath).update(charRule);
     },
@@ -269,6 +274,30 @@ export const character: CharacterModule = {
 
       const characterRulePath = `characters/${state.charId}/downtimePeriods/${downtimeId}`;
       return db.doc(characterRulePath).update({ [propName]: propCopy });
+    },
+
+    completeDowntimePeriod({ dispatch, state }, id) {
+      const { downtimePeriods } = state;
+      const downtimePeriod = downtimePeriods?.find(dtp => dtp.id === id);
+      if (!downtimePeriod) {
+        throw new Error(`Did not find downtime period with id ${id}.`);
+      }
+      if (downtimePeriod.complete !== false) {
+        throw new Error("Downtime period is undefined or already complete");
+      }
+
+      const downtimeComputed = getDowntimeComputed(downtimePeriod);
+      const charUpdate = getCharacterMutations(downtimeComputed);
+      const charRuleUpdates = getCharacterRuleMutations(downtimeComputed);
+
+      // TODO: Figure out how to batch these so they all succeed at the same time
+      return Promise.all([
+        dispatch("updateDowntimePeriod", { id, complete: true }),
+        dispatch("updateCharacter", charUpdate),
+        ...charRuleUpdates.map(charRuleUpdate => {
+          return dispatch("updateCharacterRule", charRuleUpdate);
+        })
+      ]);
     }
   }
 };

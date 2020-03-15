@@ -5,12 +5,14 @@
     </v-expansion-panel-header>
     <v-expansion-panel-content>
       <RuleCardContent v-bind="$props" />
-      <RuleCardActions
-        v-bind="$props"
-        class="mt-5"
-        @add="reFire('add', $event)"
-        @remove="reFire('remove', $event)"
-      />
+      <slot>
+        <RuleCardActions
+          v-bind="$props"
+          class="mt-5"
+          @add="reFire('add', $event)"
+          @remove="reFire('remove', $event)"
+        />
+      </slot>
     </v-expansion-panel-content>
   </v-expansion-panel>
 </template>

@@ -2,8 +2,10 @@ import {
   NewDowntimePeriod,
   CharacterInfo,
   DowntimeComputed,
-  NewCharacter
+  NewCharacter,
+  CharacterRule
 } from "@/types";
+import { findRuleCard } from "@/heimr-data";
 
 export const getDowntimeDefault = (
   charInfo?: CharacterInfo
@@ -36,7 +38,27 @@ export const getCostOfLivingTotal = (
 export const getSkillPointCountTotal = (
   downtimePeriod: NewDowntimePeriod
 ): number => {
-  return downtimePeriod.skillUpkeepAtStart * downtimePeriod.duration;
+  let dormantSavings: number = 0;
+  downtimePeriod.actions.forEach(actionItem => {
+    if (
+      !actionItem.subTitle ||
+      actionItem.type !== "skill" ||
+      actionItem.action !== "remove"
+    ) {
+      return;
+    }
+    const { subTitle, id, domainName, type } = actionItem;
+    const ruleCard = findRuleCard({ name: subTitle, id, domainName, type });
+    // Count up how many points are saved through making a skill dormant
+    if (ruleCard && ruleCard.type === type) {
+      dormantSavings += ruleCard.points;
+    }
+  });
+
+  return (
+    (downtimePeriod.skillUpkeepAtStart - dormantSavings) *
+    downtimePeriod.duration
+  );
 };
 
 export const getUnspentResources = (
@@ -84,4 +106,23 @@ export const getCharacterMutations = (
   downtimeComputed: DowntimeComputed
 ): Partial<NewCharacter> => {
   return { coppers: downtimeComputed.cashAfter };
+};
+
+export const getCharacterRuleMutations = (
+  downtimeComputed: DowntimeComputed
+): Partial<CharacterRule>[] => {
+  const ruleMutations: Partial<CharacterRule>[] = [];
+  downtimeComputed.actions.forEach(actionItem => {
+    if (!actionItem.subTitle) {
+      return;
+    }
+    // Make a skill dormant
+    if (actionItem.type === "skill" && actionItem.action === "remove") {
+      ruleMutations.push({
+        id: actionItem.id,
+        dormant: true
+      });
+    }
+  });
+  return ruleMutations;
 };

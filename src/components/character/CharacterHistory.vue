@@ -68,7 +68,7 @@ export default Vue.extend({
     historyItems(): HistoryItem[] {
       const history: HistoryItem[] = [];
       history.push({
-        icon: "mdi-account",
+        icon: "mdi-account-settings",
         text: "Created, " + this.createdAtDate
       });
 

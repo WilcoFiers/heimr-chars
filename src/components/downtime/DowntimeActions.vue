@@ -5,28 +5,75 @@
       <span v-text="downtimeComputed.resourcesTotal + 'ℜ'" />
     </v-card-title>
 
-    <v-row v-if="!downtimeComputed.complete" class="mx-3 mb-3" dense>
-      <v-col class="flex-grow-1 flex-shrink-1">
-        <v-text-field
-          label="Downtime action"
-          :hide-details="true"
-          v-model="titleField"
-        />
-      </v-col>
-      <v-col cols="3">
-        <v-text-field
-          label="Resources"
-          type="number"
-          :hide-details="true"
-          v-model="costField"
-        />
-      </v-col>
-      <v-col class="flex-grow-0">
-        <v-btn icon class="mt-3" @click="addDowntimeItem">
-          <v-icon>mdi-plus-thick</v-icon>
+    <v-row class="mx-3" dense v-if="!downtimeComputed.complete">
+      <v-col>
+        <v-menu offset-y>
+          <template v-slot:activator="{ on }">
+            <v-btn text v-on="on">
+              Skills
+              <v-icon right>mdi-chevron-down</v-icon>
+            </v-btn>
+          </template>
+          <v-list>
+            <v-list-item
+              v-for="(skillAction, index) in skillActions"
+              :key="index"
+              :disabled="skillAction.disabled"
+              @click="addDowntimeAction(skillAction)"
+              v-text="skillAction.title"
+            />
+          </v-list>
+        </v-menu>
+
+        <v-menu offset-y>
+          <template v-slot:activator="{ on }">
+            <v-btn text v-on="on">
+              Conditions
+              <v-icon right>mdi-chevron-down</v-icon>
+            </v-btn>
+          </template>
+          <v-list>
+            <v-list-item
+              v-for="(conditionAction, index) in conditionActions"
+              :key="index"
+              :disabled="conditionAction.disabled"
+              @click="addDowntimeAction(conditionAction)"
+              v-text="conditionAction.title"
+            />
+          </v-list>
+        </v-menu>
+        <v-btn text @click="otherAction = !otherAction">
+          <v-icon left
+            >mdi-checkbox-{{ otherAction ? "marked" : "blank" }}-outline</v-icon
+          >Other
         </v-btn>
       </v-col>
     </v-row>
+
+    <transition name="fade">
+      <v-row class="mx-3 mb-3" dense v-show="otherAction">
+        <v-col class="flex-grow-1 flex-shrink-1">
+          <v-text-field
+            label="Downtime action"
+            :hide-details="true"
+            v-model="titleField"
+          />
+        </v-col>
+        <v-col cols="3">
+          <v-text-field
+            label="Resources"
+            type="number"
+            :hide-details="true"
+            v-model="costField"
+          />
+        </v-col>
+        <v-col class="flex-grow-0">
+          <v-btn icon class="mt-3" @click="addCustomDowntimeItem">
+            <v-icon>mdi-plus-thick</v-icon>
+          </v-btn>
+        </v-col>
+      </v-row>
+    </transition>
 
     <v-list>
       <v-list-item
@@ -41,7 +88,7 @@
           <v-list-item-title v-text="title" />
           <v-list-item-subtitle v-if="subTitle" v-text="subTitle" />
         </v-list-item-content>
-        <v-list-item-avatar v-text="`-${cost}ℜ`" />
+        <v-list-item-avatar v-text="cost ? `-${cost}ℜ` : '0ℜ'" />
       </v-list-item>
 
       <v-list-item>
@@ -66,16 +113,65 @@
 import Vue from "vue";
 import { DowntimeComputed, DowntimeItem } from "@/types";
 
+type ActionItem = {
+  title: string;
+  action: string;
+  cardType: "skill" | "condition";
+  disabled?: boolean;
+};
+
+const skillActions: ActionItem[] = [
+  {
+    title: "Train a new skill",
+    action: "add",
+    cardType: "skill",
+    disabled: true
+  },
+  {
+    title: "Change a skill level",
+    action: "upgrade",
+    cardType: "skill",
+    disabled: true
+  },
+  {
+    title: "Make a skill dormant",
+    action: "remove",
+    cardType: "skill"
+  },
+  {
+    title: "Retrain a dormant skill",
+    action: "dormant",
+    cardType: "skill",
+    disabled: true
+  }
+];
+
+const conditionActions: ActionItem[] = [
+  {
+    title: "Add a condition",
+    action: "add",
+    cardType: "condition",
+    disabled: true
+  },
+  {
+    title: "Remove a condition",
+    action: "remove",
+    cardType: "condition"
+  }
+];
+
 export default Vue.extend({
   name: "DowntimeActions",
   props: {
-    downtimeComputed: Object,
-    characterInfo: Object
+    downtimeComputed: Object
   },
   data() {
     return {
       titleField: "" as string,
-      costField: "" as string
+      costField: "" as string,
+      otherAction: false as boolean,
+      skillActions: skillActions as ActionItem[],
+      conditionActions: conditionActions as ActionItem[]
     };
   },
 
@@ -88,11 +184,15 @@ export default Vue.extend({
   },
 
   methods: {
-    addDowntimeItem() {
+    addDowntimeAction(action: ActionItem) {
+      this.$emit("addItem", action);
+    },
+
+    addCustomDowntimeItem() {
       if (this.downtimeComputed.complete) {
         return;
       }
-      this.$emit("addItem", {
+      this.$emit("addCustomItem", {
         title: this.titleField,
         cost: Number(this.costField || 0)
       });
@@ -105,8 +205,21 @@ export default Vue.extend({
       if (this.downtimeComputed.complete) {
         return;
       }
-      this.$emit("removeItem", index);
+      // Undo the reverse
+      const remove = this.downtimeComputed.actions.length - index - 1;
+      this.$emit("removeItem", remove);
     }
   }
 });
 </script>
+
+<style lang="scss" scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>

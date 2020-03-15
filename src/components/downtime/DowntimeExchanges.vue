@@ -5,28 +5,48 @@
       <span v-text="downtimeComputed.coppersAtStart + '¢'" />
     </v-card-title>
 
-    <v-row v-if="!downtimeComputed.complete" class="mx-3 mb-3" dense>
-      <v-col class="flex-grow-1 flex-shrink-1">
-        <v-text-field
-          label="Downtime spending"
-          v-model="titleField"
-          :hide-details="true"
-        />
-      </v-col>
-      <v-col cols="3">
-        <v-text-field
-          label="Coppers"
-          v-model="costField"
-          :hide-details="true"
-          type="number"
-        />
-      </v-col>
-      <v-col class="flex-grow-0">
-        <v-btn icon class="mt-3" @click="addDowntimeItem">
-          <v-icon>mdi-plus-thick</v-icon>
+    <v-row class="mx-3" dense v-if="!downtimeComputed.complete">
+      <v-col>
+        <v-btn text disabled>
+          <v-icon left>mdi-cart-arrow-down</v-icon>Buy
+        </v-btn>
+        <v-btn text disabled>
+          <v-icon left>mdi-cash-multiple</v-icon>Sell
+        </v-btn>
+        <v-btn text @click="otherExchange = !otherExchange">
+          <v-icon left
+            >mdi-checkbox-{{
+              otherExchange ? "marked" : "blank"
+            }}-outline</v-icon
+          >Other
         </v-btn>
       </v-col>
     </v-row>
+
+    <transition name="fade">
+      <v-row v-show="otherExchange" class="mx-3 mb-3" dense>
+        <v-col class="flex-grow-1 flex-shrink-1">
+          <v-text-field
+            label="Downtime spending"
+            v-model="titleField"
+            :hide-details="true"
+          />
+        </v-col>
+        <v-col cols="3">
+          <v-text-field
+            label="Coppers"
+            v-model="costField"
+            :hide-details="true"
+            type="number"
+          />
+        </v-col>
+        <v-col class="flex-grow-0">
+          <v-btn icon class="mt-3" @click="addDowntimeItem">
+            <v-icon>mdi-plus-thick</v-icon>
+          </v-btn>
+        </v-col>
+      </v-row>
+    </transition>
 
     <v-list>
       <v-list-item
@@ -45,10 +65,10 @@
       </v-list-item>
 
       <v-list-item class="d-flex justify-space-between">
-        <em
-          >Income from Dayjob ({{ downtimeComputed.unspentResources }}ℜ x
-          {{ downtimeComputed.resourceValue }}¢)</em
-        >
+        <em>
+          Income from Dayjob ({{ downtimeComputed.unspentResources }}ℜ x
+          {{ downtimeComputed.resourceValue }}¢)
+        </em>
         <span>{{ downtimeComputed.dayjobIncome }}¢</span>
       </v-list-item>
       <v-list-item class="d-flex justify-space-between">
@@ -78,7 +98,8 @@ export default Vue.extend({
   data() {
     return {
       titleField: "" as string,
-      costField: "" as string
+      costField: "" as string,
+      otherExchange: false as boolean
     };
   },
   computed: {
@@ -107,8 +128,21 @@ export default Vue.extend({
       if (this.downtimeComputed.complete) {
         return;
       }
-      this.$emit("removeItem", index);
+      // Undo the reverse
+      const remove = this.downtimeComputed.exchanges.length - index - 1;
+      this.$emit("removeItem", remove);
     }
   }
 });
 </script>
+
+<style lang="scss" scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>

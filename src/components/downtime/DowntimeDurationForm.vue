@@ -1,15 +1,15 @@
 <template>
   <v-card>
-    <v-card-title class="primary--text"
-      >Duration of this Downtime Period</v-card-title
-    >
+    <v-card-title class="primary--text">Months in Downtime</v-card-title>
     <v-card-text>
-      <v-text-field
-        label="months"
+      <v-slider
+        aria-label="Months in downtime"
+        :tick-labels="[1, 2, 3, 4, 5, 6]"
         v-model="current"
-        type="number"
-        :rules="rules"
-        ref="durationField"
+        :min="1"
+        :max="6"
+        ticks="always"
+        tick-size="4"
       />
     </v-card-text>
     <v-card-actions>
@@ -29,18 +29,12 @@ export default Vue.extend({
   },
   data() {
     return {
-      current: this.duration as number | string,
-      rules: [
-        (val: number) => val < 1 && "Must be at least 1 month",
-        (val: number) => val > 12 && "Must be no more than 12 month"
-      ]
+      current: this.duration as number
     };
   },
   methods: {
     save() {
-      if (this.durationField.validate()) {
-        this.$emit("save", parseInt(this.current + ""));
-      }
+      this.$emit("save", this.current);
     },
     reset() {
       this.current = this.duration;
@@ -48,14 +42,6 @@ export default Vue.extend({
     cancel() {
       this.reset();
       this.$emit("cancel");
-    }
-  },
-  computed: {
-    durationField(): {
-      validate: () => boolean;
-    } {
-      // @ts-ignore
-      return this.$refs.durationField;
     }
   }
 });

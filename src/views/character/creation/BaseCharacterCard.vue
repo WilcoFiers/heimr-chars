@@ -216,7 +216,7 @@ export default Vue.extend({
           `Cannot upgrade. More than one characterRule matches ${ruleCard.name}`
         );
       }
-      this.$store.dispatch("changeCharacterRule", {
+      this.$store.dispatch("updateCharacterRule", {
         id: charRules[0].id,
         name: ruleCard.name
       });
