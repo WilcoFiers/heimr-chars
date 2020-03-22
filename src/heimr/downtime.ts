@@ -116,11 +116,11 @@ export const getCharacterRuleMutations = (
     if (!actionItem.cardName) {
       return;
     }
-    // Make a skill dormant
-    if (actionItem.type === "skill" && actionItem.activity === "remove") {
+    // Make a skill dormant or remove an item or condition
+    if (actionItem.activity === "remove") {
       ruleMutations.push({
         id: actionItem.id,
-        dormant: true
+        inactive: true
       });
     }
 

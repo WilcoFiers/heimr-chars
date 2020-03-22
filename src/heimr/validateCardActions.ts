@@ -55,7 +55,7 @@ export const hasRequired = (
 
   const requires = ruleCard.requires.toLowerCase();
   return charRules.some(charRule => {
-    return !charRule.dormant && requires.includes(simplifyText(charRule.name));
+    return !charRule.inactive && requires.includes(simplifyText(charRule.name));
   });
 };
 
@@ -149,7 +149,7 @@ export const validateDormantTraining: ValidationAction = (
     return [`${ruleCard.name} can not be trained. You can only train skills`];
   }
   const charRule = charRules.find(charRule => isSameCard(charRule, ruleCard));
-  if (charRule?.dormant !== true) {
+  if (charRule?.inactive !== true) {
     return [`${ruleCard.name} can not be trained. It is not dormant`];
   }
   return [];

@@ -74,10 +74,9 @@
     <v-dialog v-model="completeDialog" max-width="400">
       <v-card>
         <v-card-title>Complete Downtime Period?</v-card-title>
-        <v-card-text
-          >Once completed, the downtime period is final. It can not be
-          updated.</v-card-text
-        >
+        <v-card-text>
+          Once completed, the downtime period is final. It can not be updated.
+        </v-card-text>
         <v-card-actions>
           <v-btn @click="completeDialog = false">Cancel</v-btn>
           <v-spacer />

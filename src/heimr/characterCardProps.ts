@@ -43,7 +43,7 @@ export function sumCharacterCardCosts(
     }
 
     const ruleCard = findRuleCard(characterRule);
-    if (ruleCard && !characterRule.dormant) {
+    if (ruleCard && !characterRule.inactive) {
       sum += costFunction(characterRule, ruleCard) || 0;
     }
     return sum;
@@ -68,7 +68,7 @@ export const getPointsSpent = (
     ) {
       return sum;
     }
-    if (!!characterRule.dormant !== dormant) {
+    if (!!characterRule.inactive !== dormant) {
       return sum;
     }
     return sum + (ruleCard.points || 0);
@@ -96,7 +96,7 @@ export const getCoppersSpent = (characterRules: CharacterRule[]): number => {
 
 export function getSkillPointCount(characterRules: CharacterRule[]): number {
   return characterRules.reduce((sum, characterRule): number => {
-    if (characterRule.type !== "skill" || characterRule.dormant) {
+    if (characterRule.type !== "skill" || characterRule.inactive) {
       return sum;
     }
     if (characterRule.points !== undefined) {

@@ -107,7 +107,7 @@ export default Vue.extend({
 
     removableCards(): CardSet[] {
       const activeCharCards = (this.charRules as CharacterRule[]).filter(
-        ({ type, dormant }) => type === this.cardType && !dormant
+        ({ type, inactive }) => type === this.cardType && !inactive
       );
       return activeCharCards.map(
         (characterRule): CardSet => ({
@@ -119,7 +119,7 @@ export default Vue.extend({
 
     dormantCards(): CardSet[] {
       const dormantCharCards = (this.charRules as CharacterRule[]).filter(
-        ({ type, dormant }) => type === this.cardType && dormant
+        ({ type, inactive }) => type === this.cardType && inactive
       );
       return dormantCharCards.map(
         (characterRule): CardSet => ({
@@ -169,6 +169,9 @@ export default Vue.extend({
         cardName: String(partialDowntimeItem.cardName),
         type: partialDowntimeItem.type
       };
+      if (partialDowntimeItem.id) {
+        downtimeItem.id = partialDowntimeItem.id;
+      }
 
       if (partialDowntimeItem.cardNameDetails) {
         downtimeItem.cardNameDetails = partialDowntimeItem.cardNameDetails;

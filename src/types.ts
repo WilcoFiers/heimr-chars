@@ -112,7 +112,7 @@ export type NewCharacterRule = {
   cashPaid?: number;
   points?: number;
   upkeep?: number;
-  dormant?: boolean;
+  inactive?: boolean;
   counters?: number;
 };
 

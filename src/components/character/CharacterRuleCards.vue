@@ -82,6 +82,10 @@ export default Vue.extend({
       };
 
       (this.characterRules as CharacterRule[]).forEach(characterRule => {
+        // Only show inactive (dormant) skills
+        if (characterRule.inactive && characterRule.type !== "skill") {
+          return;
+        }
         ruleCardTypes[characterRule.type].push(characterRule);
       });
 

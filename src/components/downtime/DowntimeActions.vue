@@ -160,8 +160,7 @@ const conditionActions: ActionItem[] = [
   {
     title: "Remove a condition",
     activity: "remove",
-    cardType: "condition",
-    disabled: true
+    cardType: "condition"
   }
 ];
 

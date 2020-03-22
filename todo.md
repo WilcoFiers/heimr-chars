@@ -28,6 +28,19 @@
 - Alchemy mini game
 - Separate prod and dev databases
 
+### Downtime
+
+- Train skills
+- Change skill level
+- Retrain dormant skills
+- Buy items
+- Sell items
+- Restore items
+- Autocomple "other" using downtime rules
+- Continued training (required activity)
+- Allow training of conditions
+- Always list recovering wound
+
 ### Char creation
 
 - Make the headings in the tablist more distinct

@@ -4,7 +4,7 @@
       :label="ruleCard.name"
       type="string"
       v-model="nameDetailValue"
-      v-if="needsNameDetail"
+      v-if="activity === 'add' && needsNameDetail"
       :rules="[required]"
     />
 
@@ -38,6 +38,7 @@ import { CharacterRule, RuleCard, NewDowntimeItem, Domain } from "@/types";
 
 export type PartialDowntimeItem = Partial<NewDowntimeItem> & {
   type: string;
+  id?: string;
   domainName?: string;
   cardName: string;
   cardNameDetails?: string;
@@ -109,7 +110,6 @@ export default Vue.extend({
       } else if (this.priceType === "exchanges") {
         downtimeItem.cost = 0 - (parseInt(this.priceValue) || 0);
       }
-
       let downtimeProp = this.priceType || "actions";
       this.$emit("submit", { downtimeProp, downtimeItem });
     },

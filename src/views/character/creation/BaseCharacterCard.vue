@@ -158,8 +158,8 @@ export default Vue.extend({
       }
     },
 
-    addRule(ruleCard: RuleCard, dormant: boolean = false) {
-      if (dormant && ruleCard.type !== "skill") {
+    addRule(ruleCard: RuleCard, inactive: boolean = false) {
+      if (inactive && ruleCard.type !== "skill") {
         throw new Error(
           `Card ${ruleCard.name} can not be dormant, because it is not a skill`
         );
@@ -176,7 +176,12 @@ export default Vue.extend({
       }
       const domainName = this.domainName(ruleCard);
       const { type, name } = ruleCard;
-      const newCharRule: NewCharacterRule = { type, name, domainName, dormant };
+      const newCharRule: NewCharacterRule = {
+        type,
+        name,
+        domainName,
+        inactive
+      };
       this.$store.dispatch("addCharacterRule", newCharRule);
     },
 
