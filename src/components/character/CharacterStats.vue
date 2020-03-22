@@ -44,10 +44,6 @@ export default Vue.extend({
         ["Monthly savings", `${monthlySavings}¢`]
       ];
 
-      if (freeDormant || dormantLeft) {
-        ruleCardProps.unshift(["Dormant points left", String(dormantLeft)]);
-      }
-
       return [charCardProps, ruleCardProps];
     }
   }

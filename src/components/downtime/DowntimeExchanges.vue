@@ -14,10 +14,10 @@
           <v-icon left>mdi-cash-multiple</v-icon>Sell
         </v-btn>
         <v-btn text @click="otherExchange = !otherExchange">
-          <v-icon left
-            >mdi-checkbox-{{
+          <v-icon left>
+            mdi-checkbox-{{
               otherExchange ? "marked" : "blank"
-            }}-outline</v-icon
+            }}-outline </v-icon
           >Other
         </v-btn>
       </v-col>
@@ -50,7 +50,7 @@
 
     <v-list>
       <v-list-item
-        v-for="({ title, cost, subTitle }, index) in downtimeItems"
+        v-for="(downtimeItem, index) in downtimeItems"
         :key="index"
         @click="removeDowntimeItem(index)"
       >
@@ -58,10 +58,13 @@
           <v-icon v-text="'mdi-delete-outline'" />
         </v-list-item-icon>
         <v-list-item-content>
-          <v-list-item-title v-text="title" />
-          <v-list-item-subtitle v-if="subTitle" v-text="subTitle" />
+          <v-list-item-title v-text="downtimeItem.title" />
+          <v-list-item-subtitle
+            v-if="downtimeItem.cardName"
+            v-text="subTitle(downtimeItem)"
+          />
         </v-list-item-content>
-        <v-list-item-avatar v-text="`${cost}¢`" />
+        <v-list-item-avatar v-text="`${downtimeItem.cost}¢`" />
       </v-list-item>
 
       <v-list-item class="d-flex justify-space-between">
@@ -110,6 +113,10 @@ export default Vue.extend({
     }
   },
   methods: {
+    subTitle({ cardName, cardNameDetails }: DowntimeItem): string {
+      return (cardName || "").replace("...", cardNameDetails || "...");
+    },
+
     addDowntimeItem() {
       if (this.downtimeComputed.complete) {
         return;

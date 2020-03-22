@@ -10,7 +10,7 @@
         <v-card-title class="align-baseline">
           <h2 class="title">{{ itemCardType.label }}</h2>
           <v-spacer />
-          <span class="subtitle-1">Cost: {{ itemCardType.total }}</span>
+          <span class="subtitle-1">{{ itemCardType.total }}</span>
         </v-card-title>
         <v-card-text>
           <p class="mb-0">
@@ -26,7 +26,7 @@
         >
           <h2 class="title">{{ itemCardType.label }}</h2>
           <v-spacer />
-          <span class="subtitle-1">Cost: {{ itemCardType.total }}</span>
+          <span class="subtitle-1">{{ itemCardType.total }}</span>
         </v-card-title>
 
         <v-card-text v-if="itemCardType.characterRules.length === 0">

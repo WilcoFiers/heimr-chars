@@ -77,7 +77,7 @@
 
     <v-list>
       <v-list-item
-        v-for="({ title, cost, subTitle }, index) in downtimeItems"
+        v-for="(downtimeItem, index) in downtimeItems"
         :key="index"
         @click="removeDowntimeItem(index)"
       >
@@ -85,10 +85,15 @@
           <v-icon v-text="'mdi-delete-outline'" />
         </v-list-item-icon>
         <v-list-item-content>
-          <v-list-item-title v-text="title" />
-          <v-list-item-subtitle v-if="subTitle" v-text="subTitle" />
+          <v-list-item-title v-text="downtimeItem.title" />
+          <v-list-item-subtitle
+            v-if="downtimeItem.cardName"
+            v-text="subTitle(downtimeItem)"
+          />
         </v-list-item-content>
-        <v-list-item-avatar v-text="cost ? `-${cost}ℜ` : '0ℜ'" />
+        <v-list-item-avatar
+          v-text="downtimeItem.cost ? `-${downtimeItem.cost}ℜ` : '0ℜ'"
+        />
       </v-list-item>
 
       <v-list-item>
@@ -115,7 +120,7 @@ import { DowntimeComputed, DowntimeItem } from "@/types";
 
 type ActionItem = {
   title: string;
-  action: string;
+  activity: string;
   cardType: "skill" | "condition";
   disabled?: boolean;
 };
@@ -123,24 +128,24 @@ type ActionItem = {
 const skillActions: ActionItem[] = [
   {
     title: "Train a new skill",
-    action: "add",
+    activity: "add",
     cardType: "skill",
     disabled: true
   },
   {
     title: "Change a skill level",
-    action: "upgrade",
+    activity: "upgrade",
     cardType: "skill",
     disabled: true
   },
   {
     title: "Make a skill dormant",
-    action: "remove",
+    activity: "remove",
     cardType: "skill"
   },
   {
     title: "Retrain a dormant skill",
-    action: "dormant",
+    activity: "dormant",
     cardType: "skill",
     disabled: true
   }
@@ -149,14 +154,14 @@ const skillActions: ActionItem[] = [
 const conditionActions: ActionItem[] = [
   {
     title: "Add a condition",
-    action: "add",
-    cardType: "condition",
-    disabled: true
+    activity: "add",
+    cardType: "condition"
   },
   {
     title: "Remove a condition",
-    action: "remove",
-    cardType: "condition"
+    activity: "remove",
+    cardType: "condition",
+    disabled: true
   }
 ];
 
@@ -184,6 +189,10 @@ export default Vue.extend({
   },
 
   methods: {
+    subTitle({ cardName, cardNameDetails }: DowntimeItem): string {
+      return (cardName || "").replace("...", cardNameDetails || "...");
+    },
+
     addDowntimeAction(action: ActionItem) {
       this.$emit("addItem", action);
     },

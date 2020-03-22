@@ -60,7 +60,11 @@
         </v-btn>
       </v-col>
       <v-col cols="6" class="text-right" v-if="!downtimeComputed.complete">
-        <v-btn @click="completeDialog = true" class="primary">
+        <v-btn
+          @click="completeDialog = true"
+          class="primary"
+          :disabled="downtimeComputed.cashAfter < 0"
+        >
           Complete
           <v-icon right>mdi-exit-to-app</v-icon>
         </v-btn>
@@ -70,9 +74,10 @@
     <v-dialog v-model="completeDialog" max-width="400">
       <v-card>
         <v-card-title>Complete Downtime Period?</v-card-title>
-        <v-card-text>
-          Once completed, the downtime period is final. It can not be updated.
-        </v-card-text>
+        <v-card-text
+          >Once completed, the downtime period is final. It can not be
+          updated.</v-card-text
+        >
         <v-card-actions>
           <v-btn @click="completeDialog = false">Cancel</v-btn>
           <v-spacer />
@@ -117,11 +122,11 @@
       max-width="600"
       :title="downtimeModalItem && downtimeModalItem.title"
       :cardType="downtimeModalItem && downtimeModalItem.cardType"
-      :action="downtimeModalItem && downtimeModalItem.action"
+      :activity="downtimeModalItem && downtimeModalItem.activity"
       :charRules="charRules"
       :downtimeItems="downtimePeriod.actions"
       v-model="showModal"
-      @action="addDowntimeItem('actions', $event)"
+      @submit="addDowntimeItem($event.downtimeProp, $event.downtimeItem)"
     />
   </v-container>
 </template>

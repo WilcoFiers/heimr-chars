@@ -1,15 +1,15 @@
 <template>
   <div class="d-flex flex-grow-1 align-baseline">
     <h4 :class="heading">
-      <span>{{ ruleCard.name }}</span>
+      <span>{{ ruleCardName }}</span>
       <v-icon small v-if="quantity" color="primary" right
         >mdi-check-bold</v-icon
       >
     </h4>
     <v-spacer />
-    <span v-if="pricePaid" :class="{ 'grey--text': pricePaid.custom }">{{
-      pricePaid.value
-    }}</span>
+    <span v-if="pricePaid" :class="{ 'grey--text': pricePaid.custom }">
+      {{ pricePaid.value }}
+    </span>
   </div>
 </template>
 
@@ -30,10 +30,14 @@ export default Vue.extend({
   computed: {
     pricePaid(): { value: string; custom: boolean } | null {
       const { characterRule, ruleCard } = this;
-      if (ruleCard.type === "race" || typeof characterRule !== "object") {
+      if (
+        ruleCard.type === "race" ||
+        typeof characterRule !== "object" ||
+        characterRule === null
+      ) {
         return null;
       }
-      if (characterRule.dormant) {
+      if (characterRule?.dormant) {
         return {
           value: "dormant",
           custom: true
@@ -59,6 +63,16 @@ export default Vue.extend({
         };
       }
       return null;
+    },
+
+    ruleCardName(): string {
+      if (
+        this.ruleCard.name.includes("...") &&
+        this.characterRule?.nameDetail
+      ) {
+        return this.ruleCard.name.replace("...", this.characterRule.nameDetail);
+      }
+      return this.ruleCard.name;
     }
   },
   methods: {

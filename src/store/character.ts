@@ -295,7 +295,11 @@ export const character: CharacterModule = {
         dispatch("updateDowntimePeriod", { id, complete: true }),
         dispatch("updateCharacter", charUpdate),
         ...charRuleUpdates.map(charRuleUpdate => {
-          return dispatch("updateCharacterRule", charRuleUpdate);
+          if (!charRuleUpdate.id) {
+            return dispatch("addCharacterRule", charRuleUpdate);
+          } else {
+            return dispatch("updateCharacterRule", charRuleUpdate);
+          }
         })
       ]);
     }

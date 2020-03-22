@@ -41,14 +41,14 @@ export const getSkillPointCountTotal = (
   let dormantSavings: number = 0;
   downtimePeriod.actions.forEach(actionItem => {
     if (
-      !actionItem.subTitle ||
+      !actionItem.cardName ||
       actionItem.type !== "skill" ||
-      actionItem.action !== "remove"
+      actionItem.activity !== "remove"
     ) {
       return;
     }
-    const { subTitle, id, domainName, type } = actionItem;
-    const ruleCard = findRuleCard({ name: subTitle, id, domainName, type });
+    const { cardName, id, domainName, type } = actionItem;
+    const ruleCard = findRuleCard({ name: cardName, id, domainName, type });
     // Count up how many points are saved through making a skill dormant
     if (ruleCard && ruleCard.type === type) {
       dormantSavings += ruleCard.points;
@@ -113,16 +113,29 @@ export const getCharacterRuleMutations = (
 ): Partial<CharacterRule>[] => {
   const ruleMutations: Partial<CharacterRule>[] = [];
   downtimeComputed.actions.forEach(actionItem => {
-    if (!actionItem.subTitle) {
+    if (!actionItem.cardName) {
       return;
     }
     // Make a skill dormant
-    if (actionItem.type === "skill" && actionItem.action === "remove") {
+    if (actionItem.type === "skill" && actionItem.activity === "remove") {
       ruleMutations.push({
         id: actionItem.id,
         dormant: true
       });
     }
+
+    if (actionItem.type === "condition" && actionItem.activity === "add") {
+      const mutation: Partial<CharacterRule> = {
+        name: actionItem.cardName,
+        type: actionItem.type,
+        domainName: actionItem.domainName
+      };
+      if (actionItem.cardNameDetails) {
+        mutation.nameDetail = actionItem.cardNameDetails;
+      }
+      ruleMutations.push(mutation);
+    }
   });
+
   return ruleMutations;
 };

@@ -133,20 +133,24 @@ export interface CharacterRuleCol extends firestore.CollectionReference {
 export type BaseDowntimeItem = {
   title: string;
   cost: number;
-  subTitle: undefined;
+  cardName: undefined;
+  cardNameDetails: undefined;
 };
 
-export type DowntimeItem =
+export type NewDowntimeItem =
   | BaseDowntimeItem
   | {
       title: string;
-      subTitle: string;
       cost: number;
-      action: string;
-      id: string;
+      activity: string;
       domainName: string;
+      cardName: string;
+      cardNameDetails?: string;
       type: string;
+      id?: string;
     };
+
+export type DowntimeItem = { id: string } & NewDowntimeItem;
 
 export interface NewDowntimePeriod {
   duration: number;

@@ -45,7 +45,6 @@
 - Show a "total HP" in finish, including armor and combat mobility
 - Show a "total WP" considering
 - Consider "loan" as part of your total coppers
-- In "finish", show replacement of "..."
 - Group Feyfolk race cards
 - Add filter textfield to races
 - Adjust the divider position in the stepper

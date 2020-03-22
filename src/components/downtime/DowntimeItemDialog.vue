@@ -2,13 +2,18 @@
   <v-dialog v-bind="$attrs" :value="value" @input="$emit('input', $event)">
     <v-card>
       <v-card-title v-text="title" />
-      <v-list class="height-80vh" v-if="action === 'add' && !currentDomain">
+      <v-list class="height-80vh" v-if="activity === 'add' && !currentDomain">
         <v-list-item
-          v-for="domainName in domainNames"
-          :key="domainName"
-          v-text="domainName"
-          @click="currentDomain = domainName"
-        />
+          v-for="domain in domains"
+          :key="domain.domainName"
+          @click="currentDomain = domain.domainName"
+          :disabled="domain[cardType + 's'].length === 0"
+        >
+          <v-list-item-avatar>
+            <IconImage :asset="domainImg(domain)" />
+          </v-list-item-avatar>
+          <v-list-item-content v-text="domain.domainName" />
+        </v-list-item>
       </v-list>
 
       <div class="height-80vh" v-else>
@@ -19,14 +24,14 @@
             :characterRule="characterRule"
             :ruleCard="ruleCard"
           >
-            <div class="text-right">
-              <v-btn
-                class="primary"
-                :disabled="disabledItems.includes(ruleCard.name)"
-                v-text="action"
-                @click="completeAction(characterRule)"
-              />
-            </div>
+            <DowntimeItemForm
+              :activity="activity"
+              :characterRule="characterRule"
+              :ruleCard="ruleCard"
+              :disabled="disabledItems.includes(ruleCard.name)"
+              @submit="completeDowntimeItem"
+              ref="downtimeItemForms"
+            />
           </RuleExpansionPanel>
         </v-expansion-panels>
       </div>
@@ -36,9 +41,14 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { CharacterRule, RuleCard, DowntimeItem } from "@/types";
-import { findRuleCard, domains } from "@/heimr-data";
+import { CharacterRule, RuleCard, NewDowntimeItem, Domain } from "@/types";
+import { findRuleCard, domains, domainImg } from "@/heimr-data";
+
 import RuleExpansionPanel from "@/components/domain/RuleExpansionPanel.vue";
+import DowntimeItemForm, {
+  PartialDowntimeItem
+} from "@/components/downtime/DowntimeItemForm.vue";
+import IconImage from "@/components/IconImage.vue";
 
 type CardSet =
   | {
@@ -52,11 +62,11 @@ type CardSet =
 
 export default Vue.extend({
   name: "DowntimeItemDialog",
-  components: { RuleExpansionPanel },
+  components: { RuleExpansionPanel, IconImage, DowntimeItemForm },
   props: {
     title: String,
     cardType: String,
-    action: String,
+    activity: String,
     value: Boolean,
     charRules: Array,
     downtimeItems: Array
@@ -65,22 +75,22 @@ export default Vue.extend({
   data() {
     return {
       expandPanel: -1 as number,
-      domainNames: domains.map(({ domainName }) => domainName) as string[],
+      domains: domains as Domain[],
       currentDomain: "" as string
     };
   },
 
   computed: {
     disabledItems(): string[] {
-      const subTitles: string[] = [];
-      (this.downtimeItems as DowntimeItem[]).forEach(
-        (downtimeItem: DowntimeItem) => {
-          if (downtimeItem.subTitle) {
-            subTitles.push(downtimeItem.subTitle);
+      const cardNames: string[] = [];
+      (this.downtimeItems as NewDowntimeItem[]).forEach(
+        (downtimeItem: NewDowntimeItem) => {
+          if (downtimeItem.cardName) {
+            cardNames.push(downtimeItem.cardName);
           }
         }
       );
-      return subTitles;
+      return cardNames;
     },
 
     addableCards(): CardSet[] {
@@ -124,16 +134,16 @@ export default Vue.extend({
     },
 
     cards(): CardSet[] {
-      if (this.action === "dormant") {
+      if (this.activity === "dormant") {
         return this.dormantCards;
       }
-      if (this.action === "upgrade") {
+      if (this.activity === "upgrade") {
         return this.upgradableCards;
       }
-      if (this.action === "remove") {
+      if (this.activity === "remove") {
         return this.removableCards;
       }
-      if (this.action === "add") {
+      if (this.activity === "add") {
         return this.addableCards;
       }
       return [];
@@ -142,16 +152,29 @@ export default Vue.extend({
 
   methods: {
     findRuleCard,
-    completeAction(characterRule: CharacterRule) {
-      this.$emit("action", {
-        action: this.action,
+    domainImg,
+
+    completeDowntimeItem(formData: {
+      downtimeItem: PartialDowntimeItem;
+      downtimeProp: string;
+    }) {
+      const partialDowntimeItem = formData.downtimeItem;
+      const downtimeProp = formData.downtimeProp;
+
+      const downtimeItem: NewDowntimeItem = {
+        activity: this.activity,
         title: this.title,
-        cost: 0,
-        subTitle: characterRule.name,
-        type: characterRule.type,
-        domainName: characterRule.domainName,
-        id: characterRule.id
-      });
+        cost: partialDowntimeItem.cost || 0,
+        domainName: partialDowntimeItem.domainName || this.currentDomain,
+        cardName: String(partialDowntimeItem.cardName),
+        type: partialDowntimeItem.type
+      };
+
+      if (partialDowntimeItem.cardNameDetails) {
+        downtimeItem.cardNameDetails = partialDowntimeItem.cardNameDetails;
+      }
+
+      this.$emit("submit", { downtimeItem, downtimeProp });
       this.$emit("input", false);
     }
   },
@@ -161,6 +184,8 @@ export default Vue.extend({
       if (newVal === false) {
         this.expandPanel = -1;
         this.currentDomain = "";
+        // @ts-ignore
+        (this.$refs.downtimeItemForms || []).forEach(form => form.reset());
       }
     }
   }

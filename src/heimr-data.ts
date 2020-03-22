@@ -75,7 +75,7 @@ export function findRuleCard({
   );
 }
 
-export function domainImg({ domainName }: Domain): string {
+export function domainImg({ domainName }: { domainName: string }): string {
   const imgName: string = domainName.toLowerCase().replace(/\s/g, "-");
   if (domainImages.includes(imgName)) {
     return `domains/${imgName}.png`;
