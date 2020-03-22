@@ -24,9 +24,23 @@
           </v-list>
         </v-menu>
 
-        <v-btn text disabled>
-          <v-icon left>mdi-cash-multiple</v-icon>Sell
-        </v-btn>
+        <v-menu offset-y>
+          <template v-slot:activator="{ on }">
+            <v-btn text v-on="on">
+              Sell
+              <v-icon right>mdi-chevron-down</v-icon>
+            </v-btn>
+          </template>
+          <v-list>
+            <v-list-item
+              v-for="(sellActivity, index) in sellActivities"
+              :key="index"
+              @click="addDowntimeExchange(sellActivity)"
+              v-text="sellActivity.title"
+            />
+          </v-list>
+        </v-menu>
+
         <v-btn text @click="otherExchange = !otherExchange">
           <v-icon left>
             mdi-checkbox-{{
@@ -126,6 +140,19 @@ const buyActivities: ExchangeItem[] = [
   }
 ];
 
+const sellActivities: ExchangeItem[] = [
+  {
+    title: "Sell an item",
+    activity: "remove",
+    cardType: "item"
+  },
+  {
+    title: "Sell an consumable",
+    activity: "remove",
+    cardType: "consumable"
+  }
+];
+
 export default Vue.extend({
   name: "DowntimeExchanges",
   props: {
@@ -137,7 +164,8 @@ export default Vue.extend({
       titleField: "" as string,
       costField: "" as string,
       otherExchange: false as boolean,
-      buyActivities: buyActivities as ExchangeItem[]
+      buyActivities: buyActivities as ExchangeItem[],
+      sellActivities: sellActivities as ExchangeItem[]
     };
   },
   computed: {

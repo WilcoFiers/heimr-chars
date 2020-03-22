@@ -69,6 +69,7 @@ export default Vue.extend({
         priceValue = String(parseInt(priceValue) / 2 || 0);
       }
     }
+
     return {
       priceType: "" as string,
       priceValue: priceValue as string,
