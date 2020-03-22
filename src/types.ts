@@ -135,6 +135,7 @@ export type BaseDowntimeItem = {
   cost: number;
   cardName: undefined;
   cardNameDetails: undefined;
+  id: undefined;
 };
 
 export type NewDowntimeItem =
@@ -146,7 +147,7 @@ export type NewDowntimeItem =
       domainName: string;
       cardName: string;
       cardNameDetails?: string;
-      type: string;
+      type: "item" | "skill" | "condition" | "consumable";
       id?: string;
     };
 

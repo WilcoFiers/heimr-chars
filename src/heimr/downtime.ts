@@ -116,7 +116,7 @@ export const getCharacterRuleMutations = (
     if (!actionItem.cardName) {
       return;
     }
-    // Make a skill dormant or remove an item or condition
+    // Make a skill dormant or remove a condition
     if (actionItem.activity === "remove") {
       ruleMutations.push({
         id: actionItem.id,
@@ -132,6 +132,30 @@ export const getCharacterRuleMutations = (
       };
       if (actionItem.cardNameDetails) {
         mutation.nameDetail = actionItem.cardNameDetails;
+      }
+      ruleMutations.push(mutation);
+    }
+  });
+
+  downtimeComputed.exchanges.forEach(exchangeItem => {
+    if (!exchangeItem.cardName) {
+      return;
+    }
+    // Make a skill dormant or remove an item or condition
+    if (exchangeItem.activity === "remove") {
+      ruleMutations.push({
+        id: exchangeItem.id,
+        inactive: true
+      });
+    }
+    if (exchangeItem.activity === "add") {
+      const mutation: Partial<CharacterRule> = {
+        name: exchangeItem.cardName,
+        type: exchangeItem.type,
+        domainName: exchangeItem.domainName
+      };
+      if (exchangeItem.cardNameDetails) {
+        mutation.nameDetail = exchangeItem.cardNameDetails;
       }
       ruleMutations.push(mutation);
     }

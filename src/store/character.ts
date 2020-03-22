@@ -290,6 +290,10 @@ export const character: CharacterModule = {
       const charUpdate = getCharacterMutations(downtimeComputed);
       const charRuleUpdates = getCharacterRuleMutations(downtimeComputed);
 
+      if (process.env.NODE_ENV === "development") {
+        console.log("completeDowntimePeriod", { charUpdate, charRuleUpdates });
+      }
+
       // TODO: Figure out how to batch these so they all succeed at the same time
       return Promise.all([
         dispatch("updateDowntimePeriod", { id, complete: true }),

@@ -7,9 +7,23 @@
 
     <v-row class="mx-3" dense v-if="!downtimeComputed.complete">
       <v-col>
-        <v-btn text disabled>
-          <v-icon left>mdi-cart-arrow-down</v-icon>Buy
-        </v-btn>
+        <v-menu offset-y>
+          <template v-slot:activator="{ on }">
+            <v-btn text v-on="on">
+              Buy
+              <v-icon right>mdi-chevron-down</v-icon>
+            </v-btn>
+          </template>
+          <v-list>
+            <v-list-item
+              v-for="(buyActivity, index) in buyActivities"
+              :key="index"
+              @click="addDowntimeExchange(buyActivity)"
+              v-text="buyActivity.title"
+            />
+          </v-list>
+        </v-menu>
+
         <v-btn text disabled>
           <v-icon left>mdi-cash-multiple</v-icon>Sell
         </v-btn>
@@ -92,6 +106,26 @@
 import Vue from "vue";
 import { DowntimeComputed, DowntimeItem } from "@/types";
 
+type ExchangeItem = {
+  title: string;
+  activity: string;
+  cardType: "item" | "consumable";
+  disabled?: boolean;
+};
+
+const buyActivities: ExchangeItem[] = [
+  {
+    title: "Buy an item",
+    activity: "add",
+    cardType: "item"
+  },
+  {
+    title: "Buy an consumable",
+    activity: "add",
+    cardType: "consumable"
+  }
+];
+
 export default Vue.extend({
   name: "DowntimeExchanges",
   props: {
@@ -102,7 +136,8 @@ export default Vue.extend({
     return {
       titleField: "" as string,
       costField: "" as string,
-      otherExchange: false as boolean
+      otherExchange: false as boolean,
+      buyActivities: buyActivities as ExchangeItem[]
     };
   },
   computed: {
@@ -117,11 +152,15 @@ export default Vue.extend({
       return (cardName || "").replace("...", cardNameDetails || "...");
     },
 
+    addDowntimeExchange(item: ExchangeItem) {
+      this.$emit("addItem", item);
+    },
+
     addDowntimeItem() {
       if (this.downtimeComputed.complete) {
         return;
       }
-      this.$emit("addItem", {
+      this.$emit("addCustomItem", {
         title: this.titleField,
         cost: Number(this.costField || 0)
       });

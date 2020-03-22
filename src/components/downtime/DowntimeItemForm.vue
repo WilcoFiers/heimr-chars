@@ -12,15 +12,17 @@
       label="price type"
       :items="priceTypes"
       v-model="priceType"
-      v-if="activity === 'add'"
+      v-if="variablePriceType"
     />
 
     <v-text-field
-      label="cost"
       type="number"
-      v-if="activity === 'add' && priceType !== ''"
+      v-if="variablePrice.editable"
+      :label="variablePrice.label"
+      :suffix="variablePrice.unit"
       v-model="priceValue"
     />
+
     <div class="text-right">
       <v-btn
         class="primary"
@@ -37,7 +39,7 @@ import Vue from "vue";
 import { CharacterRule, RuleCard, NewDowntimeItem, Domain } from "@/types";
 
 export type PartialDowntimeItem = Partial<NewDowntimeItem> & {
-  type: string;
+  type: "skill" | "condition" | "item" | "consumable";
   id?: string;
   domainName?: string;
   cardName: string;
@@ -60,9 +62,16 @@ export default Vue.extend({
   },
 
   data() {
+    let priceValue = "";
+    if (this.ruleCard.marketPrice && this.ruleCard.marketPrice !== "Var") {
+      priceValue = this.ruleCard.marketPrice.replace("¢", "");
+      if (this.activity === "remove") {
+        priceValue = String(parseInt(priceValue) / 2 || 0);
+      }
+    }
     return {
       priceType: "" as string,
-      priceValue: "" as string,
+      priceValue: priceValue as string,
       nameDetailValue: "" as string,
       required: (val: string) => val !== "" || "Field must be filled out",
       priceTypes
@@ -75,6 +84,32 @@ export default Vue.extend({
         return false;
       }
       return this.ruleCard.name.includes(" ...");
+    },
+
+    variablePriceType(): boolean {
+      return this.activity === "add" && this.cardType === "condition";
+    },
+
+    variablePrice(): { editable?: boolean; label?: string; unit?: string } {
+      if (this.variablePriceType && this.priceType) {
+        return {
+          editable: true,
+          label: "cost",
+          unit: this.priceType === "actions" ? "ℜ" : "¢"
+        };
+      }
+      if (this.cardType === "item" || this.cardType === "consumable") {
+        return {
+          editable: true,
+          label: "price",
+          unit: "¢"
+        };
+      }
+      return {};
+    },
+
+    cardType(): string {
+      return this.ruleCard?.type || this.characterRule.type;
     }
   },
 
@@ -105,12 +140,25 @@ export default Vue.extend({
         downtimeItem.cardNameDetails = this.nameDetailValue;
       }
 
-      if (this.priceType === "actions") {
+      if (this.variablePrice.editable && this.priceValue) {
         downtimeItem.cost = parseInt(this.priceValue) || 0;
-      } else if (this.priceType === "exchanges") {
-        downtimeItem.cost = 0 - (parseInt(this.priceValue) || 0);
+        if (
+          (this.priceType === "exchanges" && this.cardType === "condition") ||
+          (this.activity === "add" &&
+            ["item", "consumable"].includes(this.cardType))
+        ) {
+          downtimeItem.cost = 0 - downtimeItem.cost;
+        }
       }
-      let downtimeProp = this.priceType || "actions";
+
+      let downtimeProp;
+      if (this.priceType) {
+        downtimeProp = this.priceType;
+      } else if (this.cardType === "item" || this.cardType === "consumable") {
+        downtimeProp = "exchanges";
+      } else {
+        downtimeProp = "actions";
+      }
       this.$emit("submit", { downtimeProp, downtimeItem });
     },
 

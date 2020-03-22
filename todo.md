@@ -30,12 +30,13 @@
 
 ### Downtime
 
+- Sell items
 - Train skills
 - Change skill level
 - Retrain dormant skills
-- Buy items
-- Sell items
+- Group rule cards
 - Restore items
+- Buy multiple items at once
 - Autocomple "other" using downtime rules
 - Continued training (required activity)
 - Allow training of conditions

@@ -38,7 +38,7 @@
       <v-col cols="12" md="6">
         <DowntimeActions
           :downtimeComputed="downtimeComputed"
-          @addItem="setDowntimeItemModal('actions', $event)"
+          @addItem="setDowntimeItemModal"
           @addCustomItem="addDowntimeItem('actions', $event)"
           @removeItem="removeDowntimeItem('actions', $event)"
         />
@@ -48,7 +48,8 @@
         <DowntimeExchanges
           :downtimeComputed="downtimeComputed"
           :characterInfo="characterInfo"
-          @addItem="addDowntimeItem('exchanges', $event)"
+          @addItem="setDowntimeItemModal"
+          @addCustomItem="addDowntimeItem('exchanges', $event)"
           @removeItem="removeDowntimeItem('exchanges', $event)"
         />
       </v-col>
@@ -74,9 +75,10 @@
     <v-dialog v-model="completeDialog" max-width="400">
       <v-card>
         <v-card-title>Complete Downtime Period?</v-card-title>
-        <v-card-text>
-          Once completed, the downtime period is final. It can not be updated.
-        </v-card-text>
+        <v-card-text
+          >Once completed, the downtime period is final. It can not be
+          updated.</v-card-text
+        >
         <v-card-actions>
           <v-btn @click="completeDialog = false">Cancel</v-btn>
           <v-spacer />
@@ -211,10 +213,7 @@ export default Vue.extend({
       });
     },
 
-    setDowntimeItemModal(
-      propName: "actions" | "exchanges",
-      downtimeItem: DowntimeItem
-    ) {
+    setDowntimeItemModal(downtimeItem: DowntimeItem) {
       this.downtimeModalItem = downtimeItem;
       this.showModal = true;
       return;

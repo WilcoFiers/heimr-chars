@@ -161,14 +161,15 @@ export default Vue.extend({
       const partialDowntimeItem = formData.downtimeItem;
       const downtimeProp = formData.downtimeProp;
 
-      const downtimeItem: NewDowntimeItem = {
+      const downtimeItem = {
         activity: this.activity,
         title: this.title,
         cost: partialDowntimeItem.cost || 0,
         domainName: partialDowntimeItem.domainName || this.currentDomain,
         cardName: String(partialDowntimeItem.cardName),
         type: partialDowntimeItem.type
-      };
+      } as NewDowntimeItem;
+
       if (partialDowntimeItem.id) {
         downtimeItem.id = partialDowntimeItem.id;
       }
