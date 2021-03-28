@@ -20,55 +20,9 @@
 
 <script lang="ts">
 import Vue from "vue";
+import { navItems, NavItem } from "./navItems";
 
 type DrawerState = null | boolean;
-type Link = { text: string; to: string | object; icon: string };
-type Divider = { divider: true };
-type NavItem = Link | Divider;
-
-const navItems: NavItem[] = [
-  {
-    text: "My Characters",
-    to: "/characters",
-    icon: "account-search"
-  },
-  {
-    text: "Games & Tools",
-    to: { name: "GamesTools" },
-    icon: "dice-d20"
-  },
-  {
-    divider: true
-  },
-  {
-    text: "LARP Rules",
-    to: "/books/core-rules",
-    icon: "feather"
-  },
-  {
-    text: "Domains",
-    to: "/books/domains",
-    icon: "layers-triple-outline"
-  },
-  {
-    text: "Downtime Periods",
-    to: "/books/downtime-periods",
-    icon: "briefcase-clock-outline"
-  },
-  {
-    divider: true
-  },
-  {
-    text: "Settings",
-    to: { name: "Settings" },
-    icon: "settings"
-  },
-  {
-    text: "About",
-    to: "/about",
-    icon: "information-outline"
-  }
-];
 
 export default Vue.extend({
   name: "NavigationDrawer",

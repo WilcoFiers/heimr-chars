@@ -13,7 +13,7 @@
       </v-col>
     </v-row>
     <v-row dense>
-      <v-col sm="4" xl="3">
+      <v-col sm="6" xl="3">
         <v-btn v-if="previousSection" :to="toRoute(previousSection)" text>
           <v-icon left>mdi-arrow-left</v-icon>
           <span class="d-sm-none" v-text="'Back'" />
@@ -23,14 +23,16 @@
           />
         </v-btn>
       </v-col>
-      <v-col sm="4" xl="3" class="text-center">
+
+      <v-col sm="4" xl="3" class="text-center d-sm-none">
         <v-btn v-if="parentSection" :to="toRoute(parentSection)" text exact>
           <span class="d-none d-sm-block" v-text="parentSection.sectionName" />
-          <span class="d-sm-none" v-text="'Up'" />
+          <span v-text="'Up'" />
           <v-icon right>mdi-arrow-up</v-icon>
         </v-btn>
       </v-col>
-      <v-col sm="4" xl="3" class="text-right">
+
+      <v-col sm="6" xl="3" class="text-right">
         <v-btn v-if="nextSection" :to="toRoute(nextSection)" text>
           <span class="d-none d-sm-block" v-text="nextSection.sectionName" />
           <span class="d-sm-none" v-text="'Next'" />
