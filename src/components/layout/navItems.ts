@@ -37,7 +37,7 @@ export const navItems: NavItem[] = [
   {
     text: "Settings",
     to: "/settings",
-    icon: "settings"
+    icon: "cog"
   },
   {
     text: "About",
