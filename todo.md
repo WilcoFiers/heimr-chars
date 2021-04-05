@@ -1,6 +1,5 @@
 # TODO
 
-- Migrate to web.app domain
 - Make char notes truly private
 - Ensure applying downtime period can only happen on an up-to-date char
 - Bug: Monthly savings is not reporting right (see Orc)
