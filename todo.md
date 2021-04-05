@@ -1,12 +1,11 @@
 # TODO
 
-- Show the navbar on smaller resolutions
-- Make char notes truely private
+- Migrate to web.app domain
+- Make char notes truly private
 - Ensure applying downtime period can only happen on an up-to-date char
 - Bug: Monthly savings is not reporting right (see Orc)
 - Move all data into cache on sign-in. There isn't that much, and its better for offline
 - Use router meta.title prop
-- Replace the Vue logo with a Heimr logo
 - For mobile, put the h1 in the header, replacing the Heimr logo
 - Restore sign-out option
 - In char creation mobile, add hamburger in top right for step navigation

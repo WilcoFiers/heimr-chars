@@ -6,35 +6,35 @@ on:
       - master
 
 jobs:
-  build:
-    name: Build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@master
-      - name: Install Dependencies
-        run: npm install
-      - name: Build
-        run: npm run build
-      - name: Archive Production Artifact
-        uses: actions/upload-artifact@master
-        with:
-          name: dist
-          path: dist
-
   deploy:
-    name: Deploy
-    needs: build
+    name: Test & deploy
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repo
-        uses: actions/checkout@master
-      - name: Download Artifact
-        uses: actions/download-artifact@master
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v2
         with:
-          name: dist
+          path: |
+            ~/.npm
+            ~/.cache/Cypress
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+      - run: npm ci
+      - run: npm run lint
+      # - run: npm run test:unit
+      - run: npm run build
+      # - uses: cypress-io/github-action@v1
+      #   with:
+      #     install: false
+      #     start: npm run serve:dist
+      #     wait-on: http://localhost:8080/
+      #     config_file: cypress.json
+      #     spec: "tests/e2e/**/*"
+      #     env: true
+      #   env:
+      #     CYPRESS_HFTD_USER_EMAIL:  ${{ secrets.HFTD_USER_EMAIL }}
+      #     CYPRESS_HFTD_USER_PASSWORD:  ${{ secrets.HFTD_USER_PASSWORD }}
+      #     CYPRESS_BASE_URL: http://localhost:8080/
       - name: Deploy to Firebase
-        uses: w9jds/firebase-action@master
+        uses: w9jds/firebase-action@v1.3.1
         with:
           args: deploy
         env:
