@@ -5,7 +5,6 @@
 - Bug: Monthly savings is not reporting right (see Orc)
 - Move all data into cache on sign-in. There isn't that much, and its better for offline
 - Use router meta.title prop
-- For mobile, put the h1 in the header, replacing the Heimr logo
 - Restore sign-out option
 - In char creation mobile, add hamburger in top right for step navigation
 - Animate page transitions

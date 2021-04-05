@@ -1,6 +1,6 @@
 # heimr-chars
 
-https://heimr-chars.firebaseapp.com/
+https://heimr-chars.web.app/
 
 ## Project setup
 
