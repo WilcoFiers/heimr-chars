@@ -24,10 +24,10 @@
         <strong>Points:</strong>
         {{ ruleCard.points }}
       </v-col>
-      <v-col v-if="ruleCard.points && ruleCard.type === 'skill'">
+      <!-- <v-col v-if="ruleCard.points && ruleCard.type === 'skill'">
         <strong>Monthly cost:</strong>
         {{ ruleCard.points }}&nbsp;ℜ
-      </v-col>
+      </v-col> -->
 
       <v-col v-if="ruleCard.marketPrice">
         <strong>Market price:</strong>
