@@ -19,7 +19,7 @@
       </v-stepper-header>
     </v-stepper>
 
-    <div class="d-sm-none title text-center">
+    <div class="d-sm-none title text-center mt-2">
       Step {{ current }} of {{ steps.length }}
       <!-- TODO: small progress bar -->
     </div>
@@ -27,7 +27,7 @@
     <router-view ref="step" />
 
     <v-container>
-      <div class="d-flex mt-5">
+      <div class="d-flex mt-0">
         <v-btn v-if="previousStep" @click="changeStep(previousStep)">
           <v-icon left>mdi-arrow-left-bold-outline</v-icon>
           {{ previousStep.label }}

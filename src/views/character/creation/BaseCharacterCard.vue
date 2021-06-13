@@ -40,8 +40,7 @@ import {
   Domain,
   RuleCard,
   State,
-  CharacterRule,
-  ConditionCard
+  CharacterRule
 } from "@/types";
 
 import { isSameCard } from "@/heimr/isSameCard";

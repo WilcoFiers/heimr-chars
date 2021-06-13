@@ -64,7 +64,7 @@
         </v-card>
       </v-col>
     </v-row>
-    <v-row>
+    <v-row v-if="message">
       <v-col>
         <ErrorMessage :message="message" />
       </v-col>
@@ -74,7 +74,6 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { mapState } from "vuex";
 import { State } from "@/store";
 import { domainsMeta, domainImg, DomainMeta } from "@/heimr-data";
 import { CharacterState } from "@/store/character";

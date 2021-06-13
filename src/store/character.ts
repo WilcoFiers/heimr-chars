@@ -152,13 +152,9 @@ export const character: CharacterModule = {
       ]);
     },
 
-    createCharacter(_, { name, race }) {
+    async createCharacter(_, { name, race }) {
       const playerID = (auth.currentUser as User).uid;
-      const charId = createID();
-
-      // Use .doc().set() instead of .add() so we can return charId when offline
-      // Don't "await" this so we can return charId
-      charactersCol.doc(charId).set({
+      const newChar = await charactersCol.add({
         name,
         race,
         playerID,
@@ -166,7 +162,8 @@ export const character: CharacterModule = {
         lastUpdated: serverTimestamp(),
         archive: false
       });
-      return charId;
+
+      return newChar.id;
     },
 
     updateCharacter({ state }, newProps: Partial<NewCharacter>) {

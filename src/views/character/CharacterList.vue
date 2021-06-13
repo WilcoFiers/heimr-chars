@@ -42,7 +42,8 @@
           md="9"
           lg="6"
           xl="4"
-          to="/characters/new/create/origin"
+          @click="createNewChar"
+          :loading="loading"
         >
           <v-card-title>
             <v-icon left>mdi-plus-box</v-icon>New character
@@ -64,6 +65,9 @@ import { randomBio } from "@/heimr/randomBio";
 export default Vue.extend({
   name: "CharacterList",
   components: { IconImage },
+  data() {
+    return { loading: false };
+  },
   computed: {
     characters() {
       return (this.$store.state as State).character.list;
@@ -71,6 +75,21 @@ export default Vue.extend({
   },
   methods: {
     raceImg,
+    async createNewChar() {
+      this.loading = true;
+      const charId = await this.$store.dispatch("createCharacter", {
+        shortBio: "",
+        name: "",
+        race: ""
+      });
+
+      this.loading = false;
+      // Manually direct to domains, to avoid a race condition
+      this.$router.push({
+        name: "character-steps/origins",
+        params: { charId }
+      });
+    },
     charUri({ id, isComplete }: Character) {
       if (isComplete) {
         return `/characters/${id}`;
