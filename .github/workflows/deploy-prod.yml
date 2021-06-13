@@ -16,7 +16,7 @@ jobs:
           path: |
             ~/.npm
             ~/.cache/Cypress
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
       - run: yarn
       - run: npm run lint
       # - run: npm run test:unit
