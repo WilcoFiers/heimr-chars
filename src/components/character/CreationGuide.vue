@@ -2,8 +2,8 @@
   <v-card>
     <v-card-title class="secondary white--text">
       <h2 class="title">
-        <v-icon left class="white--text">mdi-help-circle-outline</v-icon>How to
-        create a Heimrian
+        <v-icon left class="white--text">mdi-help-circle-outline</v-icon
+        >Creating a Heimrian
       </h2>
     </v-card-title>
     <v-card-text class="pt-2">
@@ -13,21 +13,20 @@
         a new character, you will go through the following steps:
       </p>
       <ol>
-        <li>Pick the race of your character</li>
+        <li>Pick the <strong>race</strong> of your character</li>
         <li>
           Choose
-          <dfn>domains</dfn> for your character. We recommend no more than 3
-          domains.
+          <strong><dfn>domains</dfn></strong> for your character. We recommend
+          no more than 3 domains.
         </li>
         <li>
-          Get 15 to 20 points of
-          <dfn>skills</dfn> and <dfn>conditions</dfn> from the chosen domains.
+          Choose <strong><dfn>skills</dfn> and <dfn>conditions</dfn></strong
+          >. Spend 15 to 20 points in the chosen domains.
         </li>
         <li>
-          Buy
-          <dfn>items</dfn> for your character. You have 500¢, plus 100¢ for each
-          unspent point (maximum 5 points). You can keep the coppers you did not
-          spend.
+          <strong>Buy <dfn>items</dfn></strong>
+          for your character. You have 500¢, plus 100¢ for each unspent point.
+          What's left is your starting cash.
         </li>
       </ol>
 
